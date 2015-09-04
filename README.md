@@ -22,3 +22,26 @@ Does he want a flashy and good looking UI or does he want to keep it  simple and
 
 Do we get to see what kind of info he stores in his current excel doc so we can have a good understanding of what features he wants (and also include his previous orders in our program)?
 
+
+
+Team Cormorant CRC Notes
+
+GUI class:
+Java FX, displays all options, displays general information
+
+Use w/ Customer, Order class
+
+Customer class:
+public, customer name, addresss, email, phone
+
+Use w/ Order class
+
+Order class:
+contains data for an order, date of order, submitted date, price, specifications, payment type
+
+Use with Customer, Credit Card class
+
+Credit Card class:
+Card number, Holder, expiration date, second number, get methods, private class
+
+contained in order class
