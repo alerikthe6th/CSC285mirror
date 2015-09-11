@@ -12,11 +12,14 @@ public class JavaFXGUI extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = FXMLLoader.load(getClass().getResource("potteryGUI.fxml"));
-			Scene scene = new Scene(root,640,480);
+			Scene scene = new Scene(root,650,490);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Pottery GUI");
 			primaryStage.show();
+			primaryStage.setMinHeight(480);
+			primaryStage.setMinWidth(640);
+			//primaryStage.setResizable(false);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
