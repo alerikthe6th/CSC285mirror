@@ -58,9 +58,9 @@ public class MainController implements Initializable{
 	    	
 	    ObservableList<String> options = 
 	    	    FXCollections.observableArrayList(
-	    	        "Option 1",
-	    	        "Option 2",
-	    	        "Option 3"
+	    	        "Option A",
+	    	        "Option B",
+	    	        "Option C"
 	    	    );
 	    	cmbOrderStatus.setItems(options);
 	    }
