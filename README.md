@@ -26,7 +26,8 @@ Client response: Simple is good. But looking beyond a single customer, as a soft
 
 Do we get to see what kind of info he stores in his current excel doc so we can have a good understanding of what features he wants (and also include his previous orders in our program)?
 
-Client response: I could provide that, but it's pretty haphazard since I didn't bother to define 
+Client response: I could provide that, but it's pretty haphazard since I didn't bother to define columns. But it tends to be name, address, what is ordered and the price, cost of shipping, status of payment, status of order completion.
 
-columns. But it tends to be name, address, what is ordered and the price, cost of shipping, status of payment, status of order completion.
+THINGS WE NEED ON THE GUI:
+name, address, what is ordered and the price, cost of shipping, status of payment, status of order completion, something to print a shipping invoice(sheet that say what you ordered and cost, like a reciept) for the package.
 
