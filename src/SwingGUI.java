@@ -140,35 +140,7 @@ public class SwingGUI {
 		halves.add(right);
 		
 		frame.add(halves, BorderLayout.CENTER);
-/*
-		JPanel label1 = new JPanel(new FlowLayout());
-		label1.add(last);
-		label1.add(first);
-		JPanel field1 = new JPanel(new FlowLayout());
-		field1.add(lastName);
-		field1.add(firstName);
-		JPanel label2 = new JPanel(new FlowLayout());
-		label2.add(email);
-		label2.add(phone);
-		JPanel field2 = new JPanel(new FlowLayout());
-		field2.add(emailAddress);
-		field2.add(phoneNumber);
-		JPanel label3 = new JPanel(new FlowLayout());
-		label3.add(date);
-		JPanel field3 = new JPanel(new FlowLayout());
-		field3.add(orderDate);
-		
-		JPanel center = new JPanel(new GridLayout(3,2));
-		//JPanel center = new JPanel(new FlowLayout());
-	
-		center.add(label1);
-		center.add(field1);
-		center.add(label2);
-		center.add(field2);
-		center.add(label3);
-		center.add(field3);
-*/		
-//		frame.add(center, BorderLayout.CENTER);
+
 		
 		
 		
