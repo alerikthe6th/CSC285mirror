@@ -18,7 +18,16 @@ Clarifying Questions:
 
 Do we want to have a stage field for where a product is in its creation progress, and if so what are the steps/stages to completing a pot order?
 
+Client response: 1. Order is received. 2. Pot is thrown 3. Pot is trimmed/assembled 4. Pot is fired for the first time. 5 Pot is glazed/ready for final fire. 6. Pot is ready to ship/be picked up.
+
 Does he want a flashy and good looking UI or does he want to keep it  simple and functionally efficient like his website?
 
+Client response: Simple is good. But looking beyond a single customer, as a software marketer bells and whistles bring customers...
+
 Do we get to see what kind of info he stores in his current excel doc so we can have a good understanding of what features he wants (and also include his previous orders in our program)?
+
+Client response: I could provide that, but it's pretty haphazard since I didn't bother to define columns. But it tends to be name, address, what is ordered and the price, cost of shipping, status of payment, status of order completion.
+
+THINGS WE NEED ON THE GUI:
+name, address, what is ordered and the price, cost of shipping, status of payment, status of order completion, something to print a shipping invoice(sheet that say what you ordered and cost, like a reciept) for the package.
 
