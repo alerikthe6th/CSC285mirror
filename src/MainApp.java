@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 
 public class MainApp extends Application {
 	
-	private Stage primaryStage;
+	Stage primaryStage;
     private BorderPane rootLayout;
 	@Override
     public void start(Stage primaryStage) throws Exception {
@@ -27,7 +27,7 @@ public class MainApp extends Application {
 	/**
      * Initializes the root layout.
      */
-	private void initRootLayout() {
+	 void initRootLayout() {
 		try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -38,6 +38,10 @@ public class MainApp extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
+            
+         // Give the controller access to the main app.
+            MainController mainController = loader.getController();
+            mainController.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }

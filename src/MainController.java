@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -18,31 +20,35 @@ public class MainController implements Initializable{
 	
 	@FXML
 	private Button newOrderButton;
+	private MainApp mainApp;
+	
+	public MainController() {
+		
+	}
 	
 	    
 	    @FXML
 	    public void newOrderButtonPressed(ActionEvent e){
 	    	System.out.println("New Order!");
-	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("newOrderGUI.fxml"));
-	        GridPane newWindow;
-			try {
-				newWindow = (GridPane)loader.load();
-				//ChildController controller = loader.getController();
-		        //controller.setMainWindow(this);
-		        Stage stage = new Stage();
-		        stage.initModality(Modality.WINDOW_MODAL);
-		        stage.initOwner(newOrderButton.getScene().getWindow());
-		        Scene scene = new Scene(newWindow);
-		        stage.setScene(scene);
-		        stage.show();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+	    	Parent root;
+	        try {
+	            root = FXMLLoader.load(getClass().getClassLoader().getResource("newOrderGUI.fxml"));
+	            Stage stage = new Stage();
+	            stage.setTitle("New Order");
+	            stage.setScene(new Scene(root));
+	            stage.show();
+
+	            //hide this current window (if this is what you want
+	            //((Node)(e.getSource())).getScene().getWindow().hide();
+
+	        } catch (IOException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
 	          
 	    	
 	    	
-	}
+	
 
 
 
@@ -52,6 +58,10 @@ public class MainController implements Initializable{
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			assert newOrderButton != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 			
+		}
+		
+		public void setMainApp(MainApp mainApp) {
+	        this.mainApp = mainApp;
 		}
 
 }

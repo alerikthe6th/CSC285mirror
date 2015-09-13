@@ -8,8 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-
-<GridPane alignment="TOP_CENTER" hgap="20.0" vgap="8.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane alignment="TOP_CENTER" hgap="20.0" vgap="8.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewOrderController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="235.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="10.0" prefWidth="184.0" />
@@ -147,7 +146,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="542.0" layoutY="547.0" mnemonicParsing="false" text="Cancel Order" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+      <Button fx:id="cancelOrderButton" layoutX="542.0" layoutY="547.0" mnemonicParsing="false" onAction="#cancelOrderButtonPressed" text="Cancel Order" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
