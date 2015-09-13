@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -79,7 +79,7 @@
                                  <children>
                                     <HBox alignment="CENTER" layoutY="-33.0" prefHeight="34.0" prefWidth="638.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="New Order" />
+                                          <Button fx:id="newOrderButton" mnemonicParsing="false" onAction="#newOrderButtonPressed" text="New Order" />
                                           <Button mnemonicParsing="false" text="Edit Order" />
                                           <Button mnemonicParsing="false" text="View Order" />
                                           <Button mnemonicParsing="false" text="Duplicate Order" />
