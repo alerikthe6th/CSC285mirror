@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -13,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {
@@ -22,6 +25,41 @@ public class MainController implements Initializable {
 	private MainApp mainApp;
 	@FXML
 	private ComboBox<String> cmbOrderStatus;
+	@FXML
+    private TableView<Order> tblOrders;
+	@FXML
+    private TableColumn<Order, Integer> clmOrderNumber;
+    @FXML
+    private TableColumn<Order, LocalDate> clmOrderDate;
+    @FXML
+    private TableColumn<Order, LocalDate> clmDueDate;
+	@FXML
+    private TableColumn<Order, String> clmFirstName;
+    @FXML
+    private TableColumn<Order, String> clmLastName;
+    @FXML
+    private TableColumn<Order, String> clmStatus;
+    @FXML
+    private TableColumn<Order, String> clmOrderDesc;
+    @FXML
+    private TableColumn<Order, String> clmShippingAddress;
+    @FXML
+    private TableColumn<Order, String> clmPaymentMethod;
+    @FXML
+    private TableColumn<Order, String> clmPaymentStatus;
+    @FXML
+    private TableColumn<Order, Double> clmPrice;
+    @FXML
+    private TableColumn<Order, String> clmEmail;
+    @FXML
+    private TableColumn<Order, String> clmPhone;
+    @FXML
+    private TableColumn<Order, Boolean> clmSMSEnabled;
+    @FXML
+    private TableColumn<Order, String> clmPrefContactMethod;
+    
+    private ObservableList<Order> orderList = FXCollections.observableArrayList();
+    
 
 	public MainController() {
 
@@ -48,7 +86,7 @@ public class MainController implements Initializable {
 
 	private void populateOrderStatus() {
 
-		ObservableList<String> options = FXCollections.observableArrayList("Option A", "Option B", "Option C");
+		ObservableList<String> options = FXCollections.observableArrayList("Order Recieved", "Pot Thrown", "Pot Trimmed/Assembled", "Pot Fired", "Pot Glazed", "Ready to Ship", "Completed");
 		cmbOrderStatus.setItems(options);
 	}
 
@@ -57,11 +95,24 @@ public class MainController implements Initializable {
 		assert newOrderButton != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		assert cmbOrderStatus != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateOrderStatus();
+		populateTable();
 
 	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
+	
+	public void populateTable(){
+		orderList.add(new Order(13625, LocalDate.now(), LocalDate.of(2015, 10, 31), "Incomplete", "James", "Smith", "Two mugs please", "136 Required Dr.", "Unpaid", "Cash", 136.52, "michaelcurrie12@augustana.edu", "555-555-5555", true, "Email"));
+		orderList.add(new Order(13626, LocalDate.now(), LocalDate.of(2015, 11, 02), "Incomplete", "John", "Doe", "Lots and lots of plates", "123 Living Way", "Unpaid", "Credit Card", 678.90, "michaelcurrie12@augustana.edu", "555-555-5555", false, "Email"));
+		tblOrders.setItems(orderList);
+		clmFirstName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+        clmLastName.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+        //clmOrderNumber.setCellValueFactory(cellData -> cellData.getValue().orderNumberProperty());
+        clmOrderDate.setCellValueFactory(cellData -> cellData.getValue().orderDateProperty());
+        clmDueDate.setCellValueFactory(cellData -> cellData.getValue().dueDateProperty());
+	}
+	
 
 }

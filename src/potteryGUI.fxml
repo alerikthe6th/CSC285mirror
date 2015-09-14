@@ -50,22 +50,23 @@
                                                 <Insets />
                                              </VBox.margin>
                                           </HBox>
-                                          <TableView layoutX="137.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                                          <TableView fx:id="tblOrders" layoutX="137.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                             <columns>
-                                              <TableColumn prefWidth="93.0" text="Order Number" />
-                                                <TableColumn prefWidth="75.0" text="Order Date" />
-                                                <TableColumn prefWidth="75.0" text="Due Date" />
-                                              <TableColumn prefWidth="100.0" text="Customer Name" />
-                                                <TableColumn prefWidth="121.0" text="Order Description" />
-                                                <TableColumn prefWidth="118.0" text="Shipping Address" />
-                                                <TableColumn prefWidth="67.0" text="Status" />
-                                                <TableColumn prefWidth="75.0" text="Payment Status" />
-                                                <TableColumn prefWidth="75.0" text="Payment Method" />
-                                                <TableColumn prefWidth="75.0" text="Price" />
-                                                <TableColumn prefWidth="75.0" text="Email" />
-                                                <TableColumn prefWidth="75.0" text="Phone" />
-                                                <TableColumn prefWidth="75.0" text="SMS-Enabled" />
-                                                <TableColumn prefWidth="75.0" text="Prefered Contact Method" />
+                                              <TableColumn fx:id="clmOrderNumber" prefWidth="93.0" text="Order Number" />
+                                                <TableColumn fx:id="clmOrderDate" prefWidth="75.0" text="Order Date" />
+                                                <TableColumn fx:id="clmDueDate" prefWidth="75.0" text="Due Date" />
+                                                <TableColumn fx:id="clmStatus" prefWidth="67.0" text="Status" />
+                                              <TableColumn fx:id="clmFirstName" prefWidth="100.0" text="First Name" />
+                                                <TableColumn fx:id="clmLastName" prefWidth="132.0" text="Last Name" />
+                                                <TableColumn fx:id="clmOrderDesc" prefWidth="64.0" text="Order Description" />
+                                                <TableColumn fx:id="clmShippingAddress" prefWidth="118.0" text="Shipping Address" />
+                                                <TableColumn fx:id="clmPaymentStatus" prefWidth="75.0" text="Payment Status" />
+                                                <TableColumn fx:id="clmPaymentMethod" prefWidth="75.0" text="Payment Method" />
+                                                <TableColumn fx:id="clmPrice" prefWidth="75.0" text="Price" />
+                                                <TableColumn fx:id="clmEmail" prefWidth="75.0" text="Email" />
+                                                <TableColumn fx:id="clmPhone" prefWidth="75.0" text="Phone" />
+                                                <TableColumn fx:id="clmSMSEnabled" prefWidth="75.0" text="SMS-Enabled" />
+                                                <TableColumn fx:id="clmPrefContactMethod" prefWidth="75.0" text="Prefered Contact Method" />
                                             </columns>
                                              <padding>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
