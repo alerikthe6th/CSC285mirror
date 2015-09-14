@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="TOP_CENTER" hgap="20.0" vgap="8.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewOrderController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="235.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="10.0" prefWidth="184.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="10.0" prefWidth="222.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="308.0" minHeight="10.0" prefHeight="132.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="275.0" minHeight="0.0" prefHeight="103.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="432.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="432.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="432.0" minHeight="10.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox GridPane.rowIndex="1">
+         <children>
+            <Label text="Order Number" />
+            <TextField />
+         </children>
+      </VBox>
+      <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label text="Order Date" />
+            <TextField />
+         </children>
+      </VBox>
+      <VBox GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Label text="Due Date" />
+            <TextField />
+         </children>
+      </VBox>
+      <VBox spacing="4.0" GridPane.rowIndex="2">
+         <children>
+            <Label text="First Name" />
+            <TextField />
+            <Label text="Last Name" />
+            <TextField />
+            <HBox alignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="AutoFill from Previous Order" textAlignment="CENTER" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <children>
+            <Label text="Order Description" />
+            <TextArea />
+         </children>
+      </VBox>
+      <VBox GridPane.columnSpan="2" GridPane.rowIndex="3">
+         <children>
+            <Label text="Shipping Street Address" />
+            <TextField />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label text="City" />
+                        <TextField />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="State" />
+                        <TextField />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="Zip" />
+                        <TextField />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <children>
+            <Label text="Phone Number" />
+            <TextField />
+            <Label text="Email Address" />
+            <TextField />
+         </children>
+      </VBox>
+      <VBox GridPane.rowIndex="5">
+         <children>
+            <Label text="Price" />
+            <TextField />
+         </children>
+      </VBox>
+      <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <children>
+            <Label text="Payment Method" />
+            <ComboBox prefWidth="150.0" />
+         </children>
+      </VBox>
+      <VBox GridPane.columnIndex="2" GridPane.rowIndex="5">
+         <children>
+            <Label text="Payment Status" />
+            <ComboBox prefWidth="150.0" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <children>
+            <CheckBox mnemonicParsing="false" text="SMS-Enabled?" />
+         </children>
+      </HBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <Label text="Prefered Contact Method" />
+            <ComboBox prefWidth="150.0" />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+         <children>
+            <Label text="Order Status" />
+            <ComboBox prefWidth="150.0" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" GridPane.columnIndex="1">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New Order">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" text="Save Order" textFill="#017c2a" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelOrderButton" layoutX="542.0" layoutY="547.0" mnemonicParsing="false" onAction="#cancelOrderButtonPressed" text="Cancel Order" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+   <padding>
+      <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+   </padding>
+</GridPane>
