@@ -7,3 +7,4 @@ packing slip to have a fragile warning
 make columns fit to screen
 delete order next to duplicate (with extra are you sure popup window)
 PIN entry for CC numbers
+on main page make "order status" say "change order status to:"
