@@ -1,5 +1,4 @@
 
-
 import java.time.LocalDate;
 
 import javafx.beans.property.BooleanProperty;
@@ -15,110 +14,289 @@ import javafx.beans.property.StringProperty;
 
 public class Order {
 	private final IntegerProperty orderNumber;
-    private final ObjectProperty<LocalDate> orderDate;
-    private final ObjectProperty<LocalDate> dueDate;
-    private final StringProperty status;
-    private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final StringProperty orderDesc;
-    private final StringProperty shippingAddress;
-    private final StringProperty paymentStatus;
-    private final StringProperty paymentMethod;
-    private final DoubleProperty price;
-    private final StringProperty phoneNumber;
-    private final StringProperty email;
-    private final BooleanProperty smsEnabled;
-    private final StringProperty prefContactMethod;
+	private final ObjectProperty<LocalDate> orderDate;
+	private final ObjectProperty<LocalDate> dueDate;
+	private final StringProperty status;
+	private final StringProperty firstName;
+	private final StringProperty lastName;
+	private final StringProperty orderDesc;
+	private final StringProperty fullAddress;
+	private final StringProperty streetAddress;
+	private final StringProperty city;
+	private final StringProperty state;
+	private final StringProperty zip;
+	private final StringProperty paymentStatus;
+	private final StringProperty paymentMethod;
+	private final DoubleProperty price;
+	private final StringProperty phoneNumber;
+	private final StringProperty email;
+	private final BooleanProperty smsEnabled;
+	private final StringProperty prefContactMethod;
 
-    /**
-     * Default constructor.
-     */
-    public Order() {
-        this(0, null, null, null, null, null, null, null, null, null, 0, null, null, false, null);
-    }
+	/**
+	 * Default constructor.
+	 */
+	public Order() {
+		this(0, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, false, null);
+	}
 
-    /**
-     * Constructor with some initial data.
-     */
-    public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName, String lastName,
-    		String orderDesc, String shippingAddress, String paymentStatus, String paymentMethod, double price, String phoneNumber,
-    		String email, boolean smsEnabled, String prefContactMethod) {
-    	this.orderNumber = new SimpleIntegerProperty(orderNumber);
-    	this.orderDate = new SimpleObjectProperty<LocalDate>(orderDate);
-    	this.dueDate = new SimpleObjectProperty<LocalDate>(dueDate);
-    	this.status = new SimpleStringProperty(status);
-    	this.orderDesc = new SimpleStringProperty(orderDesc);
-    	this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
-        this.shippingAddress = new SimpleStringProperty(shippingAddress);
-        this.paymentStatus = new SimpleStringProperty(paymentStatus);
-        this.paymentMethod = new SimpleStringProperty(paymentMethod);
-        this.price = new SimpleDoubleProperty(price);
-        this.phoneNumber = new SimpleStringProperty(phoneNumber);
-        this.email = new SimpleStringProperty(email);
-        this.smsEnabled = new SimpleBooleanProperty(smsEnabled);
-        this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
-    }
+	/**
+	 * Constructor with some initial data.
+	 */
+	public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName,
+			String lastName, String orderDesc, String streetAddress, String city, String state, String zip,
+			String paymentStatus, String paymentMethod, double price, String phoneNumber, String email,
+			boolean smsEnabled, String prefContactMethod) {
+		this.orderNumber = new SimpleIntegerProperty(orderNumber);
+		this.orderDate = new SimpleObjectProperty<LocalDate>(orderDate);
+		this.dueDate = new SimpleObjectProperty<LocalDate>(dueDate);
+		this.status = new SimpleStringProperty(status);
+		this.orderDesc = new SimpleStringProperty(orderDesc);
+		this.firstName = new SimpleStringProperty(firstName);
+		this.lastName = new SimpleStringProperty(lastName);
+		this.streetAddress = new SimpleStringProperty(streetAddress);
+		this.city = new SimpleStringProperty(city);
+		this.state = new SimpleStringProperty(state);
+		this.zip = new SimpleStringProperty(zip);
+		this.fullAddress = new SimpleStringProperty(
+				this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
+		this.paymentStatus = new SimpleStringProperty(paymentStatus);
+		this.paymentMethod = new SimpleStringProperty(paymentMethod);
+		this.price = new SimpleDoubleProperty(price);
+		this.phoneNumber = new SimpleStringProperty(phoneNumber);
+		this.email = new SimpleStringProperty(email);
+		this.smsEnabled = new SimpleBooleanProperty(smsEnabled);
+		this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
+	}
 
-    public int getOrderNumber() {
-        return orderNumber.get();
-    }
+	public int getOrderNumber() {
+		return orderNumber.get();
+	}
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber.set(orderNumber);
-    }
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber.set(orderNumber);
+	}
 
-    public IntegerProperty orderNumberProperty() {
-        return orderNumber;
-    }
-    
-    public LocalDate getOrderDate() {
-        return orderDate.get();
-    }
+	public IntegerProperty orderNumberProperty() {
+		return orderNumber;
+	}
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate.set(orderDate);
-    }
+	public LocalDate getOrderDate() {
+		return orderDate.get();
+	}
 
-    public ObjectProperty<LocalDate> orderDateProperty() {
-        return orderDate;
-    }
-    public LocalDate getDueDate() {
-        return dueDate.get();
-    }
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate.set(orderDate);
+	}
 
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate.set(dueDate);
-    }
+	public ObjectProperty<LocalDate> orderDateProperty() {
+		return orderDate;
+	}
 
-    public ObjectProperty<LocalDate> dueDateProperty() {
-        return dueDate;
-    }
-    
-    public String getFirstName() {
-        return firstName.get();
-    }
+	public LocalDate getDueDate() {
+		return dueDate.get();
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
-    }
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate.set(dueDate);
+	}
 
-    public StringProperty firstNameProperty() {
-        return firstName;
-    }
+	public ObjectProperty<LocalDate> dueDateProperty() {
+		return dueDate;
+	}
 
-    public String getLastName() {
-        return lastName.get();
-    }
+	public String getFirstName() {
+		return firstName.get();
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
-    }
+	public void setFirstName(String firstName) {
+		this.firstName.set(firstName);
+	}
 
-    public StringProperty lastNameProperty() {
-        return lastName;
-    }
+	public StringProperty firstNameProperty() {
+		return firstName;
+	}
 
-    
+	public String getLastName() {
+		return lastName.get();
+	}
 
+	public void setLastName(String lastName) {
+		this.lastName.set(lastName);
+	}
+
+	public StringProperty lastNameProperty() {
+		return lastName;
+	}
+
+	public String getStatus() {
+		return status.get();
+	}
+
+	public void setStatus(String status) {
+		this.status.set(status);
+	}
+
+	public StringProperty statusProperty() {
+		return status;
+	}
+
+	public String getOrderDesc() {
+		return orderDesc.get();
+	}
+
+	public void setOrderDesc(String status) {
+		this.orderDesc.set(status);
+	}
+
+	public StringProperty orderDescProperty() {
+		return orderDesc;
+	}
+
+	public String getStreetAddress() {
+		return streetAddress.get();
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress.set(streetAddress);
+	}
+
+	public StringProperty streetAddressProperty() {
+		return streetAddress;
+	}
+
+	public String getCity() {
+		return city.get();
+	}
+
+	public void setCity(String city) {
+		this.city.set(city);
+	}
+
+	public StringProperty cityProperty() {
+		return city;
+	}
+
+	public String getState() {
+		return state.get();
+	}
+
+	public void setState(String state) {
+		this.state.set(state);
+	}
+
+	public StringProperty stateProperty() {
+		return state;
+	}
+
+	public String getZip() {
+		return zip.get();
+	}
+
+	public void setZip(String zip) {
+		this.zip.set(zip);
+	}
+
+	public StringProperty zipProperty() {
+		return zip;
+	}
+
+	public String getFullAddress() {
+		return fullAddress.get();
+	}
+
+	public StringProperty fullAddressProperty() {
+		return fullAddress;
+	}
+
+	public String getPaymentStatus() {
+		return paymentStatus.get();
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus.set(paymentStatus);
+	}
+
+	public StringProperty paymentStatusProperty() {
+		return paymentStatus;
+	}
+
+	public String getPaymentMethod() {
+		return paymentMethod.get();
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod.set(paymentMethod);
+	}
+
+	public StringProperty paymentMethodProperty() {
+		return paymentMethod;
+	}
+
+	public double getPrice() {
+		return price.get();
+	}
+
+	public void setPrice(double price) {
+		this.price.set(price);
+	}
+
+	public DoubleProperty priceProperty() {
+		return price;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber.get();
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber.set(phoneNumber);
+	}
+
+	public StringProperty phoneNumberProperty() {
+		return phoneNumber;
+	}
+
+	public String getEmail() {
+		return email.get();
+	}
+
+	public void setEmail(String email) {
+		this.email.set(email);
+	}
+
+	public StringProperty emailProperty() {
+		return email;
+	}
+
+	public boolean getSmsEnabled() {
+		return smsEnabled.get();
+	}
+
+	public void setSmsEnabled(boolean smsEnabled) {
+		this.smsEnabled.set(smsEnabled);
+	}
+
+	public BooleanProperty smsEnabledProperty() {
+		return smsEnabled;
+	}
+
+	public String getPrefContactMethod() {
+		return prefContactMethod.get();
+	}
+
+	public void setPrefContactMethod(String prefContactMethod) {
+		this.prefContactMethod.set(prefContactMethod);
+	}
+
+	public StringProperty prefContactMethodProperty() {
+		return prefContactMethod;
+	}
+
+	public StringProperty smsEnabledStringProperty() {
+		if (this.getSmsEnabled() == true) {
+			return new SimpleStringProperty("Yes");
+		}
+		return new SimpleStringProperty("No");
+	}
 }
