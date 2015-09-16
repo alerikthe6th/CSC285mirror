@@ -7,7 +7,7 @@
       <Entity type="Class">
         <Name>MainApp</Name>
         <Access>Public</Access>
-        <Location left="273" top="450" />
+        <Location left="130" top="450" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Field">Stage primaryStage</Member>
@@ -20,8 +20,8 @@
       <Entity type="Class">
         <Name>MainController</Name>
         <Access>Public</Access>
-        <Location left="473" top="450" />
-        <Size width="249" height="553" />
+        <Location left="339" top="450" />
+        <Size width="396" height="553" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private Button newOrderButton</Member>
         <Member type="Field">private MainApp mainApp</Member>
@@ -56,7 +56,7 @@
       <Entity type="Class">
         <Name>NewOrderController</Name>
         <Access>Public</Access>
-        <Location left="776" top="450" />
+        <Location left="838" top="450" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private Button cancelOrderButton</Member>
@@ -70,8 +70,8 @@
       <Entity type="Class">
         <Name>Order</Name>
         <Access>Public</Access>
-        <Location left="988" top="450" />
-        <Size width="372" height="1403" />
+        <Location left="1295" top="115" />
+        <Size width="349" height="1403" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private IntegerProperty orderNumber</Member>
         <Member type="Field">private ObjectProperty&lt;LocalDate&gt; orderDate</Member>
@@ -155,7 +155,7 @@
       <Entity type="Class">
         <Name>Application</Name>
         <Access>Public</Access>
-        <Location left="273" top="158" />
+        <Location left="130" top="158" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -163,15 +163,72 @@
       <Entity type="Interface">
         <Name>Initializable</Name>
         <Access>Public</Access>
-        <Location left="664" top="158" />
+        <Location left="655" top="158" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
       </Entity>
+      <Entity type="Class">
+        <Name>Customer</Name>
+        <Access>Public</Access>
+        <Location left="1073" top="634" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DataAccess</Name>
+        <Access>Public</Access>
+        <Location left="225" top="1140" />
+        <Size width="248" height="169" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public ObservableList loadOrder()</Member>
+        <Member type="Method">public void exportOrder(ObservableList Orders)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ViewOrderController</Name>
+        <Access>Public</Access>
+        <Location left="1073" top="1123" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ViewCustomerController</Name>
+        <Access>Public</Access>
+        <Location left="1073" top="1452" />
+        <Size width="187" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EditCustomerController</Name>
+        <Access>Public</Access>
+        <Location left="854" top="1452" />
+        <Size width="185" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EditOrderController</Name>
+        <Access>Public</Access>
+        <Location left="854" top="1123" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PrintInvoice</Name>
+        <Access>Public</Access>
+        <Location left="61" top="845" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
       <Entity type="Comment">
-        <Text>I can't seem to make private final fields
-</Text>
-        <Location left="1158" top="330" />
-        <Size width="160" height="75" />
+        <Text>Team Cormorant UML as of 15/Sept/2015</Text>
+        <Location left="362" top="38" />
+        <Size width="234" height="55" />
       </Entity>
     </Entities>
     <Relationships>
@@ -187,41 +244,131 @@
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
-      <Relationship type="Comment" first="6" second="3">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>1337</X>
-          <Y>431</Y>
-        </BendPoint>
-      </Relationship>
       <Relationship type="Association" first="1" second="0">
         <Label>
         </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>447</X>
+          <X>313</X>
           <Y>771</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>344</X>
+          <X>201</X>
           <Y>691</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="2">
-        <Label>
-        </Label>
+        <Label>Creates &amp; uses</Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="3">
+        <Label>creates &amp; uses</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>570</X>
+          <Y>1050</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="6">
+        <Label>uses</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1021</X>
+          <Y>902</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="6">
+        <Label>creates &amp; uses</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1052</X>
+          <Y>577</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1163</X>
+          <Y>602</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="7">
+        <Label>uses</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="8">
         <Label>
         </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>538</X>
+          <Y>1400</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1166</X>
+          <Y>1364</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>536</X>
+          <Y>1370</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>791</X>
+          <Y>1398</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="11">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>537</X>
+          <Y>1401</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>946</X>
+          <Y>1364</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="12">
+        <Label>creates</Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
