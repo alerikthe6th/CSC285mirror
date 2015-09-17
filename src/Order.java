@@ -13,25 +13,25 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Order {
-	private IntegerProperty orderNumber;
-	private ObjectProperty<LocalDate> orderDate;
-	private ObjectProperty<LocalDate> dueDate;
-	private StringProperty status;
-	private StringProperty firstName;
-	private StringProperty lastName;
-	private StringProperty orderDesc;
-	private StringProperty fullAddress;
-	private StringProperty streetAddress;
-	private StringProperty city;
-	private StringProperty state;
-	private StringProperty zip;
-	private StringProperty paymentStatus;
-	private StringProperty paymentMethod;
-	private DoubleProperty price;
-	private StringProperty phoneNumber;
-	private StringProperty email;
-	private BooleanProperty smsEnabled;
-	private StringProperty prefContactMethod;
+	protected IntegerProperty orderNumber;
+	protected ObjectProperty<LocalDate> orderDate;
+	protected ObjectProperty<LocalDate> dueDate;
+	protected StringProperty status;
+	protected StringProperty firstName;
+	protected StringProperty lastName;
+	protected StringProperty orderDesc;
+	protected StringProperty fullAddress;
+	protected StringProperty streetAddress;
+	protected StringProperty city;
+	protected StringProperty state;
+	protected StringProperty zip;
+	protected StringProperty paymentStatus;
+	protected StringProperty paymentMethod;
+	protected DoubleProperty price;
+	protected StringProperty phoneNumber;
+	protected StringProperty email;
+	protected BooleanProperty smsEnabled;
+	protected StringProperty prefContactMethod;
 
 	/**
 	 * Default constructor.
