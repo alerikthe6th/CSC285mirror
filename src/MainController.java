@@ -108,6 +108,12 @@ public class MainController implements Initializable {
 			e.printStackTrace();
 		}
 		populateTable();
+		
+		tblOrders.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+		    if (newSelection != null) {
+		        orderTableClicked(null);
+		    }
+		});
 
 	}
 
@@ -159,5 +165,7 @@ public class MainController implements Initializable {
 		}
 
 	}
+	
+	
 
 }
