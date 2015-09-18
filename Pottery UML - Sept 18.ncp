@@ -71,7 +71,7 @@
         <Name>Order</Name>
         <Access>Public</Access>
         <Location left="1723" top="71" />
-        <Size width="349" height="1403" />
+        <Size width="349" height="1370" />
         <Collapsed>False</Collapsed>
         <Member type="Field">protected IntegerProperty orderNumber</Member>
         <Member type="Field">protected ObjectProperty&lt;LocalDate&gt; orderDate</Member>
@@ -93,62 +93,62 @@
         <Member type="Field">protected BooleanProperty smsEnabled</Member>
         <Member type="Constructor">public Order()</Member>
         <Member type="Constructor">public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName, String lastName, String orderDesc, String streetAddress, String city, String state, String zip, String paymentStatus, String paymentMethod, double price, String phoneNumber, String email, boolean smsEnabled, String prefContactMethod)</Member>
-        <Member type="Method">public int getOrderNumber()</Member>
-        <Member type="Method">public void setOrderNumber(int orderNumber)</Member>
-        <Member type="Method">public IntegerProperty orderNumberProperty()</Member>
-        <Member type="Method">public LocalDate getOrderDate()</Member>
-        <Member type="Method">public void setOrderDate(LocalDate orderDate)</Member>
-        <Member type="Method">public LocalDate getDueDate()</Member>
-        <Member type="Method">public void setDueDate(LocalDate dueDate)</Member>
-        <Member type="Method">public ObjectProperty&lt;LocalDate&gt; dueDateProperty()</Member>
-        <Member type="Method">public String getFirstName()</Member>
-        <Member type="Method">public void setFirstName(String firstName)</Member>
-        <Member type="Method">public StringProperty firstNameProperty()</Member>
-        <Member type="Method">public String getLastName()</Member>
-        <Member type="Method">public void setLastName(String lastName)</Member>
-        <Member type="Method">public StringProperty lastNameProperty()</Member>
-        <Member type="Method">public String getStatus()</Member>
-        <Member type="Method">public void setStatus(String status)</Member>
-        <Member type="Method">public StringProperty statusProperty()</Member>
-        <Member type="Method">public String getOrderDesc()</Member>
-        <Member type="Method">public void setOrderDesc(String status)</Member>
-        <Member type="Method">public StringProperty orderDescProperty()</Member>
-        <Member type="Method">public String getStreetAddress()</Member>
-        <Member type="Method">public void setStreetAddress(String streetAddress)</Member>
-        <Member type="Method">public StringProperty streetAddressProperty()</Member>
-        <Member type="Method">public String getCity()</Member>
-        <Member type="Method">public void setCity(String city)</Member>
-        <Member type="Method">public StringProperty cityProperty()</Member>
-        <Member type="Method">public String getState()</Member>
-        <Member type="Method">public void setState(String state)</Member>
-        <Member type="Method">public StringProperty stateProperty()</Member>
-        <Member type="Method">public String getZip()</Member>
-        <Member type="Method">public void setZip(String zip)</Member>
-        <Member type="Method">public StringProperty zipProperty()</Member>
-        <Member type="Method">public String getFullAddress()</Member>
-        <Member type="Method">public StringProperty fullAddressProperty()</Member>
-        <Member type="Method">public String getPaymentStatus()</Member>
-        <Member type="Method">public void setPaymentStatus(String paymentStatus)</Member>
-        <Member type="Method">public StringProperty paymentStatusProperty()</Member>
-        <Member type="Method">public String getPaymentMethod()</Member>
-        <Member type="Method">public void setPaymentMethod(String paymentMethod)</Member>
-        <Member type="Method">public StringProperty paymentMethodProperty()</Member>
-        <Member type="Method">public double getPrice()</Member>
-        <Member type="Method">public void setPrice(double price)</Member>
-        <Member type="Method">public DoubleProperty priceProperty()</Member>
-        <Member type="Method">public String getPhoneNumber()</Member>
-        <Member type="Method">public void setPhoneNumber(String phoneNumber)</Member>
-        <Member type="Method">public StringProperty phoneNumberProperty()</Member>
-        <Member type="Method">public String getEmail()</Member>
-        <Member type="Method">public void setEmail(String email)</Member>
-        <Member type="Method">public StringProperty emailProperty()</Member>
-        <Member type="Method">public boolean getSmsEnabled()</Member>
-        <Member type="Method">public void setSmsEnabled(boolean smsEnabled)</Member>
-        <Member type="Method">public BooleanProperty smsEnabledProperty()</Member>
-        <Member type="Method">public String getPrefContactMethod()</Member>
-        <Member type="Method">public void setPrefContactMethod(String prefContactMethod)</Member>
-        <Member type="Method">public StringProperty prefContactMethodProperty()</Member>
-        <Member type="Method">public StringProperty smsEnabledStringProperty()</Member>
+        <Member type="Method">protected int getOrderNumber()</Member>
+        <Member type="Method">protected void setOrderNumber(int orderNumber)</Member>
+        <Member type="Method">protected IntegerProperty orderNumberProperty()</Member>
+        <Member type="Method">protected LocalDate getOrderDate()</Member>
+        <Member type="Method">protected void setOrderDate(LocalDate orderDate)</Member>
+        <Member type="Method">protected LocalDate getDueDate()</Member>
+        <Member type="Method">protected void setDueDate(LocalDate dueDate)</Member>
+        <Member type="Method">protected ObjectProperty&lt;LocalDate&gt; dueDateProperty()</Member>
+        <Member type="Method">protected String getFirstName()</Member>
+        <Member type="Method">protected void setFirstName(String firstName)</Member>
+        <Member type="Method">protected StringProperty firstNameProperty()</Member>
+        <Member type="Method">protected String getLastName()</Member>
+        <Member type="Method">protected void setLastName(String lastName)</Member>
+        <Member type="Method">protected StringProperty lastNameProperty()</Member>
+        <Member type="Method">protected String getStatus()</Member>
+        <Member type="Method">protected void setStatus(String status)</Member>
+        <Member type="Method">protected StringProperty statusProperty()</Member>
+        <Member type="Method">protected String getOrderDesc()</Member>
+        <Member type="Method">protected void setOrderDesc(String status)</Member>
+        <Member type="Method">protected StringProperty orderDescProperty()</Member>
+        <Member type="Method">protected String getStreetAddress()</Member>
+        <Member type="Method">protected void setStreetAddress(String streetAddress)</Member>
+        <Member type="Method">protected StringProperty streetAddressProperty()</Member>
+        <Member type="Method">protected String getCity()</Member>
+        <Member type="Method">protected void setCity(String city)</Member>
+        <Member type="Method">protected StringProperty cityProperty()</Member>
+        <Member type="Method">protected String getState()</Member>
+        <Member type="Method">protected void setState(String state)</Member>
+        <Member type="Method">protected StringProperty stateProperty()</Member>
+        <Member type="Method">protected String getZip()</Member>
+        <Member type="Method">protected void setZip(String zip)</Member>
+        <Member type="Method">protected StringProperty zipProperty()</Member>
+        <Member type="Method">protected String getFullAddress()</Member>
+        <Member type="Method">protected StringProperty fullAddressProperty()</Member>
+        <Member type="Method">protected String getPaymentStatus()</Member>
+        <Member type="Method">protected void setPaymentStatus(String paymentStatus)</Member>
+        <Member type="Method">protected StringProperty paymentStatusProperty()</Member>
+        <Member type="Method">protected String getPaymentMethod()</Member>
+        <Member type="Method">protected void setPaymentMethod(String paymentMethod)</Member>
+        <Member type="Method">protected StringProperty paymentMethodProperty()</Member>
+        <Member type="Method">protected double getPrice()</Member>
+        <Member type="Method">protected void setPrice(double price)</Member>
+        <Member type="Method">protected DoubleProperty priceProperty()</Member>
+        <Member type="Method">protected String getPhoneNumber()</Member>
+        <Member type="Method">protected void setPhoneNumber(String phoneNumber)</Member>
+        <Member type="Method">protected StringProperty phoneNumberProperty()</Member>
+        <Member type="Method">protected String getEmail()</Member>
+        <Member type="Method">protected void setEmail(String email)</Member>
+        <Member type="Method">protected StringProperty emailProperty()</Member>
+        <Member type="Method">protected boolean getSmsEnabled()</Member>
+        <Member type="Method">protected void setSmsEnabled(boolean smsEnabled)</Member>
+        <Member type="Method">protected BooleanProperty smsEnabledProperty()</Member>
+        <Member type="Method">protected String getPrefContactMethod()</Member>
+        <Member type="Method">protected void setPrefContactMethod(String prefContactMethod)</Member>
+        <Member type="Method">protected StringProperty prefContactMethodProperty()</Member>
+        <Member type="Method">protected StringProperty smsEnabledStringProperty()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
@@ -169,8 +169,8 @@
       <Entity type="Class">
         <Name>Customer</Name>
         <Access>Public</Access>
-        <Location left="1353" top="471" />
-        <Size width="289" height="893" />
+        <Location left="1361" top="450" />
+        <Size width="289" height="910" />
         <Collapsed>False</Collapsed>
         <Member type="Field">protected StringProperty firstName</Member>
         <Member type="Field">protected StringProperty lastName</Member>
@@ -184,42 +184,43 @@
         <Member type="Field">protected StringProperty phoneNumber</Member>
         <Member type="Field">protected StringProperty email</Member>
         <Member type="Field">protected StringProperty prefContactMethod</Member>
-        <Member type="Method">public String getFirstName()</Member>
-        <Member type="Method">public void setFirstName(String firstName)</Member>
-        <Member type="Method">public StringProperty firstNameProperty()</Member>
-        <Member type="Method">public String getLastName()</Member>
-        <Member type="Method">public void setLastName(String lastName)</Member>
-        <Member type="Method">public StringProperty lastNameProperty()</Member>
-        <Member type="Method">public String getOrderDesc()</Member>
-        <Member type="Method">public void setOrderDesc(String orderDesc)</Member>
-        <Member type="Method">public StringProperty orderDescProperty()</Member>
-        <Member type="Method">public String getFullAddress()</Member>
-        <Member type="Method">public void setFullAddress(String fullAddress)</Member>
-        <Member type="Method">public StringProperty fullAddressProperty()</Member>
-        <Member type="Method">public String getStreetAddress()</Member>
-        <Member type="Method">public void setStreetAddress(String streetAddress)</Member>
-        <Member type="Method">public StringProperty streetAddressProperty()</Member>
-        <Member type="Method">public String getCity()</Member>
-        <Member type="Method">public void setCity(String city)</Member>
-        <Member type="Method">public StringProperty cityProperty()</Member>
-        <Member type="Method">public String getState()</Member>
-        <Member type="Method">public void setState(String state)</Member>
-        <Member type="Method">public StringProperty stateProperty()</Member>
-        <Member type="Method">public String getZip()</Member>
-        <Member type="Method">public void setZip(String zip)</Member>
-        <Member type="Method">public StringProperty zipProperty()</Member>
-        <Member type="Method">public String getPaymentMethod()</Member>
-        <Member type="Method">public void setPaymentMethod(String paymentmethod)</Member>
-        <Member type="Method">public StringProperty paymentMethodProperty()</Member>
-        <Member type="Method">public String getPhoneNumber()</Member>
-        <Member type="Method">public void setPhoneNumber(String phoneNumber)</Member>
-        <Member type="Method">public StringProperty phoneNumberProperty()</Member>
-        <Member type="Method">public String getEmail()</Member>
-        <Member type="Method">public void setEmail(String email)</Member>
-        <Member type="Method">public StringProperty emailProperty()</Member>
-        <Member type="Method">public String getPrefContactMethod()</Member>
-        <Member type="Method">public void setPrefContactMethod(String prefContactMethod)</Member>
-        <Member type="Method">public StringProperty prefContactMethodProperty()</Member>
+        <Member type="Constructor">public Customer(String firstName, String lastName, String orderDesc, String streetAddress, String city, String state, String zip, String paymentMethod, String phoneNumber, String email, String prefContactMethod)</Member>
+        <Member type="Method">protected String getFirstName()</Member>
+        <Member type="Method">protected void setFirstName(String firstName)</Member>
+        <Member type="Method">protected StringProperty firstNameProperty()</Member>
+        <Member type="Method">protected String getLastName()</Member>
+        <Member type="Method">protected void setLastName(String lastName)</Member>
+        <Member type="Method">protected StringProperty lastNameProperty()</Member>
+        <Member type="Method">protected String getOrderDesc()</Member>
+        <Member type="Method">protected void setOrderDesc(String orderDesc)</Member>
+        <Member type="Method">protected StringProperty orderDescProperty()</Member>
+        <Member type="Method">protected String getFullAddress()</Member>
+        <Member type="Method">protected void setFullAddress(String fullAddress)</Member>
+        <Member type="Method">protected StringProperty fullAddressProperty()</Member>
+        <Member type="Method">protected String getStreetAddress()</Member>
+        <Member type="Method">protected void setStreetAddress(String streetAddress)</Member>
+        <Member type="Method">protected StringProperty streetAddressProperty()</Member>
+        <Member type="Method">protected String getCity()</Member>
+        <Member type="Method">protected void setCity(String city)</Member>
+        <Member type="Method">protected StringProperty cityProperty()</Member>
+        <Member type="Method">protected String getState()</Member>
+        <Member type="Method">protected void setState(String state)</Member>
+        <Member type="Method">protected StringProperty stateProperty()</Member>
+        <Member type="Method">protected String getZip()</Member>
+        <Member type="Method">protected void setZip(String zip)</Member>
+        <Member type="Method">protected StringProperty zipProperty()</Member>
+        <Member type="Method">protected String getPaymentMethod()</Member>
+        <Member type="Method">protected void setPaymentMethod(String paymentmethod)</Member>
+        <Member type="Method">protected StringProperty paymentMethodProperty()</Member>
+        <Member type="Method">protected String getPhoneNumber()</Member>
+        <Member type="Method">protected void setPhoneNumber(String phoneNumber)</Member>
+        <Member type="Method">protected StringProperty phoneNumberProperty()</Member>
+        <Member type="Method">protected String getEmail()</Member>
+        <Member type="Method">protected void setEmail(String email)</Member>
+        <Member type="Method">protected StringProperty emailProperty()</Member>
+        <Member type="Method">protected String getPrefContactMethod()</Member>
+        <Member type="Method">protected void setPrefContactMethod(String prefContactMethod)</Member>
+        <Member type="Method">protected StringProperty prefContactMethodProperty()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
@@ -292,8 +293,6 @@
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
       <Relationship type="Association" first="1" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -338,8 +337,8 @@
           <Y>988</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1328</X>
-          <Y>987</Y>
+          <X>1336</X>
+          <Y>966</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
@@ -352,8 +351,6 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="8">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -368,8 +365,6 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="9">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -380,8 +375,6 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="10">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -392,8 +385,6 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="11">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
