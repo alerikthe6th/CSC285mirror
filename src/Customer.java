@@ -1,9 +1,5 @@
-import java.time.LocalDate;
-
 import javafx.beans.property.*;
 
-//well, i didn't have much time but i 
-//filtered out what i think would best describe the customer class.
 public class Customer {
 	
 	protected StringProperty firstName;
@@ -19,9 +15,7 @@ public class Customer {
 	protected StringProperty email;
 	protected StringProperty prefContactMethod;
 	
-	/*
-	 * TODO: finish constructor
-	 */
+
 	public Customer(String firstName, String lastName, String orderDesc, String streetAddress, 
 			String city, String state, String zip, String paymentMethod, 
 			String phoneNumber, String email, String prefContactMethod) {
@@ -34,7 +28,7 @@ public class Customer {
 		this.state = new SimpleStringProperty(state);
 		this.zip = new SimpleStringProperty(zip);
 		this.fullAddress = new SimpleStringProperty(
-				this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
+				this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
 		this.paymentMethod = new SimpleStringProperty(paymentMethod);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
