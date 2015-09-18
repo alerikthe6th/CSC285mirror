@@ -70,27 +70,27 @@
       <Entity type="Class">
         <Name>Order</Name>
         <Access>Public</Access>
-        <Location left="1723" top="71" />
+        <Location left="1295" top="115" />
         <Size width="349" height="1403" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">protected IntegerProperty orderNumber</Member>
-        <Member type="Field">protected ObjectProperty&lt;LocalDate&gt; orderDate</Member>
-        <Member type="Field">protected ObjectProperty&lt;LocalDate&gt; dueDate</Member>
-        <Member type="Field">protected StringProperty status</Member>
-        <Member type="Field">protected StringProperty firstName</Member>
-        <Member type="Field">protected StringProperty lastName</Member>
-        <Member type="Field">protected StringProperty orderDesc</Member>
-        <Member type="Field">protected StringProperty fullAddress</Member>
-        <Member type="Field">protected StringProperty streetAddress</Member>
-        <Member type="Field">protected StringProperty city</Member>
-        <Member type="Field">protected StringProperty state</Member>
-        <Member type="Field">protected StringProperty zip</Member>
-        <Member type="Field">protected StringProperty paymentStatus</Member>
-        <Member type="Field">protected StringProperty paymentMethod</Member>
-        <Member type="Field">protected DoubleProperty price</Member>
-        <Member type="Field">protected StringProperty phoneNumber</Member>
-        <Member type="Field">protected StringProperty email</Member>
-        <Member type="Field">protected BooleanProperty smsEnabled</Member>
+        <Member type="Field">private IntegerProperty orderNumber</Member>
+        <Member type="Field">private ObjectProperty&lt;LocalDate&gt; orderDate</Member>
+        <Member type="Field">private ObjectProperty&lt;LocalDate&gt; dueDate</Member>
+        <Member type="Field">private StringProperty status</Member>
+        <Member type="Field">private StringProperty firstName</Member>
+        <Member type="Field">private StringProperty lastName</Member>
+        <Member type="Field">private StringProperty orderDesc</Member>
+        <Member type="Field">private StringProperty fullAddress</Member>
+        <Member type="Field">private StringProperty streetAddress</Member>
+        <Member type="Field">private StringProperty city</Member>
+        <Member type="Field">private StringProperty state</Member>
+        <Member type="Field">private StringProperty zip</Member>
+        <Member type="Field">private StringProperty paymentStatus</Member>
+        <Member type="Field">private StringProperty paymentMethod</Member>
+        <Member type="Field">private DoubleProperty price</Member>
+        <Member type="Field">private StringProperty phoneNumber</Member>
+        <Member type="Field">private StringProperty email</Member>
+        <Member type="Field">private BooleanProperty smsEnabled</Member>
         <Member type="Constructor">public Order()</Member>
         <Member type="Constructor">public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName, String lastName, String orderDesc, String streetAddress, String city, String state, String zip, String paymentStatus, String paymentMethod, double price, String phoneNumber, String email, boolean smsEnabled, String prefContactMethod)</Member>
         <Member type="Method">public int getOrderNumber()</Member>
@@ -98,6 +98,7 @@
         <Member type="Method">public IntegerProperty orderNumberProperty()</Member>
         <Member type="Method">public LocalDate getOrderDate()</Member>
         <Member type="Method">public void setOrderDate(LocalDate orderDate)</Member>
+        <Member type="Method">public ObjectProperty&lt;LocalDate&gt; orderDateProperty()</Member>
         <Member type="Method">public LocalDate getDueDate()</Member>
         <Member type="Method">public void setDueDate(LocalDate dueDate)</Member>
         <Member type="Method">public ObjectProperty&lt;LocalDate&gt; dueDateProperty()</Member>
@@ -169,57 +170,9 @@
       <Entity type="Class">
         <Name>Customer</Name>
         <Access>Public</Access>
-        <Location left="1353" top="471" />
-        <Size width="289" height="893" />
+        <Location left="1073" top="634" />
+        <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">protected StringProperty firstName</Member>
-        <Member type="Field">protected StringProperty lastName</Member>
-        <Member type="Field">protected StringProperty orderDesc</Member>
-        <Member type="Field">protected StringProperty fullAddress</Member>
-        <Member type="Field">protected StringProperty streetAddress</Member>
-        <Member type="Field">protected StringProperty city</Member>
-        <Member type="Field">protected StringProperty state</Member>
-        <Member type="Field">protected StringProperty zip</Member>
-        <Member type="Field">protected StringProperty paymentMethod</Member>
-        <Member type="Field">protected StringProperty phoneNumber</Member>
-        <Member type="Field">protected StringProperty email</Member>
-        <Member type="Field">protected StringProperty prefContactMethod</Member>
-        <Member type="Method">public String getFirstName()</Member>
-        <Member type="Method">public void setFirstName(String firstName)</Member>
-        <Member type="Method">public StringProperty firstNameProperty()</Member>
-        <Member type="Method">public String getLastName()</Member>
-        <Member type="Method">public void setLastName(String lastName)</Member>
-        <Member type="Method">public StringProperty lastNameProperty()</Member>
-        <Member type="Method">public String getOrderDesc()</Member>
-        <Member type="Method">public void setOrderDesc(String orderDesc)</Member>
-        <Member type="Method">public StringProperty orderDescProperty()</Member>
-        <Member type="Method">public String getFullAddress()</Member>
-        <Member type="Method">public void setFullAddress(String fullAddress)</Member>
-        <Member type="Method">public StringProperty fullAddressProperty()</Member>
-        <Member type="Method">public String getStreetAddress()</Member>
-        <Member type="Method">public void setStreetAddress(String streetAddress)</Member>
-        <Member type="Method">public StringProperty streetAddressProperty()</Member>
-        <Member type="Method">public String getCity()</Member>
-        <Member type="Method">public void setCity(String city)</Member>
-        <Member type="Method">public StringProperty cityProperty()</Member>
-        <Member type="Method">public String getState()</Member>
-        <Member type="Method">public void setState(String state)</Member>
-        <Member type="Method">public StringProperty stateProperty()</Member>
-        <Member type="Method">public String getZip()</Member>
-        <Member type="Method">public void setZip(String zip)</Member>
-        <Member type="Method">public StringProperty zipProperty()</Member>
-        <Member type="Method">public String getPaymentMethod()</Member>
-        <Member type="Method">public void setPaymentMethod(String paymentmethod)</Member>
-        <Member type="Method">public StringProperty paymentMethodProperty()</Member>
-        <Member type="Method">public String getPhoneNumber()</Member>
-        <Member type="Method">public void setPhoneNumber(String phoneNumber)</Member>
-        <Member type="Method">public StringProperty phoneNumberProperty()</Member>
-        <Member type="Method">public String getEmail()</Member>
-        <Member type="Method">public void setEmail(String email)</Member>
-        <Member type="Method">public StringProperty emailProperty()</Member>
-        <Member type="Method">public String getPrefContactMethod()</Member>
-        <Member type="Method">public void setPrefContactMethod(String prefContactMethod)</Member>
-        <Member type="Method">public StringProperty prefContactMethodProperty()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
@@ -273,14 +226,9 @@
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Comment">
-        <Text>Team Cormorant UML as of 18/Sept/2015</Text>
+        <Text>Team Cormorant UML as of 15/Sept/2015</Text>
         <Location left="362" top="38" />
         <Size width="234" height="55" />
-      </Entity>
-      <Entity type="Comment">
-        <Text>Currently Migrating fields &amp; methods from Order to Customer, hence the overlap</Text>
-        <Location left="1537" top="1396" />
-        <Size width="160" height="75" />
       </Entity>
     </Entities>
     <Relationships>
@@ -319,30 +267,37 @@
       </Relationship>
       <Relationship type="Association" first="1" second="3">
         <Label>creates &amp; uses</Label>
-        <StartOrientation>Horizontal</StartOrientation>
+        <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>806</X>
-          <Y>725</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>1690</X>
-          <Y>358</Y>
+          <X>570</X>
+          <Y>1050</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="6">
+        <Label>uses</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1021</X>
+          <Y>902</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="6">
         <Label>creates &amp; uses</Label>
         <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
+        <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>933</X>
-          <Y>988</Y>
+          <X>1052</X>
+          <Y>577</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1328</X>
-          <Y>987</Y>
+          <X>1163</X>
+          <Y>602</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>

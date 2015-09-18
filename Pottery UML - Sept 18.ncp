@@ -273,14 +273,9 @@
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Comment">
-        <Text>Team Cormorant UML as of 18/Sept/2015</Text>
+        <Text>Team Cormorant UML as of 15/Sept/2015</Text>
         <Location left="362" top="38" />
         <Size width="234" height="55" />
-      </Entity>
-      <Entity type="Comment">
-        <Text>Currently Migrating fields &amp; methods from Order to Customer, hence the overlap</Text>
-        <Location left="1537" top="1396" />
-        <Size width="160" height="75" />
       </Entity>
     </Entities>
     <Relationships>
@@ -297,6 +292,8 @@
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
       <Relationship type="Association" first="1" second="0">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -355,6 +352,8 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="8">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -369,6 +368,8 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="9">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -379,6 +380,8 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="10">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -389,6 +392,8 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="11">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
