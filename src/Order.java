@@ -69,234 +69,190 @@ public class Order {
 		this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
 	}
 
-	public int getOrderNumber() {
+	
+	//field accessors
+	protected int getOrderNumber() {
 		return orderNumber.get();
 	}
-
-	public void setOrderNumber(int orderNumber) {
-		this.orderNumber.set(orderNumber);
-	}
-
-	public IntegerProperty orderNumberProperty() {
-		return orderNumber;
-	}
-
-	public LocalDate getOrderDate() {
+	protected LocalDate getOrderDate() {
 		return orderDate.get();
 	}
-
-	public void setOrderDate(LocalDate orderDate) {
-		this.orderDate.set(orderDate);
-	}
-
-	public ObjectProperty<LocalDate> orderDateProperty() {
-		return orderDate;
-	}
-
-	public LocalDate getDueDate() {
+	protected LocalDate getDueDate() {
 		return dueDate.get();
 	}
-
-	public void setDueDate(LocalDate dueDate) {
-		this.dueDate.set(dueDate);
-	}
-
-	public ObjectProperty<LocalDate> dueDateProperty() {
-		return dueDate;
-	}
-
-	public String getFirstName() {
+	protected String getFirstName() {
 		return firstName.get();
 	}
-
-	public void setFirstName(String firstName) {
-		this.firstName.set(firstName);
-	}
-
-	public StringProperty firstNameProperty() {
-		return firstName;
-	}
-
-	public String getLastName() {
+	protected String getLastName() {
 		return lastName.get();
 	}
-
-	public void setLastName(String lastName) {
-		this.lastName.set(lastName);
-	}
-
-	public StringProperty lastNameProperty() {
-		return lastName;
-	}
-
-	public String getStatus() {
+	protected String getStatus() {
 		return status.get();
 	}
-
-	public void setStatus(String status) {
-		this.status.set(status);
-	}
-
-	public StringProperty statusProperty() {
-		return status;
-	}
-
-	public String getOrderDesc() {
+	protected String getOrderDesc() {
 		return orderDesc.get();
 	}
-
-	public void setOrderDesc(String status) {
-		this.orderDesc.set(status);
-	}
-
-	public StringProperty orderDescProperty() {
-		return orderDesc;
-	}
-
-	public String getStreetAddress() {
+	protected String getStreetAddress() {
 		return streetAddress.get();
 	}
-
-	public void setStreetAddress(String streetAddress) {
-		this.streetAddress.set(streetAddress);
-	}
-
-	public StringProperty streetAddressProperty() {
-		return streetAddress;
-	}
-
-	public String getCity() {
+	protected String getCity() {
 		return city.get();
 	}
-
-	public void setCity(String city) {
-		this.city.set(city);
-	}
-
-	public StringProperty cityProperty() {
-		return city;
-	}
-
-	public String getState() {
+	protected String getState() {
 		return state.get();
 	}
-
-	public void setState(String state) {
-		this.state.set(state);
-	}
-
-	public StringProperty stateProperty() {
-		return state;
-	}
-
-	public String getZip() {
+	protected String getZip() {
 		return zip.get();
 	}
-
-	public void setZip(String zip) {
-		this.zip.set(zip);
-	}
-
-	public StringProperty zipProperty() {
-		return zip;
-	}
-
-	public String getFullAddress() {
+	protected String getFullAddress() {
 		return fullAddress.get();
 	}
-
-	public StringProperty fullAddressProperty() {
-		return fullAddress;
-	}
-
-	public String getPaymentStatus() {
+	protected String getPaymentStatus() {
 		return paymentStatus.get();
 	}
-
-	public void setPaymentStatus(String paymentStatus) {
-		this.paymentStatus.set(paymentStatus);
-	}
-
-	public StringProperty paymentStatusProperty() {
-		return paymentStatus;
-	}
-
-	public String getPaymentMethod() {
-		return paymentMethod.get();
-	}
-
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod.set(paymentMethod);
-	}
-
-	public StringProperty paymentMethodProperty() {
-		return paymentMethod;
-	}
-
-	public double getPrice() {
-		return price.get();
-	}
-
-	public void setPrice(double price) {
-		this.price.set(price);
-	}
-
-	public DoubleProperty priceProperty() {
-		return price;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber.get();
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber.set(phoneNumber);
-	}
-
-	public StringProperty phoneNumberProperty() {
-		return phoneNumber;
-	}
-
-	public String getEmail() {
+	protected String getEmail() {
 		return email.get();
 	}
-
-	public void setEmail(String email) {
-		this.email.set(email);
+	protected double getPrice() {
+		return price.get();
 	}
-
-	public StringProperty emailProperty() {
-		return email;
+	protected String getPhoneNumber() {
+		return phoneNumber.get();
 	}
-
-	public boolean getSmsEnabled() {
+	protected String getPaymentMethod() {
+		return paymentMethod.get();
+	}
+	protected boolean getSmsEnabled() {
 		return smsEnabled.get();
 	}
-
-	public void setSmsEnabled(boolean smsEnabled) {
-		this.smsEnabled.set(smsEnabled);
-	}
-
-	public BooleanProperty smsEnabledProperty() {
-		return smsEnabled;
-	}
-
-	public String getPrefContactMethod() {
+	protected String getPrefContactMethod() {
 		return prefContactMethod.get();
 	}
-
-	public void setPrefContactMethod(String prefContactMethod) {
-		this.prefContactMethod.set(prefContactMethod);
+	
+	
+	//property accessors
+	protected IntegerProperty orderNumberProperty() {
+		return orderNumber;
 	}
-
-	public StringProperty prefContactMethodProperty() {
+	protected ObjectProperty<LocalDate> orderDateProperty() {
+		return orderDate;
+	}
+	protected ObjectProperty<LocalDate> dueDateProperty() {
+		return dueDate;
+	}
+	protected StringProperty firstNameProperty() {
+		return firstName;
+	}
+	protected StringProperty lastNameProperty() {
+		return lastName;
+	}
+	protected StringProperty statusProperty() {
+		return status;
+	}
+	protected StringProperty orderDescProperty() {
+		return orderDesc;
+	}
+	protected StringProperty streetAddressProperty() {
+		return streetAddress;
+	}
+	protected StringProperty cityProperty() {
+		return city;
+	}
+	protected StringProperty stateProperty() {
+		return state;
+	}
+	protected StringProperty zipProperty() {
+		return zip;
+	}
+	protected StringProperty fullAddressProperty() {
+		return fullAddress;
+	}
+	protected StringProperty paymentStatusProperty() {
+		return paymentStatus;
+	}
+	protected StringProperty paymentMethodProperty() {
+		return paymentMethod;
+	}
+	protected DoubleProperty priceProperty() {
+		return price;
+	}
+	protected StringProperty phoneNumberProperty() {
+		return phoneNumber;
+	}
+	protected StringProperty emailProperty() {
+		return email;
+	}
+	protected BooleanProperty smsEnabledProperty() {
+		return smsEnabled;
+	}
+	protected StringProperty prefContactMethodProperty() {
 		return prefContactMethod;
 	}
-
-	public StringProperty smsEnabledStringProperty() {
+	protected StringProperty smsEnabledStringProperty() {
 		if (this.getSmsEnabled() == true) {
 			return new SimpleStringProperty("Yes");
 		}
 		return new SimpleStringProperty("No");
+		
+		
 	}
+
+	//field mutators
+	protected void setOrderNumber(int orderNumber) {
+		this.orderNumber.set(orderNumber);
+	}
+	protected void setOrderDate(LocalDate orderDate) {
+		this.orderDate.set(orderDate);
+	}
+	protected void setDueDate(LocalDate dueDate) {
+		this.dueDate.set(dueDate);
+	}
+	protected void setFirstName(String firstName) {
+		this.firstName.set(firstName);
+	}
+	protected void setLastName(String lastName) {
+		this.lastName.set(lastName);
+	}
+	protected void setStatus(String status) {
+		this.status.set(status);
+	}
+	protected void setOrderDesc(String status) {
+		this.orderDesc.set(status);
+	}
+	protected void setStreetAddress(String streetAddress) {
+		this.streetAddress.set(streetAddress);
+	}
+	protected void setCity(String city) {
+		this.city.set(city);
+	}
+	protected void setState(String state) {
+		this.state.set(state);
+	}
+	protected void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus.set(paymentStatus);
+	}
+	protected void setZip(String zip) {
+		this.zip.set(zip);
+	}
+	protected void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod.set(paymentMethod);
+	}
+	protected void setPrice(double price) {
+		this.price.set(price);
+	}
+	protected void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber.set(phoneNumber);
+	}
+	protected void setEmail(String email) {
+		this.email.set(email);
+	}
+	protected void setSmsEnabled(boolean smsEnabled) {
+		this.smsEnabled.set(smsEnabled);
+	}
+	protected void setPrefContactMethod(String prefContactMethod) {
+		this.prefContactMethod.set(prefContactMethod);
+	}
+
+	
+	
 }

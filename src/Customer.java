@@ -33,147 +33,121 @@ public class Customer {
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
 		this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
-		
 	}
-	public String getFirstName() {
+	
+	//field accessors
+	protected String getFirstName() {
 		return firstName.get();
 	}
-
-	public void setFirstName(String firstName) {
-		this.firstName.set(firstName);
-	}
-
-	public StringProperty firstNameProperty() {
-		return firstName;
-	}
-
-	public String getLastName() {
+	protected String getLastName() {
 		return lastName.get();
 	}
-
-	public void setLastName(String lastName) {
-		this.lastName.set(lastName);
-	}
-
-	public StringProperty lastNameProperty() {
-		return lastName;
-	}
-
-	public String getOrderDesc() {
+	protected String getOrderDesc() {
 		return orderDesc.get();
 	}
-
-	public void setOrderDesc(String status) {
-		this.orderDesc.set(status);
-	}
-
-	public StringProperty orderDescProperty() {
-		return orderDesc;
-	}
-
-	public String getStreetAddress() {
+	protected String getStreetAddress() {
 		return streetAddress.get();
 	}
-
-	public void setStreetAddress(String streetAddress) {
-		this.streetAddress.set(streetAddress);
-	}
-
-	public StringProperty streetAddressProperty() {
-		return streetAddress;
-	}
-
-	public String getCity() {
+	protected String getCity() {
 		return city.get();
 	}
-
-	public void setCity(String city) {
-		this.city.set(city);
-	}
-
-	public StringProperty cityProperty() {
-		return city;
-	}
-
-	public String getState() {
+	protected String getState() {
 		return state.get();
 	}
-
-	public void setState(String state) {
-		this.state.set(state);
-	}
-
-	public StringProperty stateProperty() {
-		return state;
-	}
-
-	public String getZip() {
+	protected String getZip() {
 		return zip.get();
 	}
-
-	public void setZip(String zip) {
-		this.zip.set(zip);
-	}
-
-	public StringProperty zipProperty() {
-		return zip;
-	}
-
-	public String getFullAddress() {
-		return fullAddress.get();
-	}
-
-	public StringProperty fullAddressProperty() {
-		return fullAddress;
-	}
-
-	public String getPaymentMethod() {
+	protected String getPaymentMethod() {
 		return paymentMethod.get();
 	}
-
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod.set(paymentMethod);
-	}
-
-	public StringProperty paymentMethodProperty() {
-		return paymentMethod;
-	}
-
-	public String getPhoneNumber() {
+	protected String getPhoneNumber() {
 		return phoneNumber.get();
 	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber.set(phoneNumber);
+	protected String getFullAddress() {
+		return fullAddress.get();
 	}
-
-	public StringProperty phoneNumberProperty() {
-		return phoneNumber;
-	}
-
-	public String getEmail() {
-		return email.get();
-	}
-
-	public void setEmail(String email) {
-		this.email.set(email);
-	}
-
-	public StringProperty emailProperty() {
-		return email;
-	}
-
-	public String getPrefContactMethod() {
+	protected String getPrefContactMethod() {
 		return prefContactMethod.get();
 	}
-
-	public void setPrefContactMethod(String prefContactMethod) {
+	protected String getEmail() {
+		return email.get();
+	}
+	
+	
+	//property accessors
+	protected StringProperty firstNameProperty() {
+		return firstName;
+	}
+	protected StringProperty lastNameProperty() {
+		return lastName;
+	}
+	protected StringProperty orderDescProperty() {
+		return orderDesc;
+	}
+	protected StringProperty streetAddressProperty() {
+		return streetAddress;
+	}
+	protected StringProperty cityProperty() {
+		return city;
+	}
+	protected StringProperty stateProperty() {
+		return state;
+	}
+	protected StringProperty zipProperty() {
+		return zip;
+	}
+	protected StringProperty fullAddressProperty() {
+		return fullAddress;
+	}
+	protected StringProperty paymentMethodProperty() {
+		return paymentMethod;
+	}
+	protected StringProperty phoneNumberProperty() {
+		return phoneNumber;
+	}
+	protected StringProperty emailProperty() {
+		return email;
+	}
+	protected StringProperty prefContactMethodProperty() {
+		return prefContactMethod;
+	}
+	
+	
+	//field mutators
+	protected void setFirstName(String firstName) {
+		this.firstName.set(firstName);
+	}
+	protected void setLastName(String lastName) {
+		this.lastName.set(lastName);
+	}
+	protected void setOrderDesc(String status) {
+		this.orderDesc.set(status);
+	}
+	protected void setStreetAddress(String streetAddress) {
+		this.streetAddress.set(streetAddress);
+	}
+	protected void setCity(String city) {
+		this.city.set(city);
+	}
+	protected void setState(String state) {
+		this.state.set(state);
+	}
+	protected void setZip(String zip) {
+		this.zip.set(zip);
+	}
+	protected void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod.set(paymentMethod);
+	}
+	protected void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber.set(phoneNumber);
+	}
+	protected void setEmail(String email) {
+		this.email.set(email);
+	}
+	protected void setPrefContactMethod(String prefContactMethod) {
 		this.prefContactMethod.set(prefContactMethod);
 	}
 
-	public StringProperty prefContactMethodProperty() {
-		return prefContactMethod;
-	}
 
 
 	
