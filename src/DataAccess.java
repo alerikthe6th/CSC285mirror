@@ -73,6 +73,16 @@ public class DataAccess {
 			PreparedStatement insertDummyData = connection.prepareStatement(insertDummyDataQuery);
 			insertDummyData.executeUpdate();
 			
+			String insertDummyDataQuery2 = "INSERT INTO Orders("
+					+ "orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
+					+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
+					+ " VALUES('2015-09-18', '2015-12-25', 'Incomplete', 'Saint', 'Nick', "
+					+ "'Christmas plate and mug', '1010 North Pole Dr.', 'North Pole', 'The Arctic Circle', '61201', 'Unpaid', 'Cash', 100.01, "
+					+ "'michaelcurrie12@augustana.edu', '555-555-5555', 1, 'Email');";
+
+			PreparedStatement insertDummyData2 = connection.prepareStatement(insertDummyDataQuery2);
+			insertDummyData2.executeUpdate();
+			
 			//Get all orders from Orders table
 			String ordersQuery = "SELECT * FROM Orders";
 			getOrders = connection.prepareStatement(ordersQuery);
