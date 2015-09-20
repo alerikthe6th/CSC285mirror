@@ -111,18 +111,22 @@ public class MainController implements Initializable {
 
 	}
 
-	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
 	public void populateTable() {
-		//orderList.add(new Order(13625, LocalDate.now(), LocalDate.of(2015, 10, 31), "Incomplete", "James", "Smith",
-				//"Two mugs please", "136 Required Dr.", "Rock Island", "Illinois", "61201", "Unpaid", "Cash", 136.52,
-				//"michaelcurrie12@augustana.edu", "555-555-5555", true, "Email"));
-		//orderList.add(new Order(13626, LocalDate.now(), LocalDate.of(2015, 11, 02), "Incomplete", "John", "Doe",
-				//"Lots and lots of plates", "123 Living Way", "Aurora", "Illinois", "60506", "Unpaid", "Credit Card",
-				//678.90, "michaelcurrie12@augustana.edu", "555-555-5555", false, "Email"));
+		// orderList.add(new Order(13625, LocalDate.now(), LocalDate.of(2015,
+		// 10, 31), "Incomplete", "James", "Smith",
+		// "Two mugs please", "136 Required Dr.", "Rock Island", "Illinois",
+		// "61201", "Unpaid", "Cash", 136.52,
+		// "michaelcurrie12@augustana.edu", "555-555-5555", true, "Email"));
+		// orderList.add(new Order(13626, LocalDate.now(), LocalDate.of(2015,
+		// 11, 02), "Incomplete", "John", "Doe",
+		// "Lots and lots of plates", "123 Living Way", "Aurora", "Illinois",
+		// "60506", "Unpaid", "Credit Card",
+		// 678.90, "michaelcurrie12@augustana.edu", "555-555-5555", false,
+		// "Email"));
 
 		clmFirstName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
 		clmLastName.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());

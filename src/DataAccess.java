@@ -31,9 +31,8 @@ public class DataAccess {
 		try {
 			// create a database connection
 			connection = DriverManager.getConnection("jdbc:sqlite:Pottery.db");
-			
 
-			//connection.setAutoCommit(false);
+			// connection.setAutoCommit(false);
 			Statement statement = connection.createStatement();
 			statement.setQueryTimeout(30); // set timeout to 30 sec.
 
@@ -44,7 +43,6 @@ public class DataAccess {
 			// connection.prepareStatement(checkForOrdersTableQuery);
 			// ResultSet table = checkForOrdersTable.executeQuery();
 			// If Orders table doesn't exist, create it.
-
 
 			String createOrdersTableQuery = "CREATE TABLE IF NOT EXISTS Orders("
 					+ "orderNumber INTEGER PRIMARY KEY AUTOINCREMENT, " + " orderDate TEXT, " + " dueDate TEXT, "
@@ -58,11 +56,11 @@ public class DataAccess {
 
 			// INSERT DUMMY DATA
 			// TODO remove dummy data insert
-			//Remove old dummy data
+			// Remove old dummy data
 			String removeOldDummyDataQuery = "DELETE FROM Orders WHERE zip='61201'";
 			PreparedStatement removeOldDummyData = connection.prepareStatement(removeOldDummyDataQuery);
 			removeOldDummyData.executeUpdate();
-			//Insert new dummy data
+			// Insert new dummy data
 			String insertDummyDataQuery = "INSERT INTO Orders("
 					+ "orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
 					+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
@@ -72,8 +70,8 @@ public class DataAccess {
 
 			PreparedStatement insertDummyData = connection.prepareStatement(insertDummyDataQuery);
 			insertDummyData.executeUpdate();
-			
-			//Get all orders from Orders table
+
+			// Get all orders from Orders table
 			String ordersQuery = "SELECT * FROM Orders";
 			getOrders = connection.prepareStatement(ordersQuery);
 			ResultSet ordersResultSet = getOrders.executeQuery();
