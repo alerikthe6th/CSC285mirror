@@ -28,6 +28,7 @@ public class MainController implements Initializable {
 
 	@FXML
 	private Button newOrderButton;
+	@FXML
 	private MainApp mainApp;
 	@FXML
 	private ComboBox<String> cmbOrderStatus;
@@ -81,7 +82,7 @@ public class MainController implements Initializable {
 			stage.setScene(new Scene(root));
 			stage.show();
 
-			// hide this current window (if this is what you want
+			// hide this current window (if this is what you want)
 			// ((Node)(e.getSource())).getScene().getWindow().hide();
 
 		} catch (IOException ex) {
