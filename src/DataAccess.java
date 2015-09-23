@@ -21,6 +21,9 @@ public class DataAccess {
 
 	}
 
+	/**Returns the list of orders loaded from the database
+	 * MainController's orderList should be set equal to the returned list at launch
+	 * @return ObservableList<Order> */
 	public static ObservableList<Order> loadOrders() {
 
 		// load the sqlite-JDBC driver using the current class loader
@@ -51,29 +54,29 @@ public class DataAccess {
 			// ResultSet table = checkForOrdersTable.executeQuery();
 			// If Orders table doesn't exist, create it.
 
-			String createOrdersTableQuery = "CREATE TABLE IF NOT EXISTS Orders("
-					+ "orderNumber INTEGER PRIMARY KEY AUTOINCREMENT, " + " orderDate TEXT, " + " dueDate TEXT, "
-					+ " status TEXT, " + " firstName TEXT, " + " lastName TEXT, " + " orderDesc TEXT, "
-					+ " shippingAddress TEXT, " + " streetAddress TEXT, " + " city TEXT, " + " state TEXT, "
-					+ " zip TEXT, " + " paymentStatus TEXT, " + " paymentMethod TEXT, " + " price REAL, "
-					+ " email TEXT, " + " phone TEXT, " + " smsEnabled INTEGER, " + " prefContactMethod TEXT);";
+			String createOrdersTableQuery = "CREATE TABLE IF NOT EXISTS Orders(" + "orderNumber INTEGER PRIMARY KEY, "
+					+ " orderDate TEXT, " + " dueDate TEXT, " + " status TEXT, " + " firstName TEXT, "
+					+ " lastName TEXT, " + " orderDesc TEXT, " + " shippingAddress TEXT, " + " streetAddress TEXT, "
+					+ " city TEXT, " + " state TEXT, " + " zip TEXT, " + " paymentStatus TEXT, "
+					+ " paymentMethod TEXT, " + " price REAL, " + " email TEXT, " + " phone TEXT, "
+					+ " smsEnabled INTEGER, " + " prefContactMethod TEXT);";
 
 			createOrdersTable = connection.prepareStatement(createOrdersTableQuery);
 			createOrdersTable.executeUpdate();
 
-			// INSERT DUMMY DATA
-			// TODO remove dummy data insert
-			// Remove old dummy data
+			/* INSERT DUMMY DATA
+			 TODO remove dummy data insert
+			 Remove old dummy data
 			String removeOldDummyDataQuery = "DELETE FROM Orders WHERE zip='61201'";
 			PreparedStatement removeOldDummyData = connection.prepareStatement(removeOldDummyDataQuery);
 			removeOldDummyData.executeUpdate();
-			// Insert new dummy data
+			 Insert new dummy data
 			String insertDummyDataQuery = "INSERT INTO Orders("
 					+ "orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
 					+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
 					+ " VALUES('2015-09-15', '2015-10-31', 'Incomplete', 'James', 'Smith', "
 					+ "'Two mugs please', '136 Required Dr.', 'Rock Island', 'Illinois', '61201', 'Unpaid', 'Cash', 136.52, "
-					+ "'michaelcurrie12@augustana.edu', '555-555-5555', 1, 'Email');";
+					+ "'555-555-5555', 'michaelcurrie12@augustana.edu', 1, 'Email');";
 
 			PreparedStatement insertDummyData = connection.prepareStatement(insertDummyDataQuery);
 			insertDummyData.executeUpdate();
@@ -83,10 +86,10 @@ public class DataAccess {
 					+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
 					+ " VALUES('2015-09-18', '2015-12-25', 'Incomplete', 'Saint', 'Nick', "
 					+ "'Christmas plate and mug', '1010 North Pole Dr.', 'North Pole', 'The Arctic Circle', '61201', 'Unpaid', 'Cash', 100.01, "
-					+ "'michaelcurrie12@augustana.edu', '555-555-5555', 1, 'Email');";
+					+ "'555-555-5555', 'michaelcurrie12@augustana.edu', 1, 'Email');";
 
 			PreparedStatement insertDummyData2 = connection.prepareStatement(insertDummyDataQuery2);
-			insertDummyData2.executeUpdate();
+			insertDummyData2.executeUpdate();*/
 
 			// Get all orders from Orders table
 			String ordersQuery = "SELECT * FROM Orders";
@@ -131,6 +134,7 @@ public class DataAccess {
 		} finally
 
 		{
+
 			try {
 				if (connection != null)
 					connection.close();
@@ -142,6 +146,8 @@ public class DataAccess {
 		return ordersList;
 	}
 
+	/**Save a list of orders to the database. Overwrites all data with new data
+	 * @param ObservableList<Order> */
 	@SuppressWarnings({ "null" })
 	public static void saveOrders(ObservableList<Order> orderList) {
 		try {
@@ -160,14 +166,9 @@ public class DataAccess {
 			statement = connection.createStatement();
 			statement.setQueryTimeout(30); // set timeout to 30 sec.
 
-			LinkedList<Integer> orderNumberList = new LinkedList<Integer>();;
-			String getOrderNumberQuery = "SELECT orderNumber FROM Orders";
-			PreparedStatement getOrderNumbers = connection.prepareStatement(getOrderNumberQuery);
-			ResultSet rsOrderNumbers = getOrderNumbers.executeQuery();
-			while (rsOrderNumbers.next()) {
-				System.out.println(rsOrderNumbers.getInt("orderNumber"));
-				orderNumberList.add(new Integer(rsOrderNumbers.getInt("orderNumber")));
-			}
+			String dropOldDataQuery = "DELETE FROM Orders;";
+			PreparedStatement dropOldData = connection.prepareStatement(dropOldDataQuery);
+			dropOldData.executeUpdate();
 
 			for (Order order : orderList) {
 				int orderNumber = order.getOrderNumber();
@@ -194,36 +195,29 @@ public class DataAccess {
 					smsEnabledInt = 1;
 				String prefContactMethod = order.getPrefContactMethod();
 
-				if (orderNumberList.contains(new Integer(orderNumber))) {
-					String updateOrdersQuery = "Update Orders SET orderDate = " + orderDate + ", dueDate = " + dueDate
-							+ ", status = " + status + ", firstName = " + firstName + ", lastName = " + lastName
-							+ ", orderDesc = " + orderDesc + ", streetAddress = " + streetAddress + ", city = " + city
-							+ ",state = " + state + ",zip = " + zip + ",paymentStatus = " + paymentStatus
-							+ ", paymentMethod = " + paymentMethod + ",price = " + price + ", email = " + email
-							+ ", phone = " + phone + ", smsEnabled = " + smsEnabledInt + ",prefContactMethod = "
-							+ prefContactMethod + "WHERE orderNumber = " + orderNumber + ";";
-					PreparedStatement updateOrder = connection.prepareStatement(updateOrdersQuery);
-					updateOrder.executeUpdate();
-
-				} else {
-					String insertOrderQuery = "INSERT INTO Orders("
-							+ "orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
-							+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
-							+ " VALUES('" + orderDate + "', '" + dueDate + "', '" + status + "', '" + firstName + "', '"
-							+ lastName + "', " + "'" + orderDesc + "', '" + streetAddress + "', '" + city + "', '"
-							+ state + "', '" + zip + "', '" + paymentStatus + "', '" + paymentMethod + "', " + price
-							+ ", " + "'" + email + "', '" + phone + "', " + smsEnabledInt + ", '" + prefContactMethod
-							+ "');";
-					PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
-					insertOrder.executeUpdate();
-				}
+				String insertOrderQuery = "INSERT INTO Orders("
+						+ "orderNumber, orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
+						+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
+						+ " VALUES(" + orderNumber + ", '" + orderDate + "', '" + dueDate + "', '" + status + "', '" + firstName + "', '"
+						+ lastName + "', '" + orderDesc + "', '" + streetAddress + "', '" + city + "', '" + state
+						+ "', '" + zip + "', '" + paymentStatus + "', '" + paymentMethod + "', " + price + ", " + "'"
+						+ email + "', '" + phone + "', " + smsEnabledInt + ", '" + prefContactMethod + "');";
+				//System.out.println(insertOrderQuery);
+				PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
+				insertOrder.executeUpdate();
 			}
-		} catch (SQLException e) {
+
+		} catch (
+
+		SQLException e)
+
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally
 
 		{
+			System.out.println("List Saved!");
 			try {
 				if (connection != null)
 					connection.close();
@@ -236,4 +230,3 @@ public class DataAccess {
 	}
 
 }
-

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -64,18 +66,28 @@ public class MainController implements Initializable {
 	@FXML
 	private TableColumn<Order, String> clmPrefContactMethod;
 
-	private ObservableList<Order> orderList = FXCollections.observableArrayList();
+	protected ObservableList<Order> orderList = FXCollections.observableArrayList();
+
+	protected Order selectedOrder = new Order();
 
 	public MainController() {
 
 	}
 
+	/**
+	 * Launches the new order window. Passes into the New Order controller a
+	 * reference to itself so that it can add data to orderList
+	 */
 	@FXML
 	public void newOrderButtonPressed(ActionEvent e) {
 		System.out.println("New Order!");
 		Parent root;
 		try {
-			root = FXMLLoader.load(getClass().getClassLoader().getResource("newOrderGUI.fxml"));
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("newOrderGUI.fxml"));
+			root = loader.load();
+			NewOrderController newOrderController = (NewOrderController) loader.getController();
+			newOrderController.setMainController(this);
 			Stage stage = new Stage();
 			stage.setTitle("New Order");
 			stage.setScene(new Scene(root));
@@ -89,6 +101,9 @@ public class MainController implements Initializable {
 		}
 	}
 
+	/**
+	 * Fills the Order Status combobox with status strings
+	 */
 	private void populateOrderStatus() {
 
 		ObservableList<String> options = FXCollections.observableArrayList("Order Recieved", "Pot Thrown",
@@ -108,16 +123,26 @@ public class MainController implements Initializable {
 
 		tblOrders.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 			if (newSelection != null) {
-				orderTableClicked(null);
+				selectedOrder = newSelection;
+				cmbOrderStatus.setValue(selectedOrder.getStatus());
+
 			}
 		});
 
 	}
 
+	/**
+	 * Gives a reference to the main application object if needed.
+	 * 
+	 * @param MainApp
+	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
+	/**
+	 * Fills the Orders table with info from the orderList List
+	 */
 	public void populateTable() {
 		// orderList.add(new Order(13625, LocalDate.now(), LocalDate.of(2015,
 		// 10, 31), "Incomplete", "James", "Smith",
@@ -150,22 +175,34 @@ public class MainController implements Initializable {
 		tblOrders.setItems(orderList);
 	}
 
-	public void orderStatusChanged(Event e) {
-		Order selectedOrder = tblOrders.getSelectionModel().getSelectedItem();
+	/**
+	 * Sets the selected Order's status to what is selected in the combobox.
+	 * Saves the data to DB if the status value has changed
+	 */
+	public void onStatusDropdownChanged(Event e) {
+		String oldSelectedOrderStatus = selectedOrder.getStatus();
 		String newOrderStatus = cmbOrderStatus.getValue();
-		if (selectedOrder != null) {
-			selectedOrder.setStatus(newOrderStatus);
+
+		selectedOrder.setStatus(newOrderStatus);
+		if (!oldSelectedOrderStatus.equals(newOrderStatus)) {
 			DataAccess.saveOrders(orderList);
 		}
+
 	}
 
-	public void orderTableClicked(Event e) {
-		Order selectedOrder = tblOrders.getSelectionModel().getSelectedItem();
-		if (selectedOrder != null) {
-			String orderStatus = selectedOrder.getStatus();
-			cmbOrderStatus.setValue(orderStatus);
+	/**
+	 * Returns the current largest order number in the orders list. Used to get
+	 * the next order number when adding an order.
+	 */
+	protected int getLargestOrderNumber() {
+		ArrayList<Integer> orderNumberList = new ArrayList<Integer>();
+		if (orderList.size() == 0) {
+			return 0;
 		}
-
+		for (Order order : orderList) {
+			orderNumberList.add(new Integer(order.getOrderNumber()));
+		}
+		return Collections.max(orderNumberList);
 	}
 
 }
