@@ -101,13 +101,16 @@ public class MainController implements Initializable {
 		assert newOrderButton != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		assert cmbOrderStatus != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateOrderStatus();
-		try {
-			orderList = DataAccess.loadOrders();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		orderList = DataAccess.loadOrders();
+
 		populateTable();
+
+		tblOrders.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+			if (newSelection != null) {
+				orderTableClicked(null);
+			}
+		});
 
 	}
 
@@ -152,6 +155,7 @@ public class MainController implements Initializable {
 		String newOrderStatus = cmbOrderStatus.getValue();
 		if (selectedOrder != null) {
 			selectedOrder.setStatus(newOrderStatus);
+			DataAccess.saveOrders(orderList);
 		}
 	}
 
