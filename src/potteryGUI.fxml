@@ -81,9 +81,9 @@
                                     <HBox alignment="CENTER" layoutY="-33.0" prefHeight="34.0" prefWidth="638.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <Button fx:id="newOrderButton" mnemonicParsing="false" onAction="#newOrderButtonPressed" text="New Order" />
-                                          <Button mnemonicParsing="false" text="Edit Order" />
+                                          <Button fx:id="btnEditOrder" disable="true" mnemonicParsing="false" onAction="#editOrderButtonPressed" text="Edit Order" />
                                           <Button mnemonicParsing="false" text="View Order" />
-                                          <Button mnemonicParsing="false" text="Duplicate Order" />
+                                          <Button fx:id="btnDeleteOrder" mnemonicParsing="false" onAction="#deleteOrderButtonPressed" text="Delete Order" />
                                           <Region HBox.hgrow="ALWAYS" />
                                           <Region layoutX="394.0" layoutY="14.0" HBox.hgrow="ALWAYS" />
                                           <VBox alignment="CENTER">

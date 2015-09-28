@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -20,16 +21,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 
 	@FXML
 	private Button newOrderButton;
+	@FXML
+	private Button btnEditOrder;
+	@FXML
+	private Button btnDeleteOrder;
 	private MainApp mainApp;
 	@FXML
 	private ComboBox<String> cmbOrderStatus;
@@ -62,7 +70,7 @@ public class MainController implements Initializable {
 	@FXML
 	private TableColumn<Order, String> clmPhone;
 	@FXML
-	private TableColumn<Order, String> clmSMSEnabled;
+	private TableColumn<Order, Boolean> clmSMSEnabled;
 	@FXML
 	private TableColumn<Order, String> clmPrefContactMethod;
 
@@ -100,6 +108,55 @@ public class MainController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Launches the edit order window. Passes into the Edit Order controller a
+	 * reference to itself so that it can add data to orderList
+	 */
+	@FXML
+	public void editOrderButtonPressed(ActionEvent e) {
+		System.out.println("Edit Order!");
+		Parent root;
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("editOrderGUI.fxml"));
+			root = loader.load();
+			EditOrderController editOrderController = (EditOrderController) loader.getController();
+			editOrderController.setMainController(this);
+			editOrderController.setEditedOrder(selectedOrder);
+			
+			Stage stage = new Stage();
+			stage.setTitle("Edit Order");
+			stage.setScene(new Scene(root));
+			stage.show();
+
+			// hide this current window (if this is what you want
+			// ((Node)(e.getSource())).getScene().getWindow().hide();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void deleteOrderButtonPressed(ActionEvent e){
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Delete Order");
+		alert.setHeaderText("This will delete the order from the table.");
+		alert.setContentText("Do you wish to proceed?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    orderList.remove(selectedOrder);
+		    //selectedOrder = null;
+		    alert.close();
+		    DataAccess.saveOrders(orderList);
+		    System.out.println("Delete Order!");
+		    
+		} else {
+		    alert.close();
+		}
+	}
 
 	/**
 	 * Fills the Order Status combobox with status strings
@@ -125,7 +182,10 @@ public class MainController implements Initializable {
 			if (newSelection != null) {
 				selectedOrder = newSelection;
 				cmbOrderStatus.setValue(selectedOrder.getStatus());
+				btnEditOrder.setDisable(false);
 
+			} else{
+				btnEditOrder.setDisable(true);
 			}
 		});
 
@@ -169,7 +229,7 @@ public class MainController implements Initializable {
 		clmPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
 		clmEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 		clmPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
-		clmSMSEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledStringProperty());
+		clmSMSEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledProperty());
 		clmPrefContactMethod.setCellValueFactory(cellData -> cellData.getValue().prefContactMethodProperty());
 
 		tblOrders.setItems(orderList);

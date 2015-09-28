@@ -318,6 +318,11 @@ public class Order {
 	protected void setPrefContactMethod(String prefContactMethod) {
 		this.prefContactMethod.set(prefContactMethod);
 	}
+	
+	protected void redoShippingAddress() {
+		this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
+	}
+	
 
 	
 	
