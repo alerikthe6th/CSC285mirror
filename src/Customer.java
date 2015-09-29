@@ -15,7 +15,23 @@ public class Customer {
 	protected StringProperty email;
 	protected StringProperty prefContactMethod;
 	
-
+	/**
+	 * Constructor with some initial data.	
+	 * Creates a new customer with given parameters
+	 *
+	 * @param String firstName
+	 * @param String lastName
+	 * @param String orderDesc
+	 * @param String streetAddress
+	 * @param String city
+	 * @param String state
+	 * @param String zip
+	 * @param String paymentMethod
+	 * @param String phoneNumber
+	 * @param String email
+	 * @param String prefContactMethod
+	 * 
+	 */
 	public Customer(String firstName, String lastName, String orderDesc, String streetAddress, 
 			String city, String state, String zip, String paymentMethod, 
 			String phoneNumber, String email, String prefContactMethod) {

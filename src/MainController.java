@@ -194,7 +194,7 @@ public class MainController implements Initializable {
 	/**
 	 * Gives a reference to the main application object if needed.
 	 * 
-	 * @param MainApp
+	 * 
 	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
@@ -238,6 +238,8 @@ public class MainController implements Initializable {
 	/**
 	 * Sets the selected Order's status to what is selected in the combobox.
 	 * Saves the data to DB if the status value has changed
+	 * 
+	 * 
 	 */
 	public void onStatusDropdownChanged(Event e) {
 		String oldSelectedOrderStatus = selectedOrder.getStatus();

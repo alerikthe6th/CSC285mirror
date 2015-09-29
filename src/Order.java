@@ -25,13 +25,55 @@ public class Order {
 
 	/**
 	 * Default constructor.
+	 * Creates a new Order with no data.
+	 * 
+	 * @param int orderNumber 
+	 * @param LocalDate orderDate
+	 * @param LocalDate dueDate
+	 * @param String status
+	 * @param String firstName
+	 * @param String lastName
+	 * @param String orderDesc
+	 * @param String streetAddress
+	 * @param String city
+	 * @param String state
+	 * @param String zip
+	 * @param String paymentStatus
+	 * @param String paymentMethod
+	 * @param double price
+	 * @param String phoneNumber
+	 * @param String email
+	 * @param boolean smsEnabled
+	 * @param String prefContactMethod
+	 * 
 	 */
 	public Order() {
 		this(0, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, false, null);
 	}
 
 	/**
-	 * Constructor with some initial data.
+	 * Constructor with some initial data.	
+	 * Creates a new order with given parameters
+	 *
+	 * @param int orderNumber 
+	 * @param LocalDate orderDate
+	 * @param LocalDate dueDate
+	 * @param String status
+	 * @param String firstName
+	 * @param String lastName
+	 * @param String orderDesc
+	 * @param String streetAddress
+	 * @param String city
+	 * @param String state
+	 * @param String zip
+	 * @param String paymentStatus
+	 * @param String paymentMethod
+	 * @param double price
+	 * @param String phoneNumber
+	 * @param String email
+	 * @param boolean smsEnabled
+	 * @param String prefContactMethod
+	 * 
 	 */
 	public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName,
 			String lastName, String orderDesc, String streetAddress, String city, String state, String zip,
@@ -318,7 +360,7 @@ public class Order {
 	protected void setPrefContactMethod(String prefContactMethod) {
 		this.prefContactMethod.set(prefContactMethod);
 	}
-	
+	/**Updates the order's full shipping address*/
 	protected void redoShippingAddress() {
 		this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
 	}
