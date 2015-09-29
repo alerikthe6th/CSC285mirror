@@ -29,7 +29,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-
+/* 
+ * TODO: delete button does not disable by default
+ * 		 nor does it disable upon selection.
+ */
 public class MainController implements Initializable {
 
 	@FXML
@@ -38,6 +41,9 @@ public class MainController implements Initializable {
 	private Button btnEditOrder;
 	@FXML
 	private Button btnDeleteOrder;
+	@FXML
+	private Button btnViewOrder;
+	
 	private MainApp mainApp;
 	@FXML
 	private ComboBox<String> cmbOrderStatus;
@@ -138,6 +144,35 @@ public class MainController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Launches the view order window. Passes into the View Order controller a
+	 * reference to itself so that it can add data to orderList
+	 */
+	@FXML
+	public void viewOrderButtonPressed(ActionEvent e) {
+		System.out.println("View Order!");
+		Parent root;
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("viewOrderGUI.fxml"));
+			root = loader.load();
+			ViewOrderController viewOrderController = (ViewOrderController) loader.getController();
+			viewOrderController.setMainController(this);
+			viewOrderController.setViewOrder(selectedOrder);
+			
+			Stage stage = new Stage();
+			stage.setTitle("View Order");
+			stage.setScene(new Scene(root));
+			stage.show();
+
+			// hide this current window (if this is what you want
+			// ((Node)(e.getSource())).getScene().getWindow().hide();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 	@FXML
 	public void deleteOrderButtonPressed(ActionEvent e){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -183,9 +218,13 @@ public class MainController implements Initializable {
 				selectedOrder = newSelection;
 				cmbOrderStatus.setValue(selectedOrder.getStatus());
 				btnEditOrder.setDisable(false);
+				btnDeleteOrder.setDisable(false);
+				btnViewOrder.setDisable(false);
 
 			} else{
 				btnEditOrder.setDisable(true);
+				btnDeleteOrder.setDisable(true);
+				btnViewOrder.setDisable(true);
 			}
 		});
 

@@ -82,8 +82,8 @@
                                        <children>
                                           <Button fx:id="newOrderButton" mnemonicParsing="false" onAction="#newOrderButtonPressed" text="New Order" />
                                           <Button fx:id="btnEditOrder" disable="true" mnemonicParsing="false" onAction="#editOrderButtonPressed" text="Edit Order" />
-                                          <Button mnemonicParsing="false" text="View Order" />
-                                          <Button fx:id="btnDeleteOrder" mnemonicParsing="false" onAction="#deleteOrderButtonPressed" text="Delete Order" />
+                                          <Button fx:id="btnViewOrder" disable="true" mnemonicParsing="false" onAction="#viewOrderButtonPressed" text="View Order" />
+                                          <Button fx:id="btnDeleteOrder" disable="true" mnemonicParsing="false" onAction="#deleteOrderButtonPressed" text="Delete Order" />
                                           <Region HBox.hgrow="ALWAYS" />
                                           <Region layoutX="394.0" layoutY="14.0" HBox.hgrow="ALWAYS" />
                                           <VBox alignment="CENTER">
