@@ -63,8 +63,8 @@
                                                 <TableColumn fx:id="clmPaymentStatus" prefWidth="100.0" text="Payment Status" />
                                                 <TableColumn fx:id="clmPaymentMethod" prefWidth="100.0" text="Payment Method" />
                                                 <TableColumn fx:id="clmPrice" prefWidth="75.0" text="Price" />
-                                                <TableColumn fx:id="clmEmail" prefWidth="140.0" text="Email" />
-                                                <TableColumn fx:id="clmPhone" prefWidth="100.0" text="Phone" />
+                                                <TableColumn fx:id="clmEmail" prefWidth="100.0" text="Email" />
+                                                <TableColumn fx:id="clmPhone" prefWidth="140.0" text="Phone" />
                                                 <TableColumn fx:id="clmSMSEnabled" prefWidth="100.0" text="SMS-Enabled" />
                                                 <TableColumn fx:id="clmPrefContactMethod" prefWidth="150.0" text="Preferred Contact Method" />
                                             </columns>
