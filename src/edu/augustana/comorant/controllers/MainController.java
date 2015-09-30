@@ -1,3 +1,4 @@
+package edu.augustana.comorant.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -11,6 +12,11 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import edu.augustana.comorant.dataStructures.Order;
+import edu.augustana.comorant.launchers.DataAccess;
+import edu.augustana.comorant.launchers.MainApp;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,6 +32,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
@@ -86,12 +93,16 @@ public class MainController implements Initializable {
 	private TableColumn<Order, Boolean> clmSMSEnabled;
 	@FXML
 	private TableColumn<Order, String> clmPrefContactMethod;
+	@FXML
+	private Label lblSaving; 
 
 	protected ObservableList<Order> orderList = FXCollections
 			.observableArrayList();
 
 	protected Order selectedOrder = new Order();
 	SortedList<Order> sortedOrders = null;
+	
+	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
 	public MainController() {
 
@@ -233,6 +244,34 @@ public class MainController implements Initializable {
 		populateDropdowns();
 
 		orderList = DataAccess.loadOrders();
+		sortedOrders = wrapOrdersList();
+
+		sortedOrders.comparatorProperty().bind(tblOrders.comparatorProperty());
+
+		populateTable();
+
+		tblOrders.getSelectionModel().selectedItemProperty()
+				.addListener((obs, oldSelection, newSelection) -> {
+					if (newSelection != null) {
+						selectedOrder = newSelection;
+						cmbOrderStatus.setValue(selectedOrder.getStatus());
+						btnEditOrder.setDisable(false);
+						btnDeleteOrder.setDisable(false);
+						btnViewOrder.setDisable(false);
+
+					} else {
+						btnEditOrder.setDisable(true);
+						btnDeleteOrder.setDisable(true);
+						btnViewOrder.setDisable(true);
+					}
+				});
+		
+
+		lblSaving.visibleProperty().bind(saving);
+
+	}
+
+	private SortedList<Order> wrapOrdersList() {
 		FilteredList<Order> filteredOrders = new FilteredList<>(orderList,
 				p -> true); // Show all data. Wrapped in filtered list
 
@@ -344,28 +383,7 @@ public class MainController implements Initializable {
 
 						});
 
-		sortedOrders = new SortedList<>(filteredOrders);
-
-		sortedOrders.comparatorProperty().bind(tblOrders.comparatorProperty());
-
-		populateTable();
-
-		tblOrders.getSelectionModel().selectedItemProperty()
-				.addListener((obs, oldSelection, newSelection) -> {
-					if (newSelection != null) {
-						selectedOrder = newSelection;
-						cmbOrderStatus.setValue(selectedOrder.getStatus());
-						btnEditOrder.setDisable(false);
-						btnDeleteOrder.setDisable(false);
-						btnViewOrder.setDisable(false);
-
-					} else {
-						btnEditOrder.setDisable(true);
-						btnDeleteOrder.setDisable(true);
-						btnViewOrder.setDisable(true);
-					}
-				});
-
+		return new SortedList<>(filteredOrders);
 	}
 
 	/**

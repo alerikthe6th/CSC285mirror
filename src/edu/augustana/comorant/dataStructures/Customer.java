@@ -1,3 +1,4 @@
+package edu.augustana.comorant.dataStructures;
 import javafx.beans.property.*;
 
 public class Customer {
@@ -54,160 +55,160 @@ public class Customer {
 	//field accessors
 	/**Returns the customer's first name 
 	 * @return String */
-	protected String getFirstName() {
+	public String getFirstName() {
 		return firstName.get();
 	}
 	/**Returns the customer's last name 
 	 * @return String */
-	protected String getLastName() {
+	public String getLastName() {
 		return lastName.get();
 	}
 	/**Returns the customer's order description 
 	 * @return String */
-	protected String getOrderDesc() {
+	public String getOrderDesc() {
 		return orderDesc.get();
 	}
 	/**Returns the customer's street address 
 	 * @return String */
-	protected String getStreetAddress() {
+	public String getStreetAddress() {
 		return streetAddress.get();
 	}
 	/**Returns the customer's city 
 	 * @return String */
-	protected String getCity() {
+	public String getCity() {
 		return city.get();
 	}
 	/**Returns the customer's state
 	 * @return String */
-	protected String getState() {
+	public String getState() {
 		return state.get();
 	}
 	/**Returns the customer's zip code
 	 * @return String */
-	protected String getZip() {
+	public String getZip() {
 		return zip.get();
 	}
 	/**Returns the customer's payment method 
 	 * @return String */
-	protected String getPaymentMethod() {
+	public String getPaymentMethod() {
 		return paymentMethod.get();
 	}
 	/**Returns the customer's phone number 
 	 * @return String */
-	protected String getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber.get();
 	}
 	/**Returns the customer's shipping address 
 	 * @return String */
-	protected String getFullAddress() {
+	public String getFullAddress() {
 		return fullAddress.get();
 	}
 	/**Returns the customer's preferred contact method
 	 * @return String */
-	protected String getPrefContactMethod() {
+	public String getPrefContactMethod() {
 		return prefContactMethod.get();
 	}
 	/**Returns the customer's email address
 	 * @return String */
-	protected String getEmail() {
+	public String getEmail() {
 		return email.get();
 	}
 	
 	
 	//property accessors
 	/**@return StringProperty*/
-	protected StringProperty firstNameProperty() {
+	public StringProperty firstNameProperty() {
 		return firstName;
 	}
 	/**@return StringProperty*/
-	protected StringProperty lastNameProperty() {
+	public StringProperty lastNameProperty() {
 		return lastName;
 	}
 	/**@return StringProperty*/
-	protected StringProperty orderDescProperty() {
+	public StringProperty orderDescProperty() {
 		return orderDesc;
 	}
 	/**@return StringProperty*/
-	protected StringProperty streetAddressProperty() {
+	public StringProperty streetAddressProperty() {
 		return streetAddress;
 	}
 	/**@return StringProperty*/
-	protected StringProperty cityProperty() {
+	public StringProperty cityProperty() {
 		return city;
 	}
 	/**@return StringProperty*/
-	protected StringProperty stateProperty() {
+	public StringProperty stateProperty() {
 		return state;
 	}
 	/**@return StringProperty*/
-	protected StringProperty zipProperty() {
+	public StringProperty zipProperty() {
 		return zip;
 	}
 	/**@return StringProperty*/
-	protected StringProperty fullAddressProperty() {
+	public StringProperty fullAddressProperty() {
 		return fullAddress;
 	}
 	/**@return StringProperty*/
-	protected StringProperty paymentMethodProperty() {
+	public StringProperty paymentMethodProperty() {
 		return paymentMethod;
 	}
 	/**@return StringProperty*/
-	protected StringProperty phoneNumberProperty() {
+	public StringProperty phoneNumberProperty() {
 		return phoneNumber;
 	}
 	/**@return StringProperty*/
-	protected StringProperty emailProperty() {
+	public StringProperty emailProperty() {
 		return email;
 	}
 	/**@return StringProperty*/
-	protected StringProperty prefContactMethodProperty() {
+	public StringProperty prefContactMethodProperty() {
 		return prefContactMethod;
 	}
 	
 	
 	//field mutators
 	/**Sets the customer's first name*/
-	protected void setFirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName.set(firstName);
 	}
 	/**Sets the customer's last name*/
-	protected void setLastName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName.set(lastName);
 	}
 	/**Sets the customer's order description*/
-	protected void setOrderDesc(String status) {
+	public void setOrderDesc(String status) {
 		this.orderDesc.set(status);
 	}
 	/**Sets the customer's street address*/
-	protected void setStreetAddress(String streetAddress) {
+	public void setStreetAddress(String streetAddress) {
 		this.streetAddress.set(streetAddress);
 	}
 	/**Sets the customer's city*/
-	protected void setCity(String city) {
+	public void setCity(String city) {
 		this.city.set(city);
 	}
 	/**Sets the customer's state*/
-	protected void setState(String state) {
+	public void setState(String state) {
 		this.state.set(state);
 	}
 	/**Sets the customer's zip code*/
-	protected void setZip(String zip) {
+	public void setZip(String zip) {
 		this.zip.set(zip);
 	}
 	/**Sets the customer's payment method*/
-	protected void setPaymentMethod(String paymentMethod) {
+	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod.set(paymentMethod);
 	}
 	/**Sets the customer's phone number*/
-	protected void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber.set(phoneNumber);
 	}
 	/**Sets the customer's email address*/
-	protected void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email.set(email);
 	}
 	/**Sets the customer's preferred contact method*/
-	protected void setPrefContactMethod(String prefContactMethod) {
+	public void setPrefContactMethod(String prefContactMethod) {
 		this.prefContactMethod.set(prefContactMethod);
 	}
 
