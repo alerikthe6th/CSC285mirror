@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -57,18 +57,18 @@
                                               <TableColumn fx:id="clmOrderNumber" prefWidth="93.0" text="Order Number" />
                                                 <TableColumn fx:id="clmOrderDate" prefWidth="75.0" text="Order Date" />
                                                 <TableColumn fx:id="clmDueDate" prefWidth="75.0" text="Due Date" />
-                                                <TableColumn fx:id="clmStatus" prefWidth="67.0" text="Status" />
+                                                <TableColumn fx:id="clmStatus" prefWidth="90.0" text="Status" />
                                               <TableColumn fx:id="clmFirstName" prefWidth="100.0" text="First Name" />
-                                                <TableColumn fx:id="clmLastName" prefWidth="132.0" text="Last Name" />
-                                                <TableColumn fx:id="clmOrderDesc" prefWidth="64.0" text="Order Description" />
-                                                <TableColumn fx:id="clmShippingAddress" prefWidth="118.0" text="Shipping Address" />
-                                                <TableColumn fx:id="clmPaymentStatus" prefWidth="75.0" text="Payment Status" />
-                                                <TableColumn fx:id="clmPaymentMethod" prefWidth="75.0" text="Payment Method" />
+                                                <TableColumn fx:id="clmLastName" prefWidth="100.0" text="Last Name" />
+                                                <TableColumn fx:id="clmOrderDesc" prefWidth="110.0" text="Order Description" />
+                                                <TableColumn fx:id="clmShippingAddress" prefWidth="140.0" text="Shipping Address" />
+                                                <TableColumn fx:id="clmPaymentStatus" prefWidth="100.0" text="Payment Status" />
+                                                <TableColumn fx:id="clmPaymentMethod" prefWidth="100.0" text="Payment Method" />
                                                 <TableColumn fx:id="clmPrice" prefWidth="75.0" text="Price" />
-                                                <TableColumn fx:id="clmEmail" prefWidth="75.0" text="Email" />
-                                                <TableColumn fx:id="clmPhone" prefWidth="75.0" text="Phone" />
-                                                <TableColumn fx:id="clmSMSEnabled" prefWidth="75.0" text="SMS-Enabled" />
-                                                <TableColumn fx:id="clmPrefContactMethod" prefWidth="75.0" text="Prefered Contact Method" />
+                                                <TableColumn fx:id="clmEmail" prefWidth="140.0" text="Email" />
+                                                <TableColumn fx:id="clmPhone" prefWidth="100.0" text="Phone" />
+                                                <TableColumn fx:id="clmSMSEnabled" prefWidth="100.0" text="SMS-Enabled" />
+                                                <TableColumn fx:id="clmPrefContactMethod" prefWidth="150.0" text="Preferred Contact Method" />
                                             </columns>
                                              <padding>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -133,12 +133,12 @@
                                                 <TableColumn prefWidth="104.0" text="Street Address" />
                                                 <TableColumn prefWidth="46.0" text="City" />
                                                 <TableColumn prefWidth="75.0" text="State" />
-                                                <TableColumn prefWidth="75.0" text="Zip" />
+                                                <TableColumn prefWidth="75.0" text="ZIP" />
                                                 <TableColumn prefWidth="75.0" text="Phone" />
                                                 <TableColumn prefWidth="100.0" text="Email" />
-                                                <TableColumn prefWidth="67.0" text="Balnce Due" />
+                                                <TableColumn prefWidth="67.0" text="Balance Due" />
                                                 <TableColumn prefWidth="121.0" text="SMS Enabled" />
-                                                <TableColumn prefWidth="75.0" text="Prefered Contact Method" />
+                                                <TableColumn prefWidth="75.0" text="Preferred Contact Method" />
                                              </columns>
                                              <padding>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
