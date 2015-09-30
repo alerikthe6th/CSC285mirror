@@ -119,7 +119,7 @@ public class MainController implements Initializable {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-					"newOrderGUI.fxml"));
+					"/edu/augustana/comorant/fxml/newOrderGUI.fxml"));
 			root = loader.load();
 			NewOrderController newOrderController = (NewOrderController) loader
 					.getController();
@@ -148,7 +148,7 @@ public class MainController implements Initializable {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-					"editOrderGUI.fxml"));
+					"/edu/augustana/comorant/fxml/editOrderGUI.fxml"));
 			root = loader.load();
 			EditOrderController editOrderController = (EditOrderController) loader
 					.getController();
@@ -179,7 +179,7 @@ public class MainController implements Initializable {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-					"viewOrderGUI.fxml"));
+					"/edu/augustana/comorant/fxml/viewOrderGUI.fxml"));
 			root = loader.load();
 			ViewOrderController viewOrderController = (ViewOrderController) loader
 					.getController();

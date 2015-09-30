@@ -30,7 +30,7 @@ public class MainApp extends Application {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("potteryGUI.fxml"));
+			loader.setLocation(MainApp.class.getResource("/edu/augustana/comorant/fxml/potteryGUI.fxml"));
 			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
