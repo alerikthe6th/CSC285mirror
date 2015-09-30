@@ -25,3 +25,25 @@ Client response: Simple is good. But looking beyond a single customer, as a soft
 3. Do we get to see what kind of info he stores in his current excel doc so we can have a good understanding of what features he wants?
 
 Client response: I could provide that, but it's pretty haphazard since I didn't bother to define columns. But it tends to be name, address, what is ordered and the price, cost of shipping, status of payment, status of order completion.
+
+
+Team Cormorant CRC Notes
+
+GUI class: Java FX, displays all options, displays general information
+
+Use w/ Customer, Order class
+
+Customer class: public, customer name, addresss, email, phone
+
+Use w/ Order class
+
+Order class: contains data for an order, date of order, submitted date, price, specifications, payment type
+
+Use with Customer, Credit Card class
+
+Credit Card class: Card number, Holder, expiration date, second number, get methods, private class
+
+contained in order class
+
+ THINGS WE NEED ON THE GUI:
+ name, address, what is ordered and the price, cost of shipping, status of payment, status of order completion, something to print a shipping invoice(sheet that say what you ordered and cost, like a reciept) for the package.
