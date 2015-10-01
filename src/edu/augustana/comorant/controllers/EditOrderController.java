@@ -223,6 +223,8 @@ public class EditOrderController implements Initializable {
 
 		DataAccess.saveOrders(mainController.orderList);
 		System.out.println("Save Edit!");
+		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
+		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
 		Stage stage = (Stage) btnSaveEdit.getScene().getWindow();
 		stage.close();
 

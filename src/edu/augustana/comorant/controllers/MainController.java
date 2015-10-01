@@ -98,7 +98,7 @@ public class MainController implements Initializable {
 	@FXML
 	private Label lblSaving;
 	@FXML
-	private CheckBox chkCompletedOrders;
+	protected CheckBox chkCompletedOrders;
 
 	protected ObservableList<Order> orderList = FXCollections.observableArrayList();
 
@@ -462,6 +462,9 @@ public class MainController implements Initializable {
 
 		selectedOrder.setStatus(newOrderStatus);
 		if (!oldSelectedOrderStatus.equals(newOrderStatus)) {
+			//refresh filter
+			chkCompletedOrders.setSelected(!chkCompletedOrders.isSelected());
+			chkCompletedOrders.setSelected(!chkCompletedOrders.isSelected());
 			DataAccess.saveOrders(orderList);
 		}
 
