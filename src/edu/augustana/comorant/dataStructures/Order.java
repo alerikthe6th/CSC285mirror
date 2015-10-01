@@ -78,7 +78,7 @@ public class Order {
 	 */
 	public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName,
 			String lastName, String orderDesc, String streetAddress, String city, String state, String zip,
-			String paymentStatus, String paymentMethod, double price, String phoneNumber, String email,
+			String paymentStatus, String paymentMethod, double price, String email, String phoneNumber,
 			boolean smsEnabled, String prefContactMethod) {
 		this.orderNumber = new SimpleIntegerProperty(orderNumber);
 		this.orderDate = new SimpleObjectProperty<LocalDate>(orderDate);

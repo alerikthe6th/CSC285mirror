@@ -1,4 +1,5 @@
 package edu.augustana.comorant.controllers;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -31,6 +32,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -94,14 +96,15 @@ public class MainController implements Initializable {
 	@FXML
 	private TableColumn<Order, String> clmPrefContactMethod;
 	@FXML
-	private Label lblSaving; 
+	private Label lblSaving;
+	@FXML
+	private CheckBox chkCompletedOrders;
 
-	protected ObservableList<Order> orderList = FXCollections
-			.observableArrayList();
+	protected ObservableList<Order> orderList = FXCollections.observableArrayList();
 
 	protected Order selectedOrder = new Order();
 	SortedList<Order> sortedOrders = null;
-	
+
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
 	public MainController() {
@@ -118,11 +121,9 @@ public class MainController implements Initializable {
 		Parent root;
 		try {
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-					"/edu/augustana/comorant/fxml/newOrderGUI.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/comorant/fxml/newOrderGUI.fxml"));
 			root = loader.load();
-			NewOrderController newOrderController = (NewOrderController) loader
-					.getController();
+			NewOrderController newOrderController = (NewOrderController) loader.getController();
 			newOrderController.setMainController(this);
 			Stage stage = new Stage();
 			stage.setTitle("New Order");
@@ -147,11 +148,10 @@ public class MainController implements Initializable {
 		Parent root;
 		try {
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-					"/edu/augustana/comorant/fxml/editOrderGUI.fxml"));
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/edu/augustana/comorant/fxml/editOrderGUI.fxml"));
 			root = loader.load();
-			EditOrderController editOrderController = (EditOrderController) loader
-					.getController();
+			EditOrderController editOrderController = (EditOrderController) loader.getController();
 			editOrderController.setMainController(this);
 			editOrderController.setEditedOrder(selectedOrder);
 
@@ -178,11 +178,10 @@ public class MainController implements Initializable {
 		Parent root;
 		try {
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-					"/edu/augustana/comorant/fxml/viewOrderGUI.fxml"));
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/edu/augustana/comorant/fxml/viewOrderGUI.fxml"));
 			root = loader.load();
-			ViewOrderController viewOrderController = (ViewOrderController) loader
-					.getController();
+			ViewOrderController viewOrderController = (ViewOrderController) loader.getController();
 			viewOrderController.setMainController(this);
 			viewOrderController.setViewOrder(selectedOrder);
 
@@ -224,16 +223,15 @@ public class MainController implements Initializable {
 	 */
 	private void populateDropdowns() {
 
-		ObservableList<String> options = FXCollections.observableArrayList(
-				"Order Recieved", "Pot Thrown", "Pot Trimmed/Assembled",
-				"Pot Fired", "Pot Glazed", "Ready to Ship", "Completed");
+		ObservableList<String> options = FXCollections.observableArrayList("Order Recieved", "Pot Thrown",
+				"Pot Trimmed/Assembled", "Pot Fired", "Pot Glazed", "Ready to Ship", "Completed");
 		cmbOrderStatus.setItems(options);
 
-		ObservableList<String> filters = FXCollections.observableArrayList(
-				"Status", "Name", "Shipping Address", "Order Description",
-				"Payment Method", "Payment Status", "Price", "Email",
-				"Phone Number", "Preffered Contact Method");
+		ObservableList<String> filters = FXCollections.observableArrayList("Status", "Name", "Shipping Address",
+				"Order Description", "Payment Method", "Payment Status", "Price", "Email", "Phone Number",
+				"Preffered Contact Method");
 		cmbOrderFilters.setItems(filters);
+		cmbOrderFilters.setValue("Name");
 
 	}
 
@@ -250,140 +248,162 @@ public class MainController implements Initializable {
 
 		populateTable();
 
-		tblOrders.getSelectionModel().selectedItemProperty()
-				.addListener((obs, oldSelection, newSelection) -> {
-					if (newSelection != null) {
-						selectedOrder = newSelection;
-						cmbOrderStatus.setValue(selectedOrder.getStatus());
-						btnEditOrder.setDisable(false);
-						btnDeleteOrder.setDisable(false);
-						btnViewOrder.setDisable(false);
+		tblOrders.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+			if (newSelection != null) {
+				selectedOrder = newSelection;
+				cmbOrderStatus.setValue(selectedOrder.getStatus());
+				btnEditOrder.setDisable(false);
+				btnDeleteOrder.setDisable(false);
+				btnViewOrder.setDisable(false);
 
-					} else {
-						btnEditOrder.setDisable(true);
-						btnDeleteOrder.setDisable(true);
-						btnViewOrder.setDisable(true);
-					}
-				});
-		
+			} else {
+				btnEditOrder.setDisable(true);
+				btnDeleteOrder.setDisable(true);
+				btnViewOrder.setDisable(true);
+			}
+		});
 
 		lblSaving.visibleProperty().bind(saving);
 
 	}
 
 	private SortedList<Order> wrapOrdersList() {
-		FilteredList<Order> filteredOrders = new FilteredList<>(orderList,
-				p -> true); // Show all data. Wrapped in filtered list
+		FilteredList<Order> filteredOrders = new FilteredList<>(orderList, p -> true); // Show
+																						// all
+																						// data.
+																						// Wrapped
+																						// in
+																						// filtered
+																						// list
 
-		txtFilterOrders
-				.textProperty()
-				.addListener(
-						(observable, oldValue, newValue) -> {
-							filteredOrders
-									.setPredicate(order -> {
-										// If filter text is empty, display all
-										// persons.
-										if (newValue == null
-												|| newValue.isEmpty()) {
-											return true;
-										}
+		chkCompletedOrders.selectedProperty().addListener((observable, oldValue, newValue) -> {
+			if (chkCompletedOrders.isFocused()){
+			txtFilterOrders.setText("");
+			}
+			filteredOrders.setPredicate(order -> {
 
-										// Compare first name and last name of
-										// every person with filter text.
-										String lowerCaseFilter = newValue
-												.toLowerCase();
+				if (newValue == null || newValue == false) {
+					return true;
 
-										if (cmbOrderFilters.getValue()
-												.toString() == "Status") {
-											if (order.getStatus().toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// status.
-											}
-											return false; // Does not match.
-										} else if (cmbOrderFilters.getValue()
-												.toString() == "Name") {
-											if (order.getFirstName()
-													.toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// first name.
-											} else if (order.getLastName()
-													.toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// last name.
-											}
-											return false; // Does not match.
-										} else if (cmbOrderFilters.getValue()
-												.toString() == "Shipping Address") {
-											if (order.getFullAddress()
-													.toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// shipping address.
-											}
-											return false; // Does not match.
-										} else if (cmbOrderFilters.getValue()
-												.toString() == "Order Description") {
-											if (order.getOrderDesc()
-													.toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// Order Description.
-											}
-											return false; // Does not match.
-										} else if (cmbOrderFilters.getValue()
-												.toString() == "Payment Method") {
-											if (order.getPaymentMethod()
-													.toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// Payment method.
-											}
-											return false; // Does not match.
-										} else if (cmbOrderFilters.getValue()
-												.toString() == "Payment Status") {
-											if (order.getPaymentStatus()
-													.toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// payment status.
-											}
-											return false; // Does not match.
-										} else if (cmbOrderFilters.getValue()
-												.toString() == "Email") {
-											if (order.getEmail().toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// email.
-											}
-											return false; // Does not match.
-										} else if (cmbOrderFilters.getValue()
-												.toString() == "Phone Number") {
-											if (order.getPhoneNumber()
-													.toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// phone number.
-											}
-											return false; // Does not match.
-										} else if (cmbOrderFilters.getValue()
-												.toString() == "Preffered Contact Method") {
-											if (order.getPrefContactMethod()
-													.toLowerCase()
-													.contains(lowerCaseFilter)) {
-												return true; // Filter matches
-																// pref contact method.
-											}
-											return false; // Does not match.
-										}
-										return false;
-									});
+				}
+				if (order.getStatus().equals("Completed") && order.getPaymentStatus().equals("Paid")) {
+					return false;
 
-						});
+				}
+				return true;
+			});
+		});
+
+		txtFilterOrders.textProperty().addListener((observable, oldValue, newValue) -> {
+
+			setOrdersPredicate(filteredOrders, newValue);
+
+		});
+		cmbOrderFilters.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+			setOrdersPredicate(filteredOrders, txtFilterOrders.getText());
+
+		});
 
 		return new SortedList<>(filteredOrders);
+	}
+
+	private void setOrdersPredicate(FilteredList<Order> filteredOrders, String newValue) {
+		filteredOrders.setPredicate(order -> {
+			if (chkCompletedOrders.isSelected()){
+				if (order.getStatus().equals("Completed") && order.getPaymentStatus().equals("Paid")) {
+					return false;
+
+				}
+			}
+			// If filter text is empty, display all
+			// persons.
+			if (newValue == null || newValue.isEmpty()) {
+				return true;
+			}
+
+			// Compare first name and last name of
+			// every person with filter text.
+
+			String lowerCaseFilter = newValue.toLowerCase();
+
+			// use name if no filter selected
+			if (cmbOrderFilters.getValue() == null) {
+				if (order.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// first name.
+				} else if (order.getLastName().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// last name.
+				}
+				return false; // Does not match.
+			}
+			if (cmbOrderFilters.getValue().toString() == "Status") {
+				if (order.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// status.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Name") {
+				if (order.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// first name.
+				} else if (order.getLastName().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// last name.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Shipping Address") {
+				if (order.getFullAddress().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// shipping address.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Order Description") {
+				if (order.getOrderDesc().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// Order Description.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Payment Method") {
+				if (order.getPaymentMethod().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// Payment method.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Payment Status") {
+				if (order.getPaymentStatus().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// payment status.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Email") {
+				if (order.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// email.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Phone Number") {
+				if (order.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// phone number.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Price") {
+				if ((order.getPrice() + "").toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// phone number.
+				}
+				return false; // Does not match.
+			} else if (cmbOrderFilters.getValue().toString() == "Preffered Contact Method") {
+				if (order.getPrefContactMethod().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches
+									// pref contact method.
+				}
+				return false; // Does not match.
+			}
+			return false;
+		});
 	}
 
 	/**
@@ -411,36 +431,21 @@ public class MainController implements Initializable {
 		// 678.90, "michaelcurrie12@augustana.edu", "555-555-5555", false,
 		// "Email"));
 
-		clmFirstName.setCellValueFactory(cellData -> cellData.getValue()
-				.firstNameProperty());
-		clmLastName.setCellValueFactory(cellData -> cellData.getValue()
-				.lastNameProperty());
-		clmOrderNumber.setCellValueFactory(cellData -> cellData.getValue()
-				.orderNumberProperty());
-		clmOrderDate.setCellValueFactory(cellData -> cellData.getValue()
-				.orderDateProperty());
-		clmDueDate.setCellValueFactory(cellData -> cellData.getValue()
-				.dueDateProperty());
-		clmStatus.setCellValueFactory(cellData -> cellData.getValue()
-				.statusProperty());
-		clmOrderDesc.setCellValueFactory(cellData -> cellData.getValue()
-				.orderDescProperty());
-		clmShippingAddress.setCellValueFactory(cellData -> cellData.getValue()
-				.fullAddressProperty());
-		clmPaymentMethod.setCellValueFactory(cellData -> cellData.getValue()
-				.paymentMethodProperty());
-		clmPaymentStatus.setCellValueFactory(cellData -> cellData.getValue()
-				.paymentStatusProperty());
-		clmPrice.setCellValueFactory(cellData -> cellData.getValue()
-				.priceProperty());
-		clmEmail.setCellValueFactory(cellData -> cellData.getValue()
-				.emailProperty());
-		clmPhone.setCellValueFactory(cellData -> cellData.getValue()
-				.phoneNumberProperty());
-		clmSMSEnabled.setCellValueFactory(cellData -> cellData.getValue()
-				.smsEnabledProperty());
-		clmPrefContactMethod.setCellValueFactory(cellData -> cellData
-				.getValue().prefContactMethodProperty());
+		clmFirstName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+		clmLastName.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+		clmOrderNumber.setCellValueFactory(cellData -> cellData.getValue().orderNumberProperty());
+		clmOrderDate.setCellValueFactory(cellData -> cellData.getValue().orderDateProperty());
+		clmDueDate.setCellValueFactory(cellData -> cellData.getValue().dueDateProperty());
+		clmStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
+		clmOrderDesc.setCellValueFactory(cellData -> cellData.getValue().orderDescProperty());
+		clmShippingAddress.setCellValueFactory(cellData -> cellData.getValue().fullAddressProperty());
+		clmPaymentMethod.setCellValueFactory(cellData -> cellData.getValue().paymentMethodProperty());
+		clmPaymentStatus.setCellValueFactory(cellData -> cellData.getValue().paymentStatusProperty());
+		clmPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+		clmEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+		clmPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
+		clmSMSEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledProperty());
+		clmPrefContactMethod.setCellValueFactory(cellData -> cellData.getValue().prefContactMethodProperty());
 
 		tblOrders.setItems(sortedOrders);
 	}

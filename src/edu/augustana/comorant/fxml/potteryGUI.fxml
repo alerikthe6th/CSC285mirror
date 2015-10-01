@@ -47,6 +47,8 @@
                                                 <TextField fx:id="txtFilterOrders" prefHeight="22.0" prefWidth="200.0" />
                                                 <Label text="Filter By:" />
                                                 <ComboBox fx:id="cmbOrderFilters" prefWidth="150.0" />
+                                                <Region minWidth="200.0" />
+                                                <CheckBox fx:id="chkCompletedOrders" mnemonicParsing="false" text="Don't Show Completed Orders" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets />
