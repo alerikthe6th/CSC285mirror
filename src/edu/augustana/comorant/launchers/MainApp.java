@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 
 public class MainApp extends Application {
@@ -18,6 +19,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Pottery Orders");
+		this.primaryStage.getIcons().add(new Image("comorantIcon2.png"));
 
 		initRootLayout();
 
@@ -37,6 +39,7 @@ public class MainApp extends Application {
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
 
 			// Give the controller access to the main app.
 			MainController mainController = loader.getController();
