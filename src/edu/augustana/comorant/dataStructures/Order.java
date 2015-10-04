@@ -1,7 +1,24 @@
 package edu.augustana.comorant.dataStructures;
 
 import java.time.LocalDate;
+
 import javafx.beans.property.*;
+
+/*TODO - after sprint 1; carry over to customer:
+ * firstName;
+ * lastName;
+ * orderDesc;
+ * fullAddress;
+ * streetAddress;
+ * city;
+ * state;
+ * zip;
+ * paymentMethod;
+ * phoneNumber;
+ * email;
+ * prefContactMethod;
+ * */
+
 
 public class Order {
 	protected IntegerProperty orderNumber;
