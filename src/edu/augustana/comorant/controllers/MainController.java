@@ -41,10 +41,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/* 
- * TODO: delete button does not disable by default
- * 		 nor does it disable upon selection.
- */
+
 public class MainController implements Initializable {
 
 	@FXML
@@ -268,13 +265,7 @@ public class MainController implements Initializable {
 	}
 
 	private SortedList<Order> wrapOrdersList() {
-		FilteredList<Order> filteredOrders = new FilteredList<>(orderList, p -> true); // Show
-																						// all
-																						// data.
-																						// Wrapped
-																						// in
-																						// filtered
-																						// list
+		FilteredList<Order> filteredOrders = new FilteredList<>(orderList, p -> true); // Show all data. Wrapped in filtered list
 
 		chkCompletedOrders.selectedProperty().addListener((observable, oldValue, newValue) -> {
 			if (chkCompletedOrders.isFocused()){
@@ -316,89 +307,74 @@ public class MainController implements Initializable {
 
 				}
 			}
-			// If filter text is empty, display all
-			// persons.
+			// If filter text is empty, display all persons.
 			if (newValue == null || newValue.isEmpty()) {
 				return true;
 			}
 
-			// Compare first name and last name of
-			// every person with filter text.
+			// Compare first name and last name of every person with filter text.
 
 			String lowerCaseFilter = newValue.toLowerCase();
 
 			// use name if no filter selected
 			if (cmbOrderFilters.getValue() == null) {
 				if (order.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// first name.
+					return true; // Filter matches by first name.
 				} else if (order.getLastName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// last name.
+					return true; // Filter matches by last name.
 				}
 				return false; // Does not match.
 			}
 			if (cmbOrderFilters.getValue().toString() == "Status") {
 				if (order.getStatus().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// status.
+					return true; // Filter matches by status.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Name") {
 				if (order.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// first name.
+					return true; // Filter matches by first name.
 				} else if (order.getLastName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// last name.
+					return true; // Filter matches by last name.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Shipping Address") {
 				if (order.getFullAddress().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// shipping address.
+					return true; // Filter matches by shipping address.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Order Description") {
 				if (order.getOrderDesc().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// Order Description.
+					return true; // Filter matches by Order Description.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Payment Method") {
 				if (order.getPaymentMethod().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// Payment method.
+					return true; // Filter matches by Payment method.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Payment Status") {
 				if (order.getPaymentStatus().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// payment status.
+					return true; // Filter matches by payment status.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Email") {
 				if (order.getEmail().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// email.
+					return true; // Filter matches by email.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Phone Number") {
 				if (order.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// phone number.
+					return true; // Filter matches by phone number.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Price") {
 				if ((order.getPrice() + "").toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// phone number.
+					return true; // Filter matches by phone number.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Preffered Contact Method") {
 				if (order.getPrefContactMethod().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// pref contact method.
+					return true; // Filter matches by pref contact method.
 				}
 				return false; // Does not match.
 			}
