@@ -219,16 +219,10 @@ public class DataAccess {
 
 			}
 
-		} catch (
-
-		SQLException e)
-
-		{
+		} catch (SQLException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally
-
-		{
+		} finally{
 			System.out.println("List Saved!");
 			hideSavingLabel();
 			
@@ -253,11 +247,11 @@ public class DataAccess {
 		Thread t1 = new Thread(new Runnable() {
 		     public void run() {
 		    	 try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		    		 Thread.sleep(3000);
+		    	 } catch (InterruptedException e) {
+		    		 // TODO Auto-generated catch block
+		    		 e.printStackTrace();
+		    	 }
 		    	 MainController.saving.set(false);
 		     }
 		});  
