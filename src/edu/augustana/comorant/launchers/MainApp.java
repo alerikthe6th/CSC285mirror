@@ -1,3 +1,4 @@
+
 package edu.augustana.comorant.launchers;
 
 import java.io.IOException;
@@ -53,3 +54,5 @@ public class MainApp extends Application {
 		launch(args);
 	}
 }
+
+
