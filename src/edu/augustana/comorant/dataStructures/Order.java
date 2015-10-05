@@ -1,4 +1,6 @@
 
+package edu.augustana.comorant.dataStructures;
+
 import java.time.LocalDate;
 import javafx.beans.property.*;
 
@@ -77,7 +79,7 @@ public class Order {
 	 */
 	public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName,
 			String lastName, String orderDesc, String streetAddress, String city, String state, String zip,
-			String paymentStatus, String paymentMethod, double price, String phoneNumber, String email,
+			String paymentStatus, String paymentMethod, double price, String email, String phoneNumber,
 			boolean smsEnabled, String prefContactMethod) {
 		this.orderNumber = new SimpleIntegerProperty(orderNumber);
 		this.orderDate = new SimpleObjectProperty<LocalDate>(orderDate);
@@ -105,180 +107,180 @@ public class Order {
 	//field accessors
 	/**Returns the order number 
 	 * @return int */
-	protected int getOrderNumber() {
+	public int getOrderNumber() {
 		return orderNumber.get();
 	}
 	/**Returns the order date
 	 * @return LocalDate */
-	protected LocalDate getOrderDate() {
+	public LocalDate getOrderDate() {
 		return orderDate.get();
 	}
 	/**Returns the order's due date
 	 * @return LocalDate */
-	protected LocalDate getDueDate() {
+	public LocalDate getDueDate() {
 		return dueDate.get();
 	}
 	/**Returns the order's first name
 	 * @return String */
-	protected String getFirstName() {
+	public String getFirstName() {
 		return firstName.get();
 	}
 	/**Returns the order's last name
 	 * @return String */
-	protected String getLastName() {
+	public String getLastName() {
 		return lastName.get();
 	}
 	/**Returns the order's status 
 	 * @return String */
-	protected String getStatus() {
+	public String getStatus() {
 		return status.get();
 	}
 	/**Returns the order's description 
 	 * @return String */
-	protected String getOrderDesc() {
+	public String getOrderDesc() {
 		return orderDesc.get();
 	}
 	/**Returns the order's street address 
 	 * @return String */
-	protected String getStreetAddress() {
+	public String getStreetAddress() {
 		return streetAddress.get();
 	}
 	/**Returns the order's city 
 	 * @return String */
-	protected String getCity() {
+	public String getCity() {
 		return city.get();
 	}
 	/**Returns the order's state 
 	 * @return String */
-	protected String getState() {
+	public String getState() {
 		return state.get();
 	}
 	/**Returns the order's zip code 
 	 * @return String */
-	protected String getZip() {
+	public String getZip() {
 		return zip.get();
 	}
 	/**Returns the order's shipping address
 	 * @return String */
-	protected String getFullAddress() {
+	public String getFullAddress() {
 		return fullAddress.get();
 	}
 	/**Returns the order's payment status 
 	 * @return String */
-	protected String getPaymentStatus() {
+	public String getPaymentStatus() {
 		return paymentStatus.get();
 	}
 	/**Returns the order's email address 
 	 * @return String */
-	protected String getEmail() {
+	public String getEmail() {
 		return email.get();
 	}
 	/**Returns the order's price 
 	 * @return double */
-	protected double getPrice() {
+	public double getPrice() {
 		return price.get();
 	}
 	/**Returns the order's phone number
 	 * @return String */
-	protected String getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber.get();
 	}
 	/**Returns the order's payment method 
 	 * @return String */
-	protected String getPaymentMethod() {
+	public String getPaymentMethod() {
 		return paymentMethod.get();
 	}
 	/**Returns whether the order is SMS enabled or not 
 	 * @return boolean */
-	protected boolean getSmsEnabled() {
+	public boolean getSmsEnabled() {
 		return smsEnabled.get();
 	}
 	/**Returns the order's preferred contact method
 	 * @return String */
-	protected String getPrefContactMethod() {
+	public String getPrefContactMethod() {
 		return prefContactMethod.get();
 	}
 	
 	
 	//property accessors
 	/**@return IntegerProperty*/
-	protected IntegerProperty orderNumberProperty() {
+	public IntegerProperty orderNumberProperty() {
 		return orderNumber;
 	}
 	/**@return ObjectProperty*/
-	protected ObjectProperty<LocalDate> orderDateProperty() {
+	public ObjectProperty<LocalDate> orderDateProperty() {
 		return orderDate;
 	}
 	/**@return ObjectProperty*/
-	protected ObjectProperty<LocalDate> dueDateProperty() {
+	public ObjectProperty<LocalDate> dueDateProperty() {
 		return dueDate;
 	}
 	/**@return StringProperty*/
-	protected StringProperty firstNameProperty() {
+	public StringProperty firstNameProperty() {
 		return firstName;
 	}
 	/**@return StringProperty*/
-	protected StringProperty lastNameProperty() {
+	public StringProperty lastNameProperty() {
 		return lastName;
 	}
 	/**@return StringProperty*/
-	protected StringProperty statusProperty() {
+	public StringProperty statusProperty() {
 		return status;
 	}
 	/**@return StringProperty*/
-	protected StringProperty orderDescProperty() {
+	public StringProperty orderDescProperty() {
 		return orderDesc;
 	}
 	/**@return StringProperty*/
-	protected StringProperty streetAddressProperty() {
+	public StringProperty streetAddressProperty() {
 		return streetAddress;
 	}
 	/**@return StringProperty*/
-	protected StringProperty cityProperty() {
+	public StringProperty cityProperty() {
 		return city;
 	}
 	/**@return StringProperty*/
-	protected StringProperty stateProperty() {
+	public StringProperty stateProperty() {
 		return state;
 	}
 	/**@return StringProperty*/
-	protected StringProperty zipProperty() {
+	public StringProperty zipProperty() {
 		return zip;
 	}
 	/**@return StringProperty*/
-	protected StringProperty fullAddressProperty() {
+	public StringProperty fullAddressProperty() {
 		return fullAddress;
 	}
 	/**@return StringProperty*/
-	protected StringProperty paymentStatusProperty() {
+	public StringProperty paymentStatusProperty() {
 		return paymentStatus;
 	}
 	/**@return StringProperty*/
-	protected StringProperty paymentMethodProperty() {
+	public StringProperty paymentMethodProperty() {
 		return paymentMethod;
 	}
 	/**@return DoubleProperty*/
-	protected DoubleProperty priceProperty() {
+	public DoubleProperty priceProperty() {
 		return price;
 	}
 	/**@return StringProperty*/
-	protected StringProperty phoneNumberProperty() {
+	public StringProperty phoneNumberProperty() {
 		return phoneNumber;
 	}
 	/**@return StringProperty*/
-	protected StringProperty emailProperty() {
+	public StringProperty emailProperty() {
 		return email;
 	}
 	/**@return BooleanProperty*/
-	protected BooleanProperty smsEnabledProperty() {
+	public BooleanProperty smsEnabledProperty() {
 		return smsEnabled;
 	}
 	/**@return StringProperty*/
-	protected StringProperty prefContactMethodProperty() {
+	public StringProperty prefContactMethodProperty() {
 		return prefContactMethod;
 	}
 	/**@return SimpleStringProperty*/
-	protected StringProperty smsEnabledStringProperty() {
+	public StringProperty smsEnabledStringProperty() {
 		if (this.getSmsEnabled() == true) {
 			return new SimpleStringProperty("Yes");
 		}
@@ -289,79 +291,79 @@ public class Order {
 
 	//field mutators
 	/**Sets the order number*/
-	protected void setOrderNumber(int orderNumber) {
+	public void setOrderNumber(int orderNumber) {
 		this.orderNumber.set(orderNumber);
 	}
 	/**Sets the order's order date*/
-	protected void setOrderDate(LocalDate orderDate) {
+	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate.set(orderDate);
 	}
 	/**Sets the order's due date*/
-	protected void setDueDate(LocalDate dueDate) {
+	public void setDueDate(LocalDate dueDate) {
 		this.dueDate.set(dueDate);
 	}
 	/**Sets the order's first name*/
-	protected void setFirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName.set(firstName);
 	}
 	/**Sets the order's last name*/
-	protected void setLastName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName.set(lastName);
 	}
 	/**Sets the order's status*/
-	protected void setStatus(String status) {
+	public void setStatus(String status) {
 		this.status.set(status);
 	}
 	/**Sets the order's description*/
-	protected void setOrderDesc(String desc) {
+	public void setOrderDesc(String desc) {
 		this.orderDesc.set(desc);
 	}
 	/**Sets the order's street address*/
-	protected void setStreetAddress(String streetAddress) {
+	public void setStreetAddress(String streetAddress) {
 		this.streetAddress.set(streetAddress);
 	}
 	/**Sets the order's city*/
-	protected void setCity(String city) {
+	public void setCity(String city) {
 		this.city.set(city);
 	}
 	/**Sets the order's state*/
-	protected void setState(String state) {
+	public void setState(String state) {
 		this.state.set(state);
 	}
 	/**Sets the order's payment status*/
-	protected void setPaymentStatus(String paymentStatus) {
+	public void setPaymentStatus(String paymentStatus) {
 		this.paymentStatus.set(paymentStatus);
 	}
 	/**Sets the order's zip code*/
-	protected void setZip(String zip) {
+	public void setZip(String zip) {
 		this.zip.set(zip);
 	}
 	/**Sets the order's payment method*/
-	protected void setPaymentMethod(String paymentMethod) {
+	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod.set(paymentMethod);
 	}
 	/**Sets the order's price*/
-	protected void setPrice(double price) {
+	public void setPrice(double price) {
 		this.price.set(price);
 	}
 	/**Sets the order's phone number*/
-	protected void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber.set(phoneNumber);
 	}
 	/**Sets the order's email address*/
-	protected void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email.set(email);
 	}
 	/**Sets whether the order is SMS enabled or not */
-	protected void setSMSEnabled(boolean smsEnabled) {
+	public void setSMSEnabled(boolean smsEnabled) {
 		this.smsEnabled.set(smsEnabled);
 	}
 	/**Sets the order's preferred contact method*/
-	protected void setPrefContactMethod(String prefContactMethod) {
+	public void setPrefContactMethod(String prefContactMethod) {
 		this.prefContactMethod.set(prefContactMethod);
 	}
 	/**Updates the order's full shipping address*/
-	protected void redoShippingAddress() {
+	public void redoShippingAddress() {
 		this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
 	}
 	
@@ -369,3 +371,4 @@ public class Order {
 	
 	
 }
+

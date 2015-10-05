@@ -1,9 +1,12 @@
+package edu.augustana.comorant.controllers;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import edu.augustana.comorant.dataStructures.Order;
+import edu.augustana.comorant.launchers.DataAccess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -87,6 +90,24 @@ public class EditOrderController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
+		
+		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if(oldValue == true && newValue ==false && !txtPrice.getText().equals("")){
+				String testPrice = txtPrice.getText();
+				try{
+					Double.parseDouble(testPrice);
+				} catch (NumberFormatException npe){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Invalid Price Format");
+					alert.setHeaderText(null);
+					alert.setContentText("Please enter a valid number into the Price field");
+
+					alert.showAndWait();
+					txtPrice.setText("");
+					txtPrice.requestFocus();
+				}
+			}
+		});
 
 	}
 
@@ -220,6 +241,8 @@ public class EditOrderController implements Initializable {
 
 		DataAccess.saveOrders(mainController.orderList);
 		System.out.println("Save Edit!");
+		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
+		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
 		Stage stage = (Stage) btnSaveEdit.getScene().getWindow();
 		stage.close();
 
