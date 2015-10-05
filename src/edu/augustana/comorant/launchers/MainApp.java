@@ -1,3 +1,4 @@
+
 package edu.augustana.comorant.launchers;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Cormorant Order Tracking Software v0.7");
+		this.primaryStage.setTitle("Pottery Orders");
 		this.primaryStage.getIcons().add(new Image("comorantIcon2.png"));
 
 		initRootLayout();
@@ -53,3 +54,5 @@ public class MainApp extends Application {
 		launch(args);
 	}
 }
+
+

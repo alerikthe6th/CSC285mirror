@@ -1,3 +1,4 @@
+
 package edu.augustana.comorant.launchers;
 
 import java.sql.Connection;
@@ -28,6 +29,7 @@ public class DataAccess {
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -45,6 +47,33 @@ public class DataAccess {
 
 
 			createOrdersTable(connection);
+
+			/* INSERT DUMMY DATA
+			 TODO remove dummy data insert
+			 Remove old dummy data
+			String removeOldDummyDataQuery = "DELETE FROM Orders WHERE zip='61201'";
+			PreparedStatement removeOldDummyData = connection.prepareStatement(removeOldDummyDataQuery);
+			removeOldDummyData.executeUpdate();
+			 Insert new dummy data
+			String insertDummyDataQuery = "INSERT INTO Orders("
+					+ "orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
+					+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
+					+ " VALUES('2015-09-15', '2015-10-31', 'Incomplete', 'James', 'Smith', "
+					+ "'Two mugs please', '136 Required Dr.', 'Rock Island', 'Illinois', '61201', 'Unpaid', 'Cash', 136.52, "
+					+ "'555-555-5555', 'michaelcurrie12@augustana.edu', 1, 'Email');";
+
+			PreparedStatement insertDummyData = connection.prepareStatement(insertDummyDataQuery);
+			insertDummyData.executeUpdate();
+
+			String insertDummyDataQuery2 = "INSERT INTO Orders("
+					+ "orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
+					+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
+					+ " VALUES('2015-09-18', '2015-12-25', 'Incomplete', 'Saint', 'Nick', "
+					+ "'Christmas plate and mug', '1010 North Pole Dr.', 'North Pole', 'The Arctic Circle', '61201', 'Unpaid', 'Cash', 100.01, "
+					+ "'555-555-5555', 'michaelcurrie12@augustana.edu', 1, 'Email');";
+
+			PreparedStatement insertDummyData2 = connection.prepareStatement(insertDummyDataQuery2);
+			insertDummyData2.executeUpdate();*/
 
 			// Get all orders from Orders table
 			String ordersQuery = "SELECT * FROM Orders";
@@ -121,6 +150,7 @@ public class DataAccess {
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -191,6 +221,7 @@ public class DataAccess {
 			}
 
 		} catch (SQLException e){
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally{
 			System.out.println("List Saved!");
@@ -219,6 +250,7 @@ public class DataAccess {
 		    	 try {
 		    		 Thread.sleep(3000);
 		    	 } catch (InterruptedException e) {
+		    		 // TODO Auto-generated catch block
 		    		 e.printStackTrace();
 		    	 }
 		    	 MainController.saving.set(false);
@@ -228,3 +260,5 @@ public class DataAccess {
 	}
 
 }
+
+
