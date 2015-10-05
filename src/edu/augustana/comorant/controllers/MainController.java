@@ -176,7 +176,7 @@ public class MainController implements Initializable {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/edu/augustana/comorant/fxml/viewOrderGUI.fxml"));
+					getClass().getResource("/edu/augustana/comorant/fxml/viewOrder.fxml"));
 			root = loader.load();
 			ViewOrderController viewOrderController = (ViewOrderController) loader.getController();
 			viewOrderController.setMainController(this);

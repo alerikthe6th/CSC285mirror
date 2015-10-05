@@ -5,20 +5,14 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import edu.augustana.comorant.dataStructures.Order;
+import edu.augustana.comorant.launchers.DataAccess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ViewOrderController implements Initializable {
@@ -27,45 +21,47 @@ public class ViewOrderController implements Initializable {
 	@FXML
 	private Button btnCloseWindow;
 	@FXML
+	private Button btnPrint;
+	@FXML
 	private MainController mainController;
 	@FXML
-	private TextField txtOrderNumber;
+	private Label lblOrderNumber;
 	@FXML
-	private DatePicker dtpkOrderDate;
+	private Label lblOrderDate;
 	@FXML
-	private DatePicker dtpkDueDate;
+	private Label lblDueDate;
 	@FXML
-	private TextField txtFirstName;
+	private Label lblFirstName;
 	@FXML
-	private TextField txtLastName;
+	private Label lblLastName;
 	@FXML
 	private Button btnAutoFill;
 	@FXML
-	private TextArea txtOrderDesc;
+	private Label lblOrderDesc;
 	@FXML
-	private TextField txtStreetAddress;
+	private Label lblStreetAddress;
 	@FXML
-	private TextField txtCity;
+	private Label lblCity;
 	@FXML
-	private TextField txtState;
+	private Label lblState;
 	@FXML
-	private TextField txtZip;
+	private Label lblZip;
 	@FXML
-	private TextField txtPhone;
+	private Label lblPhone;
 	@FXML
-	private TextField txtEmail;
+	private Label lblEmail;
 	@FXML
-	private ComboBox<String> cmbOrderStatus;
+	private Label lblOrderStatus;
 	@FXML
-	private ComboBox<String> cmbPrefContactMethod;
+	private Label lblPrefContactMethod;
 	@FXML
-	private CheckBox chkSMSEnabled;
+	private Label lblSMSEnabled;
 	@FXML
-	private TextField txtPrice;
+	private Label lblPrice;
 	@FXML
-	private ComboBox<String> cmbPaymentMethod;
+	private Label lblPaymentMethod;
 	@FXML
-	private ComboBox<String> cmbPaymentStatus;
+	private Label lblPaymentStatus;
 
 	
 	public ViewOrderController() {
@@ -96,29 +92,55 @@ public class ViewOrderController implements Initializable {
 	}
 
 	/**
-	 * 
+	 * fills in details of the order to the view order controller.
 	 */
 	public void setViewOrder(Order viewOrder) {
 		this.viewOrder = viewOrder;
-		txtOrderNumber.setText(viewOrder.getOrderNumber() + "");
-		dtpkOrderDate.setValue(viewOrder.getOrderDate());
-		dtpkDueDate.setValue(viewOrder.getDueDate());
-		cmbOrderStatus.setValue(viewOrder.getStatus());
-		txtOrderDesc.setText(viewOrder.getOrderDesc());
-		txtFirstName.setText(viewOrder.getFirstName());
-		txtLastName.setText(viewOrder.getLastName());
-		txtStreetAddress.setText(viewOrder.getStreetAddress());
-		txtCity.setText(viewOrder.getCity());
-		txtState.setText(viewOrder.getState());
-		txtZip.setText(viewOrder.getZip());
-		cmbPaymentStatus.setValue(viewOrder.getPaymentStatus());
-		cmbPaymentMethod.setValue(viewOrder.getPaymentMethod());
-		txtPrice.setText(viewOrder.getPrice()+"");
-		txtEmail.setText(viewOrder.getEmail());
-		txtPhone.setText(viewOrder.getPhoneNumber());
-		cmbPrefContactMethod.setValue(viewOrder.getPrefContactMethod());
-		chkSMSEnabled.setSelected(viewOrder.getSmsEnabled());
+		lblOrderNumber.setText(viewOrder.getOrderNumber() + "");
+		lblOrderDate.setText(viewOrder.getOrderDate().toString());
+		lblDueDate.setText(viewOrder.getDueDate().toString());
+		lblOrderStatus.setText(viewOrder.getStatus().toString());
+		lblOrderDesc.setText(viewOrder.getOrderDesc());
+		lblFirstName.setText(viewOrder.getFirstName());
+		lblLastName.setText(viewOrder.getLastName());
+		lblStreetAddress.setText(viewOrder.getStreetAddress());
+		lblCity.setText(viewOrder.getCity());
+		lblState.setText(viewOrder.getState());
+		lblZip.setText(viewOrder.getZip());
+		lblPaymentStatus.setText(viewOrder.getPaymentStatus().toString());
+		lblPaymentMethod.setText(viewOrder.getPaymentMethod().toString());
+		lblPrice.setText(viewOrder.getPrice()+"");
+		lblEmail.setText(viewOrder.getEmail());
+		lblPhone.setText(viewOrder.getPhoneNumber());
+		lblPrefContactMethod.setText(viewOrder.getPrefContactMethod().toString());
+		
+		if(viewOrder.getSmsEnabled()) {
+			lblSMSEnabled.setText("Yes");
+		}else{
+			lblSMSEnabled.setText("No");
+		}
 
+	}
+	
+	@FXML
+	public void onPrintButtonPressed(ActionEvent e){
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Printing");
+		alert.setContentText("Print Successful!");
+
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    alert.close();
+		    DataAccess.saveOrders(mainController.orderList);
+		    System.out.println("Print!");
+		    Stage stage = (Stage) btnPrint.getScene().getWindow();
+			stage.close();
+		} else {
+		    alert.close();
+		}
+		
+		
 	}
 
 
