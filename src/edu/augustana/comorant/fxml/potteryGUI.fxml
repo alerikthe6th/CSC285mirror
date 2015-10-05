@@ -6,23 +6,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.comorant.controllers.MainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="miSave" mnemonicParsing="false" onAction="#miSavePressed" text="Save" />
+                  <MenuItem fx:id="miClose" mnemonicParsing="false" onAction="#miClosedPressed" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem fx:id="miDelete" disable="true" mnemonicParsing="false" onAction="#deleteOrderButtonPressed" text="Delete" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem disable="true" mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
@@ -47,6 +48,8 @@
                                                 <TextField fx:id="txtFilterOrders" prefHeight="22.0" prefWidth="200.0" />
                                                 <Label text="Filter By:" />
                                                 <ComboBox fx:id="cmbOrderFilters" prefWidth="150.0" />
+                                                <Region minWidth="200.0" />
+                                                <CheckBox fx:id="chkCompletedOrders" mnemonicParsing="false" text="Don't Show Completed Orders" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets />
@@ -175,7 +178,7 @@
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Label text="Saving..." />
+            <Label fx:id="lblSaving" text="Saving..." />
          </children>
          <padding>
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />

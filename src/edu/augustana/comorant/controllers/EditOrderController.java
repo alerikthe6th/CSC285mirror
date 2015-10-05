@@ -1,14 +1,21 @@
+package edu.augustana.comorant.controllers;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import edu.augustana.comorant.dataStructures.Order;
+import edu.augustana.comorant.launchers.DataAccess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -16,12 +23,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class NewOrderController implements Initializable {
+public class EditOrderController implements Initializable {
 
+	Order editedOrder;
 	@FXML
-	private Button btnCancelOrder;
+	private Button btnCancelEdit;
 	@FXML
-	private Button btnSaveOrder;
+	private Button btnSaveEdit;
+	@FXML
+	private Button btnDeleteOrder;
 	@FXML
 	private MainController mainController;
 	@FXML
@@ -63,21 +73,22 @@ public class NewOrderController implements Initializable {
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
 
-	public NewOrderController() {
+	public EditOrderController() {
+		
 
 	}
 
 	@FXML
-	public void cancelOrderButtonPressed(ActionEvent e) {
+	public void cancelEditButtonPressed(ActionEvent e) {
 		System.out.println("Cancel Order!");
-		Stage stage = (Stage) btnCancelOrder.getScene().getWindow();
+		Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
 		stage.close();
 
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
+		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 
 	}
@@ -88,16 +99,31 @@ public class NewOrderController implements Initializable {
 	 */
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
-		setOrderNumber();
 	}
 
 	/**
-	 * Finds the largest order number in the list and increments it by one. Sets
-	 * the Order Number textbox to that number
+	 * 
 	 */
-	private void setOrderNumber() {
-		String newOrderNumber = (mainController.getLargestOrderNumber() + 1) + "";
-		txtOrderNumber.setText(newOrderNumber);
+	public void setEditedOrder(Order editedOrder) {
+		this.editedOrder = editedOrder;
+		txtOrderNumber.setText(editedOrder.getOrderNumber() + "");
+		dtpkOrderDate.setValue(editedOrder.getOrderDate());
+		dtpkDueDate.setValue(editedOrder.getDueDate());
+		cmbOrderStatus.setValue(editedOrder.getStatus());
+		txtOrderDesc.setText(editedOrder.getOrderDesc());
+		txtFirstName.setText(editedOrder.getFirstName());
+		txtLastName.setText(editedOrder.getLastName());
+		txtStreetAddress.setText(editedOrder.getStreetAddress());
+		txtCity.setText(editedOrder.getCity());
+		txtState.setText(editedOrder.getState());
+		txtZip.setText(editedOrder.getZip());
+		cmbPaymentStatus.setValue(editedOrder.getPaymentStatus());
+		cmbPaymentMethod.setValue(editedOrder.getPaymentMethod());
+		txtPrice.setText(editedOrder.getPrice()+"");
+		txtEmail.setText(editedOrder.getEmail());
+		txtPhone.setText(editedOrder.getPhoneNumber());
+		cmbPrefContactMethod.setValue(editedOrder.getPrefContactMethod());
+		chkSMSEnabled.setSelected(editedOrder.getSmsEnabled());
 
 	}
 
@@ -176,15 +202,54 @@ public class NewOrderController implements Initializable {
 			savePrefContactMethod = cmbPrefContactMethod.getValue().toString();
 		}
 
-		mainController.orderList.add(new Order(saveOrderNumber, saveOrderDate, saveDueDate, saveStatus, saveFirstName,
-				saveLastName, saveOrderDesc, saveStreetAddress, saveCity, saveState, saveZip, savePaymentStatus,
-				savePaymentMethod, savePrice, savePhone, saveEmail, saveSmsEnabled, savePrefContactMethod));
+		editedOrder.setOrderDate(saveOrderDate);
+		editedOrder.setDueDate(saveDueDate);
+		editedOrder.setStatus(saveStatus);
+		editedOrder.setFirstName(saveFirstName);
+		editedOrder.setLastName(saveLastName);
+		editedOrder.setOrderDesc(saveOrderDesc);
+		editedOrder.setStreetAddress(saveStreetAddress);
+		editedOrder.setCity(saveCity);
+		editedOrder.setState(saveState);
+		editedOrder.setZip(saveZip);
+		editedOrder.setPaymentStatus(savePaymentStatus);
+		editedOrder.setPaymentMethod(savePaymentMethod);
+		editedOrder.setPrice(savePrice);
+		editedOrder.setEmail(saveEmail);
+		editedOrder.setPhoneNumber(savePhone);
+		editedOrder.setPrefContactMethod(savePrefContactMethod);
+		editedOrder.setSMSEnabled(saveSmsEnabled);
+		editedOrder.redoShippingAddress();
 
 		DataAccess.saveOrders(mainController.orderList);
-		System.out.println("Save Order!");
-		Stage stage = (Stage) btnSaveOrder.getScene().getWindow();
+		System.out.println("Save Edit!");
+		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
+		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
+		Stage stage = (Stage) btnSaveEdit.getScene().getWindow();
 		stage.close();
 
+	}
+	
+	@FXML
+	public void onDeleteButtonPressed(ActionEvent e){
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Delete Order");
+		alert.setHeaderText("This will delete the order from the table.");
+		alert.setContentText("Do you wish to proceed?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    mainController.orderList.remove(editedOrder);
+		    alert.close();
+		    DataAccess.saveOrders(mainController.orderList);
+		    System.out.println("Delete Order!");
+		    Stage stage = (Stage) btnDeleteOrder.getScene().getWindow();
+			stage.close();
+		} else {
+		    alert.close();
+		}
+		
+		
 	}
 
 	/**

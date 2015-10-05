@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="TOP_CENTER" hgap="20.0" vgap="8.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditOrderController">
+<GridPane alignment="TOP_CENTER" hgap="20.0" vgap="8.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.comorant.controllers.EditOrderController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="235.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="10.0" prefWidth="184.0" />

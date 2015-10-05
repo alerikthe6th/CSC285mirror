@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="TOP_CENTER" hgap="20.0" vgap="8.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewOrderController">
+<GridPane alignment="TOP_CENTER" hgap="20.0" vgap="8.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.comorant.controllers.NewOrderController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="235.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="10.0" prefWidth="184.0" />
@@ -48,7 +48,11 @@
             <TextField fx:id="txtFirstName" />
             <Label text="Last Name" />
             <TextField fx:id="txtLastName" />
-            <HBox alignment="CENTER" />
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="btnAutoFill" alignment="CENTER" disable="true" mnemonicParsing="false" text="AutoFill from Previous Order" textAlignment="CENTER" />
+               </children>
+            </HBox>
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
@@ -130,14 +134,19 @@
       </VBox>
       <HBox alignment="CENTER" GridPane.columnIndex="1">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="View Order">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New Order">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
          </children>
       </HBox>
-      <Button fx:id="btnCloseWindow" layoutX="542.0" layoutY="547.0" mnemonicParsing="false" onAction="#closeWindowButtonPressed" text="Close Window" textFill="#ff9000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+      <Button fx:id="btnSaveOrder" mnemonicParsing="false" onAction="#onSaveButtonPressed" text="Save Order" textFill="#017c2a" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCancelOrder" layoutX="542.0" layoutY="547.0" mnemonicParsing="false" onAction="#cancelOrderButtonPressed" text="Cancel Order" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>

@@ -1,17 +1,15 @@
+package edu.augustana.comorant.launchers;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
 
-import org.sqlite.SQLiteConfig;
-
+import edu.augustana.comorant.controllers.MainController;
+import edu.augustana.comorant.dataStructures.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -35,34 +33,19 @@ public class DataAccess {
 		}
 
 		Connection connection = null;
-		PreparedStatement createOrdersTable = null;
+
 		PreparedStatement getOrders = null;
 		ObservableList<Order> ordersList = FXCollections.observableArrayList();
 		try {
 			// create a database connection
 			connection = DriverManager.getConnection("jdbc:sqlite:Pottery.db");
 
-			// connection.setAutoCommit(false);
+
 			Statement statement = connection.createStatement();
 			statement.setQueryTimeout(30); // set timeout to 30 sec.
 
-			// DatabaseMetaData meta = connection.getMetaData();
-			// String checkForOrdersTableQuery ="SELECT name FROM sqlite_master
-			// WHERE type='table' AND name='Orders';";
-			// PreparedStatement checkForOrdersTable =
-			// connection.prepareStatement(checkForOrdersTableQuery);
-			// ResultSet table = checkForOrdersTable.executeQuery();
-			// If Orders table doesn't exist, create it.
 
-			String createOrdersTableQuery = "CREATE TABLE IF NOT EXISTS Orders(" + "orderNumber INTEGER PRIMARY KEY, "
-					+ " orderDate TEXT, " + " dueDate TEXT, " + " status TEXT, " + " firstName TEXT, "
-					+ " lastName TEXT, " + " orderDesc TEXT, " + " shippingAddress TEXT, " + " streetAddress TEXT, "
-					+ " city TEXT, " + " state TEXT, " + " zip TEXT, " + " paymentStatus TEXT, "
-					+ " paymentMethod TEXT, " + " price REAL, " + " email TEXT, " + " phone TEXT, "
-					+ " smsEnabled INTEGER, " + " prefContactMethod TEXT);";
-
-			createOrdersTable = connection.prepareStatement(createOrdersTableQuery);
-			createOrdersTable.executeUpdate();
+			createOrdersTable(connection);
 
 			/* INSERT DUMMY DATA
 			 TODO remove dummy data insert
@@ -146,10 +129,23 @@ public class DataAccess {
 		return ordersList;
 	}
 
+	private static void createOrdersTable(Connection connection) throws SQLException {
+		PreparedStatement createOrdersTable;
+		String createOrdersTableQuery = "CREATE TABLE IF NOT EXISTS Orders(" + "orderNumber INTEGER PRIMARY KEY, "
+				+ " orderDate TEXT, " + " dueDate TEXT, " + " status TEXT, " + " firstName TEXT, "
+				+ " lastName TEXT, " + " orderDesc TEXT, " + " shippingAddress TEXT, " + " streetAddress TEXT, "
+				+ " city TEXT, " + " state TEXT, " + " zip TEXT, " + " paymentStatus TEXT, "
+				+ " paymentMethod TEXT, " + " price REAL, " + " email TEXT, " + " phone TEXT, "
+				+ " smsEnabled INTEGER, " + " prefContactMethod TEXT);";
+
+		createOrdersTable = connection.prepareStatement(createOrdersTableQuery);
+		createOrdersTable.executeUpdate();
+	}
+
 	/**Save a list of orders to the database. Overwrites all data with new data
 	 * @param ObservableList<Order> */
-	@SuppressWarnings({ "null" })
 	public static void saveOrders(ObservableList<Order> orderList) {
+		MainController.saving.set(true);
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
@@ -166,9 +162,7 @@ public class DataAccess {
 			statement = connection.createStatement();
 			statement.setQueryTimeout(30); // set timeout to 30 sec.
 
-			String dropOldDataQuery = "DELETE FROM Orders;";
-			PreparedStatement dropOldData = connection.prepareStatement(dropOldDataQuery);
-			dropOldData.executeUpdate();
+			dropOldOrders(connection);
 
 			for (Order order : orderList) {
 				int orderNumber = order.getOrderNumber();
@@ -198,26 +192,40 @@ public class DataAccess {
 				String insertOrderQuery = "INSERT INTO Orders("
 						+ "orderNumber, orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
 						+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
-						+ " VALUES(" + orderNumber + ", '" + orderDate + "', '" + dueDate + "', '" + status + "', '" + firstName + "', '"
-						+ lastName + "', '" + orderDesc + "', '" + streetAddress + "', '" + city + "', '" + state
-						+ "', '" + zip + "', '" + paymentStatus + "', '" + paymentMethod + "', " + price + ", " + "'"
-						+ email + "', '" + phone + "', " + smsEnabledInt + ", '" + prefContactMethod + "');";
+						+ " VALUES(?, ?, ?, ?, ?, "
+						+ "?, ?, ?, ?, ?, ?, ?, "
+						+ "?, ?, ?, ?, ?, ?);";
 				//System.out.println(insertOrderQuery);
 				PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
+				insertOrder.setString(1, orderNumber + "");
+				insertOrder.setString(2, orderDate);
+				insertOrder.setString(3, dueDate);
+				insertOrder.setString(4, status);
+				insertOrder.setString(5, firstName);
+				insertOrder.setString(6, lastName);
+				insertOrder.setString(7, orderDesc);
+				insertOrder.setString(8, streetAddress);
+				insertOrder.setString(9, city);
+				insertOrder.setString(10, state);
+				insertOrder.setString(11, zip);
+				insertOrder.setString(12, paymentStatus);
+				insertOrder.setString(13, paymentMethod);
+				insertOrder.setString(14, price + "");
+				insertOrder.setString(15, email);
+				insertOrder.setString(16, phone);
+				insertOrder.setString(17, smsEnabledInt + "");
+				insertOrder.setString(18, prefContactMethod);
 				insertOrder.executeUpdate();
+
 			}
 
-		} catch (
-
-		SQLException e)
-
-		{
+		} catch (SQLException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally
-
-		{
+		} finally{
 			System.out.println("List Saved!");
+			hideSavingLabel();
+			
 			try {
 				if (connection != null)
 					connection.close();
@@ -227,6 +235,27 @@ public class DataAccess {
 			}
 		}
 
+	}
+
+	private static void dropOldOrders(Connection connection) throws SQLException {
+		String dropOldDataQuery = "DELETE FROM Orders;";
+		PreparedStatement dropOldData = connection.prepareStatement(dropOldDataQuery);
+		dropOldData.executeUpdate();
+	}
+
+	private static void hideSavingLabel() {
+		Thread t1 = new Thread(new Runnable() {
+		     public void run() {
+		    	 try {
+		    		 Thread.sleep(3000);
+		    	 } catch (InterruptedException e) {
+		    		 // TODO Auto-generated catch block
+		    		 e.printStackTrace();
+		    	 }
+		    	 MainController.saving.set(false);
+		     }
+		});  
+		t1.start();
 	}
 
 }
