@@ -96,7 +96,16 @@
       <VBox GridPane.rowIndex="5">
          <children>
             <Label text="Price" />
-            <TextField fx:id="txtPrice" />
+            <HBox>
+               <children>
+                  <Label text="\$">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtPrice" />
+               </children>
+            </HBox>
          </children>
       </VBox>
       <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">
