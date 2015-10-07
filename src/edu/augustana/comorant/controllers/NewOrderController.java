@@ -123,6 +123,7 @@ public class NewOrderController implements Initializable {
 	private void setOrderNumber() {
 		String newOrderNumber = (mainController.getLargestOrderNumber() + 1) + "";
 		txtOrderNumber.setText(newOrderNumber);
+		dtpkOrderDate.setValue(LocalDate.now());
 
 	}
 
@@ -239,7 +240,7 @@ public class NewOrderController implements Initializable {
 	private void populateDropDowns() {
 
 		// set order status
-		ObservableList<String> orderStatusOptions = FXCollections.observableArrayList("Order Recieved", "Pot Thrown",
+		ObservableList<String> orderStatusOptions = FXCollections.observableArrayList("Order Received", "Pot Thrown",
 				"Pot Trimmed/Assembled", "Pot Fired", "Pot Glazed", "Ready to Ship", "Completed");
 		cmbOrderStatus.setItems(orderStatusOptions);
 

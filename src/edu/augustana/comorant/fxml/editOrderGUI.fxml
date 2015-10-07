@@ -32,7 +32,7 @@
       </VBox>
       <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label text="Order Date" />
+            <Label text="Date Ordered" />
             <DatePicker fx:id="dtpkOrderDate" />
          </children>
       </VBox>
@@ -122,12 +122,12 @@
       </VBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <children>
-            <CheckBox fx:id="chkSMSEnabled" mnemonicParsing="false" text="SMS-Enabled?" />
+            <CheckBox fx:id="chkSMSEnabled" mnemonicParsing="false" text="Text Messaging Enabled?" />
          </children>
       </HBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <children>
-            <Label text="Prefered Contact Method" />
+            <Label text="Preferred Contact Method" />
             <ComboBox fx:id="cmbPrefContactMethod" prefWidth="150.0" />
          </children>
       </VBox>
