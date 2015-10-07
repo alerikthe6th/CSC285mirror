@@ -243,7 +243,7 @@ public class MainController implements Initializable {
 	 */
 	private void populateDropdowns() {
 
-		ObservableList<String> options = FXCollections.observableArrayList("Order Recieved", "Pot Thrown",
+		ObservableList<String> options = FXCollections.observableArrayList("Order Received", "Pot Thrown",
 				"Pot Trimmed/Assembled", "Pot Fired", "Pot Glazed", "Ready to Ship", "Completed");
 		cmbOrderStatus.setItems(options);
 
@@ -417,7 +417,7 @@ public class MainController implements Initializable {
 									// phone number.
 				}
 				return false; // Does not match.
-			} else if (cmbOrderFilters.getValue().toString() == "Preffered Contact Method") {
+			} else if (cmbOrderFilters.getValue().toString() == "Preferred Contact Method") {
 				if (order.getPrefContactMethod().toLowerCase().contains(lowerCaseFilter)) {
 					return true; // Filter matches
 									// pref contact method.
