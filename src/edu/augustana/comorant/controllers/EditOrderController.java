@@ -90,11 +90,26 @@ public class EditOrderController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
-		
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if(oldValue == true && newValue ==false && !txtPrice.getText().equals("")){
+			if(oldValue&& !newValue && !txtPrice.getText().equals("")){
 				String testPrice = txtPrice.getText();
 				try{
+					for(int i = 0; i < txtPrice.getText().length(); i++) {
+						if(txtPrice.getText().charAt(i) == '.') {
+							
+							if(txtPrice.getText().substring(i).length() > 3) {
+								
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Invalid Price Format");
+								alert.setHeaderText(null);
+								alert.setContentText("Please enter a valid number into the Price field");
+								
+								alert.showAndWait();
+								txtPrice.setText("");//TODO reset to old value
+								txtPrice.requestFocus();
+							}	
+						}
+					}
 					Double.parseDouble(testPrice);
 				} catch (NumberFormatException npe){
 					Alert alert = new Alert(AlertType.INFORMATION);
@@ -103,7 +118,7 @@ public class EditOrderController implements Initializable {
 					alert.setContentText("Please enter a valid number into the Price field");
 
 					alert.showAndWait();
-					txtPrice.setText("");
+					txtPrice.setText("");//TODO reset to old value
 					txtPrice.requestFocus();
 				}
 			}

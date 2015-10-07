@@ -106,9 +106,25 @@ public class NewOrderController implements Initializable {
 		
 		
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if(oldValue == true && newValue ==false && !txtPrice.getText().equals("")){
+			if(oldValue&& !newValue&& !txtPrice.getText().equals("")){
 				String testPrice = txtPrice.getText();
 				try{
+					for(int i = 0; i < txtPrice.getText().length(); i++) {
+						if(txtPrice.getText().charAt(i) == '.') {
+							
+							if(txtPrice.getText().substring(i).length() > 3) {
+								
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Invalid Price Format");
+								alert.setHeaderText(null);
+								alert.setContentText("Please enter a valid number into the Price field");
+								
+								alert.showAndWait();
+								txtPrice.setText("");
+								txtPrice.requestFocus();
+							}	
+						}
+					}
 					Double.parseDouble(testPrice);
 				} catch (NumberFormatException npe){
 					Alert alert = new Alert(AlertType.INFORMATION);
@@ -122,6 +138,8 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
+		
+		
 
 	}
 
@@ -141,6 +159,7 @@ public class NewOrderController implements Initializable {
 	private void setOrderNumber() {
 		String newOrderNumber = (mainController.getLargestOrderNumber() + 1) + "";
 		txtOrderNumber.setText(newOrderNumber);
+		dtpkOrderDate.setValue(LocalDate.now());
 
 	}
 
@@ -207,8 +226,12 @@ public class NewOrderController implements Initializable {
 			savePaymentMethod = cmbPaymentMethod.getValue().toString();
 		}
 		if (txtPrice.getText() != null && !txtPrice.getText().trim().isEmpty()) {
+			
+
 			savePrice = Double.parseDouble(txtPrice.getText());
+		
 		}
+
 		if (txtEmail.getText() != null && !txtEmail.getText().trim().isEmpty()) {
 			saveEmail = txtEmail.getText();
 		}
