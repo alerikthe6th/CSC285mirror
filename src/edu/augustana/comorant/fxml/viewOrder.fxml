@@ -28,7 +28,7 @@
    <children>
       <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label text="Order Date:">
+            <Label text="Date Ordered:">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
