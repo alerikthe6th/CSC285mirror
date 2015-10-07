@@ -38,6 +38,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
@@ -286,6 +287,16 @@ public class MainController implements Initializable {
 		});
 
 		lblSaving.visibleProperty().bind(saving);
+		
+		tblOrders.setRowFactory( tv -> {
+		    TableRow<Order> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+		            editOrderButtonPressed(null);
+		        }
+		    });
+		    return row ;
+		});
 
 	}
 

@@ -121,6 +121,7 @@ public class NewOrderController implements Initializable {
 	private void setOrderNumber() {
 		String newOrderNumber = (mainController.getLargestOrderNumber() + 1) + "";
 		txtOrderNumber.setText(newOrderNumber);
+		dtpkOrderDate.setValue(LocalDate.now());
 
 	}
 
