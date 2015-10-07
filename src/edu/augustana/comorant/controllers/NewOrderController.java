@@ -85,6 +85,26 @@ public class NewOrderController implements Initializable {
 		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 		
+		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
+			if(oldValue == true && newValue == false && !txtZip.getText().equals("")){
+				String testZip = txtZip.getText();
+				if (testZip.length() > 10 || testZip.length() < 5){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Invalid ZIP code");
+					alert.setHeaderText(null);
+					alert.setContentText("Please enter a valid ZIP code into the zip code field");
+
+					alert.showAndWait();
+					txtZip.setText("");
+					txtZip.requestFocus();
+				}
+			}
+			
+			
+		}
+				);
+		
+		
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if(oldValue == true && newValue ==false && !txtPrice.getText().equals("")){
 				String testPrice = txtPrice.getText();
@@ -177,7 +197,7 @@ public class NewOrderController implements Initializable {
 		if (txtState.getText() != null && !txtState.getText().trim().isEmpty()) {
 			saveState = txtState.getText();
 		}
-		if (txtZip.getText() != null && !txtZip.getText().trim().isEmpty()) {
+		if (txtZip.getText() != null  && !txtZip.getText().trim().isEmpty()) {
 			saveZip = txtZip.getText();
 		}
 		if (cmbPaymentStatus.getValue() != null) {
