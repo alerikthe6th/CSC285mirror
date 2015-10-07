@@ -32,7 +32,7 @@
       </VBox>
       <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label text="Order Date" />
+            <Label text="Date Ordered" />
             <DatePicker fx:id="dtpkOrderDate" />
          </children>
       </VBox>

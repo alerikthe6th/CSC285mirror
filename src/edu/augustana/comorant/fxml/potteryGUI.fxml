@@ -58,7 +58,7 @@
                                           <TableView fx:id="tblOrders" layoutX="137.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                             <columns>
                                               <TableColumn fx:id="clmOrderNumber" prefWidth="93.0" text="Order Number" />
-                                                <TableColumn fx:id="clmOrderDate" prefWidth="75.0" text="Order Date" />
+                                                <TableColumn fx:id="clmOrderDate" prefWidth="90.0" text="Date Ordered" />
                                                 <TableColumn fx:id="clmDueDate" prefWidth="75.0" text="Due Date" />
                                                 <TableColumn fx:id="clmStatus" prefWidth="90.0" text="Status" />
                                               <TableColumn fx:id="clmFirstName" prefWidth="100.0" text="First Name" />
