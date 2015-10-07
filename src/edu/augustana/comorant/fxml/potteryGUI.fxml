@@ -70,7 +70,7 @@
                                                 <TableColumn fx:id="clmPrice" prefWidth="75.0" text="Price" />
                                                 <TableColumn fx:id="clmEmail" prefWidth="140.0" text="Email" />
                                                 <TableColumn fx:id="clmPhone" prefWidth="100.0" text="Phone" />
-                                                <TableColumn fx:id="clmSMSEnabled" prefWidth="100.0" text="SMS-Enabled" />
+                                                <TableColumn fx:id="clmSMSEnabled" prefWidth="100.0" text="Text Messaging Enabled" />
                                                 <TableColumn fx:id="clmPrefContactMethod" prefWidth="150.0" text="Preferred Contact Method" />
                                             </columns>
                                              <padding>
@@ -140,7 +140,7 @@
                                                 <TableColumn prefWidth="75.0" text="Phone" />
                                                 <TableColumn prefWidth="100.0" text="Email" />
                                                 <TableColumn prefWidth="67.0" text="Balance Due" />
-                                                <TableColumn prefWidth="121.0" text="SMS Enabled" />
+                                                <TableColumn prefWidth="121.0" text="Text Messaging Enabled" />
                                                 <TableColumn prefWidth="75.0" text="Preferred Contact Method" />
                                              </columns>
                                              <padding>

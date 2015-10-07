@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
@@ -165,7 +164,7 @@
       </VBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <children>
-            <Label text="SMS-Enabled?:">
+            <Label text="Text Messaging Enabled?:">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -175,7 +174,7 @@
       </HBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <children>
-            <Label text="Prefered Contact Method:">
+            <Label text="Preferred Contact Method:">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
