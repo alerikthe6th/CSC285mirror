@@ -14,7 +14,6 @@
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="235.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="10.0" prefWidth="184.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="10.0" prefWidth="222.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="10.0" prefWidth="222.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints vgrow="SOMETIMES" />
@@ -68,13 +67,13 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <VBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <children>
             <Label text="Order Description: ">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblOrderDesc" text="Label" />
+            <TextArea fx:id="txtOrderDesc" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
          </children>
       </VBox>
       <VBox prefHeight="167.0" prefWidth="439.0" GridPane.columnSpan="2" GridPane.rowIndex="3">

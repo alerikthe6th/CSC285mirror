@@ -54,7 +54,7 @@
       <VBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <children>
             <Label text="Order Description" />
-            <TextArea fx:id="txtOrderDesc" />
+            <TextArea fx:id="txtOrderDesc" wrapText="true" />
          </children>
       </VBox>
       <VBox GridPane.columnSpan="2" GridPane.rowIndex="3">
@@ -72,7 +72,7 @@
                   <VBox>
                      <children>
                         <Label text="State" />
-                        <TextField fx:id="txtState" />
+                        <ComboBox fx:id="cmbState" prefWidth="150.0" />
                      </children>
                   </VBox>
                   <VBox>

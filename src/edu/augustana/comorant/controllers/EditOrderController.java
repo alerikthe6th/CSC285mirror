@@ -53,7 +53,7 @@ public class EditOrderController implements Initializable {
 	@FXML
 	private TextField txtCity;
 	@FXML
-	private TextField txtState;
+	private ComboBox<String> cmbState;
 	@FXML
 	private TextField txtZip;
 	@FXML
@@ -72,6 +72,8 @@ public class EditOrderController implements Initializable {
 	private ComboBox<String> cmbPaymentMethod;
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
+	
+	private String placeHolder;
 
 	public EditOrderController() {
 		
@@ -91,10 +93,44 @@ public class EditOrderController implements Initializable {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 		
+		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
+			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
+				String testZip = txtZip.getText();
+				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-'))){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Invalid ZIP code");
+					alert.setHeaderText(null);
+					alert.setContentText("Please enter a valid ZIP code into the zip code field");
+
+					alert.showAndWait();
+					txtZip.setText(editedOrder.getZip() + "");
+					txtZip.requestFocus();
+				}
+			}
+		}
+				);
+		
+		
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if(oldValue == true && newValue ==false && !txtPrice.getText().equals("")){
+			if(oldValue&& !newValue && !txtPrice.getText().equals("")){
 				String testPrice = txtPrice.getText();
 				try{
+					for(int i = 0; i < txtPrice.getText().length(); i++) {
+						if(txtPrice.getText().charAt(i) == '.') {
+							
+							if(txtPrice.getText().substring(i).length() > 3 || txtPrice.getText().charAt(0)=='-') {
+								
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Invalid Price Format");
+								alert.setHeaderText(null);
+								alert.setContentText("Please enter a valid number into the Price field");
+								
+								alert.showAndWait();
+								txtPrice.setText(editedOrder.getPrice() + "");
+								txtPrice.requestFocus();
+							}	
+						}
+					}
 					Double.parseDouble(testPrice);
 				} catch (NumberFormatException npe){
 					Alert alert = new Alert(AlertType.INFORMATION);
@@ -103,7 +139,7 @@ public class EditOrderController implements Initializable {
 					alert.setContentText("Please enter a valid number into the Price field");
 
 					alert.showAndWait();
-					txtPrice.setText("");
+					txtPrice.setText(editedOrder.getPrice() + "");
 					txtPrice.requestFocus();
 				}
 			}
@@ -128,7 +164,7 @@ public class EditOrderController implements Initializable {
 					alert.setContentText("Please enter a valid email");
 
 					alert.showAndWait();
-					txtEmail.setText("");  //TODO: should revert to previous email state
+					txtEmail.setText(editedOrder.getEmail() + "");
 					txtEmail.requestFocus();
 
 					}
@@ -160,7 +196,7 @@ public class EditOrderController implements Initializable {
 		txtLastName.setText(editedOrder.getLastName());
 		txtStreetAddress.setText(editedOrder.getStreetAddress());
 		txtCity.setText(editedOrder.getCity());
-		txtState.setText(editedOrder.getState());
+		cmbState.setValue(editedOrder.getState());
 		txtZip.setText(editedOrder.getZip());
 		cmbPaymentStatus.setValue(editedOrder.getPaymentStatus());
 		cmbPaymentMethod.setValue(editedOrder.getPaymentMethod());
@@ -222,8 +258,8 @@ public class EditOrderController implements Initializable {
 		if (txtCity.getText() != null && !txtCity.getText().trim().isEmpty()) {
 			saveCity = txtCity.getText();
 		}
-		if (txtState.getText() != null && !txtState.getText().trim().isEmpty()) {
-			saveState = txtState.getText();
+		if (cmbState.getValue() != null && !cmbState.getValue().trim().isEmpty()) {
+			saveState = cmbState.getValue();
 		}
 		if (txtZip.getText() != null && !txtZip.getText().trim().isEmpty()) {
 			saveZip = txtZip.getText();
@@ -319,6 +355,15 @@ public class EditOrderController implements Initializable {
 		// set payment method
 		ObservableList<String> contactOptions = FXCollections.observableArrayList("Email", "Phone", "Text");
 		cmbPrefContactMethod.setItems(contactOptions);
+		
+		ObservableList<String> statesList = FXCollections.observableArrayList("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+				"Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas",
+				"Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+				"Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
+				"New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+				"Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
+				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming");
+		cmbState.setItems(statesList);
 
 	}
 
