@@ -103,6 +103,33 @@ public class NewOrderController implements Initializable {
 			}
 		});
 		
+		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if(oldValue == true && newValue ==false && !txtEmail.getText().equals("")){
+				String testEmail = txtEmail.getText();
+
+				int atCount = 0;
+				for(int i = 0; i < txtEmail.getText().length(); i++) {
+					if(txtEmail.getText().charAt(i) == '@'){
+						atCount++;
+					}
+				
+				}
+				if(atCount != 1) {	
+					
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Invalid Email Format");
+					alert.setHeaderText(null);
+					alert.setContentText("Please enter a valid email");
+
+					alert.showAndWait();
+					txtEmail.setText("");
+					txtEmail.requestFocus();
+
+					}
+			}
+			
+		});
+		
 		
 
 	}
@@ -190,29 +217,8 @@ public class NewOrderController implements Initializable {
 			savePaymentMethod = cmbPaymentMethod.getValue().toString();
 		}
 		if (txtPrice.getText() != null && !txtPrice.getText().trim().isEmpty()) {
-			
-			for(int i = 0; i < txtPrice.getText().length(); i++) {
-				if(txtPrice.getText().charAt(i) == '.') {
-					
-					if(txtPrice.getText().substring(i).length() > 3) {
-						
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("Invalid Price Format");
-						alert.setHeaderText(null);
-						alert.setContentText("Please enter a valid number into the Price field");
-						
-						alert.showAndWait();
-						txtPrice.setText("");
-						txtPrice.requestFocus();
-					}
-						
-						
-				}
-			}
 			savePrice = Double.parseDouble(txtPrice.getText());
-		
 		}
-
 		if (txtEmail.getText() != null && !txtEmail.getText().trim().isEmpty()) {
 			saveEmail = txtEmail.getText();
 		}

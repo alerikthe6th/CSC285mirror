@@ -108,6 +108,33 @@ public class EditOrderController implements Initializable {
 				}
 			}
 		});
+		
+		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if(oldValue == true && newValue ==false && !txtEmail.getText().equals("")){
+				String testEmail = txtEmail.getText();
+
+				int atCount = 0;
+				for(int i = 0; i < txtEmail.getText().length(); i++) {
+					if(txtEmail.getText().charAt(i) == '@'){
+						atCount++;
+					}
+				
+				}
+				if(atCount != 1) {	
+					
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Invalid Email Format");
+					alert.setHeaderText(null);
+					alert.setContentText("Please enter a valid email");
+
+					alert.showAndWait();
+					txtEmail.setText("");  //TODO: should revert to previous email state
+					txtEmail.requestFocus();
+
+					}
+			}
+			
+		});
 
 	}
 
