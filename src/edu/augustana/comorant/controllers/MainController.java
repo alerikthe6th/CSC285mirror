@@ -425,7 +425,7 @@ public class MainController implements Initializable {
 			} else if (cmbOrderFilters.getValue().toString() == "Price") {
 				if ((order.getPrice() + "").toLowerCase().contains(lowerCaseFilter)) {
 					return true; // Filter matches
-									// phone number.
+									// price.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Preferred Contact Method") {

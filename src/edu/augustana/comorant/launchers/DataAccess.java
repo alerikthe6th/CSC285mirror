@@ -211,7 +211,7 @@ public class DataAccess {
 				insertOrder.setString(11, zip);
 				insertOrder.setString(12, paymentStatus);
 				insertOrder.setString(13, paymentMethod);
-				insertOrder.setString(14, price + "");
+				insertOrder.setString(14, price+"");
 				insertOrder.setString(15, email);
 				insertOrder.setString(16, phone);
 				insertOrder.setString(17, smsEnabledInt + "");
@@ -258,6 +258,7 @@ public class DataAccess {
 		});  
 		t1.start();
 	}
+	
 
 }
 
