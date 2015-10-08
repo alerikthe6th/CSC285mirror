@@ -112,27 +112,27 @@ public class EditOrderController implements Initializable {
 		
 		
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if(oldValue&& !newValue && !txtPrice.getText().equals("")){
+			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
 				String testPrice = txtPrice.getText();
-				try{
-					for(int i = 0; i < txtPrice.getText().length(); i++) {
-						if(txtPrice.getText().charAt(i) == '.') {
-							
-							if(txtPrice.getText().substring(i).length() > 3 || txtPrice.getText().charAt(0)=='-') {
-								
+				try {
+					for (int i = 0; i < txtPrice.getText().length(); i++) {
+						if (txtPrice.getText().charAt(i) == '.') {
+
+							if (txtPrice.getText().substring(i).length() > 3 || txtPrice.getText().charAt(0) == '-') {
+
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Invalid Price Format");
 								alert.setHeaderText(null);
 								alert.setContentText("Please enter a valid number into the Price field");
-								
+
 								alert.showAndWait();
 								txtPrice.setText(editedOrder.getPrice() + "");
 								txtPrice.requestFocus();
-							}	
+							}
 						}
 					}
 					Double.parseDouble(testPrice);
-				} catch (NumberFormatException npe){
+				} catch (NumberFormatException npe) {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Invalid Price Format");
 					alert.setHeaderText(null);
@@ -146,18 +146,16 @@ public class EditOrderController implements Initializable {
 		});
 		
 		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if(oldValue == true && newValue ==false && !txtEmail.getText().equals("")){
-				String testEmail = txtEmail.getText();
-
+			if (oldValue == true && newValue == false && !txtEmail.getText().equals("")) {
 				int atCount = 0;
-				for(int i = 0; i < txtEmail.getText().length(); i++) {
-					if(txtEmail.getText().charAt(i) == '@'){
+				for (int i = 0; i < txtEmail.getText().length(); i++) {
+					if (txtEmail.getText().charAt(i) == '@') {
 						atCount++;
 					}
-				
+
 				}
-				if(atCount != 1) {	
-					
+				if (atCount != 1) {
+
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Invalid Email Format");
 					alert.setHeaderText(null);
@@ -167,9 +165,9 @@ public class EditOrderController implements Initializable {
 					txtEmail.setText(editedOrder.getEmail() + "");
 					txtEmail.requestFocus();
 
-					}
+				}
 			}
-			
+
 		});
 
 	}
