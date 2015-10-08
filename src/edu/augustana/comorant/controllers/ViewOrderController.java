@@ -39,7 +39,7 @@ public class ViewOrderController implements Initializable {
 	@FXML
 	private Button btnAutoFill;
 	@FXML
-	private Label lblOrderDesc;
+	private TextArea txtOrderDesc;
 	@FXML
 	private Label lblStreetAddress;
 	@FXML
@@ -102,7 +102,7 @@ public class ViewOrderController implements Initializable {
 		lblOrderDate.setText(viewOrder.getOrderDate().toString());
 		lblDueDate.setText(viewOrder.getDueDate().toString());
 		lblOrderStatus.setText(viewOrder.getStatus().toString());
-		lblOrderDesc.setText(viewOrder.getOrderDesc());
+		txtOrderDesc.setText(viewOrder.getOrderDesc());
 		lblFirstName.setText(viewOrder.getFirstName());
 		lblLastName.setText(viewOrder.getLastName());
 		lblStreetAddress.setText(viewOrder.getStreetAddress());

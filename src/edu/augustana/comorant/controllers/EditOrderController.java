@@ -53,7 +53,7 @@ public class EditOrderController implements Initializable {
 	@FXML
 	private TextField txtCity;
 	@FXML
-	private TextField txtState;
+	private ComboBox<String> cmbState;
 	@FXML
 	private TextField txtZip;
 	@FXML
@@ -169,7 +169,7 @@ public class EditOrderController implements Initializable {
 		txtLastName.setText(editedOrder.getLastName());
 		txtStreetAddress.setText(editedOrder.getStreetAddress());
 		txtCity.setText(editedOrder.getCity());
-		txtState.setText(editedOrder.getState());
+		cmbState.setValue(editedOrder.getState());
 		txtZip.setText(editedOrder.getZip());
 		cmbPaymentStatus.setValue(editedOrder.getPaymentStatus());
 		cmbPaymentMethod.setValue(editedOrder.getPaymentMethod());
@@ -231,8 +231,8 @@ public class EditOrderController implements Initializable {
 		if (txtCity.getText() != null && !txtCity.getText().trim().isEmpty()) {
 			saveCity = txtCity.getText();
 		}
-		if (txtState.getText() != null && !txtState.getText().trim().isEmpty()) {
-			saveState = txtState.getText();
+		if (cmbState.getValue() != null && !cmbState.getValue().trim().isEmpty()) {
+			saveState = cmbState.getValue();
 		}
 		if (txtZip.getText() != null && !txtZip.getText().trim().isEmpty()) {
 			saveZip = txtZip.getText();
