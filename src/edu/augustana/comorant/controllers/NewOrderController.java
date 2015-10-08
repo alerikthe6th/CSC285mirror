@@ -86,9 +86,9 @@ public class NewOrderController implements Initializable {
 		populateDropDowns();
 		
 		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
-			if(oldValue == true && newValue == false && !txtZip.getText().equals("")){
+			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
-				if (testZip.length() > 10 || testZip.length() < 5){
+				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-'))){
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Invalid ZIP code");
 					alert.setHeaderText(null);
@@ -99,8 +99,6 @@ public class NewOrderController implements Initializable {
 					txtZip.requestFocus();
 				}
 			}
-			
-			
 		}
 				);
 		

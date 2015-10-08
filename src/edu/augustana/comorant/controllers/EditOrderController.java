@@ -72,6 +72,8 @@ public class EditOrderController implements Initializable {
 	private ComboBox<String> cmbPaymentMethod;
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
+	
+	private String placeHolder;
 
 	public EditOrderController() {
 		
@@ -90,6 +92,25 @@ public class EditOrderController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
+		
+		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
+			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
+				String testZip = txtZip.getText();
+				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-'))){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Invalid ZIP code");
+					alert.setHeaderText(null);
+					alert.setContentText("Please enter a valid ZIP code into the zip code field");
+
+					alert.showAndWait();
+					txtZip.setText(editedOrder.getZip() + "");
+					txtZip.requestFocus();
+				}
+			}
+		}
+				);
+		
+		
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if(oldValue&& !newValue && !txtPrice.getText().equals("")){
 				String testPrice = txtPrice.getText();
@@ -105,7 +126,7 @@ public class EditOrderController implements Initializable {
 								alert.setContentText("Please enter a valid number into the Price field");
 								
 								alert.showAndWait();
-								txtPrice.setText("");//TODO reset to old value
+								txtPrice.setText(editedOrder.getPrice() + "");
 								txtPrice.requestFocus();
 							}	
 						}
@@ -118,7 +139,7 @@ public class EditOrderController implements Initializable {
 					alert.setContentText("Please enter a valid number into the Price field");
 
 					alert.showAndWait();
-					txtPrice.setText("");//TODO reset to old value
+					txtPrice.setText(editedOrder.getPrice() + "");
 					txtPrice.requestFocus();
 				}
 			}
