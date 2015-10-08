@@ -85,6 +85,28 @@ public class NewOrderController implements Initializable {
 		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 		
+		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) ->{
+			if(oldValue&& !newValue&& !txtPhone.getText().equals("")){
+				String testPhone = txtPhone.getText();
+				if (!(testPhone.length() == 7 ||testPhone.length() == 10 ||testPhone.length() == 11 ||
+				(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen
+				(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s
+				(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-'))){//11nums and 3 -'s
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Invalid Phone Number");
+					alert.setHeaderText(null);
+					alert.setContentText("Please enter a valid phone number into the phone number field");
+
+					alert.showAndWait();
+					txtPhone.setText("");
+					txtPhone.requestFocus();
+				}
+			}
+		}
+				);
+		
+		
+		
 		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
