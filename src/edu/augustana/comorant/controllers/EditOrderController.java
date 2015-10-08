@@ -118,7 +118,7 @@ public class EditOrderController implements Initializable {
 					for(int i = 0; i < txtPrice.getText().length(); i++) {
 						if(txtPrice.getText().charAt(i) == '.') {
 							
-							if(txtPrice.getText().substring(i).length() > 3) {
+							if(txtPrice.getText().substring(i).length() > 3 || txtPrice.getText().charAt(0)=='-') {
 								
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Invalid Price Format");
