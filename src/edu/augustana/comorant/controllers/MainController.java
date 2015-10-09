@@ -303,43 +303,28 @@ public class MainController implements Initializable {
 	}
 
 	private SortedList<Order> wrapOrdersList() {
-		FilteredList<Order> filteredOrders = new FilteredList<>(orderList, p -> true); // Show
-																						// all
-																						// data.
-																						// Wrapped
-																						// in
-																						// filtered
-																						// list
-
+		FilteredList<Order> filteredOrders = new FilteredList<>(orderList, p -> true); // Show all data. Wrapped in filtered list
 		chkCompletedOrders.selectedProperty().addListener((observable, oldValue, newValue) -> {
 			if (chkCompletedOrders.isFocused()){
 			txtFilterOrders.setText("");
 			}
 			filteredOrders.setPredicate(order -> {
-
 				if (newValue == null || newValue == false) {
 					return true;
-
 				}
 				if (order.getStatus().equals("Completed") && order.getPaymentStatus().equals("Paid")) {
 					return false;
-
 				}
 				return true;
 			});
 		});
 
 		txtFilterOrders.textProperty().addListener((observable, oldValue, newValue) -> {
-
 			setOrdersPredicate(filteredOrders, newValue);
-
 		});
 		cmbOrderFilters.valueProperty().addListener((observable, oldValue, newValue) -> {
-
 			setOrdersPredicate(filteredOrders, txtFilterOrders.getText());
-
 		});
-
 		return new SortedList<>(filteredOrders);
 	}
 
@@ -348,11 +333,9 @@ public class MainController implements Initializable {
 			if (chkCompletedOrders.isSelected()){
 				if (order.getStatus().equals("Completed") && order.getPaymentStatus().equals("Paid")) {
 					return false;
-
 				}
 			}
-			// If filter text is empty, display all
-			// persons.
+			// If filter text is empty, display all persons
 			if (newValue == null || newValue.isEmpty()) {
 				return true;
 			}

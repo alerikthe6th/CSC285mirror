@@ -28,5 +28,6 @@ x	put "recieve texts?" above SMS-enabled
 	make "order status" dropdown list customizable? (so if someone not a potter uses it)
 	put a 'payment status' dropdown next to order status on main panel
 	
-	phone number needs to check for perenthesis and zip must check for canadian zips A0B1C2
+x	phone number needs to check for perenthesis (123)-145-7899
+	zip must check for canadian zips A0B1C2
 	

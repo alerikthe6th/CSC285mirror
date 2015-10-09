@@ -89,10 +89,11 @@ public class NewOrderController implements Initializable {
 		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtPhone.getText().equals("")){
 				String testPhone = txtPhone.getText();
-				if (!(testPhone.length() == 7 ||testPhone.length() == 10 ||testPhone.length() == 11 ||
-				(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen
-				(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s
-				(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-'))){//11nums and 3 -'s
+				if (!(testPhone.length() == 7 ||testPhone.length() == 10 ||testPhone.length() == 11 ||//7,10,11 numbers 1234567,1234567890,112345678900
+				(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen 123-4567
+				(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s 123-456-7890
+				(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-')||//11nums and 3 -'s 1-123-456-7890
+				(testPhone.length() == 14 &&testPhone.charAt(0)=='(' &&testPhone.charAt(4)==')' &&testPhone.charAt(5)=='-' &&testPhone.charAt(9)=='-'))){//10 nums 1(,1),2- (123)-456-7890
 					throwAlert("Phone Number", txtPhone);
 				}
 			}
@@ -148,11 +149,17 @@ public class NewOrderController implements Initializable {
 		});
 	}
 	/**
-	 * Throws an alert for the parameter.
-	 * ex. if "Phone Number" and txtPhone are passed in it will throw a phone number alert and reset the text field
+	 * Throws an alert for the parameters given. 
+	 * Available combinations are: 
+	 * "Phone Number" and txtPhone - 
+	 * "Zip Code" and txtZip - 
+	 * "Price" and txtPrice - 
+	 * "Email Address" and txtEmail - 
 	 * 
-	 * @param invalidValueName
-	 * @param valueName
+	 * ~!!STRINGS MUST MATCH EXACTLY!!~
+	 * 
+	 * @param invalidValueName - String
+	 * @param valueName - TextField
 	 * 
 	 */
 	protected void throwAlert(String invalidValueName, TextField valueName){

@@ -99,18 +99,13 @@ public class EditOrderController implements Initializable {
 		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtPhone.getText().equals("")){
 				String testPhone = txtPhone.getText();
-				if (!(testPhone.length() == 7 ||testPhone.length() == 10 ||testPhone.length() == 11 ||
-				(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen
-				(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s
-				(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-'))){//11nums and 3 -'s
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Invalid Phone Number");
-					alert.setHeaderText(null);
-					alert.setContentText("Please enter a valid phone number into the phone number field");
-
-					alert.showAndWait();
-					txtPhone.setText(editedOrder.getPhoneNumber() + "");
-					txtPhone.requestFocus();
+				if (!(testPhone.length() == 7 ||testPhone.length() == 10 ||testPhone.length() == 11 ||//7,10,11 numbers 1234567,1234567890,112345678900
+					(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen 123-4567
+					(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s 123-456-7890
+					(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-')||//11nums and 3 -'s 1-123-456-7890
+					(testPhone.length() == 14 &&testPhone.charAt(0)=='(' &&testPhone.charAt(4)==')' &&testPhone.charAt(5)=='-' &&testPhone.charAt(9)=='-'))){//10 nums 1(,1),2- (123)-456-7890
+					
+					throwAlert("Phone Number", txtPhone);
 				}
 			}
 		});
@@ -120,14 +115,7 @@ public class EditOrderController implements Initializable {
 			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
 				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-'))){
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Invalid ZIP code");
-					alert.setHeaderText(null);
-					alert.setContentText("Please enter a valid ZIP code into the zip code field");
-
-					alert.showAndWait();
-					txtZip.setText(editedOrder.getZip() + "");
-					txtZip.requestFocus();
+					throwAlert("Zip Code", txtZip);
 				}
 			}
 		});
@@ -142,28 +130,13 @@ public class EditOrderController implements Initializable {
 						if (txtPrice.getText().charAt(i) == '.') {
 
 							if (txtPrice.getText().substring(i).length() > 3 || txtPrice.getText().charAt(0) == '-') {
-
-								Alert alert = new Alert(AlertType.INFORMATION);
-								alert.setTitle("Invalid Price Format");
-								alert.setHeaderText(null);
-								alert.setContentText("Please enter a valid number into the Price field");
-
-								alert.showAndWait();
-								txtPrice.setText(editedOrder.getPrice() + "");
-								txtPrice.requestFocus();
+								throwAlert("Price", txtPrice);
 							}
 						}
 					}
 					Double.parseDouble(testPrice);
 				} catch (NumberFormatException npe) {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Invalid Price Format");
-					alert.setHeaderText(null);
-					alert.setContentText("Please enter a valid number into the Price field");
-
-					alert.showAndWait();
-					txtPrice.setText(editedOrder.getPrice() + "");
-					txtPrice.requestFocus();
+					throwAlert("Price", txtPrice);
 				}
 			}
 		});
@@ -178,18 +151,39 @@ public class EditOrderController implements Initializable {
 					}
 				}
 				if (atCount != 1) {
-
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Invalid Email Format");
-					alert.setHeaderText(null);
-					alert.setContentText("Please enter a valid email");
-
-					alert.showAndWait();
-					txtEmail.setText(editedOrder.getEmail() + "");
-					txtEmail.requestFocus();
+					throwAlert("Email Address", txtEmail);
 				}
 			}
 		});
+	}
+	/**
+	 * Throws an alert for the parameters given. 
+	 * Available combinations are: 
+	 * "Phone Number" and txtPhone - 
+	 * "Zip Code" and txtZip - 
+	 * "Price" and txtPrice - 
+	 * "Email Address" and txtEmail - 
+	 * 
+	 * ~!!STRINGS MUST MATCH EXACTLY!!~
+	 * 
+	 * @param invalidValueName
+	 * @param valueName
+	 * 
+	 */
+	protected void throwAlert(String invalidValueName, TextField valueName){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Invalid "+ invalidValueName);
+		alert.setHeaderText(null);
+		alert.setContentText("Please enter a valid "+invalidValueName+" into the "+invalidValueName+" field");
+
+		alert.showAndWait();
+		
+		if (invalidValueName.toLowerCase()=="phone number"){valueName.setText(editedOrder.getPhoneNumber() + "");}
+		if (invalidValueName.toLowerCase()=="zip code"){valueName.setText(editedOrder.getZip() + "");}
+		if (invalidValueName.toLowerCase()=="price"){valueName.setText(editedOrder.getPrice() + "");}
+		if (invalidValueName.toLowerCase()=="email address"){valueName.setText(editedOrder.getEmail() + "");}
+		
+		valueName.requestFocus();
 	}
 
 	/**
@@ -390,22 +384,5 @@ public class EditOrderController implements Initializable {
 	}
 
 	
-	/**
-	 * Throws an alert for the parameter
-	 * ex. if "Phone Number" and txtPhone are passed in it will throw a phone number alert and reset the text field
-	 * 
-	 * @param invalidValueName
-	 * @param valueName
-	 * 
-	 */
-	protected void throwAlert(String invalidValueName, TextField valueName){
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Invalid "+ invalidValueName);
-		alert.setHeaderText(null);
-		alert.setContentText("Please enter a valid "+invalidValueName+" into the "+invalidValueName+" field");
 
-		alert.showAndWait();
-		valueName.setText(editedOrder.getPhoneNumber() + "");
-		valueName.requestFocus();
-	}
 }
