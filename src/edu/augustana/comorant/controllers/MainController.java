@@ -96,7 +96,7 @@ public class MainController implements Initializable {
 	@FXML
 	private TableColumn<Order, String> clmPaymentStatus;
 	@FXML
-	private TableColumn<Order, Number> clmPrice;
+	private TableColumn<Order, String> clmPrice;
 	@FXML
 	private TableColumn<Order, String> clmEmail;
 	@FXML
@@ -474,7 +474,7 @@ public class MainController implements Initializable {
 		clmShippingAddress.setCellValueFactory(cellData -> cellData.getValue().fullAddressProperty());
 		clmPaymentMethod.setCellValueFactory(cellData -> cellData.getValue().paymentMethodProperty());
 		clmPaymentStatus.setCellValueFactory(cellData -> cellData.getValue().paymentStatusProperty());
-		clmPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+		clmPrice.setCellValueFactory(cellData -> cellData.getValue().priceStringProperty());
 		clmEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 		clmPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
 		clmSMSEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledProperty());

@@ -1,7 +1,9 @@
 
 package edu.augustana.comorant.dataStructures;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
+
 import javafx.beans.property.*;
 
 public class Order {
@@ -20,6 +22,7 @@ public class Order {
 	protected StringProperty paymentStatus;
 	protected StringProperty paymentMethod;
 	protected DoubleProperty price;
+	protected StringProperty priceString;
 	protected StringProperty phoneNumber;
 	protected StringProperty email;
 	protected BooleanProperty smsEnabled;
@@ -97,6 +100,9 @@ public class Order {
 		this.paymentStatus = new SimpleStringProperty(paymentStatus);
 		this.paymentMethod = new SimpleStringProperty(paymentMethod);
 		this.price = new SimpleDoubleProperty(price);
+		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+		String priceStringString = "$" + twoDigitFormat.format(this.price.getValue());
+		this.priceString = new SimpleStringProperty(priceStringString);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
 		this.smsEnabled = new SimpleBooleanProperty(smsEnabled);
@@ -288,6 +294,10 @@ public class Order {
 		
 		
 	}
+	/**@return StringProperty*/
+	public StringProperty priceStringProperty() {
+		return priceString;
+	}
 
 	//field mutators
 	/**Sets the order number*/
@@ -345,6 +355,9 @@ public class Order {
 	/**Sets the order's price*/
 	public void setPrice(double price) {
 		this.price.set(price);
+		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+		String priceStringString = "$" + twoDigitFormat.format(price);
+		this.priceString.set(priceStringString);
 	}
 	/**Sets the order's phone number*/
 	public void setPhoneNumber(String phoneNumber) {
