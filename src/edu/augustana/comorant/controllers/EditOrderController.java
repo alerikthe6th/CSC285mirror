@@ -318,7 +318,7 @@ public class EditOrderController implements Initializable {
 		editedOrder.setPhoneNumber(savePhone);
 		editedOrder.setPrefContactMethod(savePrefContactMethod);
 		editedOrder.setSMSEnabled(saveSmsEnabled);
-		editedOrder.redoShippingAddress();
+		//editedOrder.redoShippingAddress();
 
 		DataAccess.saveOrders(mainController.orderList);
 		System.out.println("Save Edit!");

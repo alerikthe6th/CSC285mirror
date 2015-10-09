@@ -331,14 +331,17 @@ public class Order {
 	/**Sets the order's street address*/
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress.set(streetAddress);
+		redoShippingAddress();
 	}
 	/**Sets the order's city*/
 	public void setCity(String city) {
 		this.city.set(city);
+		redoShippingAddress();
 	}
 	/**Sets the order's state*/
 	public void setState(String state) {
 		this.state.set(state);
+		redoShippingAddress();
 	}
 	/**Sets the order's payment status*/
 	public void setPaymentStatus(String paymentStatus) {
@@ -347,6 +350,7 @@ public class Order {
 	/**Sets the order's zip code*/
 	public void setZip(String zip) {
 		this.zip.set(zip);
+		redoShippingAddress();
 	}
 	/**Sets the order's payment method*/
 	public void setPaymentMethod(String paymentMethod) {
