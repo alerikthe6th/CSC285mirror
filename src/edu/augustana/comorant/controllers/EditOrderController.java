@@ -1,6 +1,7 @@
 package edu.augustana.comorant.controllers;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -204,6 +205,8 @@ public class EditOrderController implements Initializable {
 	 * 
 	 */
 	public void setEditedOrder(Order editedOrder) {
+		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+		String priceString = twoDigitFormat.format(editedOrder.getPrice());
 		this.editedOrder = editedOrder;
 		txtOrderNumber.setText(editedOrder.getOrderNumber() + "");
 		dtpkOrderDate.setValue(editedOrder.getOrderDate());
@@ -218,7 +221,7 @@ public class EditOrderController implements Initializable {
 		txtZip.setText(editedOrder.getZip());
 		cmbPaymentStatus.setValue(editedOrder.getPaymentStatus());
 		cmbPaymentMethod.setValue(editedOrder.getPaymentMethod());
-		txtPrice.setText(editedOrder.getPrice()+"");
+		txtPrice.setText(priceString);
 		txtEmail.setText(editedOrder.getEmail());
 		txtPhone.setText(editedOrder.getPhoneNumber());
 		cmbPrefContactMethod.setValue(editedOrder.getPrefContactMethod());
