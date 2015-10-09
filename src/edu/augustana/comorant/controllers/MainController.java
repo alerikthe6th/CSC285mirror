@@ -44,10 +44,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/* 
- * TODO: delete button does not disable by default
- * 		 nor does it disable upon selection.
- */
+
 public class MainController implements Initializable {
 
 	@FXML
@@ -96,7 +93,7 @@ public class MainController implements Initializable {
 	@FXML
 	private TableColumn<Order, String> clmPaymentStatus;
 	@FXML
-	private TableColumn<Order, Number> clmPrice;
+	private TableColumn<Order, String> clmPrice;
 	@FXML
 	private TableColumn<Order, String> clmEmail;
 	@FXML
@@ -261,6 +258,8 @@ public class MainController implements Initializable {
 		assert newOrderButton != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		assert cmbOrderStatus != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropdowns();
+		
+		cmbOrderStatus.setDisable(true);
 
 		orderList = DataAccess.loadOrders();
 		sortedOrders = wrapOrdersList();
@@ -277,13 +276,15 @@ public class MainController implements Initializable {
 				btnDeleteOrder.setDisable(false);
 				btnViewOrder.setDisable(false);
 				miDelete.setDisable(false);
+				cmbOrderStatus.setDisable(false);
 
 			} else {
 				btnEditOrder.setDisable(true);
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
 				miDelete.setDisable(true);
-				
+				cmbOrderStatus.setDisable(true);
+
 			}
 		});
 
@@ -475,7 +476,7 @@ public class MainController implements Initializable {
 		clmShippingAddress.setCellValueFactory(cellData -> cellData.getValue().fullAddressProperty());
 		clmPaymentMethod.setCellValueFactory(cellData -> cellData.getValue().paymentMethodProperty());
 		clmPaymentStatus.setCellValueFactory(cellData -> cellData.getValue().paymentStatusProperty());
-		clmPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+		clmPrice.setCellValueFactory(cellData -> cellData.getValue().priceStringProperty());
 		clmEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 		clmPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
 		clmSMSEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledProperty());

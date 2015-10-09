@@ -1,6 +1,7 @@
 package edu.augustana.comorant.controllers;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -215,6 +216,8 @@ public class EditOrderController implements Initializable {
 	 * 
 	 */
 	public void setEditedOrder(Order editedOrder) {
+		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+		String priceString = twoDigitFormat.format(editedOrder.getPrice());
 		this.editedOrder = editedOrder;
 		txtOrderNumber.setText(editedOrder.getOrderNumber() + "");
 		dtpkOrderDate.setValue(editedOrder.getOrderDate());
@@ -229,7 +232,7 @@ public class EditOrderController implements Initializable {
 		txtZip.setText(editedOrder.getZip());
 		cmbPaymentStatus.setValue(editedOrder.getPaymentStatus());
 		cmbPaymentMethod.setValue(editedOrder.getPaymentMethod());
-		txtPrice.setText(editedOrder.getPrice()+"");
+		txtPrice.setText(priceString);
 		txtEmail.setText(editedOrder.getEmail());
 		txtPhone.setText(editedOrder.getPhoneNumber());
 		cmbPrefContactMethod.setValue(editedOrder.getPrefContactMethod());
@@ -329,7 +332,7 @@ public class EditOrderController implements Initializable {
 		editedOrder.setPhoneNumber(savePhone);
 		editedOrder.setPrefContactMethod(savePrefContactMethod);
 		editedOrder.setSMSEnabled(saveSmsEnabled);
-		editedOrder.redoShippingAddress();
+		//editedOrder.redoShippingAddress();
 
 		DataAccess.saveOrders(mainController.orderList);
 		System.out.println("Save Edit!");
@@ -391,7 +394,9 @@ public class EditOrderController implements Initializable {
 				"Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
 				"New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
 				"Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
-				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming");
+				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "District of Columbia",
+				 "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", 
+				 "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan");
 		cmbState.setItems(statesList);
 
 	}
