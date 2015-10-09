@@ -68,11 +68,15 @@ public class ViewOrderController implements Initializable {
 	
 	public ViewOrderController() {
 		
+
+		
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCloseWindow != null : "fx:id=\"closeWindowButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
+		
+
 
 		
 	}
@@ -91,6 +95,7 @@ public class ViewOrderController implements Initializable {
 	 */
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
+		
 	}
 
 	/**
@@ -115,6 +120,7 @@ public class ViewOrderController implements Initializable {
 		lblEmail.setText(viewOrder.getEmail());
 		lblPhone.setText(viewOrder.getPhoneNumber());
 		lblPrefContactMethod.setText(viewOrder.getPrefContactMethod().toString());
+
 		
 		if(viewOrder.getSmsEnabled()) {
 			lblSMSEnabled.setText("Yes");

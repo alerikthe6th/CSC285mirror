@@ -1,6 +1,7 @@
 package edu.augustana.comorant.controllers;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -92,6 +93,9 @@ public class EditOrderController implements Initializable {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 		
+		
+		//checks if the input phone number is of 7,10, or 11 digits and ignores dashes.
+		//if invalid phone number entered, reverts back to previous state
 		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtPhone.getText().equals("")){
 				String testPhone = txtPhone.getText();
@@ -110,6 +114,8 @@ public class EditOrderController implements Initializable {
 				}
 			}
 		});
+		//checks for a valid ZIP code input
+		//invalid input reverts to previous state filled in the field
 		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
@@ -125,6 +131,9 @@ public class EditOrderController implements Initializable {
 				}
 			}
 		});
+
+		//checks if the price if a valid input i.e. no multiple '.', non-negative, or more than 2 decimal places
+		//invalid inputs reverts the field to previous state
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
 				String testPrice = txtPrice.getText();
@@ -158,7 +167,8 @@ public class EditOrderController implements Initializable {
 				}
 			}
 		});
-		
+		//checks if the email contains only 1 '@' symbol
+		//reverts to previous state if invalid input was entered
 		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue == true && newValue == false && !txtEmail.getText().equals("")) {
 				int atCount = 0;
@@ -194,6 +204,8 @@ public class EditOrderController implements Initializable {
 	 * 
 	 */
 	public void setEditedOrder(Order editedOrder) {
+		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+		String priceString = twoDigitFormat.format(editedOrder.getPrice());
 		this.editedOrder = editedOrder;
 		txtOrderNumber.setText(editedOrder.getOrderNumber() + "");
 		dtpkOrderDate.setValue(editedOrder.getOrderDate());
@@ -208,7 +220,7 @@ public class EditOrderController implements Initializable {
 		txtZip.setText(editedOrder.getZip());
 		cmbPaymentStatus.setValue(editedOrder.getPaymentStatus());
 		cmbPaymentMethod.setValue(editedOrder.getPaymentMethod());
-		txtPrice.setText(editedOrder.getPrice()+"");
+		txtPrice.setText(priceString);
 		txtEmail.setText(editedOrder.getEmail());
 		txtPhone.setText(editedOrder.getPhoneNumber());
 		cmbPrefContactMethod.setValue(editedOrder.getPrefContactMethod());
@@ -308,7 +320,7 @@ public class EditOrderController implements Initializable {
 		editedOrder.setPhoneNumber(savePhone);
 		editedOrder.setPrefContactMethod(savePrefContactMethod);
 		editedOrder.setSMSEnabled(saveSmsEnabled);
-		editedOrder.redoShippingAddress();
+		//editedOrder.redoShippingAddress();
 
 		DataAccess.saveOrders(mainController.orderList);
 		System.out.println("Save Edit!");
@@ -370,7 +382,9 @@ public class EditOrderController implements Initializable {
 				"Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
 				"New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
 				"Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
-				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming");
+				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "District of Columbia",
+				 "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", 
+				 "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan");
 		cmbState.setItems(statesList);
 
 	}

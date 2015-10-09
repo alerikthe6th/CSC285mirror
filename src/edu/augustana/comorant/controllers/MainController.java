@@ -44,10 +44,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/* 
- * TODO: delete button does not disable by default
- * 		 nor does it disable upon selection.
- */
+
 public class MainController implements Initializable {
 
 	@FXML
@@ -261,6 +258,8 @@ public class MainController implements Initializable {
 		assert newOrderButton != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		assert cmbOrderStatus != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropdowns();
+		
+		cmbOrderStatus.setDisable(true);
 
 		orderList = DataAccess.loadOrders();
 		sortedOrders = wrapOrdersList();
@@ -277,12 +276,15 @@ public class MainController implements Initializable {
 				btnDeleteOrder.setDisable(false);
 				btnViewOrder.setDisable(false);
 				miDelete.setDisable(false);
+				cmbOrderStatus.setDisable(false);
 
 			} else {
 				btnEditOrder.setDisable(true);
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
 				miDelete.setDisable(true);
+				cmbOrderStatus.setDisable(true);
+
 			}
 		});
 

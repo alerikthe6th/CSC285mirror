@@ -84,6 +84,8 @@ public class NewOrderController implements Initializable {
 		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 		
+		//checks if the input phone number is of 7,10, or 11 digits and ignores dashes.
+		//if invalid phone number entered, clears the field
 		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtPhone.getText().equals("")){
 				String testPhone = txtPhone.getText();
@@ -95,6 +97,9 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
+
+		//checks for a valid ZIP code input
+		//invalid input clears the field
 		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
@@ -104,6 +109,9 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
+		
+		//checks if the price if a valid input i.e. no multiple '.', non-negative, or more than 2 decimal places
+		//invalid input clears the field
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
 				String testPrice = txtPrice.getText();
@@ -123,6 +131,8 @@ public class NewOrderController implements Initializable {
 			}
 		});
 		
+		//checks if the email contains only 1 '@' symbol
+		//clears field if empty
 		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue == true && newValue == false && !txtEmail.getText().equals("")) {
 				int atCount = 0;
@@ -298,7 +308,9 @@ public class NewOrderController implements Initializable {
 				"Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
 				"New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
 				"Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
-				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming");
+				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "District of Columbia",
+				 "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", 
+				 "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan");
 		cmbState.setItems(statesList);
 
 	}
