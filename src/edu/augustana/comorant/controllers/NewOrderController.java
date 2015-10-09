@@ -77,7 +77,6 @@ public class NewOrderController implements Initializable {
 		System.out.println("Cancel Order!");
 		Stage stage = (Stage) btnCancelOrder.getScene().getWindow();
 		stage.close();
-
 	}
 
 	@Override
@@ -92,39 +91,19 @@ public class NewOrderController implements Initializable {
 				(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen
 				(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s
 				(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-'))){//11nums and 3 -'s
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Invalid Phone Number");
-					alert.setHeaderText(null);
-					alert.setContentText("Please enter a valid phone number into the phone number field");
-
-					alert.showAndWait();
-					txtPhone.setText("");
-					txtPhone.requestFocus();
+					throwAlert("Phone Number", txtPhone);
 				}
 			}
-		}
-				);
-		
-		
-		
+		});
 		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
-				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-'))){
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Invalid ZIP code");
-					alert.setHeaderText(null);
-					alert.setContentText("Please enter a valid ZIP code into the zip code field");
-
-					alert.showAndWait();
-					txtZip.setText("");
-					txtZip.requestFocus();
+				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-')
+						||testZip.length() == 6 &&  isLetter(testZip.charAt(0)) &&  isLetter(testZip.charAt(2)) &&  isLetter(testZip.charAt(4)))){
+					throwAlert("ZIP Code", txtZip);
 				}
 			}
-		}
-				);
-		
-		
+		});
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
 				String testPrice = txtPrice.getText();
@@ -133,28 +112,13 @@ public class NewOrderController implements Initializable {
 						if (txtPrice.getText().charAt(i) == '.') {
 
 							if (txtPrice.getText().substring(i).length() > 3 || txtPrice.getText().charAt(0) == '-') {
-
-								Alert alert = new Alert(AlertType.INFORMATION);
-								alert.setTitle("Invalid Price Format");
-								alert.setHeaderText(null);
-								alert.setContentText("Please enter a valid number into the Price field");
-
-								alert.showAndWait();
-								txtPrice.setText("");
-								txtPrice.requestFocus();
+								throwAlert("Price", txtPrice);
 							}
 						}
 					}
 					Double.parseDouble(testPrice);
 				} catch (NumberFormatException npe) {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Invalid Price Format");
-					alert.setHeaderText(null);
-					alert.setContentText("Please enter a valid number into the Price field");
-
-					alert.showAndWait();
-					txtPrice.setText("");
-					txtPrice.requestFocus();
+					throwAlert("Price", txtPrice);
 				}
 			}
 		});
@@ -168,22 +132,35 @@ public class NewOrderController implements Initializable {
 					}
 				}
 				if (atCount != 1) {
-
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Invalid Email Format");
-					alert.setHeaderText(null);
-					alert.setContentText("Please enter a valid email");
-
-					alert.showAndWait();
-					txtEmail.setText("");
-					txtEmail.requestFocus();
+					throwAlert("Email", txtEmail);
 				}
 			}
-
 		});
-		
-		
-
+	}
+	/**
+	 * Throws an alert for the parameter.
+	 * ex. if "Phone Number" and txtPhone are passed in it will throw a phone number alert and reset the text field
+	 * 
+	 * @param invalidValueName
+	 * @param valueName
+	 * 
+	 */
+	protected void throwAlert(String invalidValueName, TextField valueName){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Invalid "+ invalidValueName);
+		alert.setHeaderText(null);
+		alert.setContentText("Please enter a valid "+invalidValueName+" into the "+invalidValueName+" field");
+		alert.showAndWait();
+		valueName.setText("");
+		valueName.requestFocus();
+	}
+	/**
+	 * Checks if a character is a letter. Similar to isDigit() 
+	 * @param ch
+	 * @return boolean
+	 */
+	protected boolean isLetter(char ch){
+		return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'));
 	}
 
 	/**
@@ -325,5 +302,8 @@ public class NewOrderController implements Initializable {
 		cmbState.setItems(statesList);
 
 	}
+
+
+	
 
 }

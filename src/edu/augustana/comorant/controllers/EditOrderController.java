@@ -85,7 +85,6 @@ public class EditOrderController implements Initializable {
 		System.out.println("Cancel Order!");
 		Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
 		stage.close();
-
 	}
 
 	@Override
@@ -110,9 +109,7 @@ public class EditOrderController implements Initializable {
 					txtPhone.requestFocus();
 				}
 			}
-		}
-				);
-		
+		});
 		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
@@ -127,10 +124,7 @@ public class EditOrderController implements Initializable {
 					txtZip.requestFocus();
 				}
 			}
-		}
-				);
-		
-		
+		});
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
 				String testPrice = txtPrice.getText();
@@ -172,7 +166,6 @@ public class EditOrderController implements Initializable {
 					if (txtEmail.getText().charAt(i) == '@') {
 						atCount++;
 					}
-
 				}
 				if (atCount != 1) {
 
@@ -184,12 +177,9 @@ public class EditOrderController implements Initializable {
 					alert.showAndWait();
 					txtEmail.setText(editedOrder.getEmail() + "");
 					txtEmail.requestFocus();
-
 				}
 			}
-
 		});
-
 	}
 
 	/**
@@ -385,4 +375,23 @@ public class EditOrderController implements Initializable {
 
 	}
 
+	
+	/**
+	 * Throws an alert for the parameter
+	 * ex. if "Phone Number" and txtPhone are passed in it will throw a phone number alert and reset the text field
+	 * 
+	 * @param invalidValueName
+	 * @param valueName
+	 * 
+	 */
+	protected void throwAlert(String invalidValueName, TextField valueName){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Invalid "+ invalidValueName);
+		alert.setHeaderText(null);
+		alert.setContentText("Please enter a valid "+invalidValueName+" into the "+invalidValueName+" field");
+
+		alert.showAndWait();
+		valueName.setText(editedOrder.getPhoneNumber() + "");
+		valueName.requestFocus();
+	}
 }
