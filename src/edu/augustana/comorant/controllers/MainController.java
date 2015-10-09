@@ -283,6 +283,7 @@ public class MainController implements Initializable {
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
 				miDelete.setDisable(true);
+				
 			}
 		});
 

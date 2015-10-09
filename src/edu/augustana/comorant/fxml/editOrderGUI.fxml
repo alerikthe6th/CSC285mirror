@@ -77,7 +77,7 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label text="Zip" />
+                        <Label text="ZIP" />
                         <TextField fx:id="txtZip" />
                      </children>
                   </VBox>

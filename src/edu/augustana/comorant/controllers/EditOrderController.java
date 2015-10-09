@@ -93,6 +93,9 @@ public class EditOrderController implements Initializable {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 		
+		
+		//checks if the input phone number is of 7,10, or 11 digits and ignores dashes.
+		//if invalid phone number entered, reverts back to previous state
 		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtPhone.getText().equals("")){
 				String testPhone = txtPhone.getText();
@@ -113,6 +116,9 @@ public class EditOrderController implements Initializable {
 		}
 				);
 		
+		
+		//checks for a valid ZIP code input
+		//invalid input reverts to previous state filled in the field
 		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
@@ -131,6 +137,8 @@ public class EditOrderController implements Initializable {
 				);
 		
 		
+		//checks if the price if a valid input i.e. no multiple '.', non-negative, or more than 2 decimal places
+		//invalid inputs reverts the field to previous state
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
 				String testPrice = txtPrice.getText();
@@ -165,6 +173,9 @@ public class EditOrderController implements Initializable {
 			}
 		});
 		
+		
+		//checks if the email contains only 1 '@' symbol
+		//reverts to previous state if invalid input was entered
 		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue == true && newValue == false && !txtEmail.getText().equals("")) {
 				int atCount = 0;
