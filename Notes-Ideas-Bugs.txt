@@ -1,0 +1,30 @@
+	price calculator based on what they ordered
+x	cancel/delete order option (possibly make it a button to delete order in the "home" screen?)
+	switch between view current/ view all(incl. complated)
+	make packing slip half page size
+	remove "bill to" on packing slip
+	packing slip to have a fragile warning
+x	make columns fit to screen
+x	delete order next to duplicate (with extra are you sure popup window)
+	on main page make "order status" say "change order status to:"
+
+
+
+x	put '$' label before price text box
+	email & phone are backwards again
+x	autofill current date for order date
+x*	multiple selection
+x	"order date"-->"date ordered"
+x	check for @ in email
+x	check for 7-10 digit phone #
+x	5 or 9 digit zip
+x	dropdown for state
+	round cost to .00
+x	check cost for valid cost
+	option for self-pickup
+	order status dropdown --> dropup
+x	put "recieve texts?" above SMS-enabled
+	make "order completed" also set payment status to "paid"
+	make "order status" dropdown list customizable? (so if someone not a potter uses it)
+	put a 'payment status' dropdown next to order status on main panel
+	
