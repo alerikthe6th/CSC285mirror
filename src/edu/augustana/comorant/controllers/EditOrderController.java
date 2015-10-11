@@ -74,8 +74,6 @@ public class EditOrderController implements Initializable {
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
 	
-	private String placeHolder;
-
 	public EditOrderController() {
 		
 
@@ -166,8 +164,8 @@ public class EditOrderController implements Initializable {
 	 * 
 	 * ~!!STRINGS MUST MATCH EXACTLY!!~
 	 * 
-	 * @param invalidValueName
-	 * @param valueName
+	 * @param invalidValueName - String
+	 * @param valueName - TextField
 	 * 
 	 */
 	protected void throwAlert(String invalidValueName, TextField valueName){
