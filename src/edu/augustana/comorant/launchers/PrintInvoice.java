@@ -1,13 +1,24 @@
 package edu.augustana.comorant.launchers;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
 
 
 //Will need a popup stating that an invoice was created on the user's desktop and they need to open the file and print from there
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
+
+
 
 //will date ordered and date shipped be strings?
 public class PrintInvoice {
@@ -19,12 +30,9 @@ public class PrintInvoice {
 
 		String lines="-----------------------------------";//35 chars - print twice for 70 wide line (easier than 7*10)
 		
-		writer.print(fromName);
-		writer.printf("%"+(70-fromName.length())+"s", "+------+\n");
-		writer.print(fromAdrs);
-		writer.printf("%"+(70-fromAdrs.length())+"s", "+-stamp+\n");
-		writer.print(fromCSZ);
-		writer.printf("%"+(70-fromCSZ.length())+"s", "+------+\n");
+		writer.printf(fromName+"%"+(70-fromName.length())+"s", "+------+\n");
+		writer.printf(fromAdrs+"%"+(70-fromAdrs.length())+"s", "+-stamp+\n");
+		writer.printf(fromCSZ+"%"+(70-fromCSZ.length())+"s", "+------+\n");
 		
 		writer.println("\n\n\n\n");
 		
@@ -43,6 +51,27 @@ public class PrintInvoice {
 		writer.printf("%70s", "Total Cost: "+price+"\n");
 		
 		writer.close();
+	}
+	
+	//used code from: http://www.coderanch.com/t/410208/java/java/java-printing-printing-pdf
+	
+	//DO NOT TEST - LOADS PAPER BUT DOES NOTHING WITH IT
+	protected void printPage(String filePathAndName){
+		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
+	    DocPrintJob printerJob = defaultPrintService.createPrintJob();
+	    File pdfFile = new File(filePathAndName);
+	    SimpleDoc simpleDoc = null;
+	     
+	    try {
+	        simpleDoc = new SimpleDoc(pdfFile.toURI().toURL(), DocFlavor.URL.AUTOSENSE, null);
+	    } catch (MalformedURLException ex) {
+	        ex.printStackTrace();
+	    }
+	    try {
+	        printerJob.print(simpleDoc, null);
+	    } catch (PrintException ex) {
+	        ex.printStackTrace();
+	    }
 	}
 }
 /* original printer
