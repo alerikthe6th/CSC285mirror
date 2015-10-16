@@ -29,5 +29,5 @@ x	put "recieve texts?" above SMS-enabled
 	put a 'payment status' dropdown next to order status on main panel
 	
 x	phone number needs to check for perenthesis (123)-145-7899
-	zip must check for canadian zips A0B1C2
+x	zip must check for canadian zips A0B1C2
 	

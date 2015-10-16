@@ -23,8 +23,8 @@ public class Order {
 	protected StringProperty paymentMethod;
 	protected DoubleProperty price;
 	protected StringProperty priceString;
-	protected StringProperty phoneNumber;
 	protected StringProperty email;
+	protected StringProperty phoneNumber;
 	protected BooleanProperty smsEnabled;
 	protected StringProperty prefContactMethod;
 
@@ -46,8 +46,8 @@ public class Order {
 	 * @param String paymentStatus
 	 * @param String paymentMethod
 	 * @param double price
-	 * @param String phoneNumber
 	 * @param String email
+	 * @param String phoneNumber
 	 * @param boolean smsEnabled
 	 * @param String prefContactMethod
 	 * 
@@ -74,15 +74,15 @@ public class Order {
 	 * @param String paymentStatus
 	 * @param String paymentMethod
 	 * @param double price
-	 * @param String phoneNumber
 	 * @param String email
+	 * @param String phoneNumber
 	 * @param boolean smsEnabled
 	 * @param String prefContactMethod
 	 * 
 	 */
 	public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName,
 			String lastName, String orderDesc, String streetAddress, String city, String state, String zip,
-			String paymentStatus, String paymentMethod, double price, String phoneNumber, String email,
+			String paymentStatus, String paymentMethod, double price,  String email, String phoneNumber,
 			boolean smsEnabled, String prefContactMethod) {
 		this.orderNumber = new SimpleIntegerProperty(orderNumber);
 		this.orderDate = new SimpleObjectProperty<LocalDate>(orderDate);
@@ -103,8 +103,8 @@ public class Order {
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 		String priceStringString = "$" + twoDigitFormat.format(this.price.getValue());
 		this.priceString = new SimpleStringProperty(priceStringString);
-		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
+		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.smsEnabled = new SimpleBooleanProperty(smsEnabled);
 		this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
 	}
