@@ -1,9 +1,7 @@
 package edu.augustana.comorant.controllers;
 
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import edu.augustana.comorant.dataStructures.Order;
@@ -16,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -24,15 +21,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class EditOrderController implements Initializable {
+public class NewOrderByCustomerController implements Initializable {
 
-	Order editedOrder;
 	@FXML
-	private Button btnCancelEdit;
+	private Button btnCancelOrder;
 	@FXML
-	private Button btnSaveEdit;
-	@FXML
-	private Button btnDeleteOrder;
+	private Button btnSaveOrder;
 	@FXML
 	private MainController mainController;
 	@FXML
@@ -73,53 +67,52 @@ public class EditOrderController implements Initializable {
 	private ComboBox<String> cmbPaymentMethod;
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
-	
-	public EditOrderController() {
-		
+
+	public NewOrderByCustomerController() {
 
 	}
 
 	@FXML
-	public void cancelEditButtonPressed(ActionEvent e) {
+	public void cancelOrderButtonPressed(ActionEvent e) {
 		System.out.println("Cancel Order!");
-		Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
+		Stage stage = (Stage) btnCancelOrder.getScene().getWindow();
 		stage.close();
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
+		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 		
-		
 		//checks if the input phone number is of 7,10, or 11 digits and ignores dashes.
-		//if invalid phone number entered, reverts back to previous state
+		//if invalid phone number entered, clears the field
 		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtPhone.getText().equals("")){
 				String testPhone = txtPhone.getText();
 				if (!(testPhone.length() == 7 ||testPhone.length() == 10 ||testPhone.length() == 11 ||//7,10,11 numbers 1234567,1234567890,112345678900
-					(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen 123-4567
-					(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s 123-456-7890
-					(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-')||//11nums and 3 -'s 1-123-456-7890
-					(testPhone.length() == 14 &&testPhone.charAt(0)=='(' &&testPhone.charAt(4)==')' &&testPhone.charAt(5)=='-' &&testPhone.charAt(9)=='-'))){//10 nums 1(,1),2- (123)-456-7890
-					
+				(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen 123-4567
+				(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s 123-456-7890
+				(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-')||//11nums and 3 -'s 1-123-456-7890
+				(testPhone.length() == 14 &&testPhone.charAt(0)=='(' &&testPhone.charAt(4)==')' &&testPhone.charAt(5)=='-' &&testPhone.charAt(9)=='-'))){//10 nums 1(,1),2- (123)-456-7890
 					throwAlert("Phone Number", txtPhone);
 				}
 			}
 		});
+
 		//checks for a valid ZIP code input
-		//invalid input reverts to previous state filled in the field
+		//invalid input clears the field
 		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
 				String testZip = txtZip.getText();
-				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-'))){
-					throwAlert("Zip Code", txtZip);
+				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-')
+						||testZip.length() == 6 &&  isLetter(testZip.charAt(0)) &&  isLetter(testZip.charAt(2)) &&  isLetter(testZip.charAt(4)))){
+					throwAlert("ZIP Code", txtZip);
 				}
 			}
 		});
-
+		
 		//checks if the price if a valid input i.e. no multiple '.', non-negative, or more than 2 decimal places
-		//invalid inputs reverts the field to previous state
+		//invalid input clears the field
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
 				String testPrice = txtPrice.getText();
@@ -138,8 +131,9 @@ public class EditOrderController implements Initializable {
 				}
 			}
 		});
+		
 		//checks if the email contains only 1 '@' symbol
-		//reverts to previous state if invalid input was entered
+		//clears field if empty
 		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue == true && newValue == false && !txtEmail.getText().equals("")) {
 				int atCount = 0;
@@ -149,7 +143,7 @@ public class EditOrderController implements Initializable {
 					}
 				}
 				if (atCount != 1) {
-					throwAlert("Email Address", txtEmail);
+					throwAlert("Email", txtEmail);
 				}
 			}
 		});
@@ -173,15 +167,17 @@ public class EditOrderController implements Initializable {
 		alert.setTitle("Invalid "+ invalidValueName);
 		alert.setHeaderText(null);
 		alert.setContentText("Please enter a valid "+invalidValueName+" into the "+invalidValueName+" field");
-
 		alert.showAndWait();
-		
-		if (invalidValueName.toLowerCase()=="phone number"){valueName.setText(editedOrder.getPhoneNumber() + "");}
-		if (invalidValueName.toLowerCase()=="zip code"){valueName.setText(editedOrder.getZip() + "");}
-		if (invalidValueName.toLowerCase()=="price"){valueName.setText(editedOrder.getPrice() + "");}
-		if (invalidValueName.toLowerCase()=="email address"){valueName.setText(editedOrder.getEmail() + "");}
-		
+		valueName.setText("");
 		valueName.requestFocus();
+	}
+	/**
+	 * Checks if a character is a letter. Similar to isDigit() 
+	 * @param ch
+	 * @return boolean
+	 */
+	protected boolean isLetter(char ch){
+		return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'));
 	}
 
 	/**
@@ -190,33 +186,17 @@ public class EditOrderController implements Initializable {
 	 */
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
+		setOrderNumber();
 	}
 
 	/**
-	 * 
+	 * Finds the largest order number in the list and increments it by one. Sets
+	 * the Order Number textbox to that number
 	 */
-	public void setEditedOrder(Order editedOrder) {
-		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
-		String priceString = twoDigitFormat.format(editedOrder.getPrice());
-		this.editedOrder = editedOrder;
-		txtOrderNumber.setText(editedOrder.getOrderNumber() + "");
-		dtpkOrderDate.setValue(editedOrder.getOrderDate());
-		dtpkDueDate.setValue(editedOrder.getDueDate());
-		cmbOrderStatus.setValue(editedOrder.getStatus());
-		txtOrderDesc.setText(editedOrder.getOrderDesc());
-		txtFirstName.setText(editedOrder.getFirstName());
-		txtLastName.setText(editedOrder.getLastName());
-		txtStreetAddress.setText(editedOrder.getStreetAddress());
-		txtCity.setText(editedOrder.getCity());
-		cmbState.setValue(editedOrder.getState());
-		txtZip.setText(editedOrder.getZip());
-		cmbPaymentStatus.setValue(editedOrder.getPaymentStatus());
-		cmbPaymentMethod.setValue(editedOrder.getPaymentMethod());
-		txtPrice.setText(priceString);
-		txtEmail.setText(editedOrder.getEmail());
-		txtPhone.setText(editedOrder.getPhoneNumber());
-		cmbPrefContactMethod.setValue(editedOrder.getPrefContactMethod());
-		chkSMSEnabled.setSelected(editedOrder.getSmsEnabled());
+	private void setOrderNumber() {
+		String newOrderNumber = (mainController.getLargestOrderNumber() + 1) + "";
+		txtOrderNumber.setText(newOrderNumber);
+		dtpkOrderDate.setValue(LocalDate.now());
 
 	}
 
@@ -273,7 +253,7 @@ public class EditOrderController implements Initializable {
 		if (cmbState.getValue() != null && !cmbState.getValue().trim().isEmpty()) {
 			saveState = cmbState.getValue();
 		}
-		if (txtZip.getText() != null && !txtZip.getText().trim().isEmpty()) {
+		if (txtZip.getText() != null  && !txtZip.getText().trim().isEmpty()) {
 			saveZip = txtZip.getText();
 		}
 		if (cmbPaymentStatus.getValue() != null) {
@@ -295,54 +275,15 @@ public class EditOrderController implements Initializable {
 			savePrefContactMethod = cmbPrefContactMethod.getValue().toString();
 		}
 
-		editedOrder.setOrderDate(saveOrderDate);
-		editedOrder.setDueDate(saveDueDate);
-		editedOrder.setStatus(saveStatus);
-		editedOrder.setFirstName(saveFirstName);
-		editedOrder.setLastName(saveLastName);
-		editedOrder.setOrderDesc(saveOrderDesc);
-		editedOrder.setStreetAddress(saveStreetAddress);
-		editedOrder.setCity(saveCity);
-		editedOrder.setState(saveState);
-		editedOrder.setZip(saveZip);
-		editedOrder.setPaymentStatus(savePaymentStatus);
-		editedOrder.setPaymentMethod(savePaymentMethod);
-		editedOrder.setPrice(savePrice);
-		editedOrder.setEmail(saveEmail);
-		editedOrder.setPhoneNumber(savePhone);
-		editedOrder.setPrefContactMethod(savePrefContactMethod);
-		editedOrder.setSMSEnabled(saveSmsEnabled);
-		//editedOrder.redoShippingAddress();
+		mainController.orderList.add(new Order(saveOrderNumber, saveOrderDate, saveDueDate, saveStatus, saveFirstName,
+				saveLastName, saveOrderDesc, saveStreetAddress, saveCity, saveState, saveZip, savePaymentStatus,
+				savePaymentMethod, savePrice, savePhone, saveEmail, saveSmsEnabled, savePrefContactMethod));
 
 		DataAccess.saveOrders(mainController.orderList);
-		System.out.println("Save Edit!");
-		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
-		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
-		Stage stage = (Stage) btnSaveEdit.getScene().getWindow();
+		System.out.println("Save Order!");
+		Stage stage = (Stage) btnSaveOrder.getScene().getWindow();
 		stage.close();
 
-	}
-	
-	@FXML
-	public void onDeleteButtonPressed(ActionEvent e){
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Delete Order");
-		alert.setHeaderText("This will delete the order from the table.");
-		alert.setContentText("Do you wish to proceed?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK){
-		    mainController.orderList.remove(editedOrder);
-		    alert.close();
-		    DataAccess.saveOrders(mainController.orderList);
-		    System.out.println("Delete Order!");
-		    Stage stage = (Stage) btnDeleteOrder.getScene().getWindow();
-			stage.close();
-		} else {
-		    alert.close();
-		}
-		
-		
 	}
 
 	/**
@@ -380,6 +321,7 @@ public class EditOrderController implements Initializable {
 		cmbState.setItems(statesList);
 
 	}
+
 
 	
 
