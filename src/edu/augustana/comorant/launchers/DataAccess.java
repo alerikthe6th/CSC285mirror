@@ -59,7 +59,7 @@ public class DataAccess {
 						String rsState = customersResultSet.getString("state");
 						String rsZip = customersResultSet.getString("zip");
 						String rsEmail = customersResultSet.getString("email");
-						String rsPhone = customersResultSet.getString("phone");
+						String rsPhone = customersResultSet.getString("phoneNumber");
 						boolean rsSmsEnabled = customersResultSet.getBoolean("smsEnabled");
 						String rsPrefContactMethod = customersResultSet.getString("prefContactMethod");
 						customersList.add(new Customer(rsCustomerNumber, rsFirstName, rsLastName,
@@ -210,7 +210,7 @@ public class DataAccess {
 	
 	private static void createCustomersTable(Connection connection) throws SQLException {
 		PreparedStatement createCustomersTable;
-		String createCustomersTableQuery = "CREATE TABLE IF NOT EXISTS Orders(" + "CustomerNumber INTEGER PRIMARY KEY, "
+		String createCustomersTableQuery = "CREATE TABLE IF NOT EXISTS Customers(" + "customerNumber INTEGER PRIMARY KEY, "
 				+ " firstName TEXT, " + " lastName TEXT, " + " streetAddress TEXT, " + " city TEXT, " + " state TEXT, "
 				+ " zip TEXT, " + " phoneNumber TEXT, " + " email TEXT, " + " prefContactMethod TEXT, " + " smsEnabled INTEGER);";
 
@@ -260,10 +260,10 @@ public class DataAccess {
 
 				String insertOrderQuery = "INSERT INTO Orders("
 						+ "orderNumber, orderDate, dueDate, status, orderDesc, "
-						+ ", paymentStatus, paymentMethod, price, customerID)"
+						+ "paymentStatus, paymentMethod, price, customerID)"
 						+ " VALUES(?, ?, ?, ?, ?, "
 						+ "?, ?, ?, ?);";
-				//System.out.println(insertOrderQuery);
+				System.out.println(insertOrderQuery);
 				PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
 				insertOrder.setString(1, orderNumber + "");
 				insertOrder.setString(2, orderDate);
@@ -299,7 +299,7 @@ public class DataAccess {
 	/**Save a list of orders to the database. Overwrites all data with new data
 	 * @param ObservableList<Order> */
 	public static void saveCustomers(ObservableList<Customer> customersList) {
-		MainController.saving.set(true);
+
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
@@ -335,25 +335,26 @@ public class DataAccess {
 					smsEnabledInt = 1;
 				String prefContactMethod = customer.getPrefContactMethod();
 
-				String insertOrderQuery = "INSERT INTO Orders("
+				String insertCustomersQuery = "INSERT INTO Customers("
 						+ "customerNumber, firstName, lastName, streetAddress, city, "
-						+ ", state, zip, phone, email, smsEnabled, prefContactMethod)"
+						+ "state, zip, phoneNumber, email, smsEnabled, prefContactMethod)"
 						+ " VALUES(?, ?, ?, ?, ?, "
 						+ "?, ?, ?, ?, ? ,?);";
-				//System.out.println(insertOrderQuery);
-				PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
-				insertOrder.setString(1, customerNumber + "");
-				insertOrder.setString(2, firstName);
-				insertOrder.setString(3, lastName);
-				insertOrder.setString(4, streetAddress);
-				insertOrder.setString(5, city);
-				insertOrder.setString(6, state);
-				insertOrder.setString(7, zip);
-				insertOrder.setString(8, phone);
-				insertOrder.setString(9, email);
-				insertOrder.setString(10, smsEnabledInt+"");
-				insertOrder.setString(11, prefContactMethod);
-				insertOrder.executeUpdate();
+				System.out.println(insertCustomersQuery);
+				PreparedStatement insertCustomer = connection.prepareStatement(insertCustomersQuery);
+				System.out.println("SAve customer statement prepared");
+				insertCustomer.setString(1, customerNumber + "");
+				insertCustomer.setString(2, firstName);
+				insertCustomer.setString(3, lastName);
+				insertCustomer.setString(4, streetAddress);
+				insertCustomer.setString(5, city);
+				insertCustomer.setString(6, state);
+				insertCustomer.setString(7, zip);
+				insertCustomer.setString(8, phone);
+				insertCustomer.setString(9, email);
+				insertCustomer.setString(10, smsEnabledInt+"");
+				insertCustomer.setString(11, prefContactMethod);
+				insertCustomer.executeUpdate();
 
 			}
 
@@ -362,7 +363,7 @@ public class DataAccess {
 			e.printStackTrace();
 		} finally{
 			System.out.println("List Saved!");
-			hideSavingLabel();
+			//hideSavingLabel();
 			
 			try {
 				if (connection != null)

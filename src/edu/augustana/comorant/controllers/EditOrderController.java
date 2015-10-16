@@ -332,9 +332,22 @@ public class EditOrderController implements Initializable {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){
-		    mainController.orderList.remove(editedOrder);
+			boolean customerHasOtherOrder = false;
+			for(Order order : mainController.orderList){
+				if(editedOrder.getCustomerNumber() == order.getCustomerNumber() && editedOrder.getOrderNumber() != order.getOrderNumber()){
+					customerHasOtherOrder = true;
+					break;
+				}
+			}
+			if(!customerHasOtherOrder){
+				mainController.customerList.remove(editedOrder.getCustomer());
+				System.out.println("Delete Customer!");
+				
+			}
+			mainController.orderList.remove(editedOrder);
 		    alert.close();
 		    DataAccess.saveOrders(mainController.orderList);
+		    DataAccess.saveCustomers(mainController.customerList);
 		    System.out.println("Delete Order!");
 		    Stage stage = (Stage) btnDeleteOrder.getScene().getWindow();
 			stage.close();

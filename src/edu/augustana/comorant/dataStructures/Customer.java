@@ -1,4 +1,6 @@
 package edu.augustana.comorant.dataStructures;
+import java.text.DecimalFormat;
+
 import javafx.beans.property.*;
 
 public class Customer {
@@ -17,6 +19,9 @@ public class Customer {
 	protected StringProperty email;
 	protected StringProperty prefContactMethod;
 	protected BooleanProperty smsEnabled;
+	
+	protected StringProperty fullName;
+	protected StringProperty balance;
 	
 	/**
 	 * Constructor with some initial data.	
@@ -42,6 +47,7 @@ public class Customer {
 		this.customerNumber = new SimpleIntegerProperty(customerNumber);
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
+		this.fullName = new SimpleStringProperty(firstName + " " + lastName);
 		this.streetAddress = new SimpleStringProperty(streetAddress);
 		this.city = new SimpleStringProperty(city);
 		this.state = new SimpleStringProperty(state);
@@ -53,6 +59,7 @@ public class Customer {
 		this.email = new SimpleStringProperty(email);
 		this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
 		this.smsEnabled = new SimpleBooleanProperty(smsEnabled);
+		this.balance = new SimpleStringProperty("");
 	}
 	
 	//field accessors
@@ -181,7 +188,12 @@ public class Customer {
 	public BooleanProperty smsEnabledProperty() {
 		return smsEnabled;
 	}
-	
+	public StringProperty fullNameProperty(){
+		return fullName;
+	}
+	public StringProperty balanceProperty(){
+		return balance;
+	}
 	
 	//field mutators
 	public void setcustomerNumber(int customerNumber){
@@ -190,10 +202,12 @@ public class Customer {
 	/**Sets the customer's first name*/
 	public void setFirstName(String firstName) {
 		this.firstName.set(firstName);
+		this.fullName.set(this.firstName + " " + this.lastName);
 	}
 	/**Sets the customer's last name*/
 	public void setLastName(String lastName) {
 		this.lastName.set(lastName);
+		this.fullName.set(this.firstName + " " + this.lastName);
 	}
 	/**Sets the customer's order description*/
 	//public void setOrderDesc(String status) {
@@ -202,18 +216,22 @@ public class Customer {
 	/**Sets the customer's street address*/
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress.set(streetAddress);
+		resetFullAddress();
 	}
 	/**Sets the customer's city*/
 	public void setCity(String city) {
 		this.city.set(city);
+		resetFullAddress();
 	}
 	/**Sets the customer's state*/
 	public void setState(String state) {
 		this.state.set(state);
+		resetFullAddress();
 	}
 	/**Sets the customer's zip code*/
 	public void setZip(String zip) {
 		this.zip.set(zip);
+		resetFullAddress();
 	}
 	/**Sets the customer's payment method*/
 	//public void setPaymentMethod(String paymentMethod) {
@@ -232,9 +250,21 @@ public class Customer {
 		this.prefContactMethod.set(prefContactMethod);
 	}
 	/**Sets the customer's SMS Enabled*/
-	public void setPrefContactMethod(boolean newSmsEnabled) {
+	public void setSmsEnabled(boolean newSmsEnabled) {
 		this.smsEnabled.set(newSmsEnabled);
 	}
+	
+	public void setBalance(double balance){
+		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+		String balanceString = "$" + twoDigitFormat.format(balance);
+		this.balance.set(balanceString);
+	}
+	
+	public void resetFullAddress(){
+		this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+	}
+
+	
 
 
 

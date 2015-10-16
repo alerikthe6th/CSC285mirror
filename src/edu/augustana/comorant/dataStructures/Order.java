@@ -201,6 +201,9 @@ public class Order {
 	public int getCustomerNumber() {
 		return theCustomer.getCustomerNumber();
 	}
+	public Customer getCustomer(){
+		return theCustomer;
+	}
 	
 	
 	//property accessors

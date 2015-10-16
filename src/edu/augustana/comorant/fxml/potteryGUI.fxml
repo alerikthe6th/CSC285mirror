@@ -130,18 +130,18 @@
                                                 <Insets />
                                              </VBox.margin>
                                           </HBox>
-                                          <TableView layoutX="137.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                                          <TableView fx:id="tblCustomers" layoutX="137.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                              <columns>
-                                                <TableColumn prefWidth="93.0" text="Name" />
-                                                <TableColumn prefWidth="104.0" text="Street Address" />
-                                                <TableColumn prefWidth="46.0" text="City" />
-                                                <TableColumn prefWidth="75.0" text="State" />
-                                                <TableColumn prefWidth="75.0" text="ZIP" />
-                                                <TableColumn prefWidth="75.0" text="Phone" />
-                                                <TableColumn prefWidth="100.0" text="Email" />
-                                                <TableColumn prefWidth="67.0" text="Balance Due" />
-                                                <TableColumn prefWidth="121.0" text="Text Messaging Enabled" />
-                                                <TableColumn prefWidth="75.0" text="Preferred Contact Method" />
+                                                <TableColumn fx:id="clmCustName" prefWidth="93.0" text="Name" />
+                                                <TableColumn fx:id="clmCustStreetAddress" prefWidth="104.0" text="Street Address" />
+                                                <TableColumn fx:id="clmCustCity" prefWidth="46.0" text="City" />
+                                                <TableColumn fx:id="clmCustState" prefWidth="75.0" text="State" />
+                                                <TableColumn fx:id="clmCustZip" prefWidth="75.0" text="ZIP" />
+                                                <TableColumn fx:id="clmCustPhone" prefWidth="75.0" text="Phone" />
+                                                <TableColumn fx:id="clmCustEmail" prefWidth="100.0" text="Email" />
+                                                <TableColumn fx:id="clmCustBalance" prefWidth="67.0" text="Balance Due" />
+                                                <TableColumn fx:id="clmCustSmsEnabled" prefWidth="121.0" text="Text Messaging Enabled" />
+                                                <TableColumn fx:id="clmCustPrefContactMethod" prefWidth="75.0" text="Preferred Contact Method" />
                                              </columns>
                                              <padding>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class NewOrderController implements Initializable {
@@ -69,6 +70,9 @@ public class NewOrderController implements Initializable {
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
 
+	private Customer matchedCustomer = null;
+	boolean usingMatchedCustomer = false;
+
 	public NewOrderController() {
 
 	}
@@ -84,36 +88,56 @@ public class NewOrderController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
-		
-		//checks if the input phone number is of 7,10, or 11 digits and ignores dashes.
-		//if invalid phone number entered, clears the field
-		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) ->{
-			if(oldValue&& !newValue&& !txtPhone.getText().equals("")){
+
+		// checks if the input phone number is of 7,10, or 11 digits and ignores
+		// dashes.
+		// if invalid phone number entered, clears the field
+		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if (oldValue && !newValue && !txtPhone.getText().equals("")) {
 				String testPhone = txtPhone.getText();
-				if (!(testPhone.length() == 7 ||testPhone.length() == 10 ||testPhone.length() == 11 ||//7,10,11 numbers 1234567,1234567890,112345678900
-				(testPhone.length() == 8 &&testPhone.charAt(3)=='-')||//7nums and a hyphen 123-4567
-				(testPhone.length() == 12 &&testPhone.charAt(3)=='-' &&testPhone.charAt(7)=='-' )||//10nums and 2 -'s 123-456-7890
-				(testPhone.length() == 14 &&testPhone.charAt(1)=='-' &&testPhone.charAt(9)=='-' &&testPhone.charAt(9)=='-')||//11nums and 3 -'s 1-123-456-7890
-				(testPhone.length() == 14 &&testPhone.charAt(0)=='(' &&testPhone.charAt(4)==')' &&testPhone.charAt(5)=='-' &&testPhone.charAt(9)=='-'))){//10 nums 1(,1),2- (123)-456-7890
+				if (!(testPhone.length() == 7 || testPhone.length() == 10 || testPhone.length() == 11 || // 7,10,11
+																											// numbers
+																											// 1234567,1234567890,112345678900
+						(testPhone.length() == 8 && testPhone.charAt(3) == '-') || // 7nums
+																					// and
+																					// a
+																					// hyphen
+																					// 123-4567
+						(testPhone.length() == 12 && testPhone.charAt(3) == '-' && testPhone.charAt(7) == '-') || // 10nums
+																													// and
+																													// 2
+																													// -'s
+																													// 123-456-7890
+						(testPhone.length() == 14 && testPhone.charAt(1) == '-' && testPhone.charAt(9) == '-'
+								&& testPhone.charAt(9) == '-')
+						|| // 11nums and 3 -'s 1-123-456-7890
+						(testPhone.length() == 14 && testPhone.charAt(0) == '(' && testPhone.charAt(4) == ')'
+								&& testPhone.charAt(5) == '-' && testPhone.charAt(9) == '-'))) {// 10
+																								// nums
+																								// 1(,1),2-
+																								// (123)-456-7890
 					throwAlert("Phone Number", txtPhone);
 				}
 			}
 		});
 
-		//checks for a valid ZIP code input
-		//invalid input clears the field
-		txtZip.focusedProperty().addListener((observable, oldValue, newValue) ->{
-			if(oldValue&& !newValue&& !txtZip.getText().equals("")){
+		// checks for a valid ZIP code input
+		// invalid input clears the field
+		txtZip.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if (oldValue && !newValue && !txtZip.getText().equals("")) {
 				String testZip = txtZip.getText();
-				if (!(testZip.length() == 5 ||testZip.length() == 9 ||(testZip.length() == 10 &&testZip.charAt(5)=='-')
-						||testZip.length() == 6 &&  isLetter(testZip.charAt(0)) &&  isLetter(testZip.charAt(2)) &&  isLetter(testZip.charAt(4)))){
+				if (!(testZip.length() == 5 || testZip.length() == 9
+						|| (testZip.length() == 10 && testZip.charAt(5) == '-')
+						|| testZip.length() == 6 && isLetter(testZip.charAt(0)) && isLetter(testZip.charAt(2))
+								&& isLetter(testZip.charAt(4)))) {
 					throwAlert("ZIP Code", txtZip);
 				}
 			}
 		});
-		
-		//checks if the price if a valid input i.e. no multiple '.', non-negative, or more than 2 decimal places
-		//invalid input clears the field
+
+		// checks if the price if a valid input i.e. no multiple '.',
+		// non-negative, or more than 2 decimal places
+		// invalid input clears the field
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
 				String testPrice = txtPrice.getText();
@@ -132,9 +156,9 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
-		
-		//checks if the email contains only 1 '@' symbol
-		//clears field if empty
+
+		// checks if the email contains only 1 '@' symbol
+		// clears field if empty
 		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue == true && newValue == false && !txtEmail.getText().equals("")) {
 				int atCount = 0;
@@ -148,36 +172,46 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
+		
+		txtFirstName.textProperty().addListener((observable, oldValue, newValue) -> {
+			matchNameToCustomer();
+		});
+		
+		txtLastName.textProperty().addListener((observable, oldValue, newValue) -> {
+			matchNameToCustomer();
+		});
 	}
+
 	/**
-	 * Throws an alert for the parameters given. 
-	 * Available combinations are: 
-	 * "Phone Number" and txtPhone - 
-	 * "Zip Code" and txtZip - 
-	 * "Price" and txtPrice - 
-	 * "Email Address" and txtEmail - 
+	 * Throws an alert for the parameters given. Available combinations are:
+	 * "Phone Number" and txtPhone - "Zip Code" and txtZip - "Price" and
+	 * txtPrice - "Email Address" and txtEmail -
 	 * 
 	 * ~!!STRINGS MUST MATCH EXACTLY!!~
 	 * 
-	 * @param invalidValueName - String
-	 * @param valueName - TextField
+	 * @param invalidValueName
+	 *            - String
+	 * @param valueName
+	 *            - TextField
 	 * 
 	 */
-	protected void throwAlert(String invalidValueName, TextField valueName){
+	protected void throwAlert(String invalidValueName, TextField valueName) {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Invalid "+ invalidValueName);
+		alert.setTitle("Invalid " + invalidValueName);
 		alert.setHeaderText(null);
-		alert.setContentText("Please enter a valid "+invalidValueName+" into the "+invalidValueName+" field");
+		alert.setContentText("Please enter a valid " + invalidValueName + " into the " + invalidValueName + " field");
 		alert.showAndWait();
 		valueName.setText("");
 		valueName.requestFocus();
 	}
+
 	/**
-	 * Checks if a character is a letter. Similar to isDigit() 
+	 * Checks if a character is a letter. Similar to isDigit()
+	 * 
 	 * @param ch
 	 * @return boolean
 	 */
-	protected boolean isLetter(char ch){
+	protected boolean isLetter(char ch) {
 		return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'));
 	}
 
@@ -254,7 +288,7 @@ public class NewOrderController implements Initializable {
 		if (cmbState.getValue() != null && !cmbState.getValue().trim().isEmpty()) {
 			saveState = cmbState.getValue();
 		}
-		if (txtZip.getText() != null  && !txtZip.getText().trim().isEmpty()) {
+		if (txtZip.getText() != null && !txtZip.getText().trim().isEmpty()) {
 			saveZip = txtZip.getText();
 		}
 		if (cmbPaymentStatus.getValue() != null) {
@@ -275,20 +309,38 @@ public class NewOrderController implements Initializable {
 		if (cmbPrefContactMethod.getValue() != null) {
 			savePrefContactMethod = cmbPrefContactMethod.getValue().toString();
 		}
-		
-		Customer newCustomer = new Customer((mainController.getLargestCustomerNumber() + 1), saveFirstName, saveLastName,
-				saveStreetAddress, saveCity, saveState, saveZip, savePhone, saveEmail, savePrefContactMethod, saveSmsEnabled);
-		
-		mainController.customerList.add(newCustomer);
-		
-		mainController.orderList.add(new Order(newCustomer, saveOrderNumber, saveOrderDate, saveDueDate, saveStatus, 
-				saveOrderDesc, savePaymentStatus,
-				savePaymentMethod, savePrice));
 
-		
+		Customer newCustomer = null;
+		if (usingMatchedCustomer) {
+			newCustomer = matchedCustomer;
+			newCustomer.setStreetAddress(saveStreetAddress);
+			newCustomer.setCity(saveCity);
+			newCustomer.setState(saveState);
+			newCustomer.setZip(saveZip);
+			newCustomer.setPhoneNumber(savePhone);
+			newCustomer.setEmail(saveEmail);
+			newCustomer.setPrefContactMethod(savePrefContactMethod);
+			newCustomer.setSmsEnabled(saveSmsEnabled);
+
+		} else {
+
+			newCustomer = new Customer((mainController.getLargestCustomerNumber() + 1), saveFirstName, saveLastName,
+					saveStreetAddress, saveCity, saveState, saveZip, savePhone, saveEmail, savePrefContactMethod,
+					saveSmsEnabled);
+			mainController.customerList.add(newCustomer);
+		}
+
+		Order newOrder = new Order(newCustomer, saveOrderNumber, saveOrderDate, saveDueDate, saveStatus,
+				saveOrderDesc, savePaymentStatus, savePaymentMethod, savePrice);
+
+		mainController.orderList.add(newOrder);
+
+
 		DataAccess.saveCustomers(mainController.customerList);
 		DataAccess.saveOrders(mainController.orderList);
+
 		
+
 		System.out.println("Save Order!");
 		Stage stage = (Stage) btnSaveOrder.getScene().getWindow();
 		stage.close();
@@ -317,21 +369,56 @@ public class NewOrderController implements Initializable {
 		// set payment method
 		ObservableList<String> contactOptions = FXCollections.observableArrayList("Email", "Phone", "Text");
 		cmbPrefContactMethod.setItems(contactOptions);
-		
-		ObservableList<String> statesList = FXCollections.observableArrayList("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-				"Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas",
-				"Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
-				"Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
-				"New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
-				"Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
-				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "District of Columbia",
-				 "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", 
-				 "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan");
+
+		ObservableList<String> statesList = FXCollections.observableArrayList("Alabama", "Alaska", "Arizona",
+				"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii",
+				"Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+				"Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+				"New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
+				"Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee",
+				"Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming",
+				"District of Columbia", "Alberta", "British Columbia", "Manitoba", "New Brunswick",
+				"Newfoundland and Labrador", "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec",
+				"Saskatchewan");
 		cmbState.setItems(statesList);
 
 	}
 
+	@FXML
+	public void matchNameToCustomer() {
+		String firstName = txtFirstName.getText();
+		String lastName = txtLastName.getText();
+		System.out.println(firstName + " " + lastName);
 
+		for (Customer customer : mainController.customerList) {
+			if (customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName)) {
+				matchedCustomer = customer;
+				btnAutoFill.setDisable(false);
+				break;
+			}
+			matchedCustomer = null;
+			usingMatchedCustomer = false;
+			btnAutoFill.setDisable(true);
+		}
+
+	}
 	
+	
+
+	@FXML
+	public void onAutoFill(ActionEvent e) {
+		if (matchedCustomer != null) {
+			txtStreetAddress.setText(matchedCustomer.getStreetAddress());
+			txtCity.setText(matchedCustomer.getCity());
+			cmbState.setValue(matchedCustomer.getState());
+			txtZip.setText(matchedCustomer.getZip());
+			txtEmail.setText(matchedCustomer.getEmail());
+			txtPhone.setText(matchedCustomer.getPhoneNumber());
+			cmbPrefContactMethod.setValue(matchedCustomer.getPrefContactMethod());
+			chkSMSEnabled.setSelected(matchedCustomer.getSMSEnabled());
+
+			usingMatchedCustomer = true;
+		}
+	}
 
 }

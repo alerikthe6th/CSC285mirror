@@ -50,7 +50,7 @@
             <TextField fx:id="txtLastName" />
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="btnAutoFill" alignment="CENTER" disable="true" mnemonicParsing="false" text="AutoFill from Previous Order" textAlignment="CENTER" />
+                  <Button fx:id="btnAutoFill" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#onAutoFill" text="AutoFill from Previous Order" textAlignment="CENTER" />
                </children>
             </HBox>
          </children>

@@ -78,7 +78,7 @@ public class MainController implements Initializable {
 	@FXML
 	private ComboBox<String> cmbOrderFilters;
 	@FXML
-	private TableView<Order> tblOrders;
+	protected TableView<Order> tblOrders;
 	@FXML
 	private TableColumn<Order, Number> clmOrderNumber;
 	@FXML
@@ -109,6 +109,32 @@ public class MainController implements Initializable {
 	private TableColumn<Order, Boolean> clmSMSEnabled;
 	@FXML
 	private TableColumn<Order, String> clmPrefContactMethod;
+	
+	
+	@FXML
+	private TableView<Customer> tblCustomers;
+	@FXML
+	private TableColumn<Customer, String> clmCustName;
+	@FXML
+	private TableColumn<Customer, String> clmCustStreetAddress;
+	@FXML
+	private TableColumn<Customer, String> clmCustCity;
+	@FXML
+	private TableColumn<Customer, String> clmCustState;
+	@FXML
+	private TableColumn<Customer, String> clmCustZip;
+	@FXML
+	private TableColumn<Customer, String> clmCustPhone;
+	@FXML
+	private TableColumn<Customer, String> clmCustEmail;
+	@FXML
+	private TableColumn<Customer, String> clmCustBalance;
+	@FXML
+	private TableColumn<Customer, Boolean> clmCustSmsEnabled;
+	@FXML
+	private TableColumn<Customer, String> clmCustPrefContactMethod;
+	
+	
 	@FXML
 	private Label lblSaving;
 	@FXML
@@ -249,7 +275,19 @@ public class MainController implements Initializable {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK) {
+			
+			boolean customerHasOtherOrder = false;
+			for(Order order : orderList){
+				if(selectedOrder.getCustomerNumber() == order.getCustomerNumber() && selectedOrder.getOrderNumber() != order.getOrderNumber()){
+					customerHasOtherOrder = true;
+					break;
+				}
+			}
+			if(!customerHasOtherOrder){
+				customerList.remove(selectedOrder.getCustomer());
+			}
 			orderList.remove(selectedOrder);
+			
 			// selectedOrder = null;
 			alert.close();
 			DataAccess.saveOrders(orderList);
@@ -502,6 +540,20 @@ public class MainController implements Initializable {
 		clmPrefContactMethod.setCellValueFactory(cellData -> cellData.getValue().prefContactMethodProperty());
 
 		tblOrders.setItems(sortedOrders);
+		
+		
+		clmCustName.setCellValueFactory(cellData -> cellData.getValue().fullNameProperty());
+		clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().streetAddressProperty());
+		clmCustCity.setCellValueFactory(cellData -> cellData.getValue().cityProperty());
+		clmCustState.setCellValueFactory(cellData -> cellData.getValue().stateProperty());
+		clmCustZip.setCellValueFactory(cellData -> cellData.getValue().zipProperty());
+		clmCustPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
+		clmCustEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+		clmCustBalance.setCellValueFactory(cellData -> cellData.getValue().balanceProperty());
+		clmCustSmsEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledProperty());
+		clmCustPrefContactMethod.setCellValueFactory(cellData -> cellData.getValue().prefContactMethodProperty());
+		
+		tblCustomers.setItems(customerList);
 	}
 
 	/**
