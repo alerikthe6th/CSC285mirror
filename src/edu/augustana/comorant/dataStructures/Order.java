@@ -24,10 +24,12 @@ public class Order {
 	protected StringProperty paymentMethod;
 	protected DoubleProperty price;
 	protected StringProperty priceString;
+
 	//protected StringProperty phoneNumber;
 	//protected StringProperty email;
 	//protected BooleanProperty smsEnabled;
 	//protected StringProperty prefContactMethod;
+
 
 	/**
 	 * Default constructor.
@@ -47,8 +49,8 @@ public class Order {
 	 * @param String paymentStatus
 	 * @param String paymentMethod
 	 * @param double price
-	 * @param String phoneNumber
 	 * @param String email
+	 * @param String phoneNumber
 	 * @param boolean smsEnabled
 	 * @param String prefContactMethod
 	 * 
@@ -73,15 +75,17 @@ public class Order {
 	 * @param String paymentStatus
 	 * @param String paymentMethod
 	 * @param double price
-	 * @param String phoneNumber
 	 * @param String email
+	 * @param String phoneNumber
 	 * @param boolean smsEnabled
 	 * @param String prefContactMethod
 	 * 
 	 */
+
 	public Order(Customer customer, int orderNumber, LocalDate orderDate, LocalDate dueDate, String status,
 			 String orderDesc,String paymentStatus, String paymentMethod, double price) {
 		this.theCustomer = customer;
+
 		this.orderNumber = new SimpleIntegerProperty(orderNumber);
 		this.orderDate = new SimpleObjectProperty<LocalDate>(orderDate);
 		this.dueDate = new SimpleObjectProperty<LocalDate>(dueDate);
@@ -94,7 +98,7 @@ public class Order {
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 		String priceStringString = "$" + twoDigitFormat.format(this.price.getValue());
 		this.priceString = new SimpleStringProperty(priceStringString);
-		
+
 	}
 
 	

@@ -21,66 +21,70 @@ import javax.print.SimpleDoc;
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
 
-//will date ordered and date shipped be strings?
+//will date ordered be a string?
 public class PrintInvoice {
 	/*
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
-		createInvoice("C:/Users/Joseph/Desktop/PrintOut.doc", "Firsty Lastname", "123 Main Street", "New York, NY 12345",
-		//createInvoice("C:/Users/josephgodfrey14/Desktop/PrintOut.doc", "Firsty Lastname", "123 Main Street", "New York, NY 12345", 
-				"John Cena", "123 JCena St.", "Cena WY, 54321", "Oct 13 2015", "12 Pots, 6 Plates, and one giant hug", 
+		createInvoice("Firsty Lastname", "123 Main Street", null, "New York, NY 12345",
+				"John Cena", "123 JCena St.", null, "Cena WY, 54321", "Oct 13 2015", "12 Pots, 6 Plates, and one giant hug", 
 				12.56, "Credit Card");
-		//printPage("C:/Users/josephgodfrey14/Desktop/PrintOut.doc");
+		//printPage();
 	}
 	*/
 	/**
-	 * 
-	 * @param saveToDesktopString - String; ex: "C:/Users/Joseph/Desktop/PrintOut.doc"
 	 * @param fromName - String; ex: "Firsty Lastname"
-	 * @param fromAdrs - String; ex: "123 Main Street"
+	 * @param fromAdrsLine1 - String; ex: "P.O. Box 772"
+	 * @param fromAdrsLine2 - String; ex: "123 Main Street" - leave null or empty if nothing
 	 * @param fromCSZ - String; ex: "New York, NY 12345"
 	 * @param custName - String; ex: "John Q. Customer"
-	 * @param custAdrs - String; ex: "1755 John Cena Boulevard"
+	 * @param custAdrsLine1 - String; ex: "C/o John Cena College" 
+	 * @param custAdrsLine2 - String; ex: "P.O. Box 772"- leave null or empty if nothing
 	 * @param custCSZ - String; ex: "New York, NY 12345"
 	 * @param dateOrdered - String; ex: "October 12, 2015"
-	 * @param dateShipped - String; ex: "October 12, 2015"
 	 * @param orderDesc - String; ex: "12 Pots, 6 Plates, and a big hug"
 	 * @param price - double; ex: 12.34
 	 * @param paymentMethod - String; ex: "Credit Card"
 	 * @throws FileNotFoundException only thrown if the filepath is incorrect
 	 * @throws UnsupportedEncodingException when the URL(filepath) of the file has invalid characters
 	 */
-	protected void createInvoice(String saveToDesktopString, String fromName, String fromAdrs, String fromCSZ, String custName, String custAdrs,
-		String custCSZ, String dateOrdered, String orderDesc, double price, String paymentMethod)
+	protected void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
+		String custAdrsLine1, String custAdrsLine2, String custCSZ, String dateOrdered, String orderDesc, double price, String paymentMethod)
 		throws FileNotFoundException, UnsupportedEncodingException{
 		
-		DateFormat dateFormat = new SimpleDateFormat("dd/MMMM/yyyy");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MMMM/yyyy");//10/15/2015
 		Date date = new Date();
-		String currentDate = (dateFormat.format(date)).toString(); //10/15/2015
+		String currentDate = (dateFormat.format(date)).toString();
 		
-		PrintWriter writer = new PrintWriter(saveToDesktopString, "UTF-8");
+		
+		PrintWriter writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.txt"), "UTF-8");
 
 		String lines="-----------------------------------";//35 chars - print twice for 70 wide line (easier than 7*10)
 		
 
 		writer.printf(fromName+"%"+(70-fromName.length())+"s", "+------+");//don't use \n here: it messes up the formatting
 		writer.println();
-		writer.printf(fromAdrs+"%"+(70-fromAdrs.length())+"s", "+-stamp+");//or here
+		writer.printf(fromAdrsLine1+"%"+(70-fromAdrsLine1.length())+"s", "+-stamp+");//or here
 		writer.println();
+		if("" != fromAdrsLine2 && null != fromAdrsLine2){//is there a second address line?
+			writer.printf(fromAdrsLine2+"%"+(70-fromAdrsLine2.length())+"s", "+------+");//or here
+			writer.println();
+		}
 		writer.printf(fromCSZ+"%"+(70-fromCSZ.length())+"s", "+------+");//or here either
 		writer.println();
 		
 		writer.println("\n\n\n\n");//5 return
 	
 		writer.println("\t\t\t\t\t"+custName);
-		writer.println("\t\t\t\t\t"+custAdrs);
+		writer.println("\t\t\t\t\t"+custAdrsLine1);
+		if("" != custAdrsLine2 && null != custAdrsLine2){//is there a second address line?
+			writer.println("\t\t\t\t\t"+custAdrsLine2);
+		}
 		writer.println("\t\t\t\t\t"+custCSZ+"\n");
 				
 		writer.println("\n\n\n\n"+lines+lines+"\n\n\n\n");//4 returns, a horizontal line and then 5 returns
 		
 		writer.println("Order Details:\n");
 		
-//		writer.println("\tDate Ordered:\t" +dateOrdered+"\t\tDate Shipped:\t"+dateShipped +"\n\n");
-		writer.println("\tDate Ordered:\t" +dateOrdered+"\t\tDate Shipped:\t"+currentDate +"\n\n");
 		writer.println("\tDate Ordered:\t" +dateOrdered+"\t\tDate Shipped:\t"+currentDate +"\n\n");
 		writer.println("\tItems Ordered:\n\t" +orderDesc +"\n\n\n");
 		writer.println("\tPaid With:\n\t" +paymentMethod+"\n");
@@ -98,10 +102,10 @@ public class PrintInvoice {
 	 * Takes in a filepath and name (in one string) and prints the target file
 	 * @param filePathAndName - String; ex: "C:/Users/Joseph/Desktop/PrintOut.doc"
 	 */
-	protected void printPage(String filePathAndName){
-		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
+	protected void printPage(){
+		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();//gets default printer so it knows where to send it to
 	    DocPrintJob printerJob = defaultPrintService.createPrintJob();
-	    File pdfFile = new File(filePathAndName);
+	    File pdfFile = new File((""+System.getProperty("user.dir")+"/PrintOut.txt"));
 	    SimpleDoc simpleDoc = null;
 	     
 	    try {
@@ -116,61 +120,3 @@ public class PrintInvoice {
 	    }
 	}
 }
-/* original printer
- 
-  	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
-		PrintWriter writer = new PrintWriter("C:/Users/Joseph/Desktop/PrintOut.doc", "UTF-8");
-		String compName = "Company Name";
-		String compAdrs = "123 Main Street";
-		String compCSZ = "New York, NY 12345";
-		String custName = "Customer Name";
-		String custAdrs = "1234 Customer Boulevard";
-		String custCSZ = "MiddleOfNowhere, IA, 52253";
-		
-		String dateOrdered = "10/13/2015";//will this be a string?
-		String dateShipped = "10/21/2015";//^Ditto^
-		String orderDesc = "12 pots, 6 plates and one giant hug";
-		double price = 69.69;
-		String paymentMethod = "Credit Card";
-		
-		
-		
-		String lines="-----------------------------------";//35 chars
-		
-		
-		writer.print(compName);
-		writer.printf("%"+(70-compName.length())+"s", "+------+\n");
-		writer.print(compAdrs);
-		writer.printf("%"+(70-compAdrs.length())+"s", "+-stamp+\n");
-		writer.print(compCSZ);
-		writer.printf("%"+(70-compCSZ.length())+"s", "+------+\n");
-		
-		writer.println("\n\n\n\n");
-		
-		writer.println("\t\t\t\t\t"+custName);
-		writer.println("\t\t\t\t\t"+custAdrs);
-		writer.println("\t\t\t\t\t"+custCSZ+"\n");
-		
-		writer.println("\n\n\n\n"+lines+lines+"\n\n\n\n");
-		
-		writer.println("Order Details:\n");
-		
-		writer.println("\tDate Ordered:\t" +dateOrdered+"\t\tDate Shipped:\t"+dateShipped+"\n");
-		writer.println("\n\tItems Ordered:\n\t" +orderDesc+"\n\n");
-		writer.println("\n\tPaid With:\n\t" +paymentMethod+"\n");
-		
-		writer.printf("%70s", "Total Cost: "+price+"\n");
-		
-		
-		
-		writer.println("\n\n\n\n\n\n");
-		
-		
-		
-		writer.close();
-	}
-*/
- 
-
-
-

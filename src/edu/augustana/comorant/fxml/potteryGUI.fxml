@@ -155,9 +155,8 @@
                                  <children>
                                     <HBox alignment="CENTER" layoutY="-33.0" prefHeight="34.0" prefWidth="638.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="New Order by Customer" />
+                                          <Button fx:id="btnNewOrderByCustomer" mnemonicParsing="false" onAction="#newOrderByCustomerPressed" text="New Order by Customer" />
                                           <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" text="Edit Customer" />
-                                          <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="102.0" text="View Customer" />
                                           <Region HBox.hgrow="ALWAYS" />
                                        </children>
                                        <padding>

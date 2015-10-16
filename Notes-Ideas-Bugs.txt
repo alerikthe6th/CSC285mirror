@@ -1,6 +1,6 @@
 	price calculator based on what they ordered
 x	cancel/delete order option (possibly make it a button to delete order in the "home" screen?)
-	switch between view current/ view all(incl. complated)
+	switch between view current/ view all(including completed)
 	make packing slip half page size
 	remove "bill to" on packing slip
 	packing slip to have a fragile warning
@@ -11,7 +11,7 @@ x	delete order next to duplicate (with extra are you sure popup window)
 
 
 x	put '$' label before price text box
-	email & phone are backwards again
+x	email & phone are backwards again
 x	autofill current date for order date
 x*	multiple selection
 x	"order date"-->"date ordered"
@@ -29,5 +29,5 @@ x	put "recieve texts?" above SMS-enabled
 	put a 'payment status' dropdown next to order status on main panel
 	
 x	phone number needs to check for perenthesis (123)-145-7899
-	zip must check for canadian zips A0B1C2
+x	zip must check for canadian zips A0B1C2
 	
