@@ -21,7 +21,7 @@ import javax.print.SimpleDoc;
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
 
-//will date ordered and date shipped be strings?
+//will date ordered be a string?
 public class PrintInvoice {
 	/*
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
@@ -42,7 +42,6 @@ public class PrintInvoice {
 	 * @param custAdrs - String; ex: "1755 John Cena Boulevard"
 	 * @param custCSZ - String; ex: "New York, NY 12345"
 	 * @param dateOrdered - String; ex: "October 12, 2015"
-	 * @param dateShipped - String; ex: "October 12, 2015"
 	 * @param orderDesc - String; ex: "12 Pots, 6 Plates, and a big hug"
 	 * @param price - double; ex: 12.34
 	 * @param paymentMethod - String; ex: "Credit Card"
@@ -116,61 +115,3 @@ public class PrintInvoice {
 	    }
 	}
 }
-/* original printer
- 
-  	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
-		PrintWriter writer = new PrintWriter("C:/Users/Joseph/Desktop/PrintOut.doc", "UTF-8");
-		String compName = "Company Name";
-		String compAdrs = "123 Main Street";
-		String compCSZ = "New York, NY 12345";
-		String custName = "Customer Name";
-		String custAdrs = "1234 Customer Boulevard";
-		String custCSZ = "MiddleOfNowhere, IA, 52253";
-		
-		String dateOrdered = "10/13/2015";//will this be a string?
-		String dateShipped = "10/21/2015";//^Ditto^
-		String orderDesc = "12 pots, 6 plates and one giant hug";
-		double price = 69.69;
-		String paymentMethod = "Credit Card";
-		
-		
-		
-		String lines="-----------------------------------";//35 chars
-		
-		
-		writer.print(compName);
-		writer.printf("%"+(70-compName.length())+"s", "+------+\n");
-		writer.print(compAdrs);
-		writer.printf("%"+(70-compAdrs.length())+"s", "+-stamp+\n");
-		writer.print(compCSZ);
-		writer.printf("%"+(70-compCSZ.length())+"s", "+------+\n");
-		
-		writer.println("\n\n\n\n");
-		
-		writer.println("\t\t\t\t\t"+custName);
-		writer.println("\t\t\t\t\t"+custAdrs);
-		writer.println("\t\t\t\t\t"+custCSZ+"\n");
-		
-		writer.println("\n\n\n\n"+lines+lines+"\n\n\n\n");
-		
-		writer.println("Order Details:\n");
-		
-		writer.println("\tDate Ordered:\t" +dateOrdered+"\t\tDate Shipped:\t"+dateShipped+"\n");
-		writer.println("\n\tItems Ordered:\n\t" +orderDesc+"\n\n");
-		writer.println("\n\tPaid With:\n\t" +paymentMethod+"\n");
-		
-		writer.printf("%70s", "Total Cost: "+price+"\n");
-		
-		
-		
-		writer.println("\n\n\n\n\n\n");
-		
-		
-		
-		writer.close();
-	}
-*/
- 
-
-
-
