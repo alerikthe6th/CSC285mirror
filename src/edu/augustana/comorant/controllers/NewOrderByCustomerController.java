@@ -4,6 +4,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import edu.augustana.comorant.dataStructures.Customer;
 import edu.augustana.comorant.dataStructures.Order;
 import edu.augustana.comorant.launchers.DataAccess;
 import javafx.collections.FXCollections;
@@ -275,11 +276,19 @@ public class NewOrderByCustomerController implements Initializable {
 			savePrefContactMethod = cmbPrefContactMethod.getValue().toString();
 		}
 
-		mainController.orderList.add(new Order(saveOrderNumber, saveOrderDate, saveDueDate, saveStatus, saveFirstName,
-				saveLastName, saveOrderDesc, saveStreetAddress, saveCity, saveState, saveZip, savePaymentStatus,
-				savePaymentMethod, savePrice, savePhone, saveEmail, saveSmsEnabled, savePrefContactMethod));
+		Customer newCustomer = new Customer((mainController.getLargestCustomerNumber() + 1), saveFirstName, saveLastName,
+				saveStreetAddress, saveCity, saveState, saveZip, savePhone, saveEmail, savePrefContactMethod, saveSmsEnabled);
+		
+		mainController.customerList.add(newCustomer);
+		
+		mainController.orderList.add(new Order(newCustomer, saveOrderNumber, saveOrderDate, saveDueDate, saveStatus, 
+				saveOrderDesc, savePaymentStatus,
+				savePaymentMethod, savePrice));
 
+		
+		DataAccess.saveCustomers(mainController.customerList);
 		DataAccess.saveOrders(mainController.orderList);
+		
 		System.out.println("Save Order!");
 		Stage stage = (Stage) btnSaveOrder.getScene().getWindow();
 		stage.close();
