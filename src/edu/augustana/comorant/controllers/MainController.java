@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import edu.augustana.comorant.dataStructures.Customer;
 import edu.augustana.comorant.dataStructures.Order;
 import edu.augustana.comorant.launchers.DataAccess;
 import edu.augustana.comorant.launchers.MainApp;
@@ -108,8 +109,9 @@ public class MainController implements Initializable {
 	protected CheckBox chkCompletedOrders;
 
 	protected ObservableList<Order> orderList = FXCollections.observableArrayList();
+	protected ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
-	protected Order selectedOrder = new Order();
+	protected Order selectedOrder = null;
 	SortedList<Order> sortedOrders = null;
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
@@ -261,7 +263,8 @@ public class MainController implements Initializable {
 		
 		cmbOrderStatus.setDisable(true);
 
-		orderList = DataAccess.loadOrders();
+		customerList = DataAccess.loadCustomers();
+		orderList = DataAccess.loadOrders(customerList);
 		sortedOrders = wrapOrdersList();
 
 		sortedOrders.comparatorProperty().bind(tblOrders.comparatorProperty());
@@ -501,6 +504,18 @@ public class MainController implements Initializable {
 			orderNumberList.add(new Integer(order.getOrderNumber()));
 		}
 		return Collections.max(orderNumberList);
+	}
+	
+	
+	protected int getLargestCustomerNumber() {
+		ArrayList<Integer> customerNumberList = new ArrayList<Integer>();
+		if (customerList.size() == 0) {
+			return 0;
+		}
+		for (Customer customer : customerList) {
+			customerNumberList.add(new Integer(customer.getCustomerNumber()));
+		}
+		return Collections.max(customerNumberList);
 	}
 
 }

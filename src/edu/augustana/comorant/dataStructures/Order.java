@@ -7,26 +7,27 @@ import java.time.LocalDate;
 import javafx.beans.property.*;
 
 public class Order {
+	protected Customer theCustomer;
 	protected IntegerProperty orderNumber;
 	protected ObjectProperty<LocalDate> orderDate;
 	protected ObjectProperty<LocalDate> dueDate;
 	protected StringProperty status;
-	protected StringProperty firstName;
-	protected StringProperty lastName;
+	//protected StringProperty firstName;
+	//protected StringProperty lastName;
 	protected StringProperty orderDesc;
-	protected StringProperty fullAddress;
-	protected StringProperty streetAddress;
-	protected StringProperty city;
-	protected StringProperty state;
-	protected StringProperty zip;
+	//protected StringProperty fullAddress;
+	//protected StringProperty streetAddress;
+	//protected StringProperty city;
+	//protected StringProperty state;
+	//protected StringProperty zip;
 	protected StringProperty paymentStatus;
 	protected StringProperty paymentMethod;
 	protected DoubleProperty price;
 	protected StringProperty priceString;
-	protected StringProperty phoneNumber;
-	protected StringProperty email;
-	protected BooleanProperty smsEnabled;
-	protected StringProperty prefContactMethod;
+	//protected StringProperty phoneNumber;
+	//protected StringProperty email;
+	//protected BooleanProperty smsEnabled;
+	//protected StringProperty prefContactMethod;
 
 	/**
 	 * Default constructor.
@@ -52,9 +53,7 @@ public class Order {
 	 * @param String prefContactMethod
 	 * 
 	 */
-	public Order() {
-		this(0, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, false, null);
-	}
+	
 
 	/**
 	 * Constructor with some initial data.	
@@ -80,33 +79,22 @@ public class Order {
 	 * @param String prefContactMethod
 	 * 
 	 */
-	public Order(int orderNumber, LocalDate orderDate, LocalDate dueDate, String status, String firstName,
-			String lastName, String orderDesc, String streetAddress, String city, String state, String zip,
-			String paymentStatus, String paymentMethod, double price, String phoneNumber, String email,
-			boolean smsEnabled, String prefContactMethod) {
+	public Order(Customer customer, int orderNumber, LocalDate orderDate, LocalDate dueDate, String status,
+			 String orderDesc,String paymentStatus, String paymentMethod, double price) {
+		this.theCustomer = customer;
 		this.orderNumber = new SimpleIntegerProperty(orderNumber);
 		this.orderDate = new SimpleObjectProperty<LocalDate>(orderDate);
 		this.dueDate = new SimpleObjectProperty<LocalDate>(dueDate);
 		this.status = new SimpleStringProperty(status);
 		this.orderDesc = new SimpleStringProperty(orderDesc);
-		this.firstName = new SimpleStringProperty(firstName);
-		this.lastName = new SimpleStringProperty(lastName);
-		this.streetAddress = new SimpleStringProperty(streetAddress);
-		this.city = new SimpleStringProperty(city);
-		this.state = new SimpleStringProperty(state);
-		this.zip = new SimpleStringProperty(zip);
-		this.fullAddress = new SimpleStringProperty(
-				this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
+		
 		this.paymentStatus = new SimpleStringProperty(paymentStatus);
 		this.paymentMethod = new SimpleStringProperty(paymentMethod);
 		this.price = new SimpleDoubleProperty(price);
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 		String priceStringString = "$" + twoDigitFormat.format(this.price.getValue());
 		this.priceString = new SimpleStringProperty(priceStringString);
-		this.phoneNumber = new SimpleStringProperty(phoneNumber);
-		this.email = new SimpleStringProperty(email);
-		this.smsEnabled = new SimpleBooleanProperty(smsEnabled);
-		this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
+		
 	}
 
 	
@@ -129,12 +117,12 @@ public class Order {
 	/**Returns the order's first name
 	 * @return String */
 	public String getFirstName() {
-		return firstName.get();
+		return theCustomer.getFirstName();
 	}
 	/**Returns the order's last name
 	 * @return String */
 	public String getLastName() {
-		return lastName.get();
+		return theCustomer.getLastName();
 	}
 	/**Returns the order's status 
 	 * @return String */
@@ -149,27 +137,27 @@ public class Order {
 	/**Returns the order's street address 
 	 * @return String */
 	public String getStreetAddress() {
-		return streetAddress.get();
+		return theCustomer.getStreetAddress();
 	}
 	/**Returns the order's city 
 	 * @return String */
 	public String getCity() {
-		return city.get();
+		return theCustomer.getCity();
 	}
 	/**Returns the order's state 
 	 * @return String */
 	public String getState() {
-		return state.get();
+		return theCustomer.getState();
 	}
 	/**Returns the order's zip code 
 	 * @return String */
 	public String getZip() {
-		return zip.get();
+		return theCustomer.getZip();
 	}
 	/**Returns the order's shipping address
 	 * @return String */
 	public String getFullAddress() {
-		return fullAddress.get();
+		return theCustomer.getFullAddress();
 	}
 	/**Returns the order's payment status 
 	 * @return String */
@@ -179,7 +167,7 @@ public class Order {
 	/**Returns the order's email address 
 	 * @return String */
 	public String getEmail() {
-		return email.get();
+		return theCustomer.getEmail();
 	}
 	/**Returns the order's price 
 	 * @return double */
@@ -189,7 +177,7 @@ public class Order {
 	/**Returns the order's phone number
 	 * @return String */
 	public String getPhoneNumber() {
-		return phoneNumber.get();
+		return theCustomer.getPhoneNumber();
 	}
 	/**Returns the order's payment method 
 	 * @return String */
@@ -199,12 +187,15 @@ public class Order {
 	/**Returns whether the order is SMS enabled or not 
 	 * @return boolean */
 	public boolean getSmsEnabled() {
-		return smsEnabled.get();
+		return theCustomer.getSMSEnabled();
 	}
 	/**Returns the order's preferred contact method
 	 * @return String */
 	public String getPrefContactMethod() {
-		return prefContactMethod.get();
+		return theCustomer.getPrefContactMethod();
+	}
+	public int getCustomerNumber() {
+		return theCustomer.getCustomerNumber();
 	}
 	
 	
@@ -223,11 +214,11 @@ public class Order {
 	}
 	/**@return StringProperty*/
 	public StringProperty firstNameProperty() {
-		return firstName;
+		return theCustomer.firstNameProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty lastNameProperty() {
-		return lastName;
+		return theCustomer.lastNameProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty statusProperty() {
@@ -239,23 +230,23 @@ public class Order {
 	}
 	/**@return StringProperty*/
 	public StringProperty streetAddressProperty() {
-		return streetAddress;
+		return theCustomer.streetAddressProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty cityProperty() {
-		return city;
+		return theCustomer.cityProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty stateProperty() {
-		return state;
+		return theCustomer.stateProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty zipProperty() {
-		return zip;
+		return theCustomer.zipProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty fullAddressProperty() {
-		return fullAddress;
+		return theCustomer.fullAddressProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty paymentStatusProperty() {
@@ -271,19 +262,19 @@ public class Order {
 	}
 	/**@return StringProperty*/
 	public StringProperty phoneNumberProperty() {
-		return phoneNumber;
+		return theCustomer.phoneNumberProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty emailProperty() {
-		return email;
+		return theCustomer.emailProperty();
 	}
 	/**@return BooleanProperty*/
 	public BooleanProperty smsEnabledProperty() {
-		return smsEnabled;
+		return theCustomer.smsEnabledProperty();
 	}
 	/**@return StringProperty*/
 	public StringProperty prefContactMethodProperty() {
-		return prefContactMethod;
+		return theCustomer.prefContactMethodProperty();
 	}
 	/**@return SimpleStringProperty*/
 	public StringProperty smsEnabledStringProperty() {
@@ -314,11 +305,11 @@ public class Order {
 	}
 	/**Sets the order's first name*/
 	public void setFirstName(String firstName) {
-		this.firstName.set(firstName);
+		theCustomer.firstName.set(firstName);
 	}
 	/**Sets the order's last name*/
 	public void setLastName(String lastName) {
-		this.lastName.set(lastName);
+		theCustomer.lastName.set(lastName);
 	}
 	/**Sets the order's status*/
 	public void setStatus(String status) {
@@ -330,17 +321,17 @@ public class Order {
 	}
 	/**Sets the order's street address*/
 	public void setStreetAddress(String streetAddress) {
-		this.streetAddress.set(streetAddress);
+		theCustomer.streetAddress.set(streetAddress);
 		redoShippingAddress();
 	}
 	/**Sets the order's city*/
 	public void setCity(String city) {
-		this.city.set(city);
+		theCustomer.city.set(city);
 		redoShippingAddress();
 	}
 	/**Sets the order's state*/
 	public void setState(String state) {
-		this.state.set(state);
+		theCustomer.state.set(state);
 		redoShippingAddress();
 	}
 	/**Sets the order's payment status*/
@@ -349,7 +340,7 @@ public class Order {
 	}
 	/**Sets the order's zip code*/
 	public void setZip(String zip) {
-		this.zip.set(zip);
+		theCustomer.zip.set(zip);
 		redoShippingAddress();
 	}
 	/**Sets the order's payment method*/
@@ -365,23 +356,23 @@ public class Order {
 	}
 	/**Sets the order's phone number*/
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber.set(phoneNumber);
+		theCustomer.phoneNumber.set(phoneNumber);
 	}
 	/**Sets the order's email address*/
 	public void setEmail(String email) {
-		this.email.set(email);
+		theCustomer.email.set(email);
 	}
 	/**Sets whether the order is SMS enabled or not */
 	public void setSMSEnabled(boolean smsEnabled) {
-		this.smsEnabled.set(smsEnabled);
+		theCustomer.smsEnabled.set(smsEnabled);
 	}
 	/**Sets the order's preferred contact method*/
 	public void setPrefContactMethod(String prefContactMethod) {
-		this.prefContactMethod.set(prefContactMethod);
+		theCustomer.prefContactMethod.set(prefContactMethod);
 	}
 	/**Updates the order's full shipping address*/
 	public void redoShippingAddress() {
-		this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
+		theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
 	}
 	
 

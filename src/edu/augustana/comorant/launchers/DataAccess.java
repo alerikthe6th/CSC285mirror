@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 
 import edu.augustana.comorant.controllers.MainController;
+import edu.augustana.comorant.dataStructures.Customer;
 import edu.augustana.comorant.dataStructures.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,10 +21,82 @@ public class DataAccess {
 
 	}
 
+	
+	
+	public static ObservableList<Customer> loadCustomers(){
+		// load the sqlite-JDBC driver using the current class loader
+				try {
+					Class.forName("org.sqlite.JDBC");
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				Connection connection = null;
+
+				PreparedStatement getCustomers = null;
+				ObservableList<Customer> customersList = FXCollections.observableArrayList();
+				try {
+					// create a database connection
+					connection = DriverManager.getConnection("jdbc:sqlite:Pottery.db");
+
+
+					Statement statement = connection.createStatement();
+					statement.setQueryTimeout(30); // set timeout to 30 sec.
+
+
+					createCustomersTable(connection);
+					// Get all orders from Orders table
+					String customersQuery = "SELECT * FROM Customers";
+					getCustomers = connection.prepareStatement(customersQuery);
+					ResultSet customersResultSet = getCustomers.executeQuery();
+					while (customersResultSet.next()) {
+						int rsCustomerNumber = customersResultSet.getInt("customerNumber");
+						String rsFirstName = customersResultSet.getString("firstName");
+						String rsLastName = customersResultSet.getString("lastName");
+						String rsStreetAddress = customersResultSet.getString("streetAddress");
+						String rsCity = customersResultSet.getString("city");
+						String rsState = customersResultSet.getString("state");
+						String rsZip = customersResultSet.getString("zip");
+						String rsEmail = customersResultSet.getString("email");
+						String rsPhone = customersResultSet.getString("phone");
+						boolean rsSmsEnabled = customersResultSet.getBoolean("smsEnabled");
+						String rsPrefContactMethod = customersResultSet.getString("prefContactMethod");
+						customersList.add(new Customer(rsCustomerNumber, rsFirstName, rsLastName,
+								rsStreetAddress, rsCity, rsState, rsZip,
+								rsPhone, rsEmail, rsPrefContactMethod, rsSmsEnabled));
+					}
+
+				} catch (
+
+				SQLException e)
+
+				{
+					// if the error message is "out of memory",
+					// it probably means no database file is found
+					System.err.println(e.getMessage());
+				} finally
+
+				{
+
+					try {
+						if (connection != null)
+							connection.close();
+					} catch (SQLException e) {
+						// connection close failed.
+						System.err.println(e);
+					}
+				}
+				return customersList;
+		
+	}
+	
+	
+	
 	/**Returns the list of orders loaded from the database
 	 * MainController's orderList should be set equal to the returned list at launch
 	 * @return ObservableList<Order> */
-	public static ObservableList<Order> loadOrders() {
+	public static ObservableList<Order> loadOrders(ObservableList<Customer> customersList) {
 
 		// load the sqlite-JDBC driver using the current class loader
 		try {
@@ -82,29 +155,24 @@ public class DataAccess {
 			// DateTimeFormatter sqlFormatter =
 			// DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MM:SS.SSS");
 			while (ordersResultSet.next()) {
+				int customerNumber = ordersResultSet.getInt("customerID");
+				Customer rsCustomer = null;
+				for(Customer thisCustomer : customersList){
+					if(thisCustomer.getCustomerNumber() == customerNumber){
+						rsCustomer = thisCustomer;
+						break;
+					}
+				}
 				int rsOrderNumber = ordersResultSet.getInt("orderNumber");
 				LocalDate rsOrderDate = LocalDate.parse(ordersResultSet.getString("orderDate"));
 				LocalDate rsDueDate = LocalDate.parse(ordersResultSet.getString("dueDate"));
 				String rsStatus = ordersResultSet.getString("status");
-				String rsFirstName = ordersResultSet.getString("firstName");
-				String rsLastName = ordersResultSet.getString("lastName");
 				String rsOrderDesc = ordersResultSet.getString("orderDesc");
-				// String rsShippingAddress =
-				// ordersResultSet.getString("shippingAddress");
-				String rsStreetAddress = ordersResultSet.getString("streetAddress");
-				String rsCity = ordersResultSet.getString("city");
-				String rsState = ordersResultSet.getString("state");
-				String rsZip = ordersResultSet.getString("zip");
 				String rsPaymentStatus = ordersResultSet.getString("paymentStatus");
 				String rsPaymentMethod = ordersResultSet.getString("paymentMethod");
 				double rsPrice = ordersResultSet.getDouble("price");
-				String rsEmail = ordersResultSet.getString("email");
-				String rsPhone = ordersResultSet.getString("phone");
-				boolean rsSmsEnabled = ordersResultSet.getBoolean("smsEnabled");
-				String rsPrefContactMethod = ordersResultSet.getString("prefContactMethod");
-				ordersList.add(new Order(rsOrderNumber, rsOrderDate, rsDueDate, rsStatus, rsFirstName, rsLastName,
-						rsOrderDesc, rsStreetAddress, rsCity, rsState, rsZip, rsPaymentStatus, rsPaymentMethod, rsPrice,
-						rsEmail, rsPhone, rsSmsEnabled, rsPrefContactMethod));
+				ordersList.add(new Order(rsCustomer, rsOrderNumber, rsOrderDate, rsDueDate, rsStatus,
+						rsOrderDesc, rsPaymentStatus, rsPaymentMethod, rsPrice));
 			}
 
 		} catch (
@@ -133,14 +201,21 @@ public class DataAccess {
 	private static void createOrdersTable(Connection connection) throws SQLException {
 		PreparedStatement createOrdersTable;
 		String createOrdersTableQuery = "CREATE TABLE IF NOT EXISTS Orders(" + "orderNumber INTEGER PRIMARY KEY, "
-				+ " orderDate TEXT, " + " dueDate TEXT, " + " status TEXT, " + " firstName TEXT, "
-				+ " lastName TEXT, " + " orderDesc TEXT, " + " shippingAddress TEXT, " + " streetAddress TEXT, "
-				+ " city TEXT, " + " state TEXT, " + " zip TEXT, " + " paymentStatus TEXT, "
-				+ " paymentMethod TEXT, " + " price REAL, " + " email TEXT, " + " phone TEXT, "
-				+ " smsEnabled INTEGER, " + " prefContactMethod TEXT);";
+				+ " orderDate TEXT, " + " dueDate TEXT, " + " status TEXT, " + " orderDesc TEXT, " + " paymentStatus TEXT, "
+				+ " paymentMethod TEXT, " + " price REAL, " + " customerID INTEGER);";
 
 		createOrdersTable = connection.prepareStatement(createOrdersTableQuery);
 		createOrdersTable.executeUpdate();
+	}
+	
+	private static void createCustomersTable(Connection connection) throws SQLException {
+		PreparedStatement createCustomersTable;
+		String createCustomersTableQuery = "CREATE TABLE IF NOT EXISTS Orders(" + "CustomerNumber INTEGER PRIMARY KEY, "
+				+ " firstName TEXT, " + " lastName TEXT, " + " streetAddress TEXT, " + " city TEXT, " + " state TEXT, "
+				+ " zip TEXT, " + " phoneNumber TEXT, " + " email TEXT, " + " prefContactMethod TEXT, " + " smsEnabled INTEGER);";
+
+		createCustomersTable = connection.prepareStatement(createCustomersTableQuery);
+		createCustomersTable.executeUpdate();
 	}
 
 	/**Save a list of orders to the database. Overwrites all data with new data
@@ -170,52 +245,35 @@ public class DataAccess {
 				String orderDate = order.getOrderDate().toString();
 				String dueDate = order.getDueDate().toString();
 				String status = order.getStatus();
-				String firstName = order.getFirstName();
-				String lastName = order.getLastName();
 				String orderDesc = order.getOrderDesc();
-				// String rsShippingAddress =
-				// ordersResultSet.getString("shippingAddress");
-				String streetAddress = order.getStreetAddress();
-				String city = order.getCity();
-				String state = order.getState();
-				String zip = order.getZip();
 				String paymentStatus = order.getPaymentStatus();
 				String paymentMethod = order.getPaymentMethod();
 				double price = order.getPrice();
-				String email = order.getEmail();
-				String phone = order.getPhoneNumber();
-				boolean smsEnabled = order.getSmsEnabled();
-				int smsEnabledInt = 0;
-				if (smsEnabled)
-					smsEnabledInt = 1;
-				String prefContactMethod = order.getPrefContactMethod();
+				int customerNumber = order.getCustomerNumber();
+				//String email = order.getEmail();
+				//String phone = order.getPhoneNumber();
+				//boolean smsEnabled = order.getSmsEnabled();
+				//int smsEnabledInt = 0;
+				//if (smsEnabled)
+					//smsEnabledInt = 1;
+				//String prefContactMethod = order.getPrefContactMethod();
 
 				String insertOrderQuery = "INSERT INTO Orders("
-						+ "orderNumber, orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
-						+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
+						+ "orderNumber, orderDate, dueDate, status, orderDesc, "
+						+ ", paymentStatus, paymentMethod, price, customerID)"
 						+ " VALUES(?, ?, ?, ?, ?, "
-						+ "?, ?, ?, ?, ?, ?, ?, "
-						+ "?, ?, ?, ?, ?, ?);";
+						+ "?, ?, ?, ?);";
 				//System.out.println(insertOrderQuery);
 				PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
 				insertOrder.setString(1, orderNumber + "");
 				insertOrder.setString(2, orderDate);
 				insertOrder.setString(3, dueDate);
 				insertOrder.setString(4, status);
-				insertOrder.setString(5, firstName);
-				insertOrder.setString(6, lastName);
-				insertOrder.setString(7, orderDesc);
-				insertOrder.setString(8, streetAddress);
-				insertOrder.setString(9, city);
-				insertOrder.setString(10, state);
-				insertOrder.setString(11, zip);
-				insertOrder.setString(12, paymentStatus);
-				insertOrder.setString(13, paymentMethod);
-				insertOrder.setString(14, price+"");
-				insertOrder.setString(15, email);
-				insertOrder.setString(16, phone);
-				insertOrder.setString(17, smsEnabledInt + "");
-				insertOrder.setString(18, prefContactMethod);
+				insertOrder.setString(5, orderDesc);
+				insertOrder.setString(6, paymentStatus);
+				insertOrder.setString(7, paymentMethod);
+				insertOrder.setString(8, price+"");
+				insertOrder.setString(9, customerNumber+"");
 				insertOrder.executeUpdate();
 
 			}
@@ -237,6 +295,93 @@ public class DataAccess {
 		}
 
 	}
+	
+	/**Save a list of orders to the database. Overwrites all data with new data
+	 * @param ObservableList<Order> */
+	public static void saveCustomers(ObservableList<Customer> customersList) {
+		MainController.saving.set(true);
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Connection connection = null;
+
+		// connection.setAutoCommit(false);
+		Statement statement;
+		try {
+			connection = DriverManager.getConnection("jdbc:sqlite:Pottery.db");
+			statement = connection.createStatement();
+			statement.setQueryTimeout(30); // set timeout to 30 sec.
+
+			dropOldCustomers(connection);
+
+			for (Customer customer : customersList) {
+				int customerNumber = customer.getCustomerNumber();
+				String firstName = customer.getFirstName();
+				String lastName = customer.getLastName();
+				String streetAddress = customer.getStreetAddress();
+				String city = customer.getCity();
+				String state = customer.getState();
+				String zip = customer.getZip();
+				String phone = customer.getPhoneNumber();
+				String email = customer.getEmail();
+
+				boolean smsEnabled = customer.getSMSEnabled();
+				int smsEnabledInt = 0;
+				if (smsEnabled)
+					smsEnabledInt = 1;
+				String prefContactMethod = customer.getPrefContactMethod();
+
+				String insertOrderQuery = "INSERT INTO Orders("
+						+ "customerNumber, firstName, lastName, streetAddress, city, "
+						+ ", state, zip, phone, email, smsEnabled, prefContactMethod)"
+						+ " VALUES(?, ?, ?, ?, ?, "
+						+ "?, ?, ?, ?, ? ,?);";
+				//System.out.println(insertOrderQuery);
+				PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
+				insertOrder.setString(1, customerNumber + "");
+				insertOrder.setString(2, firstName);
+				insertOrder.setString(3, lastName);
+				insertOrder.setString(4, streetAddress);
+				insertOrder.setString(5, city);
+				insertOrder.setString(6, state);
+				insertOrder.setString(7, zip);
+				insertOrder.setString(8, phone);
+				insertOrder.setString(9, email);
+				insertOrder.setString(10, smsEnabledInt+"");
+				insertOrder.setString(11, prefContactMethod);
+				insertOrder.executeUpdate();
+
+			}
+
+		} catch (SQLException e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			System.out.println("List Saved!");
+			hideSavingLabel();
+			
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				// connection close failed.
+				System.err.println(e);
+			}
+		}
+
+	}
+
+	private static void dropOldCustomers(Connection connection) throws SQLException {
+		String dropOldDataQuery = "DELETE FROM customers;";
+		PreparedStatement dropOldData = connection.prepareStatement(dropOldDataQuery);
+		dropOldData.executeUpdate();
+	}
+
+
 
 	private static void dropOldOrders(Connection connection) throws SQLException {
 		String dropOldDataQuery = "DELETE FROM Orders;";

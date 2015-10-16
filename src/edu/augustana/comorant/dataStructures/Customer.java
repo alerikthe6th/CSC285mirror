@@ -3,18 +3,20 @@ import javafx.beans.property.*;
 
 public class Customer {
 	
+	protected IntegerProperty customerNumber;
 	protected StringProperty firstName;
 	protected StringProperty lastName;
-	protected StringProperty orderDesc;
+	//protected StringProperty orderDesc;
 	protected StringProperty fullAddress;
 	protected StringProperty streetAddress;
 	protected StringProperty city;
 	protected StringProperty state;
 	protected StringProperty zip;
-	protected StringProperty paymentMethod;
+	//protected StringProperty paymentMethod;
 	protected StringProperty phoneNumber;
 	protected StringProperty email;
 	protected StringProperty prefContactMethod;
+	protected BooleanProperty smsEnabled;
 	
 	/**
 	 * Constructor with some initial data.	
@@ -33,11 +35,11 @@ public class Customer {
 	 * @param String prefContactMethod
 	 * 
 	 */
-	public Customer(String firstName, String lastName, String orderDesc, String streetAddress, 
-			String city, String state, String zip, String paymentMethod, 
-			String phoneNumber, String email, String prefContactMethod) {
+	public Customer(int customerNumber, String firstName, String lastName, String streetAddress, 
+			String city, String state, String zip,
+			String phoneNumber, String email, String prefContactMethod, boolean smsEnabled) {
 		
-		this.orderDesc = new SimpleStringProperty(orderDesc);
+		this.customerNumber = new SimpleIntegerProperty(customerNumber);
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
 		this.streetAddress = new SimpleStringProperty(streetAddress);
@@ -46,13 +48,17 @@ public class Customer {
 		this.zip = new SimpleStringProperty(zip);
 		this.fullAddress = new SimpleStringProperty(
 				this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
-		this.paymentMethod = new SimpleStringProperty(paymentMethod);
+		//this.paymentMethod = new SimpleStringProperty(paymentMethod);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
 		this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
+		this.smsEnabled = new SimpleBooleanProperty(smsEnabled);
 	}
 	
 	//field accessors
+	public int getCustomerNumber(){
+		return customerNumber.get();
+	}
 	/**Returns the customer's first name 
 	 * @return String */
 	public String getFirstName() {
@@ -65,9 +71,9 @@ public class Customer {
 	}
 	/**Returns the customer's order description 
 	 * @return String */
-	public String getOrderDesc() {
-		return orderDesc.get();
-	}
+	//public String getOrderDesc() {
+		//return orderDesc.get();
+	//}
 	/**Returns the customer's street address 
 	 * @return String */
 	public String getStreetAddress() {
@@ -90,9 +96,9 @@ public class Customer {
 	}
 	/**Returns the customer's payment method 
 	 * @return String */
-	public String getPaymentMethod() {
-		return paymentMethod.get();
-	}
+	//public String getPaymentMethod() {
+		//return paymentMethod.get();
+	//}
 	/**Returns the customer's phone number 
 	 * @return String */
 	public String getPhoneNumber() {
@@ -113,9 +119,17 @@ public class Customer {
 	public String getEmail() {
 		return email.get();
 	}
+	/**Returns the customer's email address
+	 * @return String */
+	public boolean getSMSEnabled() {
+		return smsEnabled.get();
+	}
 	
 	
 	//property accessors
+	public IntegerProperty customerNumberProperty() {
+		return customerNumber;
+	}
 	/**@return StringProperty*/
 	public StringProperty firstNameProperty() {
 		return firstName;
@@ -125,9 +139,9 @@ public class Customer {
 		return lastName;
 	}
 	/**@return StringProperty*/
-	public StringProperty orderDescProperty() {
-		return orderDesc;
-	}
+	//public StringProperty orderDescProperty() {
+		//return orderDesc;
+	//}
 	/**@return StringProperty*/
 	public StringProperty streetAddressProperty() {
 		return streetAddress;
@@ -149,9 +163,9 @@ public class Customer {
 		return fullAddress;
 	}
 	/**@return StringProperty*/
-	public StringProperty paymentMethodProperty() {
-		return paymentMethod;
-	}
+	//public StringProperty paymentMethodProperty() {
+		//return paymentMethod;
+	//}
 	/**@return StringProperty*/
 	public StringProperty phoneNumberProperty() {
 		return phoneNumber;
@@ -164,9 +178,15 @@ public class Customer {
 	public StringProperty prefContactMethodProperty() {
 		return prefContactMethod;
 	}
+	public BooleanProperty smsEnabledProperty() {
+		return smsEnabled;
+	}
 	
 	
 	//field mutators
+	public void setcustomerNumber(int customerNumber){
+		this.customerNumber.set(customerNumber);
+	}
 	/**Sets the customer's first name*/
 	public void setFirstName(String firstName) {
 		this.firstName.set(firstName);
@@ -176,9 +196,9 @@ public class Customer {
 		this.lastName.set(lastName);
 	}
 	/**Sets the customer's order description*/
-	public void setOrderDesc(String status) {
-		this.orderDesc.set(status);
-	}
+	//public void setOrderDesc(String status) {
+		//this.orderDesc.set(status);
+	//}
 	/**Sets the customer's street address*/
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress.set(streetAddress);
@@ -196,9 +216,9 @@ public class Customer {
 		this.zip.set(zip);
 	}
 	/**Sets the customer's payment method*/
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod.set(paymentMethod);
-	}
+	//public void setPaymentMethod(String paymentMethod) {
+		//this.paymentMethod.set(paymentMethod);
+	//}
 	/**Sets the customer's phone number*/
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber.set(phoneNumber);
@@ -210,6 +230,10 @@ public class Customer {
 	/**Sets the customer's preferred contact method*/
 	public void setPrefContactMethod(String prefContactMethod) {
 		this.prefContactMethod.set(prefContactMethod);
+	}
+	/**Sets the customer's SMS Enabled*/
+	public void setPrefContactMethod(boolean newSmsEnabled) {
+		this.smsEnabled.set(newSmsEnabled);
 	}
 
 
