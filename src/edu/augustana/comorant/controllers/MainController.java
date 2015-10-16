@@ -55,6 +55,12 @@ public class MainController implements Initializable {
 	private Button btnDeleteOrder;
 	@FXML
 	private Button btnViewOrder;
+	
+	//TODO
+	@FXML
+	private Button btnNewOrderByCustomer;
+	
+	
 	@FXML
 	private TextField txtFilterOrders;
 	
@@ -144,7 +150,34 @@ public class MainController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * Launches a new order by customer window that passes in a New Order By Customer controller
+	 * a reference to itself so that it can add data to the order list
+	 */
+	@FXML
+	public void newOrderByCustomerPressed(ActionEvent e) {
+		System.out.println("New Order!");
+		Parent root;
+		try {
 
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/comorant/fxml/newOrderByCustomerGUI.fxml"));
+			root = loader.load();
+			NewOrderByCustomerController newOrderOrderByCustomerController = (NewOrderByCustomerController) loader.getController();
+			newOrderOrderByCustomerController.setMainController(this);
+			Stage stage = new Stage();
+			stage.setTitle("New Order By Customer");
+			stage.setScene(new Scene(root));
+			stage.show();
+
+			// hide this current window (if this is what you want
+			// ((Node)(e.getSource())).getScene().getWindow().hide();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 	/**
 	 * Launches the edit order window. Passes into the Edit Order controller a
 	 * reference to itself so that it can add data to orderList
