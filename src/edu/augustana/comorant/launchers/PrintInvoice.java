@@ -16,7 +16,6 @@ import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 
-
 //Will need a popup stating that an invoice was created on the user's desktop and they need to open the file and print from there
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
@@ -24,7 +23,7 @@ import javax.print.SimpleDoc;
 //will date ordered be a string?
 public class PrintInvoice {
 	/*
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
+	public static void main(String[] args) throws UnsupportedEncodingException{
 		createInvoice("Firsty Lastname", "123 Main Street", null, "New York, NY 12345",
 				"John Cena", "123 JCena St.", null, "Cena WY, 54321", "Oct 13 2015", "12 Pots, 6 Plates, and one giant hug", 
 				12.56, "Credit Card");
@@ -32,7 +31,7 @@ public class PrintInvoice {
 	}
 	*/
 	/**
-	 * @param fromName - String; ex: "Firsty Lastname"
+	 * @param fromName - String; ex: "Firsty Lastname Incorporated"
 	 * @param fromAdrsLine1 - String; ex: "P.O. Box 772"
 	 * @param fromAdrsLine2 - String; ex: "123 Main Street" - leave null or empty if nothing
 	 * @param fromCSZ - String; ex: "New York, NY 12345"
@@ -44,23 +43,25 @@ public class PrintInvoice {
 	 * @param orderDesc - String; ex: "12 Pots, 6 Plates, and a big hug"
 	 * @param price - double; ex: 12.34
 	 * @param paymentMethod - String; ex: "Credit Card"
-	 * @throws FileNotFoundException only thrown if the filepath is incorrect
 	 * @throws UnsupportedEncodingException when the URL(filepath) of the file has invalid characters
 	 */
 	protected void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
 		String custAdrsLine1, String custAdrsLine2, String custCSZ, String dateOrdered, String orderDesc, double price, String paymentMethod)
-		throws FileNotFoundException, UnsupportedEncodingException{
+		throws /*FileNotFoundException,*/ UnsupportedEncodingException{
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/MMMM/yyyy");//10/15/2015
 		Date date = new Date();
 		String currentDate = (dateFormat.format(date)).toString();
+		PrintWriter writer = null;
 		
-		
-		PrintWriter writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.txt"), "UTF-8");
+		try {
+			writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.txt"), "UTF-8");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}	
 
 		String lines="-----------------------------------";//35 chars - print twice for 70 wide line (easier than 7*10)
 		
-
 		writer.printf(fromName+"%"+(70-fromName.length())+"s", "+------+");//don't use \n here: it messes up the formatting
 		writer.println();
 		writer.printf(fromAdrsLine1+"%"+(70-fromAdrsLine1.length())+"s", "+-stamp+");//or here
@@ -105,7 +106,7 @@ public class PrintInvoice {
 	protected void printPage(){
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();//gets default printer so it knows where to send it to
 	    DocPrintJob printerJob = defaultPrintService.createPrintJob();
-	    File pdfFile = new File((""+System.getProperty("user.dir")+"/PrintOut.txt"));
+	    File pdfFile = new File((""+System.getProperty("user.dir")+"/PrintOut.txt"));//user.dir gets the directory this workspace is in
 	    SimpleDoc simpleDoc = null;
 	     
 	    try {
