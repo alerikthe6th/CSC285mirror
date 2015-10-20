@@ -20,9 +20,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class EditOrderController implements Initializable {
 
@@ -73,6 +76,8 @@ public class EditOrderController implements Initializable {
 	private ComboBox<String> cmbPaymentMethod;
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
+	@FXML
+	private Label lblResult;
 	
 	public EditOrderController() {
 		
@@ -118,26 +123,42 @@ public class EditOrderController implements Initializable {
 			}
 		});
 
-		//checks if the price if a valid input i.e. no multiple '.', non-negative, or more than 2 decimal places
-		//invalid inputs reverts the field to previous state
-		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
-				String testPrice = txtPrice.getText();
-				try {
-					for (int i = 0; i < txtPrice.getText().length(); i++) {
-						if (txtPrice.getText().charAt(i) == '.') {
-
-							if (txtPrice.getText().substring(i).length() > 3 || txtPrice.getText().charAt(0) == '-') {
-								throwAlert("Price", txtPrice);
+		// checks if the price if a valid input i.e. no multiple '.',
+				// non-negative, or more than 2 decimal places
+				// invalid input clears the field
+				txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
+					if (oldValue && !newValue && !txtPrice.getText().equals("")) {
+						try {
+							String priceExp = txtPrice.getText();
+							Expression expr = new ExpressionBuilder(priceExp).build();
+							double resultPrice = expr.evaluate();
+							if (resultPrice < 0){
+								throw new IllegalArgumentException();
 							}
+						} catch (IllegalArgumentException iae) {
+							throwAlert("Price", txtPrice);
 						}
 					}
-					Double.parseDouble(testPrice);
-				} catch (NumberFormatException npe) {
-					throwAlert("Price", txtPrice);
-				}
-			}
-		});
+				});
+				
+				txtPrice.textProperty().addListener((observable, oldValue, newValue) -> {
+						try {
+							String priceExp = newValue;
+							Expression expr = new ExpressionBuilder(priceExp).build();
+							double resultPrice = expr.evaluate();
+							resultPrice = resultPrice * 1.06;
+
+							if (resultPrice < 0){
+								throw new IllegalArgumentException();
+							}
+							DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+							String priceString = twoDigitFormat.format(resultPrice);
+							lblResult.setText(priceString);
+						} catch (IllegalArgumentException iae) {
+							lblResult.setText("...");
+						}
+				});
+				
 		//checks if the email contains only 1 '@' symbol
 		//reverts to previous state if invalid input was entered
 		txtEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -212,7 +233,7 @@ public class EditOrderController implements Initializable {
 		txtZip.setText(editedOrder.getZip());
 		cmbPaymentStatus.setValue(editedOrder.getPaymentStatus());
 		cmbPaymentMethod.setValue(editedOrder.getPaymentMethod());
-		txtPrice.setText(priceString);
+		txtPrice.setText(editedOrder.getPriceExp());
 		txtEmail.setText(editedOrder.getEmail());
 		txtPhone.setText(editedOrder.getPhoneNumber());
 		cmbPrefContactMethod.setValue(editedOrder.getPrefContactMethod());
@@ -245,6 +266,7 @@ public class EditOrderController implements Initializable {
 		String savePhone = "";
 		boolean saveSmsEnabled = chkSMSEnabled.isSelected();
 		String savePrefContactMethod = "";
+		String savePriceExp = "";
 
 		if (dtpkOrderDate.getValue() != null) {
 			saveOrderDate = dtpkOrderDate.getValue();
@@ -283,7 +305,10 @@ public class EditOrderController implements Initializable {
 			savePaymentMethod = cmbPaymentMethod.getValue().toString();
 		}
 		if (txtPrice.getText() != null && !txtPrice.getText().trim().isEmpty()) {
-			savePrice = Double.parseDouble(txtPrice.getText());
+			savePriceExp = txtPrice.getText();
+		}
+		if (!lblResult.getText().equals("...")) {
+			savePrice = Double.parseDouble(lblResult.getText());
 		}
 		if (txtEmail.getText() != null && !txtEmail.getText().trim().isEmpty()) {
 			saveEmail = txtEmail.getText();
@@ -312,6 +337,7 @@ public class EditOrderController implements Initializable {
 		editedOrder.setPhoneNumber(savePhone);
 		editedOrder.setPrefContactMethod(savePrefContactMethod);
 		editedOrder.setSMSEnabled(saveSmsEnabled);
+		editedOrder.setPriceExp(savePriceExp);
 		//editedOrder.redoShippingAddress();
 
 		DataAccess.saveOrders(mainController.orderList);

@@ -12,23 +12,12 @@ public class Order {
 	protected ObjectProperty<LocalDate> orderDate;
 	protected ObjectProperty<LocalDate> dueDate;
 	protected StringProperty status;
-	//protected StringProperty firstName;
-	//protected StringProperty lastName;
 	protected StringProperty orderDesc;
-	//protected StringProperty fullAddress;
-	//protected StringProperty streetAddress;
-	//protected StringProperty city;
-	//protected StringProperty state;
-	//protected StringProperty zip;
 	protected StringProperty paymentStatus;
 	protected StringProperty paymentMethod;
 	protected DoubleProperty price;
 	protected StringProperty priceString;
-
-	//protected StringProperty phoneNumber;
-	//protected StringProperty email;
-	//protected BooleanProperty smsEnabled;
-	//protected StringProperty prefContactMethod;
+	protected StringProperty priceExpression;
 
 
 	/**
@@ -83,7 +72,7 @@ public class Order {
 	 */
 
 	public Order(Customer customer, int orderNumber, LocalDate orderDate, LocalDate dueDate, String status,
-			 String orderDesc,String paymentStatus, String paymentMethod, double price) {
+			 String orderDesc,String paymentStatus, String paymentMethod, double price, String priceExp) {
 		this.theCustomer = customer;
 
 		this.orderNumber = new SimpleIntegerProperty(orderNumber);
@@ -98,6 +87,7 @@ public class Order {
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 		String priceStringString = "$" + twoDigitFormat.format(this.price.getValue());
 		this.priceString = new SimpleStringProperty(priceStringString);
+		this.priceExpression = new SimpleStringProperty(priceExp);
 
 	}
 
@@ -204,6 +194,9 @@ public class Order {
 	public Customer getCustomer(){
 		return theCustomer;
 	}
+	public String getPriceExp(){
+		return priceExpression.get();
+	}
 	
 	
 	//property accessors
@@ -296,6 +289,10 @@ public class Order {
 	public StringProperty priceStringProperty() {
 		return priceString;
 	}
+	public StringProperty priceExpProperty() {
+		return priceExpression;
+	}
+	
 
 	//field mutators
 	/**Sets the order number*/
@@ -380,6 +377,10 @@ public class Order {
 	/**Updates the order's full shipping address*/
 	public void redoShippingAddress() {
 		theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
+	}
+	
+	public void setPriceExp(String priceExp){
+		this.priceExpression.set(priceExp);
 	}
 	
 

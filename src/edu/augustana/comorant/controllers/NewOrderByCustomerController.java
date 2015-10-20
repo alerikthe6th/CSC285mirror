@@ -283,7 +283,7 @@ public class NewOrderByCustomerController implements Initializable {
 		
 		mainController.orderList.add(new Order(newCustomer, saveOrderNumber, saveOrderDate, saveDueDate, saveStatus, 
 				saveOrderDesc, savePaymentStatus,
-				savePaymentMethod, savePrice));
+				savePaymentMethod, savePrice, ""));
 
 		
 		DataAccess.saveCustomers(mainController.customerList);

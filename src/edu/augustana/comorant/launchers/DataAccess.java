@@ -171,8 +171,9 @@ public class DataAccess {
 				String rsPaymentStatus = ordersResultSet.getString("paymentStatus");
 				String rsPaymentMethod = ordersResultSet.getString("paymentMethod");
 				double rsPrice = ordersResultSet.getDouble("price");
+				String rsPriceExp = ordersResultSet.getString("priceExp");
 				ordersList.add(new Order(rsCustomer, rsOrderNumber, rsOrderDate, rsDueDate, rsStatus,
-						rsOrderDesc, rsPaymentStatus, rsPaymentMethod, rsPrice));
+						rsOrderDesc, rsPaymentStatus, rsPaymentMethod, rsPrice, rsPriceExp));
 			}
 
 		} catch (
@@ -202,7 +203,7 @@ public class DataAccess {
 		PreparedStatement createOrdersTable;
 		String createOrdersTableQuery = "CREATE TABLE IF NOT EXISTS Orders(" + "orderNumber INTEGER PRIMARY KEY, "
 				+ " orderDate TEXT, " + " dueDate TEXT, " + " status TEXT, " + " orderDesc TEXT, " + " paymentStatus TEXT, "
-				+ " paymentMethod TEXT, " + " price REAL, " + " customerID INTEGER);";
+				+ " paymentMethod TEXT, " + " price REAL, " + " priceExp TEXT, " + " customerID INTEGER);";
 
 		createOrdersTable = connection.prepareStatement(createOrdersTableQuery);
 		createOrdersTable.executeUpdate();
@@ -250,6 +251,7 @@ public class DataAccess {
 				String paymentMethod = order.getPaymentMethod();
 				double price = order.getPrice();
 				int customerNumber = order.getCustomerNumber();
+				String priceExp = order.getPriceExp();
 				//String email = order.getEmail();
 				//String phone = order.getPhoneNumber();
 				//boolean smsEnabled = order.getSmsEnabled();
@@ -260,9 +262,9 @@ public class DataAccess {
 
 				String insertOrderQuery = "INSERT INTO Orders("
 						+ "orderNumber, orderDate, dueDate, status, orderDesc, "
-						+ "paymentStatus, paymentMethod, price, customerID)"
+						+ "paymentStatus, paymentMethod, price, priceExp, customerID)"
 						+ " VALUES(?, ?, ?, ?, ?, "
-						+ "?, ?, ?, ?);";
+						+ "?, ?, ?, ?, ?);";
 				System.out.println(insertOrderQuery);
 				PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
 				insertOrder.setString(1, orderNumber + "");
@@ -273,7 +275,8 @@ public class DataAccess {
 				insertOrder.setString(6, paymentStatus);
 				insertOrder.setString(7, paymentMethod);
 				insertOrder.setString(8, price+"");
-				insertOrder.setString(9, customerNumber+"");
+				insertOrder.setString(9, priceExp);
+				insertOrder.setString(10, customerNumber+"");
 				insertOrder.executeUpdate();
 
 			}

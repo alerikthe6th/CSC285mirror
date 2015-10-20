@@ -96,16 +96,34 @@
       <VBox GridPane.rowIndex="5">
          <children>
             <Label text="Price" />
-            <HBox>
+            <VBox>
                <children>
-                  <Label text="\$">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtPrice" />
+                  <HBox>
+                     <children>
+                        <Label text="\$">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtPrice" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <Label text="Total: $">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblResult" layoutX="10.0" layoutY="10.0" text="...">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
       </VBox>
       <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">

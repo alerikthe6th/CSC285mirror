@@ -1,6 +1,7 @@
 package edu.augustana.comorant.controllers;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -18,10 +19,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class NewOrderController implements Initializable {
 
@@ -69,6 +73,8 @@ public class NewOrderController implements Initializable {
 	private ComboBox<String> cmbPaymentMethod;
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
+	@FXML
+	private Label lblResult;
 
 	private Customer matchedCustomer = null;
 	boolean usingMatchedCustomer = false;
@@ -135,27 +141,45 @@ public class NewOrderController implements Initializable {
 			}
 		});
 
+		
+		
+		
 		// checks if the price if a valid input i.e. no multiple '.',
 		// non-negative, or more than 2 decimal places
 		// invalid input clears the field
 		txtPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPrice.getText().equals("")) {
-				String testPrice = txtPrice.getText();
 				try {
-					for (int i = 0; i < txtPrice.getText().length(); i++) {
-						if (txtPrice.getText().charAt(i) == '.') {
-
-							if (txtPrice.getText().substring(i).length() > 3 || txtPrice.getText().charAt(0) == '-') {
-								throwAlert("Price", txtPrice);
-							}
-						}
+					String priceExp = txtPrice.getText();
+					Expression expr = new ExpressionBuilder(priceExp).build();
+					double resultPrice = expr.evaluate();
+					if (resultPrice < 0){
+						throw new IllegalArgumentException();
 					}
-					Double.parseDouble(testPrice);
-				} catch (NumberFormatException npe) {
+				} catch (IllegalArgumentException iae) {
 					throwAlert("Price", txtPrice);
 				}
 			}
 		});
+		
+		txtPrice.textProperty().addListener((observable, oldValue, newValue) -> {
+				try {
+					String priceExp = newValue;
+					Expression expr = new ExpressionBuilder(priceExp).build();
+					double resultPrice = expr.evaluate();
+					resultPrice = resultPrice * 1.06;
+
+					if (resultPrice < 0){
+						throw new IllegalArgumentException();
+					}
+					DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+					String priceString = twoDigitFormat.format(resultPrice);
+					lblResult.setText(priceString);
+				} catch (IllegalArgumentException iae) {
+					lblResult.setText("...");
+				}
+		});
+		
 
 		// checks if the email contains only 1 '@' symbol
 		// clears field if empty
@@ -260,6 +284,7 @@ public class NewOrderController implements Initializable {
 		String savePhone = "";
 		boolean saveSmsEnabled = chkSMSEnabled.isSelected();
 		String savePrefContactMethod = "";
+		String savePriceExp = "";
 
 		if (dtpkOrderDate.getValue() != null) {
 			saveOrderDate = dtpkOrderDate.getValue();
@@ -298,7 +323,10 @@ public class NewOrderController implements Initializable {
 			savePaymentMethod = cmbPaymentMethod.getValue().toString();
 		}
 		if (txtPrice.getText() != null && !txtPrice.getText().trim().isEmpty()) {
-			savePrice = Double.parseDouble(txtPrice.getText());
+			savePriceExp = txtPrice.getText();		
+		}
+		if (!lblResult.getText().equals("...")) {
+			savePrice = Double.parseDouble(lblResult.getText());		
 		}
 		if (txtEmail.getText() != null && !txtEmail.getText().trim().isEmpty()) {
 			saveEmail = txtEmail.getText();
@@ -331,7 +359,7 @@ public class NewOrderController implements Initializable {
 		}
 
 		Order newOrder = new Order(newCustomer, saveOrderNumber, saveOrderDate, saveDueDate, saveStatus,
-				saveOrderDesc, savePaymentStatus, savePaymentMethod, savePrice);
+				saveOrderDesc, savePaymentStatus, savePaymentMethod, savePrice, savePriceExp);
 
 		mainController.orderList.add(newOrder);
 
@@ -388,7 +416,6 @@ public class NewOrderController implements Initializable {
 	public void matchNameToCustomer() {
 		String firstName = txtFirstName.getText();
 		String lastName = txtLastName.getText();
-		System.out.println(firstName + " " + lastName);
 
 		for (Customer customer : mainController.customerList) {
 			if (customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName)) {
