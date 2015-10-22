@@ -1,5 +1,6 @@
 package edu.augustana.comorant.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -12,7 +13,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -76,6 +80,8 @@ public class NewOrderController implements Initializable {
 	@FXML
 	private Label lblResult;
 
+	ObservableList<Customer> matchedCustomers = FXCollections.observableArrayList();
+
 	private Customer matchedCustomer = null;
 	boolean usingMatchedCustomer = false;
 
@@ -104,24 +110,24 @@ public class NewOrderController implements Initializable {
 				if (!(testPhone.length() == 7 || testPhone.length() == 10 || testPhone.length() == 11 || // 7,10,11
 																											// numbers
 																											// 1234567,1234567890,112345678900
-						(testPhone.length() == 8 && testPhone.charAt(3) == '-') || // 7nums
-																					// and
-																					// a
-																					// hyphen
-																					// 123-4567
-						(testPhone.length() == 12 && testPhone.charAt(3) == '-' && testPhone.charAt(7) == '-') || // 10nums
-																													// and
-																													// 2
-																													// -'s
-																													// 123-456-7890
-						(testPhone.length() == 14 && testPhone.charAt(1) == '-' && testPhone.charAt(9) == '-'
-								&& testPhone.charAt(9) == '-')
-						|| // 11nums and 3 -'s 1-123-456-7890
-						(testPhone.length() == 14 && testPhone.charAt(0) == '(' && testPhone.charAt(4) == ')'
-								&& testPhone.charAt(5) == '-' && testPhone.charAt(9) == '-'))) {// 10
-																								// nums
-																								// 1(,1),2-
-																								// (123)-456-7890
+				(testPhone.length() == 8 && testPhone.charAt(3) == '-') || // 7nums
+																			// and
+																			// a
+																			// hyphen
+																			// 123-4567
+				(testPhone.length() == 12 && testPhone.charAt(3) == '-' && testPhone.charAt(7) == '-') || // 10nums
+																											// and
+																											// 2
+																											// -'s
+																											// 123-456-7890
+				(testPhone.length() == 14 && testPhone.charAt(1) == '-' && testPhone.charAt(9) == '-'
+						&& testPhone.charAt(9) == '-') || // 11nums and 3 -'s
+															// 1-123-456-7890
+				(testPhone.length() == 14 && testPhone.charAt(0) == '(' && testPhone.charAt(4) == ')'
+						&& testPhone.charAt(5) == '-' && testPhone.charAt(9) == '-'))) {// 10
+																						// nums
+																						// 1(,1),2-
+																						// (123)-456-7890
 					throwAlert("Phone Number", txtPhone);
 				}
 			}
@@ -141,9 +147,6 @@ public class NewOrderController implements Initializable {
 			}
 		});
 
-		
-		
-		
 		// checks if the price if a valid input i.e. no multiple '.',
 		// non-negative, or more than 2 decimal places
 		// invalid input clears the field
@@ -153,7 +156,7 @@ public class NewOrderController implements Initializable {
 					String priceExp = txtPrice.getText();
 					Expression expr = new ExpressionBuilder(priceExp).build();
 					double resultPrice = expr.evaluate();
-					if (resultPrice < 0){
+					if (resultPrice < 0) {
 						throw new IllegalArgumentException();
 					}
 				} catch (IllegalArgumentException iae) {
@@ -161,25 +164,24 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
-		
-		txtPrice.textProperty().addListener((observable, oldValue, newValue) -> {
-				try {
-					String priceExp = newValue;
-					Expression expr = new ExpressionBuilder(priceExp).build();
-					double resultPrice = expr.evaluate();
-					resultPrice = resultPrice * 1.06;
 
-					if (resultPrice < 0){
-						throw new IllegalArgumentException();
-					}
-					DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
-					String priceString = twoDigitFormat.format(resultPrice);
-					lblResult.setText(priceString);
-				} catch (IllegalArgumentException iae) {
-					lblResult.setText("...");
+		txtPrice.textProperty().addListener((observable, oldValue, newValue) -> {
+			try {
+				String priceExp = newValue;
+				Expression expr = new ExpressionBuilder(priceExp).build();
+				double resultPrice = expr.evaluate();
+				resultPrice = resultPrice * 1.06;
+
+				if (resultPrice < 0) {
+					throw new IllegalArgumentException();
 				}
+				DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
+				String priceString = twoDigitFormat.format(resultPrice);
+				lblResult.setText(priceString);
+			} catch (IllegalArgumentException iae) {
+				lblResult.setText("...");
+			}
 		});
-		
 
 		// checks if the email contains only 1 '@' symbol
 		// clears field if empty
@@ -196,11 +198,11 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
-		
+
 		txtFirstName.textProperty().addListener((observable, oldValue, newValue) -> {
 			matchNameToCustomer();
 		});
-		
+
 		txtLastName.textProperty().addListener((observable, oldValue, newValue) -> {
 			matchNameToCustomer();
 		});
@@ -323,10 +325,10 @@ public class NewOrderController implements Initializable {
 			savePaymentMethod = cmbPaymentMethod.getValue().toString();
 		}
 		if (txtPrice.getText() != null && !txtPrice.getText().trim().isEmpty()) {
-			savePriceExp = txtPrice.getText();		
+			savePriceExp = txtPrice.getText();
 		}
 		if (!lblResult.getText().equals("...")) {
-			savePrice = Double.parseDouble(lblResult.getText());		
+			savePrice = Double.parseDouble(lblResult.getText());
 		}
 		if (txtEmail.getText() != null && !txtEmail.getText().trim().isEmpty()) {
 			saveEmail = txtEmail.getText();
@@ -338,8 +340,11 @@ public class NewOrderController implements Initializable {
 			savePrefContactMethod = cmbPrefContactMethod.getValue().toString();
 		}
 
-		Customer newCustomer = null;
-		if (usingMatchedCustomer) {
+		Customer newCustomer = new Customer((mainController.getLargestCustomerNumber() + 1), saveFirstName,
+				saveLastName, saveStreetAddress, saveCity, saveState, saveZip, savePhone, saveEmail,
+				savePrefContactMethod, saveSmsEnabled);
+
+		if (matchedCustomer != null && matchedCustomer.equals(newCustomer)) {
 			newCustomer = matchedCustomer;
 			newCustomer.setStreetAddress(saveStreetAddress);
 			newCustomer.setCity(saveCity);
@@ -352,22 +357,16 @@ public class NewOrderController implements Initializable {
 
 		} else {
 
-			newCustomer = new Customer((mainController.getLargestCustomerNumber() + 1), saveFirstName, saveLastName,
-					saveStreetAddress, saveCity, saveState, saveZip, savePhone, saveEmail, savePrefContactMethod,
-					saveSmsEnabled);
 			mainController.customerList.add(newCustomer);
 		}
 
-		Order newOrder = new Order(newCustomer, saveOrderNumber, saveOrderDate, saveDueDate, saveStatus,
-				saveOrderDesc, savePaymentStatus, savePaymentMethod, savePrice, savePriceExp);
+		Order newOrder = new Order(newCustomer, saveOrderNumber, saveOrderDate, saveDueDate, saveStatus, saveOrderDesc,
+				savePaymentStatus, savePaymentMethod, savePrice, savePriceExp);
 
 		mainController.orderList.add(newOrder);
 
-
 		DataAccess.saveCustomers(mainController.customerList);
 		DataAccess.saveOrders(mainController.orderList);
-
-		
 
 		System.out.println("Save Order!");
 		Stage stage = (Stage) btnSaveOrder.getScene().getWindow();
@@ -419,21 +418,56 @@ public class NewOrderController implements Initializable {
 
 		for (Customer customer : mainController.customerList) {
 			if (customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName)) {
-				matchedCustomer = customer;
 				btnAutoFill.setDisable(false);
-				break;
+				matchedCustomers.add(customer);
+				matchedCustomer = customer;
 			}
+		}
+
+		if (matchedCustomers.size() == 0) {
 			matchedCustomer = null;
-			usingMatchedCustomer = false;
 			btnAutoFill.setDisable(true);
+
 		}
 
 	}
-	
-	
 
 	@FXML
 	public void onAutoFill(ActionEvent e) {
+
+		if (matchedCustomers.size() == 1) {
+			matchedCustomer = matchedCustomers.get(0);
+			txtStreetAddress.setText(matchedCustomer.getStreetAddress());
+			txtCity.setText(matchedCustomer.getCity());
+			cmbState.setValue(matchedCustomer.getState());
+			txtZip.setText(matchedCustomer.getZip());
+			txtEmail.setText(matchedCustomer.getEmail());
+			txtPhone.setText(matchedCustomer.getPhoneNumber());
+			cmbPrefContactMethod.setValue(matchedCustomer.getPrefContactMethod());
+			chkSMSEnabled.setSelected(matchedCustomer.getSMSEnabled());
+		} else {
+			Parent root;
+			try {
+
+				FXMLLoader loader = new FXMLLoader(
+						getClass().getResource("/edu/augustana/comorant/fxml/shippingAddressGUI.fxml"));
+				root = loader.load();
+				ShippingAddressController sac = (ShippingAddressController) loader.getController();
+				sac.setCustomerList(this, matchedCustomers);
+				Stage stage = new Stage();
+				stage.setTitle("Shipping Addresses");
+				stage.setScene(new Scene(root));
+				stage.show();
+
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+
+	}
+
+	void setMatchedCustomer(Customer customer) {
+		matchedCustomer = customer;
 		if (matchedCustomer != null) {
 			txtStreetAddress.setText(matchedCustomer.getStreetAddress());
 			txtCity.setText(matchedCustomer.getCity());
@@ -443,9 +477,7 @@ public class NewOrderController implements Initializable {
 			txtPhone.setText(matchedCustomer.getPhoneNumber());
 			cmbPrefContactMethod.setValue(matchedCustomer.getPrefContactMethod());
 			chkSMSEnabled.setSelected(matchedCustomer.getSMSEnabled());
-
-			usingMatchedCustomer = true;
 		}
-	}
 
+	}
 }

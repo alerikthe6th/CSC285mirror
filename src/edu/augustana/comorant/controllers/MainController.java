@@ -549,7 +549,7 @@ public class MainController implements Initializable {
 		clmCustZip.setCellValueFactory(cellData -> cellData.getValue().zipProperty());
 		clmCustPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
 		clmCustEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
-		clmCustBalance.setCellValueFactory(cellData -> cellData.getValue().balanceProperty());
+		//clmCustBalance.setCellValueFactory(cellData -> cellData.getValue().balanceProperty());
 		clmCustSmsEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledProperty());
 		clmCustPrefContactMethod.setCellValueFactory(cellData -> cellData.getValue().prefContactMethodProperty());
 		

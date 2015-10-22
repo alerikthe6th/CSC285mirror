@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.comorant.controllers.ShippingAddressController">
+   <top>
+      <Label text="Multiple shipping addresses found" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+         </padding>
+      </Label>
+   </top>
+   <center>
+      <TableView fx:id="tblShipping" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="clmStreetAddress" prefWidth="262.0" text="Street Address" />
+            <TableColumn fx:id="clmCity" minWidth="0.0" prefWidth="120.0" text="City" />
+            <TableColumn fx:id="clmState" minWidth="0.0" prefWidth="127.0" text="State" />
+            <TableColumn fx:id="clmZip" minWidth="0.0" prefWidth="90.0" text="ZIP" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnSelect" disable="true" mnemonicParsing="false" onAction="#onSelect" text="Select">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Region minWidth="100.0" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#onCancel" text="Cancel">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

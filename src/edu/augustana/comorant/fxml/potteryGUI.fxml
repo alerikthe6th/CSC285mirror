@@ -121,26 +121,16 @@
                                  <children>
                                     <VBox alignment="TOP_CENTER" prefHeight="361.0" prefWidth="638.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <HBox alignment="CENTER" spacing="20.0">
-                                             <children>
-                                                <Label text="Filter Customers:" />
-                                                <TextField prefHeight="22.0" prefWidth="200.0" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                          </HBox>
                                           <TableView fx:id="tblCustomers" layoutX="137.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                              <columns>
-                                                <TableColumn fx:id="clmCustName" prefWidth="93.0" text="Name" />
-                                                <TableColumn fx:id="clmCustStreetAddress" prefWidth="104.0" text="Street Address" />
-                                                <TableColumn fx:id="clmCustCity" prefWidth="46.0" text="City" />
+                                                <TableColumn fx:id="clmCustName" prefWidth="150.0" text="Name" />
+                                                <TableColumn fx:id="clmCustStreetAddress" prefWidth="175.0" text="Street Address" />
+                                                <TableColumn fx:id="clmCustCity" prefWidth="50.0" text="City" />
                                                 <TableColumn fx:id="clmCustState" prefWidth="75.0" text="State" />
                                                 <TableColumn fx:id="clmCustZip" prefWidth="75.0" text="ZIP" />
-                                                <TableColumn fx:id="clmCustPhone" prefWidth="75.0" text="Phone" />
-                                                <TableColumn fx:id="clmCustEmail" prefWidth="100.0" text="Email" />
-                                                <TableColumn fx:id="clmCustBalance" prefWidth="67.0" text="Balance Due" />
-                                                <TableColumn fx:id="clmCustSmsEnabled" prefWidth="121.0" text="Text Messaging Enabled" />
+                                                <TableColumn fx:id="clmCustPhone" prefWidth="150.0" text="Phone" />
+                                                <TableColumn fx:id="clmCustEmail" prefWidth="150.0" text="Email" />
+                                                <TableColumn fx:id="clmCustSmsEnabled" prefWidth="125.0" text="Text Messaging Enabled" />
                                                 <TableColumn fx:id="clmCustPrefContactMethod" prefWidth="75.0" text="Preferred Contact Method" />
                                              </columns>
                                              <padding>

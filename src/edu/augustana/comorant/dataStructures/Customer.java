@@ -263,6 +263,12 @@ public class Customer {
 	public void resetFullAddress(){
 		this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
 	}
+	
+
+	public boolean equals(Customer testCustomer){
+		return this.getFirstName().equals(testCustomer.getFirstName()) && this.getLastName().equals(testCustomer.getLastName())
+				&& this.getFullAddress().equals(testCustomer.getFullAddress());
+	}
 
 	
 
