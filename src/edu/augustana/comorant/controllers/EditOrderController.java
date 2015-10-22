@@ -78,6 +78,8 @@ public class EditOrderController implements Initializable {
 	private ComboBox<String> cmbPaymentStatus;
 	@FXML
 	private Label lblResult;
+	@FXML
+	private Label lblTax;
 	
 	public EditOrderController() {
 		
@@ -132,6 +134,7 @@ public class EditOrderController implements Initializable {
 							String priceExp = txtPrice.getText();
 							Expression expr = new ExpressionBuilder(priceExp).build();
 							double resultPrice = expr.evaluate();
+							
 							if (resultPrice < 0){
 								throw new IllegalArgumentException();
 							}
@@ -146,6 +149,7 @@ public class EditOrderController implements Initializable {
 							String priceExp = newValue;
 							Expression expr = new ExpressionBuilder(priceExp).build();
 							double resultPrice = expr.evaluate();
+							double tax = resultPrice * 0.06;
 							resultPrice = resultPrice * 1.06;
 
 							if (resultPrice < 0){
@@ -153,9 +157,12 @@ public class EditOrderController implements Initializable {
 							}
 							DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 							String priceString = twoDigitFormat.format(resultPrice);
+							String taxString = twoDigitFormat.format(tax);
 							lblResult.setText(priceString);
+							lblTax.setText(taxString);
 						} catch (IllegalArgumentException iae) {
 							lblResult.setText("...");
+							lblTax.setText("...");
 						}
 				});
 				

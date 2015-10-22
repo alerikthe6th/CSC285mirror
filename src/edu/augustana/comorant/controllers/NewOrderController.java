@@ -79,6 +79,8 @@ public class NewOrderController implements Initializable {
 	private ComboBox<String> cmbPaymentStatus;
 	@FXML
 	private Label lblResult;
+	@FXML 
+	private Label lblTax;
 
 	ObservableList<Customer> matchedCustomers = FXCollections.observableArrayList();
 
@@ -170,6 +172,7 @@ public class NewOrderController implements Initializable {
 				String priceExp = newValue;
 				Expression expr = new ExpressionBuilder(priceExp).build();
 				double resultPrice = expr.evaluate();
+				double tax = resultPrice * 0.06;
 				resultPrice = resultPrice * 1.06;
 
 				if (resultPrice < 0) {
@@ -177,9 +180,12 @@ public class NewOrderController implements Initializable {
 				}
 				DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 				String priceString = twoDigitFormat.format(resultPrice);
+				String taxString = twoDigitFormat.format(tax);
 				lblResult.setText(priceString);
+				lblTax.setText(taxString);
 			} catch (IllegalArgumentException iae) {
 				lblResult.setText("...");
+				lblTax.setText("...");
 			}
 		});
 
