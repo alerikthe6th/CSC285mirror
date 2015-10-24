@@ -24,55 +24,20 @@ public class Order {
 	protected StringProperty priceString;
 	protected StringProperty priceExpression;
 
-
-	/**
-	 * Default constructor.
-	 * Creates a new Order with no data.
-	 * 
-	 * @param int orderNumber 
-	 * @param LocalDate orderDate
-	 * @param LocalDate dueDate
-	 * @param String status
-	 * @param String firstName
-	 * @param String lastName
-	 * @param String orderDesc
-	 * @param String streetAddress
-	 * @param String city
-	 * @param String state
-	 * @param String zip
-	 * @param String paymentStatus
-	 * @param String paymentMethod
-	 * @param double price
-	 * @param String email
-	 * @param String phoneNumber
-	 * @param boolean smsEnabled
-	 * @param String prefContactMethod
-	 * 
-	 */
-	
-
 	/**
 	 * Constructor with some initial data.	
 	 * Creates a new order with given parameters
 	 *
+	 * @param Customer customer
 	 * @param int orderNumber 
 	 * @param LocalDate orderDate
 	 * @param LocalDate dueDate
 	 * @param String status
-	 * @param String firstName
-	 * @param String lastName
 	 * @param String orderDesc
-	 * @param String streetAddress
-	 * @param String city
-	 * @param String state
-	 * @param String zip
 	 * @param String paymentStatus
 	 * @param String paymentMethod
 	 * @param double price
-	 * @param String email
-	 * @param String phoneNumber
-	 * @param boolean smsEnabled
-	 * @param String prefContactMethod
+	 * @param String priceExp
 	 * 
 	 */
 

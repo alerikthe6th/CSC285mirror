@@ -22,18 +22,11 @@ import javafx.collections.ObservableList;
 
 public class DataAccess {
 
-	public DataAccess() {
-
-	}
-
-	
-	
 	public static ObservableList<Customer> loadCustomers(){
 		// load the sqlite-JDBC driver using the current class loader
 				try {
 					Class.forName("org.sqlite.JDBC");
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -107,7 +100,6 @@ public class DataAccess {
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -125,33 +117,6 @@ public class DataAccess {
 
 
 			createOrdersTable(connection);
-
-			/* INSERT DUMMY DATA
-			 TODO remove dummy data insert
-			 Remove old dummy data
-			String removeOldDummyDataQuery = "DELETE FROM Orders WHERE zip='61201'";
-			PreparedStatement removeOldDummyData = connection.prepareStatement(removeOldDummyDataQuery);
-			removeOldDummyData.executeUpdate();
-			 Insert new dummy data
-			String insertDummyDataQuery = "INSERT INTO Orders("
-					+ "orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
-					+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
-					+ " VALUES('2015-09-15', '2015-10-31', 'Incomplete', 'James', 'Smith', "
-					+ "'Two mugs please', '136 Required Dr.', 'Rock Island', 'Illinois', '61201', 'Unpaid', 'Cash', 136.52, "
-					+ "'555-555-5555', 'michaelcurrie12@augustana.edu', 1, 'Email');";
-
-			PreparedStatement insertDummyData = connection.prepareStatement(insertDummyDataQuery);
-			insertDummyData.executeUpdate();
-
-			String insertDummyDataQuery2 = "INSERT INTO Orders("
-					+ "orderDate, dueDate, status, firstName, lastName, orderDesc, streetAddress, city,"
-					+ " state, zip, paymentStatus, paymentMethod, price, email, phone, smsEnabled, prefContactMethod)"
-					+ " VALUES('2015-09-18', '2015-12-25', 'Incomplete', 'Saint', 'Nick', "
-					+ "'Christmas plate and mug', '1010 North Pole Dr.', 'North Pole', 'The Arctic Circle', '61201', 'Unpaid', 'Cash', 100.01, "
-					+ "'555-555-5555', 'michaelcurrie12@augustana.edu', 1, 'Email');";
-
-			PreparedStatement insertDummyData2 = connection.prepareStatement(insertDummyDataQuery2);
-			insertDummyData2.executeUpdate();*/
 
 			// Get all orders from Orders table
 			String ordersQuery = "SELECT * FROM Orders";
@@ -181,17 +146,11 @@ public class DataAccess {
 						rsOrderDesc, rsPaymentStatus, rsPaymentMethod, rsPrice, rsPriceExp));
 			}
 
-		} catch (
-
-		SQLException e)
-
-		{
+		} catch (SQLException e){
 			// if the error message is "out of memory",
 			// it probably means no database file is found
 			System.err.println(e.getMessage());
-		} finally
-
-		{
+		} finally{
 
 			try {
 				if (connection != null)
@@ -203,7 +162,11 @@ public class DataAccess {
 		}
 		return ordersList;
 	}
-
+	/**
+	 * Creates a new table of orders
+	 * @param connection
+	 * @throws SQLException
+	 */
 	private static void createOrdersTable(Connection connection) throws SQLException {
 		PreparedStatement createOrdersTable;
 		String createOrdersTableQuery = "CREATE TABLE IF NOT EXISTS Orders(" + "orderNumber INTEGER PRIMARY KEY, "
@@ -213,7 +176,11 @@ public class DataAccess {
 		createOrdersTable = connection.prepareStatement(createOrdersTableQuery);
 		createOrdersTable.executeUpdate();
 	}
-	
+	/**
+	 * Creates a new table of customers
+	 * @param connection
+	 * @throws SQLException
+	 */
 	private static void createCustomersTable(Connection connection) throws SQLException {
 		PreparedStatement createCustomersTable;
 		String createCustomersTableQuery = "CREATE TABLE IF NOT EXISTS Customers(" + "customerNumber INTEGER PRIMARY KEY, "
@@ -231,7 +198,6 @@ public class DataAccess {
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -257,20 +223,12 @@ public class DataAccess {
 				double price = order.getPrice();
 				int customerNumber = order.getCustomerNumber();
 				String priceExp = order.getPriceExp();
-				//String email = order.getEmail();
-				//String phone = order.getPhoneNumber();
-				//boolean smsEnabled = order.getSmsEnabled();
-				//int smsEnabledInt = 0;
-				//if (smsEnabled)
-					//smsEnabledInt = 1;
-				//String prefContactMethod = order.getPrefContactMethod();
 
 				String insertOrderQuery = "INSERT INTO Orders("
 						+ "orderNumber, orderDate, dueDate, status, orderDesc, "
 						+ "paymentStatus, paymentMethod, price, priceExp, customerID)"
 						+ " VALUES(?, ?, ?, ?, ?, "
 						+ "?, ?, ?, ?, ?);";
-				System.out.println(insertOrderQuery);
 				PreparedStatement insertOrder = connection.prepareStatement(insertOrderQuery);
 				insertOrder.setString(1, orderNumber + "");
 				insertOrder.setString(2, orderDate);
@@ -287,12 +245,9 @@ public class DataAccess {
 			}
 
 		} catch (SQLException e){
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally{
-			System.out.println("List Saved!");
 			hideSavingLabel();
-			
 			try {
 				if (connection != null)
 					connection.close();
@@ -301,7 +256,6 @@ public class DataAccess {
 				System.err.println(e);
 			}
 		}
-
 	}
 	
 	/**Save a list of orders to the database. Overwrites all data with new data
@@ -311,7 +265,6 @@ public class DataAccess {
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -348,9 +301,7 @@ public class DataAccess {
 						+ "state, zip, phoneNumber, email, smsEnabled, prefContactMethod)"
 						+ " VALUES(?, ?, ?, ?, ?, "
 						+ "?, ?, ?, ?, ? ,?);";
-				System.out.println(insertCustomersQuery);
 				PreparedStatement insertCustomer = connection.prepareStatement(insertCustomersQuery);
-				System.out.println("SAve customer statement prepared");
 				insertCustomer.setString(1, customerNumber + "");
 				insertCustomer.setString(2, firstName);
 				insertCustomer.setString(3, lastName);
@@ -367,12 +318,8 @@ public class DataAccess {
 			}
 
 		} catch (SQLException e){
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally{
-			System.out.println("List Saved!");
-			//hideSavingLabel();
-			
 			try {
 				if (connection != null)
 					connection.close();
@@ -383,7 +330,7 @@ public class DataAccess {
 		}
 
 	}
-
+	//TODO javadoc
 	private static void dropOldCustomers(Connection connection) throws SQLException {
 		String dropOldDataQuery = "DELETE FROM customers;";
 		PreparedStatement dropOldData = connection.prepareStatement(dropOldDataQuery);
@@ -391,20 +338,21 @@ public class DataAccess {
 	}
 
 
-
+	//TODO javadoc
 	private static void dropOldOrders(Connection connection) throws SQLException {
 		String dropOldDataQuery = "DELETE FROM Orders;";
 		PreparedStatement dropOldData = connection.prepareStatement(dropOldDataQuery);
 		dropOldData.executeUpdate();
 	}
-
+	/**
+	 * Hides "saving..." on window after 3 seconds
+	 */
 	private static void hideSavingLabel() {
 		Thread t1 = new Thread(new Runnable() {
 		     public void run() {
 		    	 try {
 		    		 Thread.sleep(3000);
 		    	 } catch (InterruptedException e) {
-		    		 // TODO Auto-generated catch block
 		    		 e.printStackTrace();
 		    	 }
 		    	 MainController.saving.set(false);

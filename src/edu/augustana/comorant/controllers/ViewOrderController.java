@@ -145,10 +145,6 @@ public class ViewOrderController implements Initializable {
 		} else {
 		    alert.close();
 		}
-		
-		
 	}
-
-
 }
 
