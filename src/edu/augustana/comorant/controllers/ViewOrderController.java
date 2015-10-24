@@ -70,25 +70,19 @@ public class ViewOrderController implements Initializable {
 	@FXML
 	private Label lblPaymentStatus;
 
-	
-	public ViewOrderController() {
-		
-
-		
-	}
-	
+	/**
+	 * initializes a new viewordercontroller
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		assert btnCloseWindow != null : "fx:id=\"closeWindowButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
-		
-
-
-		
+		assert btnCloseWindow != null : "fx:id=\"closeWindowButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";		
 	}
-	
+	/**
+	 * closes the window when close button pressed
+	 * @param e
+	 */
 	@FXML
 	public void closeWindowButtonPressed(ActionEvent e) {
-		System.out.println("Close window");
 		Stage stage = (Stage) btnCloseWindow.getScene().getWindow();
 		stage.close();
 
@@ -99,12 +93,11 @@ public class ViewOrderController implements Initializable {
 	 * Controller to NewOrderController so that it can reference the orderList
 	 */
 	public void setMainController(MainController mainController) {
-		this.mainController = mainController;
-		
+		this.mainController = mainController;		
 	}
 
 	/**
-	 * 
+	 * Pulls the info from the order in the database to be viewed
 	 */
 	public void setViewOrder(Order viewOrder) {
 		this.viewOrder = viewOrder;
@@ -126,18 +119,19 @@ public class ViewOrderController implements Initializable {
 		lblPhone.setText(viewOrder.getPhoneNumber());
 		lblPrefContactMethod.setText(viewOrder.getPrefContactMethod().toString());
 
-		
 		if(viewOrder.getSmsEnabled()) {
 			lblSMSEnabled.setText("Yes");
 		}else{
 			lblSMSEnabled.setText("No");
 		}
-		
-
 	}
 	
+	/**
+	 * prints the order being viewed
+	 * @param e
+	 */
 	@FXML
-	public void onPrintButtonPressed(ActionEvent e){
+	public void onPrintButtonPressed(ActionEvent e){//TODO actually print this
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Printing");
 		alert.setContentText("Print Successful!");
@@ -146,7 +140,6 @@ public class ViewOrderController implements Initializable {
 		if (result.get() == ButtonType.OK){
 		    alert.close();
 		    DataAccess.saveOrders(mainController.orderList);
-		    System.out.println("Print!");
 		    Stage stage = (Stage) btnPrint.getScene().getWindow();
 			stage.close();
 		} else {

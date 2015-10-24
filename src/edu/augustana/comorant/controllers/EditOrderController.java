@@ -88,19 +88,14 @@ public class EditOrderController implements Initializable {
 	private Label lblResult;
 	@FXML
 	private Label lblTax;
-	
-	public EditOrderController() {
-		
-
-	}
 
 	@FXML
 	public void cancelEditButtonPressed(ActionEvent e) {
-		System.out.println("Cancel Order!");
 		Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
 		stage.close();
 	}
-
+	/**Creates a new edit order controller
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
@@ -228,7 +223,7 @@ public class EditOrderController implements Initializable {
 		this.mainController = mainController;
 	}
 
-	/**
+	/**Sets the 'edited' order to the current changes
 	 * 
 	 */
 	public void setEditedOrder(Order editedOrder) {
@@ -356,14 +351,16 @@ public class EditOrderController implements Initializable {
 		//editedOrder.redoShippingAddress();
 
 		DataAccess.saveOrders(mainController.orderList);
-		System.out.println("Save Edit!");
 		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
 		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
 		Stage stage = (Stage) btnSaveEdit.getScene().getWindow();
 		stage.close();
 
 	}
-	
+	/**
+	 * removes an order or customer from the list
+	 * @param e
+	 */
 	@FXML
 	public void onDeleteButtonPressed(ActionEvent e){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -382,21 +379,17 @@ public class EditOrderController implements Initializable {
 			}
 			if(!customerHasOtherOrder){
 				mainController.customerList.remove(editedOrder.getCustomer());
-				System.out.println("Delete Customer!");
 				
 			}
 			mainController.orderList.remove(editedOrder);
 		    alert.close();
 		    DataAccess.saveOrders(mainController.orderList);
 		    DataAccess.saveCustomers(mainController.customerList);
-		    System.out.println("Delete Order!");
 		    Stage stage = (Stage) btnDeleteOrder.getScene().getWindow();
 			stage.close();
 		} else {
 		    alert.close();
 		}
-		
-		
 	}
 
 	/**
@@ -432,9 +425,5 @@ public class EditOrderController implements Initializable {
 				 "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", 
 				 "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan");
 		cmbState.setItems(statesList);
-
 	}
-
-	
-
 }

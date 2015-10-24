@@ -75,17 +75,14 @@ public class NewOrderByCustomerController implements Initializable {
 	@FXML
 	private ComboBox<String> cmbPaymentStatus;
 
-	public NewOrderByCustomerController() {
-
-	}
-
 	@FXML
 	public void cancelOrderButtonPressed(ActionEvent e) {
-		System.out.println("Cancel Order!");
 		Stage stage = (Stage) btnCancelOrder.getScene().getWindow();
 		stage.close();
 	}
-
+	/**
+	 * Creates a NewOrderByCustomerController and initializes it
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
@@ -295,7 +292,6 @@ public class NewOrderByCustomerController implements Initializable {
 		DataAccess.saveCustomers(mainController.customerList);
 		DataAccess.saveOrders(mainController.orderList);
 		
-		System.out.println("Save Order!");
 		Stage stage = (Stage) btnSaveOrder.getScene().getWindow();
 		stage.close();
 

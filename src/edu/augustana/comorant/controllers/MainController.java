@@ -61,12 +61,8 @@ public class MainController implements Initializable {
 	private Button btnDeleteOrder;
 	@FXML
 	private Button btnViewOrder;
-	
-	//TODO
 	@FXML
 	private Button btnNewOrderByCustomer;
-	
-	
 	@FXML
 	private TextField txtFilterOrders;
 	
@@ -153,9 +149,6 @@ public class MainController implements Initializable {
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
-	public MainController() {
-
-	}
 
 	/**
 	 * Launches the new order window. Passes into the New Order controller a
@@ -163,7 +156,6 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void newOrderButtonPressed(ActionEvent e) {
-		System.out.println("New Order!");
 		Parent root;
 		try {
 
@@ -191,7 +183,6 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void newOrderByCustomerPressed(ActionEvent e) {
-		System.out.println("New Order!");
 		Parent root;
 		try {
 
@@ -217,7 +208,6 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void editOrderButtonPressed(ActionEvent e) {
-		System.out.println("Edit Order!");
 		Parent root;
 		try {
 
@@ -247,7 +237,6 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void viewOrderButtonPressed(ActionEvent e) {
-		System.out.println("View Order!");
 		Parent root;
 		try {
 
@@ -270,7 +259,10 @@ public class MainController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
-
+	/**
+	 * Deletes the selected order when the delete button is pressed
+	 * @param e
+	 */
 	@FXML
 	public void deleteOrderButtonPressed(ActionEvent e) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -296,7 +288,6 @@ public class MainController implements Initializable {
 			// selectedOrder = null;
 			alert.close();
 			DataAccess.saveOrders(orderList);
-			System.out.println("Delete Order!");
 
 		} else {
 			alert.close();

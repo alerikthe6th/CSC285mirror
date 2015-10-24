@@ -93,49 +93,39 @@ public class NewOrderController implements Initializable {
 	private Customer matchedCustomer = null;
 	boolean usingMatchedCustomer = false;
 
-	public NewOrderController() {
-
-	}
-
+	/**
+	 * Cancels the new order
+	 */
 	@FXML
 	public void cancelOrderButtonPressed(ActionEvent e) {
-		System.out.println("Cancel Order!");
 		Stage stage = (Stage) btnCancelOrder.getScene().getWindow();
 		stage.close();
 	}
-
+	/**
+	 * Creates a NewOrderController and initializes it
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropDowns();
 
-		// checks if the input phone number is of 7,10, or 11 digits and ignores
-		// dashes.
+		// checks if the input phone number is of 7,10, or 11 digits and ignores dashes.
 		// if invalid phone number entered, clears the field
 		txtPhone.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue && !newValue && !txtPhone.getText().equals("")) {
 				String testPhone = txtPhone.getText();
-				if (!(testPhone.length() == 7 || testPhone.length() == 10 || testPhone.length() == 11 || // 7,10,11
-																											// numbers
-																											// 1234567,1234567890,112345678900
-				(testPhone.length() == 8 && testPhone.charAt(3) == '-') || // 7nums
-																			// and
-																			// a
-																			// hyphen
-																			// 123-4567
-				(testPhone.length() == 12 && testPhone.charAt(3) == '-' && testPhone.charAt(7) == '-') || // 10nums
-																											// and
-																											// 2
-																											// -'s
-																											// 123-456-7890
+				// 7,10,11 nums 1234567,1234567890,112345678900
+				if (!(testPhone.length() == 7 || testPhone.length() == 10 || testPhone.length() == 11 || 
+						// 7,10,11 nums 1234567,1234567890,112345678900
+				(testPhone.length() == 8 && testPhone.charAt(3) == '-') || 
+				// 10nums and 2 hyphens 123-456-7890
+				(testPhone.length() == 12 && testPhone.charAt(3) == '-' && testPhone.charAt(7) == '-') || 
+				// 11nums and 3 -'s 1-123-456-7890
 				(testPhone.length() == 14 && testPhone.charAt(1) == '-' && testPhone.charAt(9) == '-'
-						&& testPhone.charAt(9) == '-') || // 11nums and 3 -'s
-															// 1-123-456-7890
+				&& testPhone.charAt(9) == '-') || 
+				//10 nums, one of each parentheses and two hyphens (123)-456-7890
 				(testPhone.length() == 14 && testPhone.charAt(0) == '(' && testPhone.charAt(4) == ')'
-						&& testPhone.charAt(5) == '-' && testPhone.charAt(9) == '-'))) {// 10
-																						// nums
-																						// 1(,1),2-
-																						// (123)-456-7890
+						&& testPhone.charAt(5) == '-' && testPhone.charAt(9) == '-'))) {
 					throwAlert("Phone Number", txtPhone);
 				}
 			}
@@ -172,7 +162,7 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
-
+		//checks to see if the price inserted is valid and if not sets it blank
 		txtPrice.textProperty().addListener((observable, oldValue, newValue) -> {
 			try {
 				String priceExp = newValue;
@@ -380,7 +370,6 @@ public class NewOrderController implements Initializable {
 		DataAccess.saveCustomers(mainController.customerList);
 		DataAccess.saveOrders(mainController.orderList);
 
-		System.out.println("Save Order!");
 		Stage stage = (Stage) btnSaveOrder.getScene().getWindow();
 		stage.close();
 
@@ -422,7 +411,9 @@ public class NewOrderController implements Initializable {
 		cmbState.setItems(statesList);
 
 	}
-
+	/**
+	 * Checks if the inputed name matches any previous customers
+	 */
 	@FXML
 	public void matchNameToCustomer() {
 		String firstName = txtFirstName.getText();
@@ -443,7 +434,11 @@ public class NewOrderController implements Initializable {
 		}
 
 	}
-
+	/**
+	 * If the name matches older customers and you create a 
+	 * new order w/ an old customer it autofills
+	 * @param e
+	 */
 	@FXML
 	public void onAutoFill(ActionEvent e) {
 
@@ -477,7 +472,10 @@ public class NewOrderController implements Initializable {
 		}
 
 	}
-
+	/**
+	 * Autofills the customer data into the order 
+	 * @param customer
+	 */
 	void setMatchedCustomer(Customer customer) {
 		matchedCustomer = customer;
 		if (matchedCustomer != null) {
