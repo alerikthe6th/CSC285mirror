@@ -56,7 +56,7 @@ public class PrintInvoice {
 		String currentDate = (dateFormat.format(date)).toString();
 		PrintWriter writer = null;
 		
-		//catches for file not being found and for unsuported characters in URL
+		//catches for file not being found and for unsupported characters in URL (which won't happen now anyway)
 		try {
 			try {
 				writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.doc"), "UTF-8");
@@ -104,11 +104,8 @@ public class PrintInvoice {
 	
 	//used code from: http://www.coderanch.com/t/410208/java/java/java-printing-printing-pdf
 	
-	//DO NOT TEST - LOADS PAPER BUT DOES NOTHING WITH IT
-	//EDIT: prints fine in olin - Al can attest
 	/**
-	 * Takes in a filepath and name (in one string) and prints the target file
-	 * @param filePathAndName - String; ex: "C:/Users/Joseph/Desktop/PrintOut.doc"
+	 * Prints the file "PrintInvoice" saved in the working directory
 	 */
 	public static void printPage(){
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();//gets default printer so it knows where to send it to
