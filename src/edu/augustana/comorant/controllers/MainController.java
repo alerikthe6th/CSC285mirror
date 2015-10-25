@@ -8,11 +8,6 @@ package edu.augustana.comorant.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +16,7 @@ import java.util.ResourceBundle;
 
 import edu.augustana.comorant.dataStructures.Customer;
 import edu.augustana.comorant.dataStructures.Order;
+import edu.augustana.comorant.dataStructures.Preference;
 import edu.augustana.comorant.launchers.DataAccess;
 import edu.augustana.comorant.launchers.MainApp;
 import javafx.beans.property.BooleanProperty;
@@ -67,7 +63,9 @@ public class MainController implements Initializable {
 	private TextField txtFilterOrders;
 	
 	@FXML
-	private MenuItem miSave;
+	private MenuItem miPref;
+	@FXML
+	private MenuItem miAbout;
 	@FXML
 	private MenuItem miClose;
 	@FXML
@@ -146,6 +144,8 @@ public class MainController implements Initializable {
 
 	protected Order selectedOrder = null;
 	SortedList<Order> sortedOrders = null;
+	
+	protected Preference currentPreference = null;
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
@@ -597,6 +597,35 @@ public class MainController implements Initializable {
 			customerNumberList.add(new Integer(customer.getCustomerNumber()));
 		}
 		return Collections.max(customerNumberList);
+	}
+	
+	@FXML
+	protected void onPrefPressed(ActionEvent e){
+		Parent root;
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/comorant/fxml/preferencesGUI.fxml"));
+			root = loader.load();
+			PrefController prefController = (PrefController) loader.getController();
+			prefController.setPreference(currentPreference);
+			Stage stage = new Stage();
+			stage.setTitle("Preferences");
+			stage.setScene(new Scene(root));
+			stage.show();
+
+			// hide this current window (if this is what you want
+			// ((Node)(e.getSource())).getScene().getWindow().hide();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+		
+	}
+	
+	@FXML 
+	void onAboutPressed(ActionEvent e){
+		
 	}
 
 }

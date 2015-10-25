@@ -12,18 +12,9 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="miSave" mnemonicParsing="false" onAction="#miSavePressed" text="Save" />
+                  <MenuItem fx:id="miPref" mnemonicParsing="false" onAction="#onPrefPressed" text="Preferences" />
+                  <MenuItem fx:id="miAbout" mnemonicParsing="false" onAction="#onAboutPressed" text="About" />
                   <MenuItem fx:id="miClose" mnemonicParsing="false" onAction="#miClosedPressed" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem fx:id="miDelete" disable="true" mnemonicParsing="false" onAction="#deleteOrderButtonPressed" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem disable="true" mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
