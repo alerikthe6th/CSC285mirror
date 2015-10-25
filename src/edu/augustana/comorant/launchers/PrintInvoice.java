@@ -25,7 +25,6 @@ import javax.print.SimpleDoc;
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
 
-//TODO will date ordered be a string?
 public class PrintInvoice {
 	/*
 	public static void main(String[] args){

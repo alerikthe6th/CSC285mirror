@@ -131,7 +131,7 @@ public class ViewOrderController implements Initializable {
 	 * @param e
 	 */
 	@FXML
-	public void onPrintButtonPressed(ActionEvent e){//TODO actually print this
+	public void onPrintButtonPressed(ActionEvent e){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Printing");
 		//TODO need to get return address from preferences
