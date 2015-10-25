@@ -71,7 +71,7 @@ public class ViewOrderController implements Initializable {
 	private Label lblPaymentStatus;
 
 	/**
-	 * initializes a new viewordercontroller
+	 * initializes a new viewOrderController
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
