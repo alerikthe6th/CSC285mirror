@@ -49,10 +49,10 @@ public class PrintInvoice {
 	 * @param price - double; ex: 12.34
 	 * @param paymentMethod - String; ex: "Credit Card"
 	 */
-	protected void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
-		String custAdrsLine1, String custAdrsLine2, String custCSZ, String dateOrdered, String orderDesc, double price, String paymentMethod){
+	public static void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
+		String custAdrsLine1, String custAdrsLine2, String custCSZ, String dateOrdered, String orderDesc, String price, String paymentMethod){
 		
-		DateFormat dateFormat = new SimpleDateFormat("dd/MMMM/yyyy");//10/15/2015
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//2015-10-25
 		Date date = new Date();
 		String currentDate = (dateFormat.format(date)).toString();
 		PrintWriter writer = null;
@@ -60,7 +60,7 @@ public class PrintInvoice {
 		//catches for file not being found and for unsuported characters in URL
 		try {
 			try {
-				writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.txt"), "UTF-8");
+				writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.doc"), "UTF-8");
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
@@ -111,10 +111,10 @@ public class PrintInvoice {
 	 * Takes in a filepath and name (in one string) and prints the target file
 	 * @param filePathAndName - String; ex: "C:/Users/Joseph/Desktop/PrintOut.doc"
 	 */
-	protected void printPage(){
+	public static void printPage(){
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();//gets default printer so it knows where to send it to
 	    DocPrintJob printerJob = defaultPrintService.createPrintJob();
-	    File pdfFile = new File((""+System.getProperty("user.dir")+"/PrintOut.txt"));//user.dir gets the directory this workspace is in
+	    File pdfFile = new File((""+System.getProperty("user.dir")+"/PrintOut.doc"));//user.dir gets the directory this workspace is in
 	    SimpleDoc simpleDoc = null;
 	     
 	    try {
