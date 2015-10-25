@@ -158,12 +158,18 @@ public class Order {
 	public String getPrefContactMethod() {
 		return theCustomer.getPrefContactMethod();
 	}
+	/**Returns the order's customer number
+	 * @return int */
 	public int getCustomerNumber() {
 		return theCustomer.getCustomerNumber();
 	}
+	/**Returns the order's customer
+	 * @return Customer */
 	public Customer getCustomer(){
 		return theCustomer;
 	}
+	/**Returns the order's price expression
+	 * @return String */
 	public String getPriceExp(){
 		return priceExpression.get();
 	}
@@ -259,6 +265,7 @@ public class Order {
 	public StringProperty priceStringProperty() {
 		return priceString;
 	}
+	/**@return StringProperty*/
 	public StringProperty priceExpProperty() {
 		return priceExpression;
 	}
@@ -348,7 +355,7 @@ public class Order {
 	public void redoShippingAddress() {
 		theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
 	}
-	
+	/**Sets the price expression*/
 	public void setPriceExp(String priceExp){
 		this.priceExpression.set(priceExp);
 	}

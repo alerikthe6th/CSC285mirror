@@ -22,7 +22,6 @@ import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 
-//Will need a popup stating that an invoice was created on the user's desktop and they need to open the file and print from there
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
 
@@ -58,7 +57,7 @@ public class PrintInvoice {
 		String currentDate = (dateFormat.format(date)).toString();
 		PrintWriter writer = null;
 		
-	
+		//catches for file not being found and for unsuported characters in URL
 		try {
 			try {
 				writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.txt"), "UTF-8");
@@ -68,7 +67,6 @@ public class PrintInvoice {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 
 		String lines="-----------------------------------";//35 chars - print twice for 70 wide line (easier than 7*10)
 		
@@ -83,7 +81,7 @@ public class PrintInvoice {
 		writer.printf(fromCSZ+"%"+(70-fromCSZ.length())+"s", "+------+");//or here either
 		writer.println();
 		
-		writer.println("\n\n\n\n");//5 return
+		writer.println("\n\n\n\n");//5 returns
 	
 		writer.println("\t\t\t\t\t"+custName);
 		writer.println("\t\t\t\t\t"+custAdrsLine1);

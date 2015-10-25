@@ -65,18 +65,11 @@ public class DataAccess {
 								rsPhone, rsEmail, rsPrefContactMethod, rsSmsEnabled));
 					}
 
-				} catch (
-
-				SQLException e)
-
-				{
+				} catch (SQLException e){
 					// if the error message is "out of memory",
 					// it probably means no database file is found
 					System.err.println(e.getMessage());
-				} finally
-
-				{
-
+				} finally{
 					try {
 						if (connection != null)
 							connection.close();
@@ -86,10 +79,7 @@ public class DataAccess {
 					}
 				}
 				return customersList;
-		
 	}
-	
-	
 	
 	/**Returns the list of orders loaded from the database
 	 * MainController's orderList should be set equal to the returned list at launch
@@ -111,10 +101,8 @@ public class DataAccess {
 			// create a database connection
 			connection = DriverManager.getConnection("jdbc:sqlite:Pottery.db");
 
-
 			Statement statement = connection.createStatement();
 			statement.setQueryTimeout(30); // set timeout to 30 sec.
-
 
 			createOrdersTable(connection);
 
@@ -151,7 +139,6 @@ public class DataAccess {
 			// it probably means no database file is found
 			System.err.println(e.getMessage());
 		} finally{
-
 			try {
 				if (connection != null)
 					connection.close();
