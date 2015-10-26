@@ -127,27 +127,33 @@ public class ViewOrderController implements Initializable {
 	}
 	
 	/**
-	 * prints the order being viewed
-	 * @param e
+	 * Prints the order being viewed using PrintInvoice's 
+	 * 'createInvoice' and 'printPage' methods
+	 * and Preference's data for return address with PrintInvoice's
+	 * 'stateFormatter' method to format state & province names to
+	 * be abbreviated for postal use
+	 * @param ActionEvent e
 	 */
 	@FXML
 	public void onPrintButtonPressed(ActionEvent e){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Printing");
-		//'null' statements are for second address lines: leave as null or "" if empty		
-		
+				
+		//'null' statements are for second address lines: leave as null or "" if empty!
 		edu.augustana.comorant.launchers.PrintInvoice.createInvoice(
-			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getBusinessName(), 
-			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddress(),
-			null, 
-			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getCity()+", "+
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getBusinessName(),//from name 
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddress(),//from address
+			null, //second from address line
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getCity()+", "+//from city,
 			edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(
-					edu.augustana.comorant.controllers.MainController.getCurrentPreference().getState())+" "+
-			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getZip(),
-			lblFirstName.getText()+" "+lblLastName.getText(), ""+lblStreetAddress.getText(), null, 
-			""+lblCity.getText()+", "+edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())
-			+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), 
-			""+lblPrice.getText(), ""+lblPaymentMethod.getText()
+					edu.augustana.comorant.controllers.MainController.getCurrentPreference().getState())+" "+//from state
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getZip(),//from zip
+			lblFirstName.getText()+" "+lblLastName.getText(), //firstname, lastname
+			""+lblStreetAddress.getText(), null,//to address, second to address line
+			""+lblCity.getText()+", "+//to city
+					edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())//to state(formatted)
+			+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), //to to zip, order date, description
+			""+lblPrice.getText(), ""+lblPaymentMethod.getText()//price and payment method
 		);
 
 		edu.augustana.comorant.launchers.PrintInvoice.printPage();

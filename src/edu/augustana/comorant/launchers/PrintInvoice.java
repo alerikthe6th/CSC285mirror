@@ -129,6 +129,7 @@ public class PrintInvoice {
 	    
 	    //TODO thread sleep 5 secs, then delete file?
 	}
+	
 	public static String stateFormatter(String state){
 		//super special cases
 		//(these have spaces but don't format like the others)
@@ -137,7 +138,7 @@ public class PrintInvoice {
 		}else if (state.equals("Newfoundland and Labrador")){
 			return "NL";
 			
-		//everything two words abbreviated
+		//two words abbreviated - first letters each word
 		}else if(state.contains(" ")){
 			return state.substring(0, 1)+""+state.substring(state.indexOf(" ")+1,state.indexOf(" ")+2);
 			
