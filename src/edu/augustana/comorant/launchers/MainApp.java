@@ -1,3 +1,8 @@
+/* Authors: Michael J. Currie, Al Vi, Scott Doberstein, Joe Godfrey
+ * Augustana Computer Science 285 - Software development 
+ * Fall 2015 (August - November)
+ * Do not reproduce (as a whole or as pieces of code) without prior permission.
+ */
 
 package edu.augustana.comorant.launchers;
 
@@ -23,7 +28,6 @@ public class MainApp extends Application {
 		this.primaryStage.getIcons().add(new Image("comorantIconBorder2.png"));
 
 		initRootLayout();
-
 	}
 
 	/**
@@ -40,7 +44,6 @@ public class MainApp extends Application {
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
 
 			// Give the controller access to the main app.
 			MainController mainController = loader.getController();

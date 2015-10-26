@@ -1,3 +1,8 @@
+/* Authors: Michael J. Currie, Al Vi, Scott Doberstein, Joe Godfrey
+ * Augustana Computer Science 285 - Software development 
+ * Fall 2015 (August - November)
+ * Do not reproduce (as a whole or as pieces of code) without prior permission.
+ */
 
 package edu.augustana.comorant.controllers;
 
@@ -65,25 +70,19 @@ public class ViewOrderController implements Initializable {
 	@FXML
 	private Label lblPaymentStatus;
 
-	
-	public ViewOrderController() {
-		
-
-		
-	}
-	
+	/**
+	 * initializes a new viewOrderController
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		assert btnCloseWindow != null : "fx:id=\"closeWindowButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
-		
-
-
-		
+		assert btnCloseWindow != null : "fx:id=\"closeWindowButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";		
 	}
-	
+	/**
+	 * closes the window when close button pressed
+	 * @param e
+	 */
 	@FXML
 	public void closeWindowButtonPressed(ActionEvent e) {
-		System.out.println("Close window");
 		Stage stage = (Stage) btnCloseWindow.getScene().getWindow();
 		stage.close();
 
@@ -94,12 +93,11 @@ public class ViewOrderController implements Initializable {
 	 * Controller to NewOrderController so that it can reference the orderList
 	 */
 	public void setMainController(MainController mainController) {
-		this.mainController = mainController;
-		
+		this.mainController = mainController;		
 	}
 
 	/**
-	 * 
+	 * Pulls the info from the order in the database to be viewed
 	 */
 	public void setViewOrder(Order viewOrder) {
 		this.viewOrder = viewOrder;
@@ -121,36 +119,42 @@ public class ViewOrderController implements Initializable {
 		lblPhone.setText(viewOrder.getPhoneNumber());
 		lblPrefContactMethod.setText(viewOrder.getPrefContactMethod().toString());
 
-		
 		if(viewOrder.getSmsEnabled()) {
 			lblSMSEnabled.setText("Yes");
 		}else{
 			lblSMSEnabled.setText("No");
 		}
-		
-
 	}
 	
+	/**
+	 * prints the order being viewed
+	 * @param e
+	 */
 	@FXML
 	public void onPrintButtonPressed(ActionEvent e){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Printing");
+		//TODO need to get return address from preferences
+		//'null' statements are for second address lines: leave as null or "" if empty
+		//would ""+preferences.addressLine2.getText() return anything if it's blank?
+		edu.augustana.comorant.launchers.PrintInvoice.createInvoice("Example Inc.", "123 Main Street", null, "New York, NY 12345",
+				lblFirstName.getText()+" "+lblLastName.getText(), ""+lblStreetAddress.getText(), null, 
+				""+lblCity.getText()+", "+edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())
+				+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), 
+				""+lblPrice.getText(), ""+lblPaymentMethod.getText());
+		
+		edu.augustana.comorant.launchers.PrintInvoice.printPage();
+		
 		alert.setContentText("Print Successful!");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){
 		    alert.close();
 		    DataAccess.saveOrders(mainController.orderList);
-		    System.out.println("Print!");
 		    Stage stage = (Stage) btnPrint.getScene().getWindow();
 			stage.close();
 		} else {
 		    alert.close();
 		}
-		
-		
 	}
-
-
 }
-

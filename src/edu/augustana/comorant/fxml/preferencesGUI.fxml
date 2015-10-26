@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.comorant.controllers.PrefController">
+   <top>
+      <Label text="Preferences" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" text="Save Changes" textFill="#02ab0b">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Region minWidth="200.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Region>
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#onCancel" text="Cancel Changes" textFill="#9e0808">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Tax Rate" />
+                  <TextField fx:id="txtTax" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="2.0">
+               <children>
+                  <Label alignment="TOP_CENTER" text="Return Address">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Region prefHeight="10.0" />
+                  <Label text="Business" />
+                  <TextField fx:id="txtBusiness" />
+                  <Label text="Street Address" />
+                  <TextField fx:id="txtStreetAddress" />
+                  <HBox spacing="8.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label text="City" />
+                              <TextField fx:id="txtCity" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label text="State" />
+                              <ComboBox fx:id="cmbState" prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label text="ZIP Code" />
+                              <TextField fx:id="txtZip" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </GridPane.margin>
+            </VBox>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -12,8 +13,10 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="miSave" mnemonicParsing="false" onAction="#miSavePressed" text="Save" />
+                  <MenuItem fx:id="miPref" mnemonicParsing="false" onAction="#miPreferencesPressed" text="Preferences" />
+                  <MenuItem fx:id="miAbout" mnemonicParsing="false" onAction="#miAboutPressed" text="About" />
                   <MenuItem fx:id="miClose" mnemonicParsing="false" onAction="#miClosedPressed" text="Close" />
+<<<<<<< HEAD
                   <MenuItem fx:id="miAbout" mnemonicParsing="false" onAction="#miAboutPressed" text="About" />
             </items>
           </Menu>
@@ -25,6 +28,8 @@
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem disable="true" mnemonicParsing="false" text="About" />
+=======
+>>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/CormorantRepo.git
             </items>
           </Menu>
         </menus>
@@ -45,12 +50,21 @@
                                        <children>
                                           <HBox alignment="CENTER" spacing="20.0">
                                              <children>
-                                                <Label text="Filter Orders:" />
+                                                <Label text="Filter Orders:">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font></Label>
                                                 <TextField fx:id="txtFilterOrders" prefHeight="22.0" prefWidth="200.0" />
-                                                <Label text="Filter By:" />
+                                                <Label text="Filter By:">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font></Label>
                                                 <ComboBox fx:id="cmbOrderFilters" prefWidth="150.0" />
                                                 <Region minWidth="200.0" />
-                                                <CheckBox fx:id="chkCompletedOrders" mnemonicParsing="false" text="Don't Show Completed Orders" />
+                                                <CheckBox fx:id="chkCompletedOrders" mnemonicParsing="false" text="Don't Show Completed Orders">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font></CheckBox>
                                              </children>
                                              <VBox.margin>
                                                 <Insets />
@@ -86,15 +100,30 @@
                                  <children>
                                     <HBox alignment="CENTER" layoutY="-33.0" prefHeight="34.0" prefWidth="638.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button fx:id="newOrderButton" mnemonicParsing="false" onAction="#newOrderButtonPressed" text="New Order" />
-                                          <Button fx:id="btnEditOrder" disable="true" mnemonicParsing="false" onAction="#editOrderButtonPressed" text="Edit Order" />
-                                          <Button fx:id="btnViewOrder" disable="true" mnemonicParsing="false" onAction="#viewOrderButtonPressed" text="View Order" />
-                                          <Button fx:id="btnDeleteOrder" disable="true" mnemonicParsing="false" onAction="#deleteOrderButtonPressed" text="Delete Order" />
+                                          <Button fx:id="newOrderButton" mnemonicParsing="false" onAction="#newOrderButtonPressed" text="New Order">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font></Button>
+                                          <Button fx:id="btnEditOrder" disable="true" mnemonicParsing="false" onAction="#editOrderButtonPressed" text="Edit Order">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font></Button>
+                                          <Button fx:id="btnViewOrder" disable="true" mnemonicParsing="false" onAction="#viewOrderButtonPressed" text="View Order">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font></Button>
+                                          <Button fx:id="btnDeleteOrder" disable="true" mnemonicParsing="false" onAction="#deleteOrderButtonPressed" text="Delete Order">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font></Button>
                                           <Region HBox.hgrow="ALWAYS" />
                                           <Region layoutX="394.0" layoutY="14.0" HBox.hgrow="ALWAYS" />
                                           <VBox alignment="CENTER">
                                              <children>
-                                                <Label text="Order Status" />
+                                                <Label text="Order Status">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font></Label>
                                                 <ComboBox fx:id="cmbOrderStatus" onAction="#onStatusDropdownChanged" prefWidth="150.0" />
                                              </children>
                                           </VBox>
@@ -146,8 +175,14 @@
                                  <children>
                                     <HBox alignment="CENTER" layoutY="-33.0" prefHeight="34.0" prefWidth="638.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button fx:id="btnNewOrderByCustomer" mnemonicParsing="false" onAction="#newOrderByCustomerPressed" text="New Order by Customer" />
-                                          <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" text="Edit Customer" />
+                                          <Button fx:id="btnNewOrderByCustomer" mnemonicParsing="false" onAction="#newOrderByCustomerPressed" text="New Order by Customer">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font></Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="167.0" text="Edit Customer">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font></Button>
                                           <Region HBox.hgrow="ALWAYS" />
                                        </children>
                                        <padding>

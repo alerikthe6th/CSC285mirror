@@ -1,3 +1,8 @@
+/* Authors: Michael J. Currie, Al Vi, Scott Doberstein, Joe Godfrey
+ * Augustana Computer Science 285 - Software development 
+ * Fall 2015 (August - November)
+ * Do not reproduce (as a whole or as pieces of code) without prior permission.
+ */
 
 package edu.augustana.comorant.dataStructures;
 
@@ -19,55 +24,20 @@ public class Order {
 	protected StringProperty priceString;
 	protected StringProperty priceExpression;
 
-
-	/**
-	 * Default constructor.
-	 * Creates a new Order with no data.
-	 * 
-	 * @param int orderNumber 
-	 * @param LocalDate orderDate
-	 * @param LocalDate dueDate
-	 * @param String status
-	 * @param String firstName
-	 * @param String lastName
-	 * @param String orderDesc
-	 * @param String streetAddress
-	 * @param String city
-	 * @param String state
-	 * @param String zip
-	 * @param String paymentStatus
-	 * @param String paymentMethod
-	 * @param double price
-	 * @param String email
-	 * @param String phoneNumber
-	 * @param boolean smsEnabled
-	 * @param String prefContactMethod
-	 * 
-	 */
-	
-
 	/**
 	 * Constructor with some initial data.	
 	 * Creates a new order with given parameters
 	 *
+	 * @param Customer customer
 	 * @param int orderNumber 
 	 * @param LocalDate orderDate
 	 * @param LocalDate dueDate
 	 * @param String status
-	 * @param String firstName
-	 * @param String lastName
 	 * @param String orderDesc
-	 * @param String streetAddress
-	 * @param String city
-	 * @param String state
-	 * @param String zip
 	 * @param String paymentStatus
 	 * @param String paymentMethod
 	 * @param double price
-	 * @param String email
-	 * @param String phoneNumber
-	 * @param boolean smsEnabled
-	 * @param String prefContactMethod
+	 * @param String priceExp
 	 * 
 	 */
 
@@ -188,12 +158,18 @@ public class Order {
 	public String getPrefContactMethod() {
 		return theCustomer.getPrefContactMethod();
 	}
+	/**Returns the order's customer number
+	 * @return int */
 	public int getCustomerNumber() {
 		return theCustomer.getCustomerNumber();
 	}
+	/**Returns the order's customer
+	 * @return Customer */
 	public Customer getCustomer(){
 		return theCustomer;
 	}
+	/**Returns the order's price expression
+	 * @return String */
 	public String getPriceExp(){
 		return priceExpression.get();
 	}
@@ -289,6 +265,7 @@ public class Order {
 	public StringProperty priceStringProperty() {
 		return priceString;
 	}
+	/**@return StringProperty*/
 	public StringProperty priceExpProperty() {
 		return priceExpression;
 	}
@@ -378,7 +355,7 @@ public class Order {
 	public void redoShippingAddress() {
 		theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
 	}
-	
+	/**Sets the price expression*/
 	public void setPriceExp(String priceExp){
 		this.priceExpression.set(priceExp);
 	}

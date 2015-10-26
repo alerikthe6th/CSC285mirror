@@ -173,7 +173,7 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Order">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Text>
          </children>

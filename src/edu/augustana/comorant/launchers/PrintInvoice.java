@@ -1,3 +1,9 @@
+/* Authors: Michael J. Currie, Al Vi, Scott Doberstein, Joe Godfrey
+ * Augustana Computer Science 285 - Software development 
+ * Fall 2015 (August - November)
+ * Do not reproduce (as a whole or as pieces of code) without prior permission.
+ */
+
 package edu.augustana.comorant.launchers;
 
 import java.io.File;
@@ -16,14 +22,12 @@ import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 
-//Will need a popup stating that an invoice was created on the user's desktop and they need to open the file and print from there
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
 
-//will date ordered be a string?
 public class PrintInvoice {
 	/*
-	public static void main(String[] args) throws UnsupportedEncodingException{
+	public static void main(String[] args){
 		createInvoice("Firsty Lastname", "123 Main Street", null, "New York, NY 12345",
 				"John Cena", "123 JCena St.", null, "Cena WY, 54321", "Oct 13 2015", "12 Pots, 6 Plates, and one giant hug", 
 				12.56, "Credit Card");
@@ -43,22 +47,25 @@ public class PrintInvoice {
 	 * @param orderDesc - String; ex: "12 Pots, 6 Plates, and a big hug"
 	 * @param price - double; ex: 12.34
 	 * @param paymentMethod - String; ex: "Credit Card"
-	 * @throws UnsupportedEncodingException when the URL(filepath) of the file has invalid characters
 	 */
-	protected void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
-		String custAdrsLine1, String custAdrsLine2, String custCSZ, String dateOrdered, String orderDesc, double price, String paymentMethod)
-		throws /*FileNotFoundException,*/ UnsupportedEncodingException{
+	public static void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
+		String custAdrsLine1, String custAdrsLine2, String custCSZ, String dateOrdered, String orderDesc, String price, String paymentMethod){
 		
-		DateFormat dateFormat = new SimpleDateFormat("dd/MMMM/yyyy");//10/15/2015
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//2015-10-25
 		Date date = new Date();
 		String currentDate = (dateFormat.format(date)).toString();
 		PrintWriter writer = null;
 		
+		//catches for file not being found and for unsupported characters in URL (which won't happen now anyway)
 		try {
-			writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.txt"), "UTF-8");
+			try {
+				writer = new PrintWriter((""+System.getProperty("user.dir")+"/PrintOut.doc"), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}	
+		}
 
 		String lines="-----------------------------------";//35 chars - print twice for 70 wide line (easier than 7*10)
 		
@@ -73,14 +80,15 @@ public class PrintInvoice {
 		writer.printf(fromCSZ+"%"+(70-fromCSZ.length())+"s", "+------+");//or here either
 		writer.println();
 		
-		writer.println("\n\n\n\n");//5 return
+		writer.println("\n\n\n\n");//5 returns
 	
-		writer.println("\t\t\t\t\t"+custName);
-		writer.println("\t\t\t\t\t"+custAdrsLine1);
+
+		writer.println("\t\t\t\t"+custName);
+		writer.println("\t\t\t\t"+custAdrsLine1);
 		if("" != custAdrsLine2 && null != custAdrsLine2){//is there a second address line?
-			writer.println("\t\t\t\t\t"+custAdrsLine2);
+			writer.println("\t\t\t\t"+custAdrsLine2);
 		}
-		writer.println("\t\t\t\t\t"+custCSZ+"\n");
+		writer.println("\t\t\t\t"+custCSZ+"\n");
 				
 		writer.println("\n\n\n\n"+lines+lines+"\n\n\n\n");//4 returns, a horizontal line and then 5 returns
 		
@@ -90,23 +98,20 @@ public class PrintInvoice {
 		writer.println("\tItems Ordered:\n\t" +orderDesc +"\n\n\n");
 		writer.println("\tPaid With:\n\t" +paymentMethod+"\n");
 		
-		writer.printf("%70s", "Total Cost: "+price);
+		writer.printf("%70s", "Total Cost: $"+price);
 		
 		writer.close();
 	}
 	
 	//used code from: http://www.coderanch.com/t/410208/java/java/java-printing-printing-pdf
 	
-	//DO NOT TEST - LOADS PAPER BUT DOES NOTHING WITH IT
-	//EDIT: prints fine in olin - Al can attest
 	/**
-	 * Takes in a filepath and name (in one string) and prints the target file
-	 * @param filePathAndName - String; ex: "C:/Users/Joseph/Desktop/PrintOut.doc"
+	 * Prints the file "PrintInvoice" saved in the working directory
 	 */
-	protected void printPage(){
+	public static void printPage(){
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();//gets default printer so it knows where to send it to
 	    DocPrintJob printerJob = defaultPrintService.createPrintJob();
-	    File pdfFile = new File((""+System.getProperty("user.dir")+"/PrintOut.txt"));//user.dir gets the directory this workspace is in
+	    File pdfFile = new File((""+System.getProperty("user.dir")+"/PrintOut.doc"));//user.dir gets the directory this workspace is in
 	    SimpleDoc simpleDoc = null;
 	     
 	    try {
@@ -119,5 +124,57 @@ public class PrintInvoice {
 	    } catch (PrintException ex) {
 	        ex.printStackTrace();
 	    }
+	    
+	    //TODO thread sleep 5 secs, then delete file?
 	}
+	public static String stateFormatter(String state){
+		//super special cases
+		//(these have spaces but don't format like the others)
+		if (state.equals("District of Columbia")){
+			return "DC";
+		}else if (state.equals("Newfoundland and Labrador")){
+			return "NL";
+			
+		//everything two words abbreviated
+		}else if(state.contains(" ")){
+			return state.substring(0, 1)+""+state.substring(state.indexOf(" ")+1,state.indexOf(" ")+2);
+			
+		//first and last letter cases
+		}else if ((state.equals("Connecticut"))||(state.equals("Georgia"))||
+				(state.equals("Hawaii"))||(state.equals("Iowa"))||(state.equals("Kansas"))
+				||(state.equals("Kentucky"))||(state.equals("Louisiana"))||
+				(state.equals("Maine"))||(state.equals("Maryland"))||
+				(state.equals("Pennsylvania"))||(state.equals("Vermont"))||
+				(state.equals("Virginia"))||(state.equals("Quebec"))){
+			return (state.substring(0, 1)+""+state.substring(state.length()-1)).toUpperCase();
+
+		//3rd letter is part of abbreviation
+		}else if ((state.equals("Minnesota"))||(state.equals("Mississippi"))||
+			(state.equals("Nevada"))||(state.equals("Tennessee"))||
+			(state.equals("Texas"))||(state.equals("Alberta"))){
+			return (state.substring(0,1)+""+(state.substring(2,3))).toUpperCase();
+			
+		//4th letter is part of abbreviation
+		}else if ((state.equals("Arizona"))||(state.equals("Montana"))||
+			(state.equals("Saskatchewan"))){
+			return (state.substring(0,1)+""+(state.substring(3,4))).toUpperCase();
+			
+		//5th letter is part of abbreviation
+		}else if ((state.equals("Alaska"))||(state.equals("Missouri"))){
+			return (state.substring(0,1)+""+(state.substring(4,5))).toUpperCase();
+			
+		//canadian provinces special cases
+		}else if (state.equals("Manitoba")){//7th letter (not making special case)
+			return "MB";
+		}else if (state.equals("Yukon")){
+			return "YT";//YT= Yukon Territory
+			
+		//everything that just uses first 2 letters
+		}else{
+			return state.substring(0,2).toUpperCase();
+		}
+	}
+	
+	
+
 }

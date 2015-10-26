@@ -218,7 +218,11 @@
             </Label>
          </children>
       </HBox>
-      <Button fx:id="btnPrint" mnemonicParsing="false" onAction="#onPrintButtonPressed" prefHeight="36.0" prefWidth="78.0" text="Print" textFill="#14f500" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <Button fx:id="btnPrint" mnemonicParsing="false" onAction="#onPrintButtonPressed" prefHeight="36.0" prefWidth="78.0" text="Print" textFill="#14f500" GridPane.columnIndex="2" GridPane.rowIndex="6" >
+      	 <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
    <padding>
       <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />

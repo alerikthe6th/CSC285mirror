@@ -1,0 +1,54 @@
+Example Inc.                                                  +------+
+123 Main Street                                               +-stamp+
+New York, NY 12345                                            +------+
+
+
+
+
+<<<<<<< HEAD
+
+				John Cena
+				1010 Broken Dreams Boulevard
+				Lisbon, Iowa 52254
+
+=======
+
+					John Cena
+					123 Other St.
+					Rock Island, 61201
+
+>>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/CormorantRepo.git
+
+
+
+
+----------------------------------------------------------------------
+
+
+
+
+Order Details:
+<<<<<<< HEAD
+
+	Date Ordered:	2015-10-20		Date Shipped:	2015-10-25
+=======
+
+	Date Ordered:	2015-10-22		Date Shipped:	2015-10-25
+>>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/CormorantRepo.git
+
+
+	Items Ordered:
+	
+
+
+
+	Paid With:
+<<<<<<< HEAD
+	Cash
+
+                                                     Total Cost: 25.91
+=======
+	
+
+                                                      Total Cost: 21.2
+>>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/CormorantRepo.git

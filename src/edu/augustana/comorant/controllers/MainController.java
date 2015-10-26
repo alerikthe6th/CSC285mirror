@@ -1,4 +1,10 @@
 
+/* Authors: Michael J. Currie, Al Vi, Scott Doberstein, Joe Godfrey
+ * Augustana Computer Science 285 - Software development 
+ * Fall 2015 (August - November)
+ * Do not reproduce (as a whole or as pieces of code) without prior permission.
+ */
+
 package edu.augustana.comorant.controllers;
 
 import java.io.IOException;
@@ -16,6 +22,7 @@ import java.util.ResourceBundle;
 
 import edu.augustana.comorant.dataStructures.Customer;
 import edu.augustana.comorant.dataStructures.Order;
+import edu.augustana.comorant.dataStructures.Preference;
 import edu.augustana.comorant.launchers.DataAccess;
 import edu.augustana.comorant.launchers.MainApp;
 import javafx.beans.property.BooleanProperty;
@@ -56,17 +63,11 @@ public class MainController implements Initializable {
 	private Button btnDeleteOrder;
 	@FXML
 	private Button btnViewOrder;
-	
-	//TODO
 	@FXML
 	private Button btnNewOrderByCustomer;
-	
-	
 	@FXML
 	private TextField txtFilterOrders;
 	
-	@FXML
-	private MenuItem miAbout;
 	@FXML
 	private MenuItem miSave;
 	@FXML
@@ -147,12 +148,11 @@ public class MainController implements Initializable {
 
 	protected Order selectedOrder = null;
 	SortedList<Order> sortedOrders = null;
+	
+	protected Preference currentPreference = null;
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
-	public MainController() {
-
-	}
 
 	/**
 	 * Launches the new order window. Passes into the New Order controller a
@@ -160,7 +160,6 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void newOrderButtonPressed(ActionEvent e) {
-		System.out.println("New Order!");
 		Parent root;
 		try {
 
@@ -188,7 +187,6 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void newOrderByCustomerPressed(ActionEvent e) {
-		System.out.println("New Order!");
 		Parent root;
 		try {
 
@@ -214,7 +212,6 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void editOrderButtonPressed(ActionEvent e) {
-		System.out.println("Edit Order!");
 		Parent root;
 		try {
 
@@ -244,7 +241,6 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void viewOrderButtonPressed(ActionEvent e) {
-		System.out.println("View Order!");
 		Parent root;
 		try {
 
@@ -267,7 +263,10 @@ public class MainController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
-
+	/**
+	 * Deletes the selected order when the delete button is pressed
+	 * @param e
+	 */
 	@FXML
 	public void deleteOrderButtonPressed(ActionEvent e) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -293,13 +292,38 @@ public class MainController implements Initializable {
 			// selectedOrder = null;
 			alert.close();
 			DataAccess.saveOrders(orderList);
-			System.out.println("Delete Order!");
 
 		} else {
 			alert.close();
 		}
 	}
 	
+	@FXML
+	protected void miPreferencesPressed(ActionEvent e){
+		Parent root;
+		try {
+
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/edu/augustana/comorant/fxml/preferencesGUI.fxml"));
+			root = loader.load();
+			PrefController prefController = (PrefController) loader.getController();
+			prefController.setPref(currentPreference);
+
+			Stage stage = new Stage();
+			stage.setTitle("Preferences");
+			stage.setScene(new Scene(root));
+			stage.show();
+
+			// hide this current window (if this is what you want
+			// ((Node)(e.getSource())).getScene().getWindow().hide();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+	}
+
+
 	@FXML
 	public void miAboutPressed(ActionEvent e) {
 		Parent root;
@@ -315,16 +339,6 @@ public class MainController implements Initializable {
 			ex.printStackTrace();
 		}
 		
-	}
-	@FXML
-	public void miSavePressed(ActionEvent e) {
-		DataAccess.saveOrders(orderList);
-	}
-	
-	@FXML
-	public void miClosedPressed(ActionEvent e) {
-		Stage stage = (Stage) tblOrders.getScene().getWindow();
-		stage.close();
 	}
 
 	/**
@@ -354,6 +368,7 @@ public class MainController implements Initializable {
 
 		customerList = DataAccess.loadCustomers();
 		orderList = DataAccess.loadOrders(customerList);
+		currentPreference = DataAccess.loadPreference();
 		sortedOrders = wrapOrdersList();
 
 		sortedOrders.comparatorProperty().bind(tblOrders.comparatorProperty());
@@ -367,14 +382,12 @@ public class MainController implements Initializable {
 				btnEditOrder.setDisable(false);
 				btnDeleteOrder.setDisable(false);
 				btnViewOrder.setDisable(false);
-				miDelete.setDisable(false);
 				cmbOrderStatus.setDisable(false);
 
 			} else {
 				btnEditOrder.setDisable(true);
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
-				miDelete.setDisable(true);
 				cmbOrderStatus.setDisable(true);
 
 			}
@@ -619,6 +632,10 @@ public class MainController implements Initializable {
 			customerNumberList.add(new Integer(customer.getCustomerNumber()));
 		}
 		return Collections.max(customerNumberList);
+	}
+	
+	public Preference getCurrentPreference(){
+		return currentPreference;
 	}
 
 }
