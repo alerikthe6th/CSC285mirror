@@ -144,7 +144,7 @@ public class ViewOrderController implements Initializable {
 			null, 
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getCity()+", "+
 			edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(
-					edu.augustana.comorant.controllers.MainController.getCurrentPreference().getState())+", "+
+					edu.augustana.comorant.controllers.MainController.getCurrentPreference().getState())+" "+
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getZip(),
 			lblFirstName.getText()+" "+lblLastName.getText(), ""+lblStreetAddress.getText(), null, 
 			""+lblCity.getText()+", "+edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())
