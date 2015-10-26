@@ -1,23 +1,17 @@
-Example Inc.                                                  +------+
+Firsty Lastname                                               +------+
 123 Main Street                                               +-stamp+
+PO box 772                                                    +------+
 New York, NY 12345                                            +------+
 
 
 
 
-<<<<<<< HEAD
 
 				John Cena
-				1010 Broken Dreams Boulevard
-				Lisbon, Iowa 52254
+				123 JCena St.
+				2nd address line
+				Cena WY, 54321
 
-=======
-
-					John Cena
-					123 Other St.
-					Rock Island, 61201
-
->>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/CormorantRepo.git
 
 
 
@@ -28,27 +22,16 @@ New York, NY 12345                                            +------+
 
 
 Order Details:
-<<<<<<< HEAD
 
-	Date Ordered:	2015-10-20		Date Shipped:	2015-10-25
-=======
-
-	Date Ordered:	2015-10-22		Date Shipped:	2015-10-25
->>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/CormorantRepo.git
+	Date Ordered:	Oct 13 2015		Date Shipped:	2015-10-25
 
 
 	Items Ordered:
-	
+	12 Pots, 6 Plates, and one giant hug
 
 
 
 	Paid With:
-<<<<<<< HEAD
-	Cash
+	Credit Card
 
-                                                     Total Cost: 25.91
-=======
-	
-
-                                                      Total Cost: 21.2
->>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/CormorantRepo.git
+                                                    Total Cost: $12.56
