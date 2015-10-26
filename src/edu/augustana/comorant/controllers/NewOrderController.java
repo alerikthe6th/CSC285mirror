@@ -445,7 +445,7 @@ public class NewOrderController implements Initializable {
 		String lastName = txtLastName.getText();
 
 		for (Customer customer : mainController.customerList) {
-			if (customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName)) {
+			if (customer.getFirstName().toLowerCase().equals(firstName.toLowerCase()) && customer.getLastName().toLowerCase().equals(lastName.toLowerCase())) {
 				btnAutoFill.setDisable(false);
 				matchedCustomers.add(customer);
 				matchedCustomer = customer;
