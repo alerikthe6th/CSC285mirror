@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 import edu.augustana.comorant.dataStructures.Customer;
 import edu.augustana.comorant.dataStructures.Order;
+import edu.augustana.comorant.dataStructures.Preference;
 import edu.augustana.comorant.launchers.DataAccess;
 import edu.augustana.comorant.launchers.MainApp;
 import javafx.beans.property.BooleanProperty;
@@ -146,6 +147,8 @@ public class MainController implements Initializable {
 
 	protected Order selectedOrder = null;
 	SortedList<Order> sortedOrders = null;
+	
+	protected Preference currentPreference = null;
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
@@ -295,8 +298,33 @@ public class MainController implements Initializable {
 	}
 	
 	@FXML
-	public void miSavePressed(ActionEvent e) {
-		DataAccess.saveOrders(orderList);
+	protected void miPreferencesPressed(ActionEvent e){
+		Parent root;
+		try {
+
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/edu/augustana/comorant/fxml/preferencesGUI.fxml"));
+			root = loader.load();
+			PrefController prefController = (PrefController) loader.getController();
+			prefController.setPref(currentPreference);
+
+			Stage stage = new Stage();
+			stage.setTitle("Preferences");
+			stage.setScene(new Scene(root));
+			stage.show();
+
+			// hide this current window (if this is what you want
+			// ((Node)(e.getSource())).getScene().getWindow().hide();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+	}
+
+
+	@FXML
+	public void miAboutPressed(ActionEvent e) {
 	}
 	
 	@FXML
@@ -332,6 +360,7 @@ public class MainController implements Initializable {
 
 		customerList = DataAccess.loadCustomers();
 		orderList = DataAccess.loadOrders(customerList);
+		currentPreference = DataAccess.loadPreference();
 		sortedOrders = wrapOrdersList();
 
 		sortedOrders.comparatorProperty().bind(tblOrders.comparatorProperty());
@@ -345,14 +374,12 @@ public class MainController implements Initializable {
 				btnEditOrder.setDisable(false);
 				btnDeleteOrder.setDisable(false);
 				btnViewOrder.setDisable(false);
-				miDelete.setDisable(false);
 				cmbOrderStatus.setDisable(false);
 
 			} else {
 				btnEditOrder.setDisable(true);
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
-				miDelete.setDisable(true);
 				cmbOrderStatus.setDisable(true);
 
 			}
@@ -597,6 +624,10 @@ public class MainController implements Initializable {
 			customerNumberList.add(new Integer(customer.getCustomerNumber()));
 		}
 		return Collections.max(customerNumberList);
+	}
+	
+	public Preference getCurrentPreference(){
+		return currentPreference;
 	}
 
 }

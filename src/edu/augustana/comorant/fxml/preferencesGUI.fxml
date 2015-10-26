@@ -6,8 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.comorant.controllers.PrefController">
    <top>
       <Label text="Preferences" BorderPane.alignment="CENTER">
          <font>
@@ -18,7 +17,7 @@
    <bottom>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSave" mnemonicParsing="false" text="Save Changes">
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSave" text="Save Changes" textFill="#02ab0b">
                <font>
                   <Font size="16.0" />
                </font>
@@ -28,7 +27,7 @@
                   <Insets />
                </HBox.margin>
             </Region>
-            <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel Changes">
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#onCancel" text="Cancel Changes" textFill="#9e0808">
                <font>
                   <Font size="16.0" />
                </font>
