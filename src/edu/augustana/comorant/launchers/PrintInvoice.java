@@ -141,22 +141,23 @@ public class PrintInvoice {
 			
 		//first and last letter cases
 		}else if ((state.equals("Connecticut"))||(state.equals("Georgia"))||
-				(state.equals("Hawaii"))||(state.equals("Iowa"))||(state.equals("Kansas"))
-				||(state.equals("Kentucky"))||(state.equals("Louisiana"))||
-				(state.equals("Maine"))||(state.equals("Maryland"))||
-				(state.equals("Pennsylvania"))||(state.equals("Vermont"))||
-				(state.equals("Virginia"))||(state.equals("Quebec"))){
+				(state.equals("Hawaii"))||(state.equals("Iowa"))||
+				(state.equals("Kansas"))||(state.equals("Kentucky"))||
+				(state.equals("Louisiana"))||(state.equals("Maine"))||
+				(state.equals("Maryland"))||(state.equals("Pennsylvania"))||
+				(state.equals("Vermont"))||(state.equals("Virginia"))||
+				(state.equals("Quebec"))){
 			return (state.substring(0, 1)+""+state.substring(state.length()-1)).toUpperCase();
 
 		//3rd letter is part of abbreviation
 		}else if ((state.equals("Minnesota"))||(state.equals("Mississippi"))||
-			(state.equals("Nevada"))||(state.equals("Tennessee"))||
-			(state.equals("Texas"))||(state.equals("Alberta"))){
+				(state.equals("Nevada"))||(state.equals("Tennessee"))||
+				(state.equals("Texas"))||(state.equals("Alberta"))){
 			return (state.substring(0,1)+""+(state.substring(2,3))).toUpperCase();
 			
 		//4th letter is part of abbreviation
 		}else if ((state.equals("Arizona"))||(state.equals("Montana"))||
-			(state.equals("Saskatchewan"))){
+				(state.equals("Saskatchewan"))){
 			return (state.substring(0,1)+""+(state.substring(3,4))).toUpperCase();
 			
 		//5th letter is part of abbreviation
