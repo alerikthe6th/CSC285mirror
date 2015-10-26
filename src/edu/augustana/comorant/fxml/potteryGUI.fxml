@@ -16,20 +16,6 @@
                   <MenuItem fx:id="miPref" mnemonicParsing="false" onAction="#miPreferencesPressed" text="Preferences" />
                   <MenuItem fx:id="miAbout" mnemonicParsing="false" onAction="#miAboutPressed" text="About" />
                   <MenuItem fx:id="miClose" mnemonicParsing="false" onAction="#miClosedPressed" text="Close" />
-<<<<<<< HEAD
-                  <MenuItem fx:id="miAbout" mnemonicParsing="false" onAction="#miAboutPressed" text="About" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem fx:id="miDelete" disable="true" mnemonicParsing="false" onAction="#deleteOrderButtonPressed" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem disable="true" mnemonicParsing="false" text="About" />
-=======
->>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/CormorantRepo.git
             </items>
           </Menu>
         </menus>
@@ -211,3 +197,4 @@
       </HBox>
    </bottom>
 </BorderPane>
+

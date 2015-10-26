@@ -1,4 +1,3 @@
-
 /* Authors: Michael J. Currie, Al Vi, Scott Doberstein, Joe Godfrey
  * Augustana Computer Science 285 - Software development 
  * Fall 2015 (August - November)
@@ -327,18 +326,24 @@ public class MainController implements Initializable {
 	@FXML
 	public void miAboutPressed(ActionEvent e) {
 		Parent root;
-		try{
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/edu/augustana/comorant/fxml/aboutGUI.fxml"));
-		root = loader.load();
-		Stage stage = new Stage();
-		stage.setTitle("About");
-		stage.setScene(new Scene(root));
-		stage.show();
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(
+					"/edu/augustana/comorant/fxml/aboutGUI.fxml"));
+			root = loader.load();
+			Stage stage = new Stage();
+			stage.setTitle("About");
+			stage.setScene(new Scene(root));
+			stage.show();
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 		
+	}
+	
+	@FXML
+	public void miClosedPressed(ActionEvent e) {
+		Stage stage = (Stage) tblOrders.getScene().getWindow();
+		stage.close();
 	}
 
 	/**
@@ -639,3 +644,4 @@ public class MainController implements Initializable {
 	}
 
 }
+
