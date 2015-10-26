@@ -8,9 +8,15 @@ package edu.augustana.comorant.launchers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -128,6 +134,17 @@ public class PrintInvoice {
 	    }
 	    
 	    //TODO thread sleep 5 secs, then delete file?
+	    
+	    Path path = Paths.get(""+System.getProperty("user.dir")+"/PrintOut.doc");
+		try {
+			Files.delete(path);
+		} catch (NoSuchFileException e) {
+			e.printStackTrace();
+		} catch (DirectoryNotEmptyException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
 	}
 	
 	public static String stateFormatter(String state){
