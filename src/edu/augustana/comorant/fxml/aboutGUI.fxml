@@ -11,7 +11,7 @@
 
 <GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="502.0" vgap="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.rowIndex="0">
+    <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="158.0" prefWidth="471.0" spacing="7.0" GridPane.rowIndex="0">
       <children>
         <Label fx:id="messageLabel" text="About this Software:" textAlignment="LEFT" wrapText="true">
           <font>
@@ -36,15 +36,7 @@
           </HBox.margin>
         </HBox>
         <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS" />
-        <HBox fx:id="okParent" alignment="CENTER">
-          <children>
-            <Button fx:id="okButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" text="Close" HBox.hgrow="NEVER">
-              <HBox.margin>
-                <Insets left="14.0" />
-              </HBox.margin>
-            </Button>
-          </children>
-        </HBox>
+        <HBox fx:id="okParent" alignment="CENTER" />
       </children>
     </HBox>
   </children>
