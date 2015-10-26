@@ -66,6 +66,8 @@ public class MainController implements Initializable {
 	private Button btnNewOrderByCustomer;
 	@FXML
 	private TextField txtFilterOrders;
+	@FXML
+	private Button btnEditCustomer;
 	
 	@FXML
 	private MenuItem miSave;
@@ -148,6 +150,8 @@ public class MainController implements Initializable {
 	protected Order selectedOrder = null;
 	SortedList<Order> sortedOrders = null;
 	
+
+	protected Customer selectedCustomer = null;
 	protected static Preference currentPreference = null;
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
@@ -191,8 +195,8 @@ public class MainController implements Initializable {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/comorant/fxml/newOrderByCustomerGUI.fxml"));
 			root = loader.load();
-			NewOrderByCustomerController newOrderOrderByCustomerController = (NewOrderByCustomerController) loader.getController();
-			newOrderOrderByCustomerController.setMainController(this);
+			NewOrderController newOrderController = (NewOrderController) loader.getController();
+			newOrderController.setMainController(this);
 			Stage stage = new Stage();
 			stage.setTitle("New Order By Customer");
 			stage.setScene(new Scene(root));
@@ -223,6 +227,31 @@ public class MainController implements Initializable {
 
 			Stage stage = new Stage();
 			stage.setTitle("Edit Order");
+			stage.setScene(new Scene(root));
+			stage.show();
+
+			// hide this current window (if this is what you want
+			// ((Node)(e.getSource())).getScene().getWindow().hide();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void editCustomerButtonPressed(ActionEvent e) {
+		Parent root;
+		try {
+
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/edu/augustana/comorant/fxml/editCustomerGUI.fxml"));
+			root = loader.load();
+			EditCustomerController editCustomerController = (EditCustomerController) loader.getController();
+			editCustomerController.setMainController(this);
+			editCustomerController.setEditedCustomer(selectedCustomer);
+
+			Stage stage = new Stage();
+			stage.setTitle("Edit Customer");
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -394,6 +423,22 @@ public class MainController implements Initializable {
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
 				cmbOrderStatus.setDisable(true);
+
+			}
+		});
+		
+		tblCustomers.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+			if (newSelection != null) {
+				selectedCustomer = newSelection;
+
+				btnEditCustomer.setDisable(false);
+				miDelete.setDisable(false);
+
+			} else {
+				
+				btnEditCustomer.setDisable(true);
+				miDelete.setDisable(true);
+
 
 			}
 		});
@@ -644,4 +689,3 @@ public class MainController implements Initializable {
 	}
 
 }
-
