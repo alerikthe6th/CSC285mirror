@@ -35,6 +35,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -48,6 +49,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -66,6 +68,8 @@ public class MainController implements Initializable {
 	private Button btnNewOrderByCustomer;
 	@FXML
 	private TextField txtFilterOrders;
+	@FXML
+	private Button btnEditCustomer;
 	
 	@FXML
 	private MenuItem miSave;
@@ -148,7 +152,9 @@ public class MainController implements Initializable {
 	protected Order selectedOrder = null;
 	SortedList<Order> sortedOrders = null;
 	
-	protected Preference currentPreference = null;
+
+	protected Customer selectedCustomer = null;
+	protected static Preference currentPreference = null;
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
@@ -168,6 +174,7 @@ public class MainController implements Initializable {
 			newOrderController.setMainController(this);
 			Stage stage = new Stage();
 			stage.setTitle("New Order");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -191,10 +198,11 @@ public class MainController implements Initializable {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/comorant/fxml/newOrderByCustomerGUI.fxml"));
 			root = loader.load();
-			NewOrderByCustomerController newOrderOrderByCustomerController = (NewOrderByCustomerController) loader.getController();
-			newOrderOrderByCustomerController.setMainController(this);
+			NewOrderController newOrderController = (NewOrderController) loader.getController();
+			newOrderController.setMainController(this);
 			Stage stage = new Stage();
 			stage.setTitle("New Order By Customer");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -223,6 +231,33 @@ public class MainController implements Initializable {
 
 			Stage stage = new Stage();
 			stage.setTitle("Edit Order");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
+			stage.setScene(new Scene(root));
+			stage.show();
+
+			// hide this current window (if this is what you want
+			// ((Node)(e.getSource())).getScene().getWindow().hide();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void editCustomerButtonPressed(ActionEvent e) {
+		Parent root;
+		try {
+
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/edu/augustana/comorant/fxml/editCustomerGUI.fxml"));
+			root = loader.load();
+			EditCustomerController editCustomerController = (EditCustomerController) loader.getController();
+			editCustomerController.setMainController(this);
+			editCustomerController.setEditedCustomer(selectedCustomer);
+
+			Stage stage = new Stage();
+			stage.setTitle("Edit Customer");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -252,6 +287,7 @@ public class MainController implements Initializable {
 
 			Stage stage = new Stage();
 			stage.setTitle("View Order");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -310,6 +346,7 @@ public class MainController implements Initializable {
 
 			Stage stage = new Stage();
 			stage.setTitle("Preferences");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -332,6 +369,7 @@ public class MainController implements Initializable {
 			root = loader.load();
 			Stage stage = new Stage();
 			stage.setTitle("About");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 		} catch (IOException ex) {
@@ -394,6 +432,20 @@ public class MainController implements Initializable {
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
 				cmbOrderStatus.setDisable(true);
+
+			}
+		});
+		
+		tblCustomers.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+			if (newSelection != null) {
+				selectedCustomer = newSelection;
+
+				btnEditCustomer.setDisable(false);
+
+			} else {
+				
+				btnEditCustomer.setDisable(true);
+
 
 			}
 		});
@@ -639,9 +691,8 @@ public class MainController implements Initializable {
 		return Collections.max(customerNumberList);
 	}
 	
-	public Preference getCurrentPreference(){
+	public static Preference getCurrentPreference(){
 		return currentPreference;
 	}
 
 }
-

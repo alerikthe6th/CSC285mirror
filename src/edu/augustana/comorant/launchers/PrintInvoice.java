@@ -45,7 +45,7 @@ public class PrintInvoice {
 	 * @param custCSZ - String; ex: "New York, NY 12345"
 	 * @param dateOrdered - String; ex: "October 12, 2015"
 	 * @param orderDesc - String; ex: "12 Pots, 6 Plates, and a big hug"
-	 * @param price - double; ex: 12.34
+	 * @param price - String; ex: "12.34"
 	 * @param paymentMethod - String; ex: "Credit Card"
 	 */
 	public static void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
@@ -73,7 +73,8 @@ public class PrintInvoice {
 		writer.println();
 		writer.printf(fromAdrsLine1+"%"+(70-fromAdrsLine1.length())+"s", "+-stamp+");//or here
 		writer.println();
-		if((!(custAdrsLine2.equals(""))) &&  null != fromAdrsLine2){//is there a second address line?
+//		if((!(fromAdrsLine2.equals(""))) &&  (null != fromAdrsLine2)){//is there a second address line?
+		if(("" != fromAdrsLine2) &&  (null != fromAdrsLine2)){//is there a second address line?
 			writer.printf(fromAdrsLine2+"%"+(70-fromAdrsLine2.length())+"s", "+------+");//or here
 			writer.println();
 		}
@@ -85,7 +86,8 @@ public class PrintInvoice {
 
 		writer.println("\t\t\t\t"+custName);
 		writer.println("\t\t\t\t"+custAdrsLine1);
-		if((!(custAdrsLine2.equals(""))) && null != custAdrsLine2){//is there a second address line?
+		//if((!(custAdrsLine2.equals(""))) && (null != custAdrsLine2)){//is there a second address line?
+		if(("" != custAdrsLine2) && (null != custAdrsLine2)){//is there a second address line?
 			writer.println("\t\t\t\t"+custAdrsLine2);
 		}
 		writer.println("\t\t\t\t"+custCSZ+"\n");
@@ -127,6 +129,7 @@ public class PrintInvoice {
 	    
 	    //TODO thread sleep 5 secs, then delete file?
 	}
+	
 	public static String stateFormatter(String state){
 		//super special cases
 		//(these have spaces but don't format like the others)
@@ -135,28 +138,29 @@ public class PrintInvoice {
 		}else if (state.equals("Newfoundland and Labrador")){
 			return "NL";
 			
-		//everything two words abbreviated
+		//two words abbreviated - first letters each word
 		}else if(state.contains(" ")){
 			return state.substring(0, 1)+""+state.substring(state.indexOf(" ")+1,state.indexOf(" ")+2);
 			
 		//first and last letter cases
 		}else if ((state.equals("Connecticut"))||(state.equals("Georgia"))||
-				(state.equals("Hawaii"))||(state.equals("Iowa"))||(state.equals("Kansas"))
-				||(state.equals("Kentucky"))||(state.equals("Louisiana"))||
-				(state.equals("Maine"))||(state.equals("Maryland"))||
-				(state.equals("Pennsylvania"))||(state.equals("Vermont"))||
-				(state.equals("Virginia"))||(state.equals("Quebec"))){
+				(state.equals("Hawaii"))||(state.equals("Iowa"))||
+				(state.equals("Kansas"))||(state.equals("Kentucky"))||
+				(state.equals("Louisiana"))||(state.equals("Maine"))||
+				(state.equals("Maryland"))||(state.equals("Pennsylvania"))||
+				(state.equals("Vermont"))||(state.equals("Virginia"))||
+				(state.equals("Quebec"))){
 			return (state.substring(0, 1)+""+state.substring(state.length()-1)).toUpperCase();
 
 		//3rd letter is part of abbreviation
 		}else if ((state.equals("Minnesota"))||(state.equals("Mississippi"))||
-			(state.equals("Nevada"))||(state.equals("Tennessee"))||
-			(state.equals("Texas"))||(state.equals("Alberta"))){
+				(state.equals("Nevada"))||(state.equals("Tennessee"))||
+				(state.equals("Texas"))||(state.equals("Alberta"))){
 			return (state.substring(0,1)+""+(state.substring(2,3))).toUpperCase();
 			
 		//4th letter is part of abbreviation
 		}else if ((state.equals("Arizona"))||(state.equals("Montana"))||
-			(state.equals("Saskatchewan"))){
+				(state.equals("Saskatchewan"))){
 			return (state.substring(0,1)+""+(state.substring(3,4))).toUpperCase();
 			
 		//5th letter is part of abbreviation
@@ -167,14 +171,11 @@ public class PrintInvoice {
 		}else if (state.equals("Manitoba")){//7th letter (not making special case)
 			return "MB";
 		}else if (state.equals("Yukon")){
-			return "YT";//YT= Yukon Territory
+			return "YT";//YT = Yukon Territory
 			
 		//everything that just uses first 2 letters
 		}else{
 			return state.substring(0,2).toUpperCase();
 		}
 	}
-	
-	
-
 }

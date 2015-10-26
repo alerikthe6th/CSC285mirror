@@ -208,12 +208,12 @@ public class Customer {
 	/**Sets the customer's first name*/
 	public void setFirstName(String firstName) {
 		this.firstName.set(firstName);
-		this.fullName.set(this.firstName + " " + this.lastName);
+		this.fullName.set(this.firstName.get() + " " + this.lastName.get());
 	}
 	/**Sets the customer's last name*/
 	public void setLastName(String lastName) {
 		this.lastName.set(lastName);
-		this.fullName.set(this.firstName + " " + this.lastName);
+		this.fullName.set(this.firstName.get() + " " + this.lastName.get());
 	}
 	/**Sets the customer's order description*/
 	//public void setOrderDesc(String status) {
@@ -283,3 +283,4 @@ public class Customer {
 	
 
 }
+

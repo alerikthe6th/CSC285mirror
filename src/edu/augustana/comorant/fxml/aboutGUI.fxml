@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="502.0" vgap="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="510.0" vgap="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="158.0" prefWidth="471.0" spacing="7.0" GridPane.rowIndex="0">
       <children>
@@ -18,14 +18,29 @@
             <Font name="System Bold" size="13.0" />
           </font>
         </Label>
-        <Label fx:id="detailsLabel" text="Credits: Michael J. Currie, Scott Doberstein, Joseph Godfrey, Al Vi                                 - Team Cormorant " textAlignment="LEFT" wrapText="true">
+        <Label fx:id="detailsLabel" text="Credits: " textAlignment="LEFT" wrapText="true">
           <font>
             <Font size="12.0" />
           </font>
         </Label>
-            <Label prefHeight="16.0" prefWidth="260.0" text="Under the supervision of: Dr. Forrest Stonedahl" />
-            <Label prefHeight="5.0" prefWidth="196.0" text="Assistant Professor of Computer Science" />
-            <Label text="Augustana College in association with ACE Consulting LLC" />
+        <Label fx:id="detailsLabel" text="Augustana Fall Computer Science 285 - Software Development" textAlignment="LEFT" wrapText="true">
+          <font>
+            <Font size="12.0" />
+          </font>
+        </Label>
+        <Label fx:id="detailsLabel" text=" - Team Cormorant " textAlignment="LEFT" wrapText="true">
+          <font>
+            <Font size="12.0" />
+          </font>
+        </Label>
+        <Label fx:id="detailsLabel" text=" - Members: Michael J. Currie, Al Vi, Scott Doberstein, Joe Godfrey" textAlignment="LEFT" wrapText="true">
+          <font>
+            <Font size="12.0" />
+          </font>
+        </Label>
+            <Label prefHeight="16.0" prefWidth="260.0" text="Under the supervision of:" />
+            <Label prefHeight="16.0" text=" - Dr. Forrest Stonedahl - Assistant Professor of Computer Science" />
+            <Label text=" - Augustana College in association with ACE Consulting LLC" />
       </children>
     </VBox>
     <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="1">
