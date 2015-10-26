@@ -87,6 +87,8 @@ public class NewOrderController implements Initializable {
 	private Label lblResult;
 	@FXML 
 	private Label lblTax;
+	
+	Customer existingCustomer;
 
 	ObservableList<Customer> matchedCustomers = FXCollections.observableArrayList();
 
@@ -261,6 +263,29 @@ public class NewOrderController implements Initializable {
 		txtOrderNumber.setText(newOrderNumber);
 		dtpkOrderDate.setValue(LocalDate.now());
 
+	}
+	
+	/**
+	 * autofills from the customer tab with customer information once new order by customer button has been
+	 * pressed
+	 */
+	@FXML
+	public void setExistingCustomer(Customer existingCustomer) {
+		
+		txtFirstName.setText(existingCustomer.getFirstName());
+		txtLastName.setText(existingCustomer.getLastName());
+		txtStreetAddress.setText(existingCustomer.getStreetAddress());
+		txtCity.setText(existingCustomer.getCity());
+		cmbState.setValue(existingCustomer.getState());
+		txtZip.setText(existingCustomer.getZip());
+		txtEmail.setText(existingCustomer.getEmail());
+		txtPhone.setText(existingCustomer.getPhoneNumber());
+		cmbPrefContactMethod.setValue(existingCustomer.getPrefContactMethod());
+		chkSMSEnabled.setSelected(existingCustomer.getSMSEnabled());
+
+		
+		
+		
 	}
 
 	/**

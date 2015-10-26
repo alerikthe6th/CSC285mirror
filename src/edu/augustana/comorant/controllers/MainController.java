@@ -205,6 +205,8 @@ public class MainController implements Initializable {
 			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
+			
+			newOrderController.setExistingCustomer(selectedCustomer);
 
 			// hide this current window (if this is what you want
 			// ((Node)(e.getSource())).getScene().getWindow().hide();
