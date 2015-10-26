@@ -152,8 +152,8 @@ public class EditOrderController implements Initializable {
 							String priceExp = newValue;
 							Expression expr = new ExpressionBuilder(priceExp).build();
 							double resultPrice = expr.evaluate();
-							double tax = resultPrice * 0.06;
-							resultPrice = resultPrice * 1.06;
+							double tax = resultPrice * mainController.getCurrentPreference().getTax();
+							resultPrice = resultPrice + tax;
 
 							if (resultPrice < 0){
 								throw new IllegalArgumentException();
