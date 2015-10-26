@@ -432,12 +432,10 @@ public class MainController implements Initializable {
 				selectedCustomer = newSelection;
 
 				btnEditCustomer.setDisable(false);
-				miDelete.setDisable(false);
 
 			} else {
 				
 				btnEditCustomer.setDisable(true);
-				miDelete.setDisable(true);
 
 
 			}

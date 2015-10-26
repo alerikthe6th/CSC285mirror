@@ -165,7 +165,7 @@
                                              <font>
                                                 <Font size="20.0" />
                                              </font></Button>
-                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="167.0" text="Edit Customer">
+                                          <Button fx:id="btnEditCustomer" mnemonicParsing="false" onAction="#editCustomerButtonPressed" prefHeight="44.0" prefWidth="167.0" text="Edit Customer">
                                              <font>
                                                 <Font size="20.0" />
                                              </font></Button>
@@ -197,4 +197,3 @@
       </HBox>
    </bottom>
 </BorderPane>
-
