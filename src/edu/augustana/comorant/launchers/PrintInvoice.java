@@ -123,5 +123,7 @@ public class PrintInvoice {
 	    } catch (PrintException ex) {
 	        ex.printStackTrace();
 	    }
+	    
+	    //TODO thread sleep 5 secs, then delete file?
 	}
 }
