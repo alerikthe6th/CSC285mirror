@@ -1,14 +1,16 @@
-Example Inc.                                                  +------+
+Firsty Lastname                                               +------+
 123 Main Street                                               +-stamp+
+PO box 772                                                    +------+
 New York, NY 12345                                            +------+
 
 
 
 
 
-					John Cena
-					123 Other St.
-					Rock Island, 61201
+				John Cena
+				123 JCena St.
+				2nd address line
+				Cena WY, 54321
 
 
 
@@ -21,15 +23,15 @@ New York, NY 12345                                            +------+
 
 Order Details:
 
-	Date Ordered:	2015-10-22		Date Shipped:	2015-10-25
+	Date Ordered:	Oct 13 2015		Date Shipped:	2015-10-25
 
 
 	Items Ordered:
-	
+	12 Pots, 6 Plates, and one giant hug
 
 
 
 	Paid With:
-	
+	Credit Card
 
-                                                      Total Cost: 21.2
+                                                    Total Cost: $12.56

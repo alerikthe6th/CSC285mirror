@@ -168,8 +168,8 @@ public class NewOrderController implements Initializable {
 				String priceExp = newValue;
 				Expression expr = new ExpressionBuilder(priceExp).build();
 				double resultPrice = expr.evaluate();
-				double tax = resultPrice * 0.06;
-				resultPrice = resultPrice * 1.06;
+				double tax = resultPrice * mainController.getCurrentPreference().getTax();
+				resultPrice = resultPrice + tax;
 
 				if (resultPrice < 0) {
 					throw new IllegalArgumentException();
@@ -398,16 +398,16 @@ public class NewOrderController implements Initializable {
 		ObservableList<String> contactOptions = FXCollections.observableArrayList("Email", "Phone", "Text");
 		cmbPrefContactMethod.setItems(contactOptions);
 
-		ObservableList<String> statesList = FXCollections.observableArrayList("Alabama", "Alaska", "Arizona",
-				"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii",
-				"Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
-				"Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
-				"New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-				"Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee",
-				"Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming",
-				"District of Columbia", "Alberta", "British Columbia", "Manitoba", "New Brunswick",
-				"Newfoundland and Labrador", "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec",
-				"Saskatchewan");
+		ObservableList<String> statesList = FXCollections.observableArrayList("Alabama", "Alaska", "Arizona", 
+				"Arkansas", "California", "Colorado", "Connecticut","Delaware", "Florida", "Georgia", "Hawaii",
+				"Idaho", "Illinois", "Indiana", "Iowa", "Kansas","Kentucky", "Louisiana", "Maine", "Maryland",
+				"Massachusetts", "Michigan", "Minnesota",	"Mississippi", "Missouri", "Montana", "Nebraska",
+				"Nevada", "New Hampshire", "New Jersey","New Mexico", "New York", "North Carolina", 
+				"North Dakota", "Ohio", "Oklahoma", "Oregon","Pennsylvania", "Rhode Island", "South Carolina",
+				"South Dakota", "Tennessee", "Texas","Utah", "Vermont", "Virginia", "Washington", 
+				"West Virginia", "Wisconsin", "Wyoming", "District of Columbia", "Alberta", "British Columbia",
+				"Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Northwest Territories",
+				"Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon");
 		cmbState.setItems(statesList);
 
 	}
