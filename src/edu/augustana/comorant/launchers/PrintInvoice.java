@@ -97,7 +97,7 @@ public class PrintInvoice {
 		writer.println("\tItems Ordered:\n\t" +orderDesc +"\n\n\n");
 		writer.println("\tPaid With:\n\t" +paymentMethod+"\n");
 		
-		writer.printf("%70s", "Total Cost: "+price);
+		writer.printf("%70s", "Total Cost: $"+price);
 		
 		writer.close();
 	}
@@ -126,91 +126,9 @@ public class PrintInvoice {
 	    
 	    //TODO thread sleep 5 secs, then delete file?
 	}
-	
-	public static void main(String[] args){
-		System.out.println(stateFormatter("Alabama"));
-		System.out.println(stateFormatter("Alaska"));
-		System.out.println(stateFormatter("Arizona"));
-		System.out.println(stateFormatter("Arkansas"));
-		System.out.println(stateFormatter("California"));
-		
-		System.out.println(stateFormatter("Colorado"));
-		System.out.println(stateFormatter("Connecticut"));
-		System.out.println(stateFormatter("Delaware"));
-		System.out.println(stateFormatter("Florida"));
-		System.out.println(stateFormatter("Georgia"));
-		
-		System.out.println(stateFormatter("Hawaii"));
-		System.out.println(stateFormatter("Idaho"));
-		System.out.println(stateFormatter("Illinois"));
-		System.out.println(stateFormatter("Indiana"));
-		System.out.println(stateFormatter("Iowa"));
-		
-		System.out.println(stateFormatter("Kansas"));
-		System.out.println(stateFormatter("Kentucky"));
-		System.out.println(stateFormatter("Louisiana"));
-		System.out.println(stateFormatter("Maine"));
-		System.out.println(stateFormatter("Maryland"));
-		
-		System.out.println(stateFormatter("Massachusetts"));
-		System.out.println(stateFormatter("Michigan"));
-		System.out.println(stateFormatter("Minnesota"));
-		System.out.println(stateFormatter("Mississippi"));
-		System.out.println(stateFormatter("Missouri"));
-		
-		System.out.println(stateFormatter("Montana"));
-		System.out.println(stateFormatter("Nebraska"));
-		System.out.println(stateFormatter("Nevada"));
-		System.out.println(stateFormatter("New Hampshire"));
-		System.out.println(stateFormatter("New Jersey"));
-		
-		System.out.println(stateFormatter("New Mexico"));
-		System.out.println(stateFormatter("New York"));
-		System.out.println(stateFormatter("North Carolina"));
-		System.out.println(stateFormatter("North Dakota"));
-		System.out.println(stateFormatter("Ohio"));
-		
-		System.out.println(stateFormatter("Oklahoma"));
-		System.out.println(stateFormatter("Oregon"));
-		System.out.println(stateFormatter("Pennsylvania"));
-		System.out.println(stateFormatter("Rhode Island"));
-		System.out.println(stateFormatter("South Carolina"));
-		
-		System.out.println(stateFormatter("South Dakota"));
-		System.out.println(stateFormatter("Tennessee"));
-		System.out.println(stateFormatter("Texas"));
-		System.out.println(stateFormatter("Utah"));
-		System.out.println(stateFormatter("Vermont"));
-
-		System.out.println(stateFormatter("Virginia"));
-		System.out.println(stateFormatter("Washington"));
-		System.out.println(stateFormatter("West Virginia"));
-		System.out.println(stateFormatter("Wisconsin"));
-		System.out.println(stateFormatter("Wyoming"));
-		
-		//DC
-		System.out.println(stateFormatter("District of Columbia"));
-		
-		//canadian
-		System.out.println(stateFormatter("Alberta"));
-		System.out.println(stateFormatter("British Columbia"));
-		System.out.println(stateFormatter("Manitoba"));
-		System.out.println(stateFormatter("New Brunswick"));
-		System.out.println(stateFormatter("Newfoundland and Labrador"));
-		
-		System.out.println(stateFormatter("Nova Scotia"));
-		System.out.println(stateFormatter("Northwest Territories"));
-		System.out.println(stateFormatter("Nunavut"));
-		System.out.println(stateFormatter("Ontario"));
-		System.out.println(stateFormatter("Prince Edward Island"));
-		
-		System.out.println(stateFormatter("Quebec"));
-		System.out.println(stateFormatter("Saskatchewan"));
-		System.out.println(stateFormatter("Yukon"));
-	}
-	
 	public static String stateFormatter(String state){
 		//super special cases
+		//(these have spaces but don't format like the others)
 		if (state.equals("District of Columbia")){
 			return "DC";
 		}else if (state.equals("Newfoundland and Labrador")){
@@ -218,8 +136,7 @@ public class PrintInvoice {
 			
 		//everything two words abbreviated
 		}else if(state.contains(" ")){
-			int index = state.indexOf(" ");
-			return state.substring(0, 1)+""+state.substring(index+1,index+2);
+			return state.substring(0, 1)+""+state.substring(state.indexOf(" ")+1,state.indexOf(" ")+2);
 			
 		//first and last letter cases
 		}else if ((state.equals("Connecticut"))||(state.equals("Georgia"))||
@@ -229,36 +146,28 @@ public class PrintInvoice {
 				(state.equals("Pennsylvania"))||(state.equals("Vermont"))||
 				(state.equals("Virginia"))||(state.equals("Quebec"))){
 			return (state.substring(0, 1)+""+state.substring(state.length()-1)).toUpperCase();
-						
-		//start of special cases
-		}else if (state.equals("Alaska")){
-			return "AK";
-		}else if (state.equals("Arizona")){
-			return "AZ";
-		}else if (state.equals("Minnesota")){
-			return "MN";
-		}else if (state.equals("Mississippi")){
-			return "MS";
-		}else if (state.equals("Missouri")){
-			return "MO";
-		}else if (state.equals("Montana")){
-			return "MT";
-		}else if (state.equals("Nevada")){
-			return "NV";
-		}else if (state.equals("Tennessee")){
-			return "TN";
-		}else if (state.equals("Texas")){
-			return "TX";
+
+		//3rd letter is part of abbreviation
+		}else if ((state.equals("Minnesota"))||(state.equals("Mississippi"))||
+			(state.equals("Nevada"))||(state.equals("Tennessee"))||
+			(state.equals("Texas"))||(state.equals("Alberta"))){
+			return (state.substring(0,1)+""+(state.substring(2,3))).toUpperCase();
 			
-		//canadian provinces
-		}else if (state.equals("Alberta")){
-			return "AB";
-		}else if (state.equals("Manitoba")){
+		//4th letter is part of abbreviation
+		}else if ((state.equals("Arizona"))||(state.equals("Montana"))||
+			(state.equals("Saskatchewan"))){
+			return (state.substring(0,1)+""+(state.substring(3,4))).toUpperCase();
+			
+		//5th letter is part of abbreviation
+		}else if ((state.equals("Alaska"))||(state.equals("Missouri"))){
+			return (state.substring(0,1)+""+(state.substring(4,5))).toUpperCase();
+			
+		//canadian provinces special cases
+		}else if (state.equals("Manitoba")){//7th letter (not making special case)
 			return "MB";
-		}else if (state.equals("Saskatchewan")){
-			return "SK";
 		}else if (state.equals("Yukon")){
-			return "YT";
+			return "YT";//YT= Yukon Territory
+			
 		//everything that just uses first 2 letters
 		}else{
 			return state.substring(0,2).toUpperCase();
