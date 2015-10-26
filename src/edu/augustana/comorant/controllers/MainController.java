@@ -66,6 +66,8 @@ public class MainController implements Initializable {
 	private TextField txtFilterOrders;
 	
 	@FXML
+	private MenuItem miAbout;
+	@FXML
 	private MenuItem miSave;
 	@FXML
 	private MenuItem miClose;
@@ -298,6 +300,22 @@ public class MainController implements Initializable {
 		}
 	}
 	
+	@FXML
+	public void miAboutPressed(ActionEvent e) {
+		Parent root;
+		try{
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource("/edu/augustana/comorant/fxml/aboutGUI.fxml"));
+		root = loader.load();
+		Stage stage = new Stage();
+		stage.setTitle("About");
+		stage.setScene(new Scene(root));
+		stage.show();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+	}
 	@FXML
 	public void miSavePressed(ActionEvent e) {
 		DataAccess.saveOrders(orderList);
