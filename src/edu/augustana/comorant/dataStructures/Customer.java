@@ -272,7 +272,7 @@ public class Customer {
 	
 
 	public boolean equals(Customer testCustomer){
-		return this.getFirstName().equals(testCustomer.getFirstName()) && this.getLastName().equals(testCustomer.getLastName())
+		return this.getFirstName().toLowerCase().equals(testCustomer.getFirstName().toLowerCase()) && this.getLastName().toLowerCase().equals(testCustomer.getLastName().toLowerCase())
 				&& this.getFullAddress().equals(testCustomer.getFullAddress());
 	}
 

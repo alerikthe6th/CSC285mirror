@@ -45,8 +45,6 @@ public class EditCustomerController implements Initializable {
 	@FXML
 	private Button btnSaveEdit;
 	@FXML
-	private Button btnDeleteOrder;
-	@FXML
 	private MainController mainController;
 	@FXML
 	private TextField txtFirstName;

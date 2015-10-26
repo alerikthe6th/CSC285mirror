@@ -161,11 +161,11 @@
                                  <children>
                                     <HBox alignment="CENTER" layoutY="-33.0" prefHeight="34.0" prefWidth="638.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button fx:id="btnNewOrderByCustomer" mnemonicParsing="false" onAction="#newOrderByCustomerPressed" text="New Order by Customer">
+                                          <Button fx:id="btnNewOrderByCustomer" disable="true" mnemonicParsing="false" onAction="#newOrderByCustomerPressed" text="New Order by Customer">
                                              <font>
                                                 <Font size="20.0" />
                                              </font></Button>
-                                          <Button fx:id="btnEditCustomer" mnemonicParsing="false" onAction="#editCustomerButtonPressed" prefHeight="44.0" prefWidth="167.0" text="Edit Customer">
+                                          <Button fx:id="btnEditCustomer" disable="true" mnemonicParsing="false" onAction="#editCustomerButtonPressed" prefHeight="44.0" prefWidth="167.0" text="Edit Customer">
                                              <font>
                                                 <Font size="20.0" />
                                              </font></Button>
