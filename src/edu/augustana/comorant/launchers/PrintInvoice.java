@@ -45,7 +45,7 @@ public class PrintInvoice {
 	 * @param custCSZ - String; ex: "New York, NY 12345"
 	 * @param dateOrdered - String; ex: "October 12, 2015"
 	 * @param orderDesc - String; ex: "12 Pots, 6 Plates, and a big hug"
-	 * @param price - double; ex: 12.34
+	 * @param price - String; ex: "12.34"
 	 * @param paymentMethod - String; ex: "Credit Card"
 	 */
 	public static void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
