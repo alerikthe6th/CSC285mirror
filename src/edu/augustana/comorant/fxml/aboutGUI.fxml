@@ -38,9 +38,9 @@
             <Font size="12.0" />
           </font>
         </Label>
-            <Label prefHeight="16.0" prefWidth="260.0" text="Under the supervision of: Dr. Forrest Stonedahl" />
-            <Label prefHeight="5.0" prefWidth="260.0" text="Assistant Professor of Computer Science" />
-            <Label text="Augustana College in association with ACE Consulting LLC" />
+            <Label prefHeight="16.0" prefWidth="260.0" text="Under the supervision of:" />
+            <Label prefHeight="16.0" text=" - Dr. Forrest Stonedahl - Assistant Professor of Computer Science" />
+            <Label text=" - Augustana College in association with ACE Consulting LLC" />
       </children>
     </VBox>
     <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="1">
