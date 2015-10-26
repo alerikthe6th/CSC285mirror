@@ -73,7 +73,8 @@ public class PrintInvoice {
 		writer.println();
 		writer.printf(fromAdrsLine1+"%"+(70-fromAdrsLine1.length())+"s", "+-stamp+");//or here
 		writer.println();
-		if((!(custAdrsLine2.equals(""))) &&  null != fromAdrsLine2){//is there a second address line?
+//		if((!(fromAdrsLine2.equals(""))) &&  (null != fromAdrsLine2)){//is there a second address line?
+		if(("" != fromAdrsLine2) &&  (null != fromAdrsLine2)){//is there a second address line?
 			writer.printf(fromAdrsLine2+"%"+(70-fromAdrsLine2.length())+"s", "+------+");//or here
 			writer.println();
 		}
@@ -85,7 +86,8 @@ public class PrintInvoice {
 
 		writer.println("\t\t\t\t"+custName);
 		writer.println("\t\t\t\t"+custAdrsLine1);
-		if((!(custAdrsLine2.equals(""))) && null != custAdrsLine2){//is there a second address line?
+		//if((!(custAdrsLine2.equals(""))) && (null != custAdrsLine2)){//is there a second address line?
+		if(("" != custAdrsLine2) && (null != custAdrsLine2)){//is there a second address line?
 			writer.println("\t\t\t\t"+custAdrsLine2);
 		}
 		writer.println("\t\t\t\t"+custCSZ+"\n");
@@ -168,14 +170,11 @@ public class PrintInvoice {
 		}else if (state.equals("Manitoba")){//7th letter (not making special case)
 			return "MB";
 		}else if (state.equals("Yukon")){
-			return "YT";//YT= Yukon Territory
+			return "YT";//YT = Yukon Territory
 			
 		//everything that just uses first 2 letters
 		}else{
 			return state.substring(0,2).toUpperCase();
 		}
 	}
-	
-	
-
 }

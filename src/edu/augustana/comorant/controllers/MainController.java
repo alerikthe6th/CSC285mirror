@@ -148,7 +148,7 @@ public class MainController implements Initializable {
 	protected Order selectedOrder = null;
 	SortedList<Order> sortedOrders = null;
 	
-	protected Preference currentPreference = null;
+	protected static Preference currentPreference = null;
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
@@ -639,7 +639,7 @@ public class MainController implements Initializable {
 		return Collections.max(customerNumberList);
 	}
 	
-	public Preference getCurrentPreference(){
+	public static Preference getCurrentPreference(){
 		return currentPreference;
 	}
 

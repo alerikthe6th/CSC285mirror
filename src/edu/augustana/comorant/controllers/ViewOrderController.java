@@ -134,15 +134,24 @@ public class ViewOrderController implements Initializable {
 	public void onPrintButtonPressed(ActionEvent e){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Printing");
-		//TODO need to get return address from preferences
 		//'null' statements are for second address lines: leave as null or "" if empty
 		//would ""+preferences.addressLine2.getText() return anything if it's blank?
-		edu.augustana.comorant.launchers.PrintInvoice.createInvoice("Example Inc.", "123 Main Street", null, "New York, NY 12345",
-				lblFirstName.getText()+" "+lblLastName.getText(), ""+lblStreetAddress.getText(), null, 
-				""+lblCity.getText()+", "+edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())
-				+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), 
-				""+lblPrice.getText(), ""+lblPaymentMethod.getText());
 		
+		
+		edu.augustana.comorant.launchers.PrintInvoice.createInvoice(
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getBusinessName(), 
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddress(),
+			null, 
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getCity()+", "+
+			edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(
+					edu.augustana.comorant.controllers.MainController.getCurrentPreference().getState())+", "+
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getZip(),
+			lblFirstName.getText()+" "+lblLastName.getText(), ""+lblStreetAddress.getText(), null, 
+			""+lblCity.getText()+", "+edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())
+			+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), 
+			""+lblPrice.getText(), ""+lblPaymentMethod.getText()
+		);
+
 		edu.augustana.comorant.launchers.PrintInvoice.printPage();
 		
 		alert.setContentText("Print Successful!");
