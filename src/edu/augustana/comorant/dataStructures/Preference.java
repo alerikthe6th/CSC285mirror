@@ -65,7 +65,7 @@ public class Preference {
 	}
 	public void setTax(double newTax){
 		if(newTax > 1){
-			newTax = newTax % 1;
+			newTax = newTax / 100;
 		}
 		tax.set(newTax);
 	}

@@ -66,7 +66,7 @@ public class PrefController implements Initializable {
 		this.txtZip.setText(currentPref.getZip());
 		
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
-		String taxString = twoDigitFormat.format(currentPref.getTax());
+		String taxString = twoDigitFormat.format(currentPref.getTax()*100);
 		this.txtTax.setText(taxString);
 		
 	}
