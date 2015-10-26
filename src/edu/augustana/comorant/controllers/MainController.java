@@ -35,6 +35,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -48,6 +49,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -172,6 +174,7 @@ public class MainController implements Initializable {
 			newOrderController.setMainController(this);
 			Stage stage = new Stage();
 			stage.setTitle("New Order");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -199,6 +202,7 @@ public class MainController implements Initializable {
 			newOrderController.setMainController(this);
 			Stage stage = new Stage();
 			stage.setTitle("New Order By Customer");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -227,6 +231,7 @@ public class MainController implements Initializable {
 
 			Stage stage = new Stage();
 			stage.setTitle("Edit Order");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -252,6 +257,7 @@ public class MainController implements Initializable {
 
 			Stage stage = new Stage();
 			stage.setTitle("Edit Customer");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -281,6 +287,7 @@ public class MainController implements Initializable {
 
 			Stage stage = new Stage();
 			stage.setTitle("View Order");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -339,6 +346,7 @@ public class MainController implements Initializable {
 
 			Stage stage = new Stage();
 			stage.setTitle("Preferences");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -361,6 +369,7 @@ public class MainController implements Initializable {
 			root = loader.load();
 			Stage stage = new Stage();
 			stage.setTitle("About");
+			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
 		} catch (IOException ex) {
