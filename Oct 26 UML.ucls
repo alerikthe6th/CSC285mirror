@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="edu.augustana.comorant.controllers.PrefController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/PrefController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="315" width="197" x="134" y="1182"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="edu.augustana.comorant.launchers.PrintInvoice" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/launchers/PrintInvoice.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="491" x="201" y="58"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="edu.augustana.comorant.controllers.ShippingAddressController" 
+    project="CormorantRepo" file="/CormorantRepo/src/edu/augustana/comorant/controllers/ShippingAddressController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="365" x="1284" y="58"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="edu.augustana.comorant.controllers.ViewOrderController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/ViewOrderController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="549" width="252" x="449" y="413"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="edu.augustana.comorant.controllers.EditCustomerController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/EditCustomerController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="423" width="236" x="113" y="413"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="edu.augustana.comorant.dataStructures.Preference" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Preference.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="275" x="134" y="2401"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="edu.augustana.comorant.controllers.EditOrderController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/EditOrderController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="657" width="236" x="741" y="413"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="edu.augustana.comorant.controllers.MainController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/MainController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="1179" width="310" x="741" y="1182"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="edu.augustana.comorant.dataStructures.Customer" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Customer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1053" width="411" x="1121" y="3854"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="edu.augustana.comorant.controllers.NewOrderController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/NewOrderController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="729" width="246" x="1017" y="413"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="edu.augustana.comorant.launchers.DataAccess" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/launchers/DataAccess.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="335" x="820" y="58"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="edu.augustana.comorant.dataStructures.Order" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Order.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1413" width="413" x="449" y="2401"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="edu.augustana.comorant.launchers.MainApp" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/launchers/MainApp.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="156" x="944" y="2401"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="14">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="15" name="noc"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <bendpoint x="604" y="1182"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="18" name="editedOrder"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <bendpoint x="892" y="2401"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="21" name="selectedCustomer"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <bendpoint x="1151" y="1182"/>    
+    <bendpoint x="1151" y="2401"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="24" name="existingCustomer"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="27" name="sortedOrders"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="30" name="orderList"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="33" name="mainController"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="36" name="currentPreference"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="39" name="currentPref"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <bendpoint x="913" y="2401"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="42" name="customerList"/>      
+      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <bendpoint x="1172" y="1182"/>    
+    <bendpoint x="1172" y="2401"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="45" name="matchedCustomer"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="48" name="mainController"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <bendpoint x="1314" y="413"/>    
+    <bendpoint x="1314" y="1182"/>    
+    <bendpoint x="1314" y="2401"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="51" name="customerList"/>      
+      <multiplicity id="52" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <bendpoint x="1130" y="1182"/>    
+    <bendpoint x="1130" y="2401"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="54" name="matchedCustomers"/>      
+      <multiplicity id="55" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <bendpoint x="1293" y="413"/>    
+    <bendpoint x="1293" y="1182"/>    
+    <bendpoint x="1293" y="2401"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="57" name="selectedCustomer"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <bendpoint x="458" y="1182"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="60" name="viewOrder"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="63" name="mainApp"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="66" name="theCustomer"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="69" name="selectedOrder"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="72" name="mainController"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <bendpoint x="103" y="1182"/>    
+    <bendpoint x="103" y="2401"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="75" name="editedCustomer"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="77">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="78" name="mainController"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

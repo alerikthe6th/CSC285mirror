@@ -89,7 +89,7 @@ public class PrintInvoice {
 		
 		writer.println("\n\n\n\n");//5 returns
 	
-
+		
 		writer.println("\t\t\t\t"+custName);
 		writer.println("\t\t\t\t"+custAdrsLine1);
 		//if((!(custAdrsLine2.equals(""))) && (null != custAdrsLine2)){//is there a second address line?
