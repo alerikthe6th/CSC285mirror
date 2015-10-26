@@ -139,7 +139,8 @@ public class ViewOrderController implements Initializable {
 		//would ""+preferences.addressLine2.getText() return anything if it's blank?
 		edu.augustana.comorant.launchers.PrintInvoice.createInvoice("Example Inc.", "123 Main Street", null, "New York, NY 12345",
 				lblFirstName.getText()+" "+lblLastName.getText(), ""+lblStreetAddress.getText(), null, 
-				""+lblCity.getText()+", "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), 
+				""+lblCity.getText()+", "+edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())
+				+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), 
 				""+lblPrice.getText(), ""+lblPaymentMethod.getText());
 		
 		edu.augustana.comorant.launchers.PrintInvoice.printPage();

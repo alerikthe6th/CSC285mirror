@@ -82,12 +82,12 @@ public class PrintInvoice {
 		
 		writer.println("\n\n\n\n");//5 returns
 	
-		writer.println("\t\t\t\t\t"+custName);
-		writer.println("\t\t\t\t\t"+custAdrsLine1);
+		writer.println("\t\t\t\t"+custName);
+		writer.println("\t\t\t\t"+custAdrsLine1);
 		if("" != custAdrsLine2 && null != custAdrsLine2){//is there a second address line?
-			writer.println("\t\t\t\t\t"+custAdrsLine2);
+			writer.println("\t\t\t\t"+custAdrsLine2);
 		}
-		writer.println("\t\t\t\t\t"+custCSZ+"\n");
+		writer.println("\t\t\t\t"+custCSZ+"\n");
 				
 		writer.println("\n\n\n\n"+lines+lines+"\n\n\n\n");//4 returns, a horizontal line and then 5 returns
 		
@@ -126,4 +126,144 @@ public class PrintInvoice {
 	    
 	    //TODO thread sleep 5 secs, then delete file?
 	}
+	
+	public static void main(String[] args){
+		System.out.println(stateFormatter("Alabama"));
+		System.out.println(stateFormatter("Alaska"));
+		System.out.println(stateFormatter("Arizona"));
+		System.out.println(stateFormatter("Arkansas"));
+		System.out.println(stateFormatter("California"));
+		
+		System.out.println(stateFormatter("Colorado"));
+		System.out.println(stateFormatter("Connecticut"));
+		System.out.println(stateFormatter("Delaware"));
+		System.out.println(stateFormatter("Florida"));
+		System.out.println(stateFormatter("Georgia"));
+		
+		System.out.println(stateFormatter("Hawaii"));
+		System.out.println(stateFormatter("Idaho"));
+		System.out.println(stateFormatter("Illinois"));
+		System.out.println(stateFormatter("Indiana"));
+		System.out.println(stateFormatter("Iowa"));
+		
+		System.out.println(stateFormatter("Kansas"));
+		System.out.println(stateFormatter("Kentucky"));
+		System.out.println(stateFormatter("Louisiana"));
+		System.out.println(stateFormatter("Maine"));
+		System.out.println(stateFormatter("Maryland"));
+		
+		System.out.println(stateFormatter("Massachusetts"));
+		System.out.println(stateFormatter("Michigan"));
+		System.out.println(stateFormatter("Minnesota"));
+		System.out.println(stateFormatter("Mississippi"));
+		System.out.println(stateFormatter("Missouri"));
+		
+		System.out.println(stateFormatter("Montana"));
+		System.out.println(stateFormatter("Nebraska"));
+		System.out.println(stateFormatter("Nevada"));
+		System.out.println(stateFormatter("New Hampshire"));
+		System.out.println(stateFormatter("New Jersey"));
+		
+		System.out.println(stateFormatter("New Mexico"));
+		System.out.println(stateFormatter("New York"));
+		System.out.println(stateFormatter("North Carolina"));
+		System.out.println(stateFormatter("North Dakota"));
+		System.out.println(stateFormatter("Ohio"));
+		
+		System.out.println(stateFormatter("Oklahoma"));
+		System.out.println(stateFormatter("Oregon"));
+		System.out.println(stateFormatter("Pennsylvania"));
+		System.out.println(stateFormatter("Rhode Island"));
+		System.out.println(stateFormatter("South Carolina"));
+		
+		System.out.println(stateFormatter("South Dakota"));
+		System.out.println(stateFormatter("Tennessee"));
+		System.out.println(stateFormatter("Texas"));
+		System.out.println(stateFormatter("Utah"));
+		System.out.println(stateFormatter("Vermont"));
+
+		System.out.println(stateFormatter("Virginia"));
+		System.out.println(stateFormatter("Washington"));
+		System.out.println(stateFormatter("West Virginia"));
+		System.out.println(stateFormatter("Wisconsin"));
+		System.out.println(stateFormatter("Wyoming"));
+		
+		//DC
+		System.out.println(stateFormatter("District of Columbia"));
+		
+		//canadian
+		System.out.println(stateFormatter("Alberta"));
+		System.out.println(stateFormatter("British Columbia"));
+		System.out.println(stateFormatter("Manitoba"));
+		System.out.println(stateFormatter("New Brunswick"));
+		System.out.println(stateFormatter("Newfoundland and Labrador"));
+		
+		System.out.println(stateFormatter("Nova Scotia"));
+		System.out.println(stateFormatter("Northwest Territories"));
+		System.out.println(stateFormatter("Nunavut"));
+		System.out.println(stateFormatter("Ontario"));
+		System.out.println(stateFormatter("Prince Edward Island"));
+		
+		System.out.println(stateFormatter("Quebec"));
+		System.out.println(stateFormatter("Saskatchewan"));
+		System.out.println(stateFormatter("Yukon"));
+	}
+	
+	public static String stateFormatter(String state){
+		//super special cases
+		if (state.equals("District of Columbia")){
+			return "DC";
+		}else if (state.equals("Newfoundland and Labrador")){
+			return "NL";
+			
+		//everything two words abbreviated
+		}else if(state.contains(" ")){
+			int index = state.indexOf(" ");
+			return state.substring(0, 1)+""+state.substring(index+1,index+2);
+			
+		//first and last letter cases
+		}else if ((state.equals("Connecticut"))||(state.equals("Georgia"))||
+				(state.equals("Hawaii"))||(state.equals("Iowa"))||(state.equals("Kansas"))
+				||(state.equals("Kentucky"))||(state.equals("Louisiana"))||
+				(state.equals("Maine"))||(state.equals("Maryland"))||
+				(state.equals("Pennsylvania"))||(state.equals("Vermont"))||
+				(state.equals("Virginia"))||(state.equals("Quebec"))){
+			return (state.substring(0, 1)+""+state.substring(state.length()-1)).toUpperCase();
+						
+		//start of special cases
+		}else if (state.equals("Alaska")){
+			return "AK";
+		}else if (state.equals("Arizona")){
+			return "AZ";
+		}else if (state.equals("Minnesota")){
+			return "MN";
+		}else if (state.equals("Mississippi")){
+			return "MS";
+		}else if (state.equals("Missouri")){
+			return "MO";
+		}else if (state.equals("Montana")){
+			return "MT";
+		}else if (state.equals("Nevada")){
+			return "NV";
+		}else if (state.equals("Tennessee")){
+			return "TN";
+		}else if (state.equals("Texas")){
+			return "TX";
+			
+		//canadian provinces
+		}else if (state.equals("Alberta")){
+			return "AB";
+		}else if (state.equals("Manitoba")){
+			return "MB";
+		}else if (state.equals("Saskatchewan")){
+			return "SK";
+		}else if (state.equals("Yukon")){
+			return "YT";
+		//everything that just uses first 2 letters
+		}else{
+			return state.substring(0,2).toUpperCase();
+		}
+	}
+	
+	
 }
