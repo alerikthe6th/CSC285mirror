@@ -68,6 +68,10 @@ public class EditCustomerController implements Initializable {
 	private CheckBox chkSMSEnabled;
 
 	
+	/**
+	 * closes the edit window
+	 * @param e
+	 */
 	@FXML
 	public void cancelEditButtonPressed(ActionEvent e) {
 		Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
@@ -160,8 +164,8 @@ public class EditCustomerController implements Initializable {
 		this.mainController = mainController;
 	}
 
-	/**Sets the 'edited' order to the current changes
-	 * 
+	/**
+	 * Sets the 'edited' order to the current changes
 	 */
 	public void setEditedCustomer(Customer editedCustomer) {
 		this.editedCustomer = editedCustomer;

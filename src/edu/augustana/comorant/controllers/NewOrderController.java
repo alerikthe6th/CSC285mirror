@@ -4,6 +4,7 @@
  * Do not reproduce (as a whole or as pieces of code) without prior permission.
  */
 
+
 package edu.augustana.comorant.controllers;
 
 import java.io.IOException;
@@ -433,6 +434,7 @@ public class NewOrderController implements Initializable {
 				"West Virginia", "Wisconsin", "Wyoming", "District of Columbia", "Alberta", "British Columbia",
 				"Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Northwest Territories",
 				"Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon");
+		
 		cmbState.setItems(statesList);
 
 	}

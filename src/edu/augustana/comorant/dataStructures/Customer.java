@@ -260,6 +260,7 @@ public class Customer {
 		this.smsEnabled.set(newSmsEnabled);
 	}
 	
+
 	public void setBalance(double balance){
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 		String balanceString = "$" + twoDigitFormat.format(balance);
