@@ -141,7 +141,7 @@ public class ViewOrderController implements Initializable {
 	public void onPrintButtonPressed(ActionEvent e){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Printing");
-				
+				//TODO replace nulls with actual second lines
 		//'null' statements are for second address lines: leave as null or "" if empty!
 		edu.augustana.comorant.launchers.PrintInvoice.createInvoice(
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getBusinessName(),//from name 

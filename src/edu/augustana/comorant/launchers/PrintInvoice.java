@@ -31,7 +31,7 @@ import javax.print.SimpleDoc;
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
 
-public class PrintInvoice {
+public class PrintInvoice {//TODO make huge orderDesc's wrap
 	/*
 	public static void main(String[] args){
 		createInvoice("Firsty Lastname", "123 Main Street", null, "New York, NY 12345",
@@ -103,8 +103,35 @@ public class PrintInvoice {
 		writer.println("Order Details:\n");
 		
 		writer.println("\tDate Ordered:\t" +dateOrdered+"\t\tDate Shipped:\t"+currentDate +"\n\n");
-		writer.println("\tItems Ordered:\n\t" +orderDesc +"\n\n\n");
-		writer.println("\tPaid With:\n\t" +paymentMethod+"\n");
+		
+		
+		writer.print("\tItems Ordered:\n");
+		int stringSize = orderDesc.length();
+		if(stringSize>55){
+			for(int i=0; i<stringSize; i+=55){
+				if (orderDesc.charAt(i)==' '){
+					i+=1;
+				}
+				writer.print("\t\t");
+				if (i+55 < stringSize){
+					writer.print(orderDesc.substring(i,(i+55)));
+					if(!(orderDesc.charAt(i+55)==' ' || orderDesc.charAt(i+54)==' ')){
+						writer.print("-\n");
+					}else{
+						writer.print("\n");
+					}
+				}else{
+					writer.print(orderDesc.substring(i)+"\n");
+				}
+			}
+			writer.println("\n\n\n");
+		}else{
+			writer.println("\t\t" + orderDesc +"\n\n\n");
+		}
+		
+		
+		
+		writer.println("\tPaid With:\n\t\t" +paymentMethod+"\n");
 		
 		writer.printf("%70s", "Total Cost: $"+price);
 		
