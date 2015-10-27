@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="edu.augustana.comorant.controllers.PrefController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/PrefController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2019" y="3406"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="edu.augustana.comorant.launchers.PrintInvoice" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/launchers/PrintInvoice.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4708" y="247"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="edu.augustana.comorant.controllers.ShippingAddressController" 
+    project="CormorantRepo" file="/CormorantRepo/src/edu/augustana/comorant/controllers/ShippingAddressController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7908" y="1400"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="edu.augustana.comorant.controllers.ViewOrderController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/ViewOrderController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4710" y="722"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="edu.augustana.comorant.controllers.EditCustomerController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/EditCustomerController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5326" y="4072"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="edu.augustana.comorant.dataStructures.Preference" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Preference.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2899" y="3310"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="edu.augustana.comorant.controllers.EditOrderController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/EditOrderController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5720" y="2475"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="edu.augustana.comorant.controllers.MainController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/MainController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3644" y="3652"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="edu.augustana.comorant.dataStructures.Customer" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Customer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7655" y="3708"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="edu.augustana.comorant.controllers.NewOrderController" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/controllers/NewOrderController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6775" y="1117"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="edu.augustana.comorant.launchers.DataAccess" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/launchers/DataAccess.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5401" y="5529"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="edu.augustana.comorant.dataStructures.Order" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Order.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5708" y="781"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="edu.augustana.comorant.launchers.MainApp" project="CormorantRepo" 
+    file="/CormorantRepo/src/edu/augustana/comorant/launchers/MainApp.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3623" y="4674"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="14">    
+    <bendpoint x="7458" y="4354"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="15" name="editedCustomer"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <bendpoint x="6778" y="3634"/>    
+    <bendpoint x="7344" y="3754"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="18" name="theCustomer"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <bendpoint x="7946" y="2790"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="21" name="matchedCustomers"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <bendpoint x="3844" y="3444"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="24" name="mainController"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <bendpoint x="5526" y="3756"/>    
+    <bendpoint x="7420" y="4052"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="27" name="customerList"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="29">    
+    <bendpoint x="8640" y="1024"/>    
+    <bendpoint x="8680" y="5516"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="30">    
+    <bendpoint x="2426" y="3306"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="31" name="currentPref"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="33">    
+    <bendpoint x="8480" y="1108"/>    
+    <bendpoint x="8524" y="5456"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="34">    
+    <bendpoint x="8224" y="2704"/>    
+    <bendpoint x="8174" y="3654"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="35" name="customerList"/>      
+      <multiplicity id="36" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <bendpoint x="7476" y="2756"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="38" name="matchedCustomer"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="40">    
+    <bendpoint x="3802" y="4302"/>    
+    <bendpoint x="5214" y="5246"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="41">    
+    <bendpoint x="6260" y="1004"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="43">    
+    <bendpoint x="4906" y="660"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="44" name="viewOrder"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <bendpoint x="3812" y="3080"/>    
+    <bendpoint x="4836" y="2186"/>    
+    <bendpoint x="5208" y="1358"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="47" name="orderList"/>      
+      <multiplicity id="48" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <bendpoint x="8154" y="2714"/>    
+    <bendpoint x="8096" y="3516"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="50" name="selectedCustomer"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="52">    
+    <bendpoint x="6704" y="3674"/>    
+    <bendpoint x="7364" y="3804"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="53" name="theCustomer"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="55">    
+    <bendpoint x="7720" y="2748"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="56" name="matchedCustomers"/>      
+      <multiplicity id="57" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="58">    
+    <bendpoint x="3810" y="3056"/>    
+    <bendpoint x="4684" y="2088"/>    
+    <bendpoint x="5178" y="1220"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="59" name="orderList"/>      
+      <multiplicity id="60" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="61">    
+    <bendpoint x="7468" y="1198"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="62" name="noc"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="64">    
+    <bendpoint x="3808" y="3128"/>    
+    <bendpoint x="5136" y="2306"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="65" name="sortedOrders"/>      
+      <multiplicity id="66" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="67">    
+    <bendpoint x="5410" y="4822"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="68">    
+    <bendpoint x="3794" y="3050"/>    
+    <bendpoint x="4642" y="1842"/>    
+    <bendpoint x="5124" y="1106"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="69" name="selectedOrder"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="72" name="mainApp"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <bendpoint x="3810" y="3106"/>    
+    <bendpoint x="5002" y="2274"/>    
+    <bendpoint x="5256" y="1560"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="75" name="sortedOrders"/>      
+      <multiplicity id="76" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="77">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="78">    
+    <bendpoint x="4666" y="364"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="79">    
+    <bendpoint x="3780" y="3046"/>    
+    <bendpoint x="4460" y="1768"/>    
+    <bendpoint x="5028" y="968"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="80" name="selectedOrder"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="82">    
+    <bendpoint x="3053" y="5146"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="83">    
+    <bendpoint x="5504" y="3816"/>    
+    <bendpoint x="7428" y="4180"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="84" name="selectedCustomer"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="86">    
+    <bendpoint x="7600" y="5364"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="87">    
+    <bendpoint x="3750" y="4324"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="88">    
+    <bendpoint x="5668" y="4970"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="89">    
+    <bendpoint x="5820" y="1634"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="90" name="editedOrder"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <bendpoint x="5642" y="1728"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="93" name="editedOrder"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="96" name="mainController"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="98">    
+    <bendpoint x="8820" y="5560"/>    
+    <bendpoint x="8886" y="320"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="99">    
+    <bendpoint x="5514" y="3792"/>    
+    <bendpoint x="7426" y="4112"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="100" name="customerList"/>      
+      <multiplicity id="101" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <bendpoint x="8378" y="2690"/>    
+    <bendpoint x="8296" y="4048"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="103" name="selectedCustomer"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="105">    
+    <bendpoint x="5756" y="4992"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="106">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="107">    
+    <bendpoint x="3070" y="3302"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="108" name="currentPreference"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="110">    
+    <bendpoint x="8886" y="5626"/>    
+    <bendpoint x="8946" y="266"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="111">    
+    <bendpoint x="4224" y="3944"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="112" name="mainController"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <bendpoint x="4888" y="786"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="115" name="viewOrder"/>      
+      <multiplicity id="116" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="117">    
+    <bendpoint x="4714" y="1212"/>    
+    <bendpoint x="3756" y="2786"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="118" name="mainController"/>      
+      <multiplicity id="119" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="120">    
+    <bendpoint x="1486" y="3400"/>    
+    <bendpoint x="2773" y="5506"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="121">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="122">    
+    <bendpoint x="6196" y="1358"/>    
+    <bendpoint x="5014" y="2498"/>    
+    <bendpoint x="3818" y="3158"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="123" name="mainController"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="125">    
+    <bendpoint x="7314" y="1386"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="126" name="noc"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <bendpoint x="7596" y="4412"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="129" name="editedCustomer"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="131">    
+    <bendpoint x="2926" y="5286"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="132">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="133" name="currentPreference"/>      
+      <multiplicity id="134" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="135">    
+    <bendpoint x="4588" y="1220"/>    
+    <bendpoint x="3592" y="2830"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="136" name="mainController"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="138">    
+    <bendpoint x="3133" y="5013"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="139">    
+    <bendpoint x="5868" y="3680"/>    
+    <bendpoint x="7410" y="3930"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <association id="140">    
+    <bendpoint x="8304" y="2698"/>    
+    <bendpoint x="8246" y="3828"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="141" name="customerList"/>      
+      <multiplicity id="142" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="143">    
+    <bendpoint x="5300" y="4830"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="144">    
+    <bendpoint x="3300" y="4920"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="145">    
+    <bendpoint x="5838" y="3708"/>    
+    <bendpoint x="7424" y="3976"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <association id="146">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="147" name="mainApp"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="149">    
+    <bendpoint x="4060" y="4020"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="150" name="mainController"/>      
+      <multiplicity id="151" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="152">    
+    <bendpoint x="6248" y="1064"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="153">    
+    <bendpoint x="6672" y="1678"/>    
+    <bendpoint x="7080" y="3470"/>    
+    <bendpoint x="7438" y="3486"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="154" name="matchedCustomer"/>      
+      <multiplicity id="155" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="156">    
+    <bendpoint x="2666" y="3398"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="157" name="currentPref"/>      
+      <multiplicity id="158" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="159">    
+    <bendpoint x="6742" y="1678"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="160" name="existingCustomer"/>      
+      <multiplicity id="161" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="162">    
+    <bendpoint x="3224" y="2518"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="163">    
+    <bendpoint x="6320" y="1496"/>    
+    <bendpoint x="5080" y="2500"/>    
+    <bendpoint x="3832" y="3236"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="164" name="mainController"/>      
+      <multiplicity id="165" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="166">    
+    <bendpoint x="5474" y="3838"/>    
+    <bendpoint x="7434" y="4232"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="167" name="selectedCustomer"/>      
+      <multiplicity id="168" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="169">    
+    <bendpoint x="7680" y="5412"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <association id="170">    
+    <bendpoint x="6580" y="1672"/>    
+    <bendpoint x="7030" y="3558"/>    
+    <bendpoint x="7438" y="3580"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="171" name="existingCustomer"/>      
+      <multiplicity id="172" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="173">    
+    <bendpoint x="1626" y="3426"/>    
+    <bendpoint x="2833" y="5393"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
