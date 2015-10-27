@@ -25,6 +25,8 @@ public class PrefController implements Initializable {
 	@FXML
 	protected TextField txtStreetAddress;
 	@FXML
+	protected TextField txtStreetAddressLine2;
+	@FXML
 	protected TextField txtCity;
 	@FXML
 	protected ComboBox<String> cmbState;
@@ -62,6 +64,7 @@ public class PrefController implements Initializable {
 		this.currentPref = currentPreference;
 		this.txtBusiness.setText(currentPref.getBusinessName());
 		this.txtStreetAddress.setText(currentPref.getStreetAddress());
+		this.txtStreetAddressLine2.setText(currentPref.getStreetAddressLine2());
 		this.txtCity.setText(currentPref.getCity());
 		this.cmbState.setValue(currentPref.getState());
 		this.txtZip.setText(currentPref.getZip());
@@ -80,6 +83,7 @@ public class PrefController implements Initializable {
 	public void onSave(ActionEvent e){
 		String saveBusinessName = "";
 		String saveStreetAddress = "";
+		String saveStreetAddressLine2 = "";
 		String saveCity = "";
 		String saveState = "";
 		String saveZip = "";
@@ -90,6 +94,9 @@ public class PrefController implements Initializable {
 		}
 		if (txtStreetAddress.getText() != null && !txtStreetAddress.getText().trim().isEmpty()) {
 			saveStreetAddress = txtStreetAddress.getText();
+		}
+		if (txtStreetAddressLine2.getText() != null && !txtStreetAddressLine2.getText().trim().isEmpty()) {
+			saveStreetAddressLine2 = txtStreetAddressLine2.getText();
 		}
 		if (txtCity.getText() != null && !txtCity.getText().trim().isEmpty()) {
 			saveCity = txtCity.getText();
@@ -112,6 +119,7 @@ public class PrefController implements Initializable {
 		
 		currentPref.setBusinessName(saveBusinessName);
 		currentPref.setStreetaddress(saveStreetAddress);
+		currentPref.setStreetaddressLine2(saveStreetAddressLine2);
 		currentPref.setCity(saveCity);
 		currentPref.setState(saveState);
 		currentPref.setZip(saveZip);

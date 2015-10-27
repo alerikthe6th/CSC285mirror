@@ -11,14 +11,16 @@ public class Preference {
 	
 	protected StringProperty businessName;
 	protected StringProperty streetAddress;
+	protected StringProperty streetAddressLine2;
 	protected StringProperty city;
 	protected StringProperty state;
 	protected StringProperty zip;
 	protected DoubleProperty tax;
 	
-	public Preference(String businessName, String streetAddress, String city, String state, String zip, double tax) {
+	public Preference(String businessName, String streetAddress, String streetAddressLine2, String city, String state, String zip, double tax) {
 		this.businessName = new SimpleStringProperty(businessName);
 		this.streetAddress = new SimpleStringProperty(streetAddress);
+		this.streetAddress = new SimpleStringProperty(streetAddressLine2);
 		this.city = new SimpleStringProperty(city);
 		this.state = new SimpleStringProperty(state);
 		this.zip = new SimpleStringProperty(zip);
@@ -33,6 +35,9 @@ public class Preference {
 	}
 	public String getStreetAddress(){
 		return streetAddress.get();
+	}
+	public String getStreetAddressLine2(){
+		return streetAddressLine2.get();
 	}
 	public String getCity(){
 		return city.get();
@@ -53,6 +58,9 @@ public class Preference {
 	}
 	public void setStreetaddress(String newAddress){
 		streetAddress.set(newAddress);
+	}
+	public void setStreetaddressLine2(String newAddressLine2){
+		streetAddressLine2.set(newAddressLine2);
 	}
 	public void setCity(String newCity){
 		city.set(newCity);

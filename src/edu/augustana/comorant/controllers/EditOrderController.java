@@ -63,6 +63,8 @@ public class EditOrderController implements Initializable {
 	@FXML
 	private TextField txtStreetAddress;
 	@FXML
+	private TextField txtStreetAddressLine2;
+	@FXML
 	private TextField txtCity;
 	@FXML
 	private ComboBox<String> cmbState;
@@ -238,6 +240,7 @@ public class EditOrderController implements Initializable {
 		txtFirstName.setText(editedOrder.getFirstName());
 		txtLastName.setText(editedOrder.getLastName());
 		txtStreetAddress.setText(editedOrder.getStreetAddress());
+		txtStreetAddressLine2.setText(editedOrder.getStreetAddressLine2());
 		txtCity.setText(editedOrder.getCity());
 		cmbState.setValue(editedOrder.getState());
 		txtZip.setText(editedOrder.getZip());
@@ -266,6 +269,7 @@ public class EditOrderController implements Initializable {
 		String saveLastName = "";
 		String saveOrderDesc = "";
 		String saveStreetAddress = "";
+		String saveStreetAddressLine2 = "";
 		String saveCity = "";
 		String saveState = "";
 		String saveZip = "";
@@ -298,6 +302,9 @@ public class EditOrderController implements Initializable {
 		}
 		if (txtStreetAddress.getText() != null && !txtStreetAddress.getText().trim().isEmpty()) {
 			saveStreetAddress = txtStreetAddress.getText();
+		}
+		if (txtStreetAddressLine2.getText() != null && !txtStreetAddressLine2.getText().trim().isEmpty()) {
+			saveStreetAddressLine2 = txtStreetAddressLine2.getText();
 		}
 		if (txtCity.getText() != null && !txtCity.getText().trim().isEmpty()) {
 			saveCity = txtCity.getText();
@@ -337,6 +344,7 @@ public class EditOrderController implements Initializable {
 		editedOrder.setLastName(saveLastName);
 		editedOrder.setOrderDesc(saveOrderDesc);
 		editedOrder.setStreetAddress(saveStreetAddress);
+		editedOrder.setStreetAddressLine2(saveStreetAddressLine2);
 		editedOrder.setCity(saveCity);
 		editedOrder.setState(saveState);
 		editedOrder.setZip(saveZip);

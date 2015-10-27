@@ -63,6 +63,8 @@ public class NewOrderController implements Initializable {
 	@FXML
 	private TextField txtStreetAddress;
 	@FXML
+	private TextField txtStreetAddressLine2;
+	@FXML
 	private TextField txtCity;
 	@FXML
 	private ComboBox<String> cmbState;
@@ -276,6 +278,7 @@ public class NewOrderController implements Initializable {
 		txtFirstName.setText(existingCustomer.getFirstName());
 		txtLastName.setText(existingCustomer.getLastName());
 		txtStreetAddress.setText(existingCustomer.getStreetAddress());
+		txtStreetAddressLine2.setText(existingCustomer.getStreetAddressLine2());
 		txtCity.setText(existingCustomer.getCity());
 		cmbState.setValue(existingCustomer.getState());
 		txtZip.setText(existingCustomer.getZip());
@@ -304,6 +307,7 @@ public class NewOrderController implements Initializable {
 		String saveLastName = "";
 		String saveOrderDesc = "";
 		String saveStreetAddress = "";
+		String saveStreetAddressLine2 = "";
 		String saveCity = "";
 		String saveState = "";
 		String saveZip = "";
@@ -337,6 +341,9 @@ public class NewOrderController implements Initializable {
 		if (txtStreetAddress.getText() != null && !txtStreetAddress.getText().trim().isEmpty()) {
 			saveStreetAddress = txtStreetAddress.getText();
 		}
+		if (txtStreetAddressLine2.getText() != null && !txtStreetAddressLine2.getText().trim().isEmpty()) {
+			saveStreetAddressLine2 = txtStreetAddressLine2.getText();
+		}
 		if (txtCity.getText() != null && !txtCity.getText().trim().isEmpty()) {
 			saveCity = txtCity.getText();
 		}
@@ -369,12 +376,13 @@ public class NewOrderController implements Initializable {
 		}
 
 		Customer newCustomer = new Customer((mainController.getLargestCustomerNumber() + 1), saveFirstName,
-				saveLastName, saveStreetAddress, saveCity, saveState, saveZip, savePhone, saveEmail,
+				saveLastName, saveStreetAddress, saveStreetAddressLine2, saveCity, saveState, saveZip, savePhone, saveEmail,
 				savePrefContactMethod, saveSmsEnabled);
 
 		if (matchedCustomer != null && matchedCustomer.equals(newCustomer)) {
 			newCustomer = matchedCustomer;
 			newCustomer.setStreetAddress(saveStreetAddress);
+			newCustomer.setStreetAddressLine2(saveStreetAddressLine2);
 			newCustomer.setCity(saveCity);
 			newCustomer.setState(saveState);
 			newCustomer.setZip(saveZip);
@@ -472,6 +480,7 @@ public class NewOrderController implements Initializable {
 		if (matchedCustomers.size() == 1) {
 			matchedCustomer = matchedCustomers.get(0);
 			txtStreetAddress.setText(matchedCustomer.getStreetAddress());
+			txtStreetAddressLine2.setText(matchedCustomer.getStreetAddressLine2());
 			txtCity.setText(matchedCustomer.getCity());
 			cmbState.setValue(matchedCustomer.getState());
 			txtZip.setText(matchedCustomer.getZip());
@@ -507,6 +516,7 @@ public class NewOrderController implements Initializable {
 		matchedCustomer = customer;
 		if (matchedCustomer != null) {
 			txtStreetAddress.setText(matchedCustomer.getStreetAddress());
+			txtStreetAddressLine2.setText(matchedCustomer.getStreetAddressLine2());
 			txtCity.setText(matchedCustomer.getCity());
 			cmbState.setValue(matchedCustomer.getState());
 			txtZip.setText(matchedCustomer.getZip());

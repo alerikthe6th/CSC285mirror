@@ -66,6 +66,9 @@
             <Label text="Shipping Street Address" />
             <TextField fx:id="txtStreetAddress" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            </HBox>
+            <TextField fx:id="txtStreetAddressLine2" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <VBox>
                      <children>

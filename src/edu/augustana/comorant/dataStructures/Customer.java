@@ -17,6 +17,7 @@ public class Customer {
 	//protected StringProperty orderDesc;
 	protected StringProperty fullAddress;
 	protected StringProperty streetAddress;
+	protected StringProperty streetAddressLine2;
 	protected StringProperty city;
 	protected StringProperty state;
 	protected StringProperty zip;
@@ -37,6 +38,7 @@ public class Customer {
 	 * @param String lastName
 	 * @param String orderDesc
 	 * @param String streetAddress
+	 * @param String streetAddressLine2
 	 * @param String city
 	 * @param String state
 	 * @param String zip
@@ -47,7 +49,7 @@ public class Customer {
 	 * 
 	 */
 	public Customer(int customerNumber, String firstName, String lastName, String streetAddress, 
-			String city, String state, String zip,
+			String streetAddressLine2, String city, String state, String zip,
 			String phoneNumber, String email, String prefContactMethod, boolean smsEnabled) {
 		
 		this.customerNumber = new SimpleIntegerProperty(customerNumber);
@@ -55,11 +57,12 @@ public class Customer {
 		this.lastName = new SimpleStringProperty(lastName);
 		this.fullName = new SimpleStringProperty(firstName + " " + lastName);
 		this.streetAddress = new SimpleStringProperty(streetAddress);
+		this.streetAddressLine2 = new SimpleStringProperty(streetAddressLine2);
 		this.city = new SimpleStringProperty(city);
 		this.state = new SimpleStringProperty(state);
 		this.zip = new SimpleStringProperty(zip);
-		this.fullAddress = new SimpleStringProperty(
-				this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" + 
+				this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
 		//this.paymentMethod = new SimpleStringProperty(paymentMethod);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
@@ -91,6 +94,11 @@ public class Customer {
 	 * @return String */
 	public String getStreetAddress() {
 		return streetAddress.get();
+	}
+	/**Returns the customer's street address line 2 
+	 * @return String */
+	public String getStreetAddressLine2() {
+		return streetAddressLine2.get();
 	}
 	/**Returns the customer's city 
 	 * @return String */
@@ -132,8 +140,8 @@ public class Customer {
 	public String getEmail() {
 		return email.get();
 	}
-	/**Returns the customer's email address
-	 * @return String */
+	/**Returns whether or not the customer can receive texts
+	 * @return boolean */
 	public boolean getSMSEnabled() {
 		return smsEnabled.get();
 	}
@@ -158,6 +166,10 @@ public class Customer {
 	/**@return StringProperty*/
 	public StringProperty streetAddressProperty() {
 		return streetAddress;
+	}
+	/**@return StringProperty*/
+	public StringProperty streetAddressPropertyLine2() {
+		return streetAddressLine2;
 	}
 	/**@return StringProperty*/
 	public StringProperty cityProperty() {
@@ -224,6 +236,11 @@ public class Customer {
 		this.streetAddress.set(streetAddress);
 		resetFullAddress();
 	}
+	/**Sets the customer's street address line 2*/
+	public void setStreetAddressLine2(String streetAddressLine2) {
+		this.streetAddressLine2.set(streetAddressLine2);
+		resetFullAddress();
+	}
 	/**Sets the customer's city*/
 	public void setCity(String city) {
 		this.city.set(city);
@@ -268,7 +285,11 @@ public class Customer {
 	}
 	
 	public void resetFullAddress(){
-		this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		if(this.getStreetAddressLine2() != "" && this.getStreetAddressLine2() != null){
+			this.fullAddress.set(this.getStreetAddress() + "\n" + this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}else{
+			this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}
 	}
 	
 

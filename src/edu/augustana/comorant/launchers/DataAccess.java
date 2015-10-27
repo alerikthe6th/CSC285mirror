@@ -55,6 +55,8 @@ public class DataAccess {
 				String rsLastName = customersResultSet.getString("lastName");
 				String rsStreetAddress = customersResultSet
 						.getString("streetAddress");
+				String rsStreetAddressLine2 = customersResultSet
+						.getString("streetAddressLine2");
 				String rsCity = customersResultSet.getString("city");
 				String rsState = customersResultSet.getString("state");
 				String rsZip = customersResultSet.getString("zip");
@@ -65,7 +67,7 @@ public class DataAccess {
 				String rsPrefContactMethod = customersResultSet
 						.getString("prefContactMethod");
 				customersList.add(new Customer(rsCustomerNumber, rsFirstName,
-						rsLastName, rsStreetAddress, rsCity, rsState, rsZip,
+						rsLastName, rsStreetAddress, rsStreetAddressLine2, rsCity, rsState, rsZip,
 						rsPhone, rsEmail, rsPrefContactMethod, rsSmsEnabled));
 			}
 
@@ -199,6 +201,7 @@ public class DataAccess {
 			// DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MM:SS.SSS");
 			String businessName = "Sondahl Pottery";
 			String streetAddress = "6326 Maine St";
+			String streetAddressLine2 = "2nd line";//TODO change
 			String city = "Spirit Lake";
 			String state = "Idaho";
 			String zip = "83869";
@@ -207,13 +210,14 @@ public class DataAccess {
 			if (prefResultSet.next()) {
 				businessName = prefResultSet.getString("businessName");
 				streetAddress = prefResultSet.getString("streetAddress");
+				streetAddressLine2 = prefResultSet.getString("streetAddressLine2");
 				city = prefResultSet.getString("city");
 				state = prefResultSet.getString("state");
 				zip = prefResultSet.getString("zip");
 				tax = prefResultSet.getDouble("tax");
 			}
 			
-			retPref = new Preference(businessName, streetAddress, city, state, zip, tax); 
+			retPref = new Preference(businessName, streetAddress, streetAddressLine2, city, state, zip, tax); 
 
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
@@ -265,6 +269,7 @@ public class DataAccess {
 				+ " firstName TEXT, "
 				+ " lastName TEXT, "
 				+ " streetAddress TEXT, "
+				+ " streetAddressLine2 TEXT, "
 				+ " city TEXT, "
 				+ " state TEXT, "
 				+ " zip TEXT, "
@@ -291,6 +296,7 @@ public class DataAccess {
 				+ "preferenceNumber INTEGER PRIMARY KEY, "
 				+ " businessName TEXT, "
 				+ " streetAddress TEXT, "
+				+ " streetAddressLine2 TEXT, "
 				+ " city TEXT, "
 				+ " state TEXT, "
 				+ " zip TEXT, "
@@ -402,6 +408,7 @@ public class DataAccess {
 				String firstName = customer.getFirstName();
 				String lastName = customer.getLastName();
 				String streetAddress = customer.getStreetAddress();
+				String streetAddressLine2 = customer.getStreetAddressLine2();
 				String city = customer.getCity();
 				String state = customer.getState();
 				String zip = customer.getZip();
@@ -415,22 +422,23 @@ public class DataAccess {
 				String prefContactMethod = customer.getPrefContactMethod();
 
 				String insertCustomersQuery = "INSERT INTO Customers("
-						+ "customerNumber, firstName, lastName, streetAddress, city, "
+						+ "customerNumber, firstName, lastName, streetAddress, streetAddressLine2, city, "
 						+ "state, zip, phoneNumber, email, smsEnabled, prefContactMethod)"
-						+ " VALUES(?, ?, ?, ?, ?, " + "?, ?, ?, ?, ? ,?);";
+						+ " VALUES(?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, ?, ?);";
 				PreparedStatement insertCustomer = connection
 						.prepareStatement(insertCustomersQuery);
 				insertCustomer.setString(1, customerNumber + "");
 				insertCustomer.setString(2, firstName);
 				insertCustomer.setString(3, lastName);
 				insertCustomer.setString(4, streetAddress);
-				insertCustomer.setString(5, city);
-				insertCustomer.setString(6, state);
-				insertCustomer.setString(7, zip);
-				insertCustomer.setString(8, phone);
-				insertCustomer.setString(9, email);
-				insertCustomer.setString(10, smsEnabledInt + "");
-				insertCustomer.setString(11, prefContactMethod);
+				insertCustomer.setString(5, streetAddressLine2);
+				insertCustomer.setString(6, city);
+				insertCustomer.setString(7, state);
+				insertCustomer.setString(8, zip);
+				insertCustomer.setString(9, phone);
+				insertCustomer.setString(10, email);
+				insertCustomer.setString(11, smsEnabledInt + "");
+				insertCustomer.setString(12, prefContactMethod);
 				insertCustomer.executeUpdate();
 
 			}
@@ -478,6 +486,7 @@ public class DataAccess {
 
 			String businessName = pref.getBusinessName();
 			String streetAddress = pref.getStreetAddress();
+			String streetAddressLine2 = pref.getStreetAddressLine2();
 			String city = pref.getCity();
 			String state = pref.getState();
 			String zip = pref.getZip();
@@ -485,17 +494,18 @@ public class DataAccess {
 			
 
 			String insertPreferencesQuery = "INSERT INTO Preferences("
-					+ "businessName, streetAddress, city, "
+					+ "businessName, streetAddress, streetAddressLine2, city, "
 					+ "state, zip, tax)"
-					+ " VALUES(?, ?, ?, ?, ?, ?); ";
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?); ";
 			PreparedStatement insertCustomer = connection
 					.prepareStatement(insertPreferencesQuery);
 			insertCustomer.setString(1, businessName);
 			insertCustomer.setString(2, streetAddress);
-			insertCustomer.setString(3, city);
-			insertCustomer.setString(4, state);
-			insertCustomer.setString(5, zip);
-			insertCustomer.setString(6, tax+"");
+			insertCustomer.setString(3, streetAddressLine2);
+			insertCustomer.setString(4, city);
+			insertCustomer.setString(5, state);
+			insertCustomer.setString(6, zip);
+			insertCustomer.setString(7, tax+"");
 			insertCustomer.executeUpdate();
 
 		} catch (SQLException e) {

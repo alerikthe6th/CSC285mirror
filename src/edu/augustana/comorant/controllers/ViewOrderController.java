@@ -48,6 +48,8 @@ public class ViewOrderController implements Initializable {
 	@FXML
 	private Label lblStreetAddress;
 	@FXML
+	private Label lblStreetAddressLine2;
+	@FXML
 	private Label lblCity;
 	@FXML
 	private Label lblState;
@@ -109,6 +111,7 @@ public class ViewOrderController implements Initializable {
 		lblFirstName.setText(viewOrder.getFirstName());
 		lblLastName.setText(viewOrder.getLastName());
 		lblStreetAddress.setText(viewOrder.getStreetAddress());
+		lblStreetAddressLine2.setText(viewOrder.getStreetAddressLine2());
 		lblCity.setText(viewOrder.getCity());
 		lblState.setText(viewOrder.getState());
 		lblZip.setText(viewOrder.getZip());
@@ -143,6 +146,7 @@ public class ViewOrderController implements Initializable {
 		edu.augustana.comorant.launchers.PrintInvoice.createInvoice(
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getBusinessName(),//from name 
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddress(),//from address
+			//edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddressLine2(),//from address line 2 - delete null
 			null, //second from address line
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getCity()+", "+//from city,
 			edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(
@@ -150,6 +154,7 @@ public class ViewOrderController implements Initializable {
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getZip(),//from zip
 			lblFirstName.getText()+" "+lblLastName.getText(), //firstname, lastname
 			""+lblStreetAddress.getText(), null,//to address, second to address line
+			//""+lblStreetAddressLine2.getText(), second to address line - delete null
 			""+lblCity.getText()+", "+//to city
 					edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())//to state(formatted)
 			+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), //to to zip, order date, description

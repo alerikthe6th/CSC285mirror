@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.comorant.controllers.PrefController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.comorant.controllers.PrefController">
    <top>
       <Label text="Preferences" BorderPane.alignment="CENTER">
          <font>
@@ -81,6 +81,7 @@
                   <TextField fx:id="txtBusiness" />
                   <Label text="Street Address" />
                   <TextField fx:id="txtStreetAddress" />
+                  <TextField fx:id="txtStreetAddressLine2" />
                   <HBox spacing="8.0">
                      <children>
                         <VBox>
