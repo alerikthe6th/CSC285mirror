@@ -4,7 +4,7 @@
   <class id="1" language="java" name="edu.augustana.comorant.controllers.PrefController" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/controllers/PrefController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="315" width="197" x="134" y="1182"/>    
+    <position height="-1" width="-1" x="231" y="1058"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="edu.augustana.comorant.launchers.PrintInvoice" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/launchers/PrintInvoice.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="491" x="201" y="58"/>    
+    <position height="-1" width="-1" x="336" y="743"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -23,7 +23,7 @@
   <class id="3" language="java" name="edu.augustana.comorant.controllers.ShippingAddressController" 
     project="CormorantRepo" file="/CormorantRepo/src/edu/augustana/comorant/controllers/ShippingAddressController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="365" x="1284" y="58"/>    
+    <position height="-1" width="-1" x="1686" y="219"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -33,7 +33,7 @@
   <class id="4" language="java" name="edu.augustana.comorant.controllers.ViewOrderController" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/controllers/ViewOrderController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="549" width="252" x="449" y="413"/>    
+    <position height="-1" width="-1" x="735" y="705"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -43,7 +43,7 @@
   <class id="5" language="java" name="edu.augustana.comorant.controllers.EditCustomerController" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/controllers/EditCustomerController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="423" width="236" x="113" y="413"/>    
+    <position height="-1" width="-1" x="1244" y="2296"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -52,7 +52,7 @@
   </class>  
   <class id="6" language="java" name="edu.augustana.comorant.dataStructures.Preference" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Preference.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="405" width="275" x="134" y="2401"/>    
+    <position height="-1" width="-1" x="222" y="1642"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -62,7 +62,7 @@
   <class id="7" language="java" name="edu.augustana.comorant.controllers.EditOrderController" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/controllers/EditOrderController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="657" width="236" x="741" y="413"/>    
+    <position height="-1" width="-1" x="565" y="1587"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -81,7 +81,7 @@
   </class>  
   <class id="9" language="java" name="edu.augustana.comorant.dataStructures.Customer" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Customer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1053" width="411" x="1121" y="3854"/>    
+    <position height="-1" width="-1" x="1939" y="2700"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -91,7 +91,7 @@
   <class id="10" language="java" name="edu.augustana.comorant.controllers.NewOrderController" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/controllers/NewOrderController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="729" width="246" x="1017" y="413"/>    
+    <position height="-1" width="-1" x="1306" y="730"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -109,7 +109,7 @@
   </class>  
   <class id="12" language="java" name="edu.augustana.comorant.dataStructures.Order" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/dataStructures/Order.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1413" width="413" x="449" y="2401"/>    
+    <position height="-1" width="-1" x="507" y="2973"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -118,7 +118,7 @@
   </class>  
   <class id="13" language="java" name="edu.augustana.comorant.launchers.MainApp" project="CormorantRepo" 
     file="/CormorantRepo/src/edu/augustana/comorant/launchers/MainApp.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="156" x="944" y="2401"/>    
+    <position height="-1" width="-1" x="1214" y="1684"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -126,197 +126,279 @@
     </display>  
   </class>  
   <association id="14">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="15" name="noc"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="17">    
-    <bendpoint x="604" y="1182"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="18" name="editedOrder"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
+    <bendpoint x="400" y="1240"/>    
+    <bendpoint x="404" y="2044"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="15" name="viewOrder">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <bendpoint x="892" y="2401"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="21" name="selectedCustomer"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+  <association id="17">    
+    <bendpoint x="1628" y="2190"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="18" name="matchedCustomer">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="21" name="mainController">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="22" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="23">    
-    <bendpoint x="1151" y="1182"/>    
-    <bendpoint x="1151" y="2401"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="24" name="existingCustomer"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
+    <bendpoint x="1777" y="2187"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="24" name="customerList">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="26">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="27" name="sortedOrders"/>      
-      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+      <attribute id="27" name="mainApp">        
+        <position height="0" width="0" x="192" y="-802"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="1">        
+        <position height="0" width="0" x="192" y="-802"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="29">    
+    <bendpoint x="1564" y="2284"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="30" name="matchedCustomers">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="30" name="orderList"/>      
-      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+      <attribute id="33" name="selectedOrder">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="33" name="mainController"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="35">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="36" name="currentPreference"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="36" name="currentPref">        
+        <position height="0" width="0" x="-49" y="-961"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-49" y="-961"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="38">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="39" name="currentPref"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="39" name="sortedOrders">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="41">    
-    <bendpoint x="913" y="2401"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="42" name="customerList"/>      
-      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="42" name="mainController">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="44">    
-    <bendpoint x="1172" y="1182"/>    
-    <bendpoint x="1172" y="2401"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="45" name="matchedCustomer"/>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="45" name="theCustomer">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="1">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="47">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="48" name="mainController"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="48" name="noc">        
+        <position height="0" width="0" x="166" y="-47"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="1">        
+        <position height="0" width="0" x="166" y="-47"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="50">    
-    <bendpoint x="1314" y="413"/>    
-    <bendpoint x="1314" y="1182"/>    
-    <bendpoint x="1314" y="2401"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="51" name="customerList"/>      
-      <multiplicity id="52" minimum="0" maximum="2147483647"/>    
+    <bendpoint x="1598" y="2254"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="51" name="existingCustomer">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="52" minimum="0" maximum="1">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="53">    
-    <bendpoint x="1130" y="1182"/>    
-    <bendpoint x="1130" y="2401"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="54" name="matchedCustomers"/>      
-      <multiplicity id="55" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="54" name="orderList">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </attribute>      
+      <multiplicity id="55" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="56">    
-    <bendpoint x="1293" y="413"/>    
-    <bendpoint x="1293" y="1182"/>    
-    <bendpoint x="1293" y="2401"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="57" name="selectedCustomer"/>      
-      <multiplicity id="58" minimum="0" maximum="1"/>    
+    <bendpoint x="912" y="2728"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="57" name="selectedCustomer">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="59">    
-    <bendpoint x="458" y="1182"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="60" name="viewOrder"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="62">    
+    <bendpoint x="934" y="2628"/>    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="63" name="mainApp"/>      
-      <multiplicity id="64" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="65">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="66" name="theCustomer"/>      
-      <multiplicity id="67" minimum="0" maximum="1"/>    
+      <attribute id="60" name="customerList">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="62">    
+    <bendpoint x="1994" y="2190"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="63" name="selectedCustomer">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="1">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="66" name="mainController">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="68">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="69" name="selectedOrder"/>      
-      <multiplicity id="70" minimum="0" maximum="1"/>    
+    <bendpoint x="528" y="2156"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="69" name="editedOrder">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </attribute>      
+      <multiplicity id="70" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-148" y="-134"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="71">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="72" name="mainController"/>      
-      <multiplicity id="73" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="74">    
-    <bendpoint x="103" y="1182"/>    
-    <bendpoint x="103" y="2401"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="75" name="editedCustomer"/>      
-      <multiplicity id="76" minimum="0" maximum="1"/>    
+      <attribute id="72" name="editedCustomer">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="1">        
+        <position height="0" width="0" x="613" y="-1680"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="77">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="78" name="mainController"/>      
-      <multiplicity id="79" minimum="0" maximum="1"/>    
+  <association id="74">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="75" name="mainController">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="77">    
+    <bendpoint x="653" y="2026"/>    
+    <bendpoint x="220" y="2026"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="78" name="currentPreference">        
+        <position height="0" width="0" x="-49" y="-961"/>      
+      </attribute>      
+      <multiplicity id="79" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-49" y="-961"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
