@@ -103,6 +103,49 @@
       <VBox GridPane.rowIndex="5">
          <children>
             <Label text="Price" />
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="\$">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtPrice" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="+ Tax: $">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblTax" text="...">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <Label text="  Total: $">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblResult" text="...">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <!--
             <HBox>
                <children>
                   <Label text="\$">
@@ -113,6 +156,7 @@
                   <TextField fx:id="txtPrice" />
                </children>
             </HBox>
+            -->
          </children>
       </VBox>
       <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">
