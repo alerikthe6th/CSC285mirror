@@ -20,7 +20,7 @@ public class Preference {
 	public Preference(String businessName, String streetAddress, String streetAddressLine2, String city, String state, String zip, double tax) {
 		this.businessName = new SimpleStringProperty(businessName);
 		this.streetAddress = new SimpleStringProperty(streetAddress);
-		this.streetAddress = new SimpleStringProperty(streetAddressLine2);
+		this.streetAddressLine2 = new SimpleStringProperty(streetAddressLine2);
 		this.city = new SimpleStringProperty(city);
 		this.state = new SimpleStringProperty(state);
 		this.zip = new SimpleStringProperty(zip);

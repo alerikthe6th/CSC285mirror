@@ -146,15 +146,14 @@ public class ViewOrderController implements Initializable {
 		edu.augustana.comorant.launchers.PrintInvoice.createInvoice(
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getBusinessName(),//from name 
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddress(),//from address
-			//edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddressLine2(),//from address line 2 - delete null
-			null, //second from address line
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddressLine2(),//from address line 2 
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getCity()+", "+//from city,
 			edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(
 					edu.augustana.comorant.controllers.MainController.getCurrentPreference().getState())+" "+//from state
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getZip(),//from zip
 			lblFirstName.getText()+" "+lblLastName.getText(), //firstname, lastname
-			""+lblStreetAddress.getText(), null,//to address, second to address line
-			//""+lblStreetAddressLine2.getText(), second to address line - delete null
+			""+lblStreetAddress.getText(), 
+			""+lblStreetAddressLine2.getText(), //second to address line
 			""+lblCity.getText()+", "+//to city
 					edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())//to state(formatted)
 			+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), //to to zip, order date, description

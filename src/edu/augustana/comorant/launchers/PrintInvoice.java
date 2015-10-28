@@ -80,7 +80,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 		writer.printf(fromAdrsLine1+"%"+(70-fromAdrsLine1.length())+"s", "+-stamp+");//or here
 		writer.println();
 //		if((!(fromAdrsLine2.equals(""))) &&  (null != fromAdrsLine2)){//is there a second address line?
-		if(("" != fromAdrsLine2) &&  (null != fromAdrsLine2)){//is there a second address line?
+		if(!(fromAdrsLine2.equals(""))){//is there a second address line?
 			writer.printf(fromAdrsLine2+"%"+(70-fromAdrsLine2.length())+"s", "+------+");//or here
 			writer.println();
 		}
@@ -93,7 +93,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 		writer.println("\t\t\t\t"+custName);
 		writer.println("\t\t\t\t"+custAdrsLine1);
 		//if((!(custAdrsLine2.equals(""))) && (null != custAdrsLine2)){//is there a second address line?
-		if(("" != custAdrsLine2) && (null != custAdrsLine2)){//is there a second address line?
+		if(!(custAdrsLine2.equals(""))){//is there a second address line?
 			writer.println("\t\t\t\t"+custAdrsLine2);
 		}
 		writer.println("\t\t\t\t"+custCSZ+"\n");
@@ -105,20 +105,21 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 		writer.println("\tDate Ordered:\t" +dateOrdered+"\t\tDate Shipped:\t"+currentDate +"\n\n");
 		
 		
-		writer.print("\tItems Ordered:\n");
+		writer.print("\tItems Ordered:");
+		writer.println();
 		int stringSize = orderDesc.length();
 		if(stringSize>55){
 			for(int i=0; i<stringSize; i+=55){
 				if (orderDesc.charAt(i)==' '){
 					i+=1;
 				}
-				writer.print("\t\t");
+				writer.print("                      ");//22 spaces?
 				if (i+55 < stringSize){
 					writer.print(orderDesc.substring(i,(i+55)));
 					if(!(orderDesc.charAt(i+55)==' ' || orderDesc.charAt(i+54)==' ')){
-						writer.print("-\n");
+						writer.println("-");
 					}else{
-						writer.print("\n");
+						writer.println();
 					}
 				}else{
 					writer.print(orderDesc.substring(i)+"\n");
@@ -126,12 +127,12 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 			}
 			writer.println("\n\n\n");
 		}else{
-			writer.println("\t\t" + orderDesc +"\n\n\n");
+			writer.println(orderDesc +"\n\n\n");
 		}
 		
 		
 		
-		writer.println("\tPaid With:\n\t\t" +paymentMethod+"\n");
+		writer.println("\tPaid With:\n    " +paymentMethod+"\n");
 		
 		writer.printf("%70s", "Total Cost: $"+price);
 		

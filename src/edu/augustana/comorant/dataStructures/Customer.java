@@ -61,8 +61,13 @@ public class Customer {
 		this.city = new SimpleStringProperty(city);
 		this.state = new SimpleStringProperty(state);
 		this.zip = new SimpleStringProperty(zip);
-		this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" + 
-				this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		if(!(getStreetAddressLine2().equals(""))){
+			this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" + 
+					this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}else{
+			this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" +
+					this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}
 		//this.paymentMethod = new SimpleStringProperty(paymentMethod);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
