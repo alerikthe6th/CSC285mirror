@@ -634,7 +634,8 @@ public class MainController implements Initializable {
 		
 		
 		clmCustName.setCellValueFactory(cellData -> cellData.getValue().fullNameProperty());
-		clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().streetAddressProperty());
+		//clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().streetAddressProperty());//TODO line 2 here?
+		clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().bothStreetAddressProperty());
 		clmCustCity.setCellValueFactory(cellData -> cellData.getValue().cityProperty());
 		clmCustState.setCellValueFactory(cellData -> cellData.getValue().stateProperty());
 		clmCustZip.setCellValueFactory(cellData -> cellData.getValue().zipProperty());
@@ -650,7 +651,6 @@ public class MainController implements Initializable {
 	/**
 	 * Sets the selected Order's status to what is selected in the combobox.
 	 * Saves the data to DB if the status value has changed
-	 * 
 	 * 
 	 */
 	public void onStatusDropdownChanged(Event e) {

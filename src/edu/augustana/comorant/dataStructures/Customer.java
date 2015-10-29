@@ -7,6 +7,7 @@
 package edu.augustana.comorant.dataStructures;
 import java.text.DecimalFormat;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 
 public class Customer {
@@ -61,7 +62,7 @@ public class Customer {
 		this.city = new SimpleStringProperty(city);
 		this.state = new SimpleStringProperty(state);
 		this.zip = new SimpleStringProperty(zip);
-		if(!(getStreetAddressLine2().equals(""))){
+		if(!(getStreetAddressLine2().equals(""))){//TODO always put in line 2 but when "" no \n
 			this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" + 
 					this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
 		}else{
@@ -175,6 +176,16 @@ public class Customer {
 	/**@return StringProperty*/
 	public StringProperty streetAddressPropertyLine2() {
 		return streetAddressLine2;
+	}
+	/**@return StringProperty*/
+	public StringProperty bothStreetAddressProperty() {
+		if (streetAddressLine2.getValue().equals("")){
+			return streetAddress;
+		}else{
+			StringProperty s3 = new SimpleStringProperty();
+			s3.bind(Bindings.concat(streetAddress, "\n", streetAddressLine2));
+			return s3;
+		}
 	}
 	/**@return StringProperty*/
 	public StringProperty cityProperty() {

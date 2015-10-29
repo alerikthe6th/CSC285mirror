@@ -359,6 +359,7 @@ public class EditOrderController implements Initializable {
 		//editedOrder.redoShippingAddress();
 
 		DataAccess.saveOrders(mainController.orderList);
+		DataAccess.saveCustomers(mainController.customerList);//TODO added this line
 		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
 		mainController.chkCompletedOrders.setSelected(!mainController.chkCompletedOrders.isSelected());
 		Stage stage = (Stage) btnSaveEdit.getScene().getWindow();

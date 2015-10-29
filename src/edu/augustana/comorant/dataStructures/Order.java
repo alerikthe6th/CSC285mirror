@@ -367,7 +367,7 @@ public class Order {
 	}
 	/**Updates the order's full shipping address*/
 	public void redoShippingAddress() {
-		if(!(this.getStreetAddressLine2().equals(""))){
+		if(!(this.getStreetAddressLine2().equals(""))){//TODO always put in line 2 but when "" no \n
 			theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
 		}else{
 			theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
