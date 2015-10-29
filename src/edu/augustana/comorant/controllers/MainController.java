@@ -513,75 +513,62 @@ public class MainController implements Initializable {
 			// use name if no filter selected
 			if (cmbOrderFilters.getValue() == null) {
 				if (order.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// first name.
+					return true; // Filter matches first name.
 				} else if (order.getLastName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// last name.
+					return true; // Filter matches last name.
 				}
 				return false; // Does not match.
 			}
 			if (cmbOrderFilters.getValue().toString() == "Status") {
 				if (order.getStatus().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// status.
+					return true; // Filter matches status.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Name") {
 				if (order.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// first name.
+					return true; // Filter matches first name.
 				} else if (order.getLastName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// last name.
+					return true; // Filter matches last name.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Shipping Address") {
 				if (order.getFullAddress().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// shipping address.
+					return true; // Filter matches shipping address.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Order Description") {
 				if (order.getOrderDesc().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// Order Description.
+					return true; // Filter matches Order Description.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Payment Method") {
 				if (order.getPaymentMethod().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// Payment method.
+					return true; // Filter matches Payment method.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Payment Status") {
 				if (order.getPaymentStatus().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// payment status.
+					return true; // Filter matches payment status.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Email") {
 				if (order.getEmail().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// email.
+					return true; // Filter matches email.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Phone Number") {
 				if (order.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// phone number.
+					return true; // Filter matches phone number.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Price") {
 				if ((order.getPrice() + "").toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// price.
+					return true; // Filter matches price.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Preferred Contact Method") {
 				if (order.getPrefContactMethod().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// pref contact method.
+					return true; // Filter matches pref contact method.
 				}
 				return false; // Does not match.
 			}
@@ -591,7 +578,6 @@ public class MainController implements Initializable {
 
 	/**
 	 * Gives a reference to the main application object if needed.
-	 * 
 	 * 
 	 */
 	public void setMainApp(MainApp mainApp) {
@@ -631,7 +617,6 @@ public class MainController implements Initializable {
 		clmPrefContactMethod.setCellValueFactory(cellData -> cellData.getValue().prefContactMethodProperty());
 
 		tblOrders.setItems(sortedOrders);
-		
 		
 		clmCustName.setCellValueFactory(cellData -> cellData.getValue().fullNameProperty());
 		//clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().streetAddressProperty());//TODO line 2 here?
@@ -682,7 +667,10 @@ public class MainController implements Initializable {
 		return Collections.max(orderNumberList);
 	}
 	
-	
+	/**
+	 * Returns the current largest customer number in the orders list. Used to get
+	 * the next customer number when adding an customer.
+	 */
 	protected int getLargestCustomerNumber() {
 		ArrayList<Integer> customerNumberList = new ArrayList<Integer>();
 		if (customerList.size() == 0) {
