@@ -225,9 +225,7 @@ public class EditOrderController implements Initializable {
 		this.mainController = mainController;
 	}
 
-	/**Sets the 'edited' order to the current changes
-	 * 
-	 */
+	/**Sets the 'edited' order to the current changes */
 	public void setEditedOrder(Order editedOrder) {
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 		String priceString = twoDigitFormat.format(editedOrder.getPrice());
@@ -368,7 +366,7 @@ public class EditOrderController implements Initializable {
 	}
 	/**
 	 * removes an order or customer from the list
-	 * @param e
+	 * @param ActionEvent e
 	 */
 	@FXML
 	public void onDeleteButtonPressed(ActionEvent e){
@@ -388,7 +386,6 @@ public class EditOrderController implements Initializable {
 			}
 			if(!customerHasOtherOrder){
 				mainController.customerList.remove(editedOrder.getCustomer());
-				
 			}
 			mainController.orderList.remove(editedOrder);
 		    alert.close();

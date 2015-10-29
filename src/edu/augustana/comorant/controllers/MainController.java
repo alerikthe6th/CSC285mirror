@@ -158,7 +158,6 @@ public class MainController implements Initializable {
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
-
 	/**
 	 * Launches the new order window. Passes into the New Order controller a
 	 * reference to itself so that it can add data to orderList
@@ -195,7 +194,6 @@ public class MainController implements Initializable {
 	public void newOrderByCustomerPressed(ActionEvent e) {
 		Parent root;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/comorant/fxml/newOrderByCustomerGUI.fxml"));
 			root = loader.load();
 			NewOrderController newOrderController = (NewOrderController) loader.getController();
@@ -223,7 +221,6 @@ public class MainController implements Initializable {
 	public void editOrderButtonPressed(ActionEvent e) {
 		Parent root;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/edu/augustana/comorant/fxml/editOrderGUI.fxml"));
 			root = loader.load();
@@ -245,11 +242,14 @@ public class MainController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Launches the edit customer window. Passes into the Edit Customer controller a
+	 * reference to itself so that it can add data to customerList
+	 */
 	@FXML
 	public void editCustomerButtonPressed(ActionEvent e) {
 		Parent root;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/edu/augustana/comorant/fxml/editCustomerGUI.fxml"));
 			root = loader.load();
@@ -279,7 +279,6 @@ public class MainController implements Initializable {
 	public void viewOrderButtonPressed(ActionEvent e) {
 		Parent root;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/edu/augustana/comorant/fxml/viewOrderGUI.fxml"));
 			root = loader.load();
@@ -300,10 +299,8 @@ public class MainController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
-	/**
-	 * Deletes the selected order when the delete button is pressed
-	 * @param e
-	 */
+	
+	/** Deletes the selected order when the delete button is pressed */
 	@FXML
 	public void deleteOrderButtonPressed(ActionEvent e) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -335,6 +332,7 @@ public class MainController implements Initializable {
 		}
 	}
 	
+	/** Opens the preferences window when the file button is clicked */
 	@FXML
 	protected void miPreferencesPressed(ActionEvent e){
 		Parent root;
@@ -361,7 +359,7 @@ public class MainController implements Initializable {
 		
 	}
 
-
+	/** Opens the about window when the file button is clicked */
 	@FXML
 	public void miAboutPressed(ActionEvent e) {
 		Parent root;
@@ -380,15 +378,14 @@ public class MainController implements Initializable {
 		
 	}
 	
+	/** Closes the window the close button was pressed on */
 	@FXML
 	public void miClosedPressed(ActionEvent e) {
 		Stage stage = (Stage) tblOrders.getScene().getWindow();
 		stage.close();
 	}
 
-	/**
-	 * Fills the Order Status combobox with status strings
-	 */
+	/** Fills the Order Status combobox with status strings */
 	private void populateDropdowns() {
 
 		ObservableList<String> options = FXCollections.observableArrayList("Order Received", "Pot Thrown",
@@ -403,6 +400,7 @@ public class MainController implements Initializable {
 
 	}
 
+	/** Initializes a new window */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert newOrderButton != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
@@ -428,13 +426,11 @@ public class MainController implements Initializable {
 				btnDeleteOrder.setDisable(false);
 				btnViewOrder.setDisable(false);
 				cmbOrderStatus.setDisable(false);
-
 			} else {
 				btnEditOrder.setDisable(true);
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
 				cmbOrderStatus.setDisable(true);
-
 			}
 		});
 		
@@ -467,6 +463,7 @@ public class MainController implements Initializable {
 
 	}
 
+	/** Shows all the data in a wrapped, filtered list */
 	private SortedList<Order> wrapOrdersList() {
 		FilteredList<Order> filteredOrders = new FilteredList<>(orderList, p -> true); // Show all data. Wrapped in filtered list
 		chkCompletedOrders.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -493,6 +490,7 @@ public class MainController implements Initializable {
 		return new SortedList<>(filteredOrders);
 	}
 
+	/** Filters the orders based on the filter text field */
 	private void setOrdersPredicate(FilteredList<Order> filteredOrders, String newValue) {
 		filteredOrders.setPredicate(order -> {
 			if (chkCompletedOrders.isSelected()){
@@ -576,17 +574,12 @@ public class MainController implements Initializable {
 		});
 	}
 
-	/**
-	 * Gives a reference to the main application object if needed.
-	 * 
-	 */
+	/** Gives a reference to the main application object if needed. */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	/**
-	 * Fills the Orders table with info from the orderList List
-	 */
+	/** Fills the Orders table with info from the orderList List */
 	public void populateTable() {
 		// orderList.add(new Order(13625, LocalDate.now(), LocalDate.of(2015,
 		// 10, 31), "Incomplete", "James", "Smith",

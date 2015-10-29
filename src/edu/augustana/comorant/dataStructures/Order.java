@@ -58,9 +58,7 @@ public class Order {
 		String priceStringString = "$" + twoDigitFormat.format(this.price.getValue());
 		this.priceString = new SimpleStringProperty(priceStringString);
 		this.priceExpression = new SimpleStringProperty(priceExp);
-
 	}
-
 	
 	//field accessors
 	/**Returns the order number 

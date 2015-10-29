@@ -219,17 +219,21 @@ public class Customer {
 	public StringProperty prefContactMethodProperty() {
 		return prefContactMethod;
 	}
+	/**@return BooleanProperty*/
 	public BooleanProperty smsEnabledProperty() {
 		return smsEnabled;
 	}
+	/**@return StringProperty*/
 	public StringProperty fullNameProperty(){
 		return fullName;
 	}
+	/**@return StringProperty*/
 	public StringProperty balanceProperty(){
 		return balance;
 	}
 	
 	//field mutators
+	/** Sets the customer's number */
 	public void setcustomerNumber(int customerNumber){
 		this.customerNumber.set(customerNumber);
 	}
@@ -244,7 +248,7 @@ public class Customer {
 		this.fullName.set(this.firstName.get() + " " + this.lastName.get());
 	}
 	/**Sets the customer's order description*/
-	//public void setOrderDesc(String status) {
+	//public void setOrderDesc(String status) {//TODO ?
 		//this.orderDesc.set(status);
 	//}
 	/**Sets the customer's street address*/
@@ -273,7 +277,7 @@ public class Customer {
 		resetFullAddress();
 	}
 	/**Sets the customer's payment method*/
-	//public void setPaymentMethod(String paymentMethod) {
+	//public void setPaymentMethod(String paymentMethod) {//TODO ?
 		//this.paymentMethod.set(paymentMethod);
 	//}
 	/**Sets the customer's phone number*/
@@ -293,13 +297,14 @@ public class Customer {
 		this.smsEnabled.set(newSmsEnabled);
 	}
 	
-
+	/** Sets the customer's balance */
 	public void setBalance(double balance){
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 		String balanceString = "$" + twoDigitFormat.format(balance);
 		this.balance.set(balanceString);
 	}
 	
+	/** Clears and reinstates the full address */
 	public void resetFullAddress(){
 		if(this.getStreetAddressLine2() != "" && this.getStreetAddressLine2() != null){
 			this.fullAddress.set(this.getStreetAddress() + "\n" + this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
@@ -308,7 +313,7 @@ public class Customer {
 		}
 	}
 	
-
+	/** checks if a customer is equal to another */
 	public boolean equals(Customer testCustomer){
 		return this.getFirstName().toLowerCase().equals(testCustomer.getFirstName().toLowerCase()) && this.getLastName().toLowerCase().equals(testCustomer.getLastName().toLowerCase())
 				&& this.getFullAddress().equals(testCustomer.getFullAddress());

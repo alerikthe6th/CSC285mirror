@@ -42,6 +42,7 @@ public class ShippingAddressController implements Initializable {
 	
 	private Customer selectedCustomer = null;
 
+	/** Initializes a new shippingAddressController */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tblShipping.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -50,10 +51,8 @@ public class ShippingAddressController implements Initializable {
 				btnSelect.setDisable(false);
 			} else{
 				btnSelect.setDisable(true);
-			}
-			
+			}	
 		});
-		
 	}
 	
 	public void setCustomerList(NewOrderController noc, ObservableList<Customer> list){
@@ -68,7 +67,6 @@ public class ShippingAddressController implements Initializable {
 		clmState.setCellValueFactory(cellData -> cellData.getValue().stateProperty());
 		clmZip.setCellValueFactory(cellData -> cellData.getValue().zipProperty());
 		
-
 		tblShipping.setItems(customerList);
 	}
 	

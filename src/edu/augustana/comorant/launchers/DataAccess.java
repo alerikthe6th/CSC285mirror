@@ -172,7 +172,6 @@ public class DataAccess {
 	 * @return ObservableList<Order>
 	 */
 	public static Preference loadPreference() {
-
 		// load the sqlite-JDBC driver using the current class loader
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -361,7 +360,6 @@ public class DataAccess {
 				insertOrder.setString(9, priceExp);
 				insertOrder.setString(10, customerNumber + "");
 				insertOrder.executeUpdate();
-
 			}
 
 		} catch (SQLException e) {
@@ -454,7 +452,6 @@ public class DataAccess {
 				System.err.println(e);
 			}
 		}
-
 	}
 
 	/**
@@ -519,7 +516,6 @@ public class DataAccess {
 				System.err.println(e);
 			}
 		}
-
 	}
 
 	// TODO javadoc
@@ -565,5 +561,4 @@ public class DataAccess {
 		});
 		t1.start();
 	}
-
 }

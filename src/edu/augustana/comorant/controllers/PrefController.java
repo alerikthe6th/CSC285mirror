@@ -1,3 +1,9 @@
+/* Authors: Michael J. Currie, Al Vi, Scott Doberstein, Joe Godfrey
+ * Augustana Computer Science 285 - Software development 
+ * Fall 2015 (August - November)
+ * Do not reproduce (as a whole or as pieces of code) without prior permission.
+ */
+
 package edu.augustana.comorant.controllers;
 
 import java.net.URL;
@@ -42,7 +48,6 @@ public class PrefController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		populateDropDowns();
-
 	}
 
 	private void populateDropDowns() {
@@ -126,7 +131,6 @@ public class PrefController implements Initializable {
 		currentPref.setTax(saveTax);
 		
 		DataAccess.savePreference(currentPref);
-		
 
 		Stage stage = (Stage) btnCancel.getScene().getWindow();
 		stage.close();

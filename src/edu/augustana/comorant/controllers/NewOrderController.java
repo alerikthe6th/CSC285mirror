@@ -98,17 +98,13 @@ public class NewOrderController implements Initializable {
 	private Customer matchedCustomer = null;
 	boolean usingMatchedCustomer = false;
 
-	/**
-	 * Cancels the new order
-	 */
+	/** Cancels the new order */
 	@FXML
 	public void cancelOrderButtonPressed(ActionEvent e) {
 		Stage stage = (Stage) btnCancelOrder.getScene().getWindow();
 		stage.close();
 	}
-	/**
-	 * Creates a NewOrderController and initializes it
-	 */
+	/** Creates a NewOrderController and initializes it */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelOrder != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
@@ -222,10 +218,8 @@ public class NewOrderController implements Initializable {
 	 * 
 	 * ~!!STRINGS MUST MATCH EXACTLY!!~
 	 * 
-	 * @param invalidValueName
-	 *            - String
-	 * @param valueName
-	 *            - TextField
+	 * @param invalidValueName - String
+	 * @param valueName - TextField
 	 * 
 	 */
 	protected void throwAlert(String invalidValueName, TextField valueName) {
@@ -268,10 +262,7 @@ public class NewOrderController implements Initializable {
 
 	}
 	
-	/**
-	 * autofills from the customer tab with customer information once new order by customer button has been
-	 * pressed
-	 */
+	/** autofills from the customer tab with customer info once new order by customer button has been pressed */
 	@FXML
 	public void setExistingCustomer(Customer existingCustomer) {
 		
@@ -287,9 +278,6 @@ public class NewOrderController implements Initializable {
 		cmbPrefContactMethod.setValue(existingCustomer.getPrefContactMethod());
 		chkSMSEnabled.setSelected(existingCustomer.getSMSEnabled());
 
-		
-		
-		
 	}
 
 	/**
@@ -409,9 +397,7 @@ public class NewOrderController implements Initializable {
 
 	}
 
-	/**
-	 * Fills the comboboxes with the appropriate strings
-	 */
+	/** Fills the comboboxes with the appropriate strings */
 	private void populateDropDowns() {
 
 		// set order status
@@ -446,9 +432,7 @@ public class NewOrderController implements Initializable {
 		cmbState.setItems(statesList);
 
 	}
-	/**
-	 * Checks if the inputed name matches any previous customers
-	 */
+	/** Checks if the inputed name matches any previous customers */
 	@FXML
 	public void matchNameToCustomer() {
 		String firstName = txtFirstName.getText();
@@ -508,10 +492,7 @@ public class NewOrderController implements Initializable {
 		}
 
 	}
-	/**
-	 * Autofills the customer data into the order 
-	 * @param customer
-	 */
+	/** Autofills the customer data into the order */
 	void setMatchedCustomer(Customer customer) {
 		matchedCustomer = customer;
 		if (matchedCustomer != null) {
@@ -525,6 +506,5 @@ public class NewOrderController implements Initializable {
 			cmbPrefContactMethod.setValue(matchedCustomer.getPrefContactMethod());
 			chkSMSEnabled.setSelected(matchedCustomer.getSMSEnabled());
 		}
-
 	}
 }

@@ -113,13 +113,13 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 				if (orderDesc.charAt(i)==' '){
 					i+=1;
 				}
-				writer.print("                      ");//22 spaces?
+				writer.print("                      ");//22 spaces - looks nice, works better than \t
 				if (i+55 < stringSize){
 					writer.print(orderDesc.substring(i,(i+55)));
 					if(!(orderDesc.charAt(i+55)==' ' || orderDesc.charAt(i+54)==' ')){
 						writer.println("-");
 					}else{
-						writer.println();
+						writer.println();// \n breaks it
 					}
 				}else{
 					writer.print(orderDesc.substring(i)+"\n");
@@ -141,9 +141,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 	
 	//used code from: http://www.coderanch.com/t/410208/java/java/java-printing-printing-pdf
 	
-	/**
-	 * Prints the file "PrintInvoice" saved in the working directory
-	 */
+	/**Prints the file "PrintInvoice.doc" saved in the working directory */
 	public static void printPage(){
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();//gets default printer so it knows where to send it to
 	    DocPrintJob printerJob = defaultPrintService.createPrintJob();
@@ -154,8 +152,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 	        simpleDoc = new SimpleDoc(pdfFile.toURI().toURL(), DocFlavor.URL.AUTOSENSE, null);
 	    } catch (MalformedURLException ex) {
 	        ex.printStackTrace();
-	    }
-	    try {
+	    } try {
 	        printerJob.print(simpleDoc, null);
 	    } catch (PrintException ex) {
 	        ex.printStackTrace();

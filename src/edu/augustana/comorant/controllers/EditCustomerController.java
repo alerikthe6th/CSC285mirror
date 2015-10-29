@@ -71,7 +71,7 @@ public class EditCustomerController implements Initializable {
 
 	
 	/**
-	 * closes the edit window
+	 * Closes the edit window
 	 * @param e
 	 */
 	@FXML
@@ -79,8 +79,7 @@ public class EditCustomerController implements Initializable {
 		Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
 		stage.close();
 	}
-	/**Creates a new edit order controller
-	 */
+	/**Creates a new edit order controller */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
@@ -166,9 +165,7 @@ public class EditCustomerController implements Initializable {
 		this.mainController = mainController;
 	}
 
-	/**
-	 * Sets the 'edited' order to the current changes
-	 */
+	/** Sets the 'edited' order to the current changes */
 	public void setEditedCustomer(Customer editedCustomer) {
 		this.editedCustomer = editedCustomer;
 		
@@ -257,9 +254,7 @@ public class EditCustomerController implements Initializable {
 
 	}
 	
-	/**
-	 * Fills the comboboxes with the appropriate strings
-	 */
+	/** Fills the comboboxes with the appropriate strings */
 	private void populateDropDowns() {
 
 		// set payment method
