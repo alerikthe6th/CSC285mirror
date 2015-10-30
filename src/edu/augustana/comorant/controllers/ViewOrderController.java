@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class ViewOrderController implements Initializable {
@@ -48,6 +49,8 @@ public class ViewOrderController implements Initializable {
 	@FXML
 	private Label lblStreetAddress;
 	@FXML
+	private Label lblStreetAddressLine2;
+	@FXML
 	private Label lblCity;
 	@FXML
 	private Label lblState;
@@ -70,17 +73,12 @@ public class ViewOrderController implements Initializable {
 	@FXML
 	private Label lblPaymentStatus;
 
-	/**
-	 * initializes a new viewOrderController
-	 */
+	/** initializes a new viewOrderController */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCloseWindow != null : "fx:id=\"closeWindowButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";		
 	}
-	/**
-	 * closes the window when close button pressed
-	 * @param e
-	 */
+	/** closes the window when close button pressed */
 	@FXML
 	public void closeWindowButtonPressed(ActionEvent e) {
 		Stage stage = (Stage) btnCloseWindow.getScene().getWindow();
@@ -96,9 +94,7 @@ public class ViewOrderController implements Initializable {
 		this.mainController = mainController;		
 	}
 
-	/**
-	 * Pulls the info from the order in the database to be viewed
-	 */
+	/** Pulls the info from the order in the database to be viewed */
 	public void setViewOrder(Order viewOrder) {
 		this.viewOrder = viewOrder;
 		lblOrderNumber.setText(viewOrder.getOrderNumber() + "");
@@ -109,6 +105,7 @@ public class ViewOrderController implements Initializable {
 		lblFirstName.setText(viewOrder.getFirstName());
 		lblLastName.setText(viewOrder.getLastName());
 		lblStreetAddress.setText(viewOrder.getStreetAddress());
+		lblStreetAddressLine2.setText(viewOrder.getStreetAddressLine2());
 		lblCity.setText(viewOrder.getCity());
 		lblState.setText(viewOrder.getState());
 		lblZip.setText(viewOrder.getZip());
@@ -138,25 +135,25 @@ public class ViewOrderController implements Initializable {
 	public void onPrintButtonPressed(ActionEvent e){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Printing");
-				
-		//'null' statements are for second address lines: leave as null or "" if empty!
-		edu.augustana.comorant.launchers.PrintInvoice.createInvoice(
+		
+		edu.augustana.comorant.launchers.PrintInvoice.createInvoice(//a new invoice! oh boy!
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getBusinessName(),//from name 
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddress(),//from address
-			null, //second from address line
+			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getStreetAddressLine2(),//from address line 2 
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getCity()+", "+//from city,
 			edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(
 					edu.augustana.comorant.controllers.MainController.getCurrentPreference().getState())+" "+//from state
 			edu.augustana.comorant.controllers.MainController.getCurrentPreference().getZip(),//from zip
 			lblFirstName.getText()+" "+lblLastName.getText(), //firstname, lastname
-			""+lblStreetAddress.getText(), null,//to address, second to address line
+			""+lblStreetAddress.getText(), 
+			""+lblStreetAddressLine2.getText(), //second to address line
 			""+lblCity.getText()+", "+//to city
 					edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())//to state(formatted)
 			+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), //to to zip, order date, description
 			""+lblPrice.getText(), ""+lblPaymentMethod.getText()//price and payment method
 		);
 
-		edu.augustana.comorant.launchers.PrintInvoice.printPage();
+		edu.augustana.comorant.launchers.PrintInvoice.printPage();//if Lord Printer allows it...
 		
 		alert.setContentText("Print Successful!");
 
@@ -165,6 +162,7 @@ public class ViewOrderController implements Initializable {
 		    alert.close();
 		    DataAccess.saveOrders(mainController.orderList);
 		    Stage stage = (Stage) btnPrint.getScene().getWindow();
+		    stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.close();
 		} else {
 		    alert.close();

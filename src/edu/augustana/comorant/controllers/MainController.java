@@ -158,7 +158,6 @@ public class MainController implements Initializable {
 
 	public static BooleanProperty saving = new SimpleBooleanProperty(false);
 
-
 	/**
 	 * Launches the new order window. Passes into the New Order controller a
 	 * reference to itself so that it can add data to orderList
@@ -195,7 +194,6 @@ public class MainController implements Initializable {
 	public void newOrderByCustomerPressed(ActionEvent e) {
 		Parent root;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/comorant/fxml/newOrderByCustomerGUI.fxml"));
 			root = loader.load();
 			NewOrderController newOrderController = (NewOrderController) loader.getController();
@@ -205,6 +203,8 @@ public class MainController implements Initializable {
 			stage.getIcons().add(new Image("comorantIconBorder2.png"));
 			stage.setScene(new Scene(root));
 			stage.show();
+			
+			newOrderController.setExistingCustomer(selectedCustomer);
 
 			// hide this current window (if this is what you want
 			// ((Node)(e.getSource())).getScene().getWindow().hide();
@@ -221,7 +221,6 @@ public class MainController implements Initializable {
 	public void editOrderButtonPressed(ActionEvent e) {
 		Parent root;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/edu/augustana/comorant/fxml/editOrderGUI.fxml"));
 			root = loader.load();
@@ -243,11 +242,14 @@ public class MainController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Launches the edit customer window. Passes into the Edit Customer controller a
+	 * reference to itself so that it can add data to customerList
+	 */
 	@FXML
 	public void editCustomerButtonPressed(ActionEvent e) {
 		Parent root;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/edu/augustana/comorant/fxml/editCustomerGUI.fxml"));
 			root = loader.load();
@@ -277,7 +279,6 @@ public class MainController implements Initializable {
 	public void viewOrderButtonPressed(ActionEvent e) {
 		Parent root;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/edu/augustana/comorant/fxml/viewOrderGUI.fxml"));
 			root = loader.load();
@@ -298,10 +299,8 @@ public class MainController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
-	/**
-	 * Deletes the selected order when the delete button is pressed
-	 * @param e
-	 */
+	
+	/** Deletes the selected order when the delete button is pressed */
 	@FXML
 	public void deleteOrderButtonPressed(ActionEvent e) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -333,6 +332,7 @@ public class MainController implements Initializable {
 		}
 	}
 	
+	/** Opens the preferences window when the file button is clicked */
 	@FXML
 	protected void miPreferencesPressed(ActionEvent e){
 		Parent root;
@@ -359,7 +359,7 @@ public class MainController implements Initializable {
 		
 	}
 
-
+	/** Opens the about window when the file button is clicked */
 	@FXML
 	public void miAboutPressed(ActionEvent e) {
 		Parent root;
@@ -378,15 +378,14 @@ public class MainController implements Initializable {
 		
 	}
 	
+	/** Closes the window the close button was pressed on */
 	@FXML
 	public void miClosedPressed(ActionEvent e) {
 		Stage stage = (Stage) tblOrders.getScene().getWindow();
 		stage.close();
 	}
 
-	/**
-	 * Fills the Order Status combobox with status strings
-	 */
+	/** Fills the Order Status combobox with status strings */
 	private void populateDropdowns() {
 
 		ObservableList<String> options = FXCollections.observableArrayList("Order Received", "Pot Thrown",
@@ -401,6 +400,7 @@ public class MainController implements Initializable {
 
 	}
 
+	/** Initializes a new window */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert newOrderButton != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
@@ -426,13 +426,11 @@ public class MainController implements Initializable {
 				btnDeleteOrder.setDisable(false);
 				btnViewOrder.setDisable(false);
 				cmbOrderStatus.setDisable(false);
-
 			} else {
 				btnEditOrder.setDisable(true);
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
 				cmbOrderStatus.setDisable(true);
-
 			}
 		});
 		
@@ -441,11 +439,12 @@ public class MainController implements Initializable {
 				selectedCustomer = newSelection;
 
 				btnEditCustomer.setDisable(false);
+				btnNewOrderByCustomer.setDisable(false);
 
 			} else {
 				
 				btnEditCustomer.setDisable(true);
-
+				btnNewOrderByCustomer.setDisable(true);
 
 			}
 		});
@@ -464,6 +463,7 @@ public class MainController implements Initializable {
 
 	}
 
+	/** Shows all the data in a wrapped, filtered list */
 	private SortedList<Order> wrapOrdersList() {
 		FilteredList<Order> filteredOrders = new FilteredList<>(orderList, p -> true); // Show all data. Wrapped in filtered list
 		chkCompletedOrders.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -490,6 +490,7 @@ public class MainController implements Initializable {
 		return new SortedList<>(filteredOrders);
 	}
 
+	/** Filters the orders based on the filter text field */
 	private void setOrdersPredicate(FilteredList<Order> filteredOrders, String newValue) {
 		filteredOrders.setPredicate(order -> {
 			if (chkCompletedOrders.isSelected()){
@@ -510,75 +511,62 @@ public class MainController implements Initializable {
 			// use name if no filter selected
 			if (cmbOrderFilters.getValue() == null) {
 				if (order.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// first name.
+					return true; // Filter matches first name.
 				} else if (order.getLastName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// last name.
+					return true; // Filter matches last name.
 				}
 				return false; // Does not match.
 			}
 			if (cmbOrderFilters.getValue().toString() == "Status") {
 				if (order.getStatus().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// status.
+					return true; // Filter matches status.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Name") {
 				if (order.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// first name.
+					return true; // Filter matches first name.
 				} else if (order.getLastName().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// last name.
+					return true; // Filter matches last name.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Shipping Address") {
 				if (order.getFullAddress().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// shipping address.
+					return true; // Filter matches shipping address.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Order Description") {
 				if (order.getOrderDesc().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// Order Description.
+					return true; // Filter matches Order Description.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Payment Method") {
 				if (order.getPaymentMethod().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// Payment method.
+					return true; // Filter matches Payment method.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Payment Status") {
 				if (order.getPaymentStatus().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// payment status.
+					return true; // Filter matches payment status.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Email") {
 				if (order.getEmail().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// email.
+					return true; // Filter matches email.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Phone Number") {
 				if (order.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// phone number.
+					return true; // Filter matches phone number.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Price") {
 				if ((order.getPrice() + "").toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// price.
+					return true; // Filter matches price.
 				}
 				return false; // Does not match.
 			} else if (cmbOrderFilters.getValue().toString() == "Preferred Contact Method") {
 				if (order.getPrefContactMethod().toLowerCase().contains(lowerCaseFilter)) {
-					return true; // Filter matches
-									// pref contact method.
+					return true; // Filter matches pref contact method.
 				}
 				return false; // Does not match.
 			}
@@ -586,18 +574,12 @@ public class MainController implements Initializable {
 		});
 	}
 
-	/**
-	 * Gives a reference to the main application object if needed.
-	 * 
-	 * 
-	 */
+	/** Gives a reference to the main application object if needed. */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	/**
-	 * Fills the Orders table with info from the orderList List
-	 */
+	/** Fills the Orders table with info from the orderList List */
 	public void populateTable() {
 		// orderList.add(new Order(13625, LocalDate.now(), LocalDate.of(2015,
 		// 10, 31), "Incomplete", "James", "Smith",
@@ -629,9 +611,9 @@ public class MainController implements Initializable {
 
 		tblOrders.setItems(sortedOrders);
 		
-		
 		clmCustName.setCellValueFactory(cellData -> cellData.getValue().fullNameProperty());
-		clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().streetAddressProperty());
+		//clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().streetAddressProperty());//TODO line 2 here?
+		clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().bothStreetAddressProperty());
 		clmCustCity.setCellValueFactory(cellData -> cellData.getValue().cityProperty());
 		clmCustState.setCellValueFactory(cellData -> cellData.getValue().stateProperty());
 		clmCustZip.setCellValueFactory(cellData -> cellData.getValue().zipProperty());
@@ -647,7 +629,6 @@ public class MainController implements Initializable {
 	/**
 	 * Sets the selected Order's status to what is selected in the combobox.
 	 * Saves the data to DB if the status value has changed
-	 * 
 	 * 
 	 */
 	public void onStatusDropdownChanged(Event e) {
@@ -679,7 +660,10 @@ public class MainController implements Initializable {
 		return Collections.max(orderNumberList);
 	}
 	
-	
+	/**
+	 * Returns the current largest customer number in the orders list. Used to get
+	 * the next customer number when adding an customer.
+	 */
 	protected int getLargestCustomerNumber() {
 		ArrayList<Integer> customerNumberList = new ArrayList<Integer>();
 		if (customerList.size() == 0) {

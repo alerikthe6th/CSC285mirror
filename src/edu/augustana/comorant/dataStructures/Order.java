@@ -58,9 +58,7 @@ public class Order {
 		String priceStringString = "$" + twoDigitFormat.format(this.price.getValue());
 		this.priceString = new SimpleStringProperty(priceStringString);
 		this.priceExpression = new SimpleStringProperty(priceExp);
-
 	}
-
 	
 	//field accessors
 	/**Returns the order number 
@@ -102,6 +100,11 @@ public class Order {
 	 * @return String */
 	public String getStreetAddress() {
 		return theCustomer.getStreetAddress();
+	}
+	/**Returns the order's street address line 2 
+	 * @return String */
+	public String getStreetAddressLine2() {
+		return theCustomer.getStreetAddressLine2();
 	}
 	/**Returns the order's city 
 	 * @return String */
@@ -209,6 +212,10 @@ public class Order {
 		return theCustomer.streetAddressProperty();
 	}
 	/**@return StringProperty*/
+	public StringProperty streetAddressPropertyLine2() {
+		return theCustomer.streetAddressPropertyLine2();
+	}
+	/**@return StringProperty*/
 	public StringProperty cityProperty() {
 		return theCustomer.cityProperty();
 	}
@@ -305,6 +312,11 @@ public class Order {
 		theCustomer.streetAddress.set(streetAddress);
 		redoShippingAddress();
 	}
+	/**Sets the order's street address line 2*/
+	public void setStreetAddressLine2(String streetAddressLine2) {
+		theCustomer.streetAddressLine2.set(streetAddressLine2);
+		redoShippingAddress();
+	}
 	/**Sets the order's city*/
 	public void setCity(String city) {
 		theCustomer.city.set(city);
@@ -353,7 +365,11 @@ public class Order {
 	}
 	/**Updates the order's full shipping address*/
 	public void redoShippingAddress() {
-		theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + " " + this.getState() + " " + this.getZip());
+		if(!(this.getStreetAddressLine2().equals(""))){//TODO always put in line 2 but when "" no \n
+			theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}else{
+			theCustomer.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}
 	}
 	/**Sets the price expression*/
 	public void setPriceExp(String priceExp){

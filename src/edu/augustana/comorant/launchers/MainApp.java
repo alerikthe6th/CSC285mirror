@@ -30,9 +30,7 @@ public class MainApp extends Application {
 		initRootLayout();
 	}
 
-	/**
-	 * Initializes the root layout.
-	 */
+	/** Initializes the root layout. */
 	void initRootLayout() {
 		try {
 			// Load root layout from fxml file.
@@ -53,6 +51,7 @@ public class MainApp extends Application {
 		}
 	}
 
+	/** launches the application */
 	public static void main(String[] args) {
 		launch(args);
 	}

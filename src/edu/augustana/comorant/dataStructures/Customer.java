@@ -7,6 +7,7 @@
 package edu.augustana.comorant.dataStructures;
 import java.text.DecimalFormat;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 
 public class Customer {
@@ -17,6 +18,7 @@ public class Customer {
 	//protected StringProperty orderDesc;
 	protected StringProperty fullAddress;
 	protected StringProperty streetAddress;
+	protected StringProperty streetAddressLine2;
 	protected StringProperty city;
 	protected StringProperty state;
 	protected StringProperty zip;
@@ -37,6 +39,7 @@ public class Customer {
 	 * @param String lastName
 	 * @param String orderDesc
 	 * @param String streetAddress
+	 * @param String streetAddressLine2
 	 * @param String city
 	 * @param String state
 	 * @param String zip
@@ -47,7 +50,7 @@ public class Customer {
 	 * 
 	 */
 	public Customer(int customerNumber, String firstName, String lastName, String streetAddress, 
-			String city, String state, String zip,
+			String streetAddressLine2, String city, String state, String zip,
 			String phoneNumber, String email, String prefContactMethod, boolean smsEnabled) {
 		
 		this.customerNumber = new SimpleIntegerProperty(customerNumber);
@@ -55,11 +58,17 @@ public class Customer {
 		this.lastName = new SimpleStringProperty(lastName);
 		this.fullName = new SimpleStringProperty(firstName + " " + lastName);
 		this.streetAddress = new SimpleStringProperty(streetAddress);
+		this.streetAddressLine2 = new SimpleStringProperty(streetAddressLine2);
 		this.city = new SimpleStringProperty(city);
 		this.state = new SimpleStringProperty(state);
 		this.zip = new SimpleStringProperty(zip);
-		this.fullAddress = new SimpleStringProperty(
-				this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		if(!(getStreetAddressLine2().equals(""))){//TODO always put in line 2 but when "" no \n
+			this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" + 
+					this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}else{
+			this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" +
+					this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}
 		//this.paymentMethod = new SimpleStringProperty(paymentMethod);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
@@ -91,6 +100,11 @@ public class Customer {
 	 * @return String */
 	public String getStreetAddress() {
 		return streetAddress.get();
+	}
+	/**Returns the customer's street address line 2 
+	 * @return String */
+	public String getStreetAddressLine2() {
+		return streetAddressLine2.get();
 	}
 	/**Returns the customer's city 
 	 * @return String */
@@ -132,8 +146,8 @@ public class Customer {
 	public String getEmail() {
 		return email.get();
 	}
-	/**Returns the customer's email address
-	 * @return String */
+	/**Returns whether or not the customer can receive texts
+	 * @return boolean */
 	public boolean getSMSEnabled() {
 		return smsEnabled.get();
 	}
@@ -158,6 +172,20 @@ public class Customer {
 	/**@return StringProperty*/
 	public StringProperty streetAddressProperty() {
 		return streetAddress;
+	}
+	/**@return StringProperty*/
+	public StringProperty streetAddressPropertyLine2() {
+		return streetAddressLine2;
+	}
+	/**@return StringProperty*/
+	public StringProperty bothStreetAddressProperty() {
+		if (streetAddressLine2.getValue().equals("")){
+			return streetAddress;
+		}else{
+			StringProperty s3 = new SimpleStringProperty();
+			s3.bind(Bindings.concat(streetAddress, "\n", streetAddressLine2));
+			return s3;
+		}
 	}
 	/**@return StringProperty*/
 	public StringProperty cityProperty() {
@@ -191,17 +219,21 @@ public class Customer {
 	public StringProperty prefContactMethodProperty() {
 		return prefContactMethod;
 	}
+	/**@return BooleanProperty*/
 	public BooleanProperty smsEnabledProperty() {
 		return smsEnabled;
 	}
+	/**@return StringProperty*/
 	public StringProperty fullNameProperty(){
 		return fullName;
 	}
+	/**@return StringProperty*/
 	public StringProperty balanceProperty(){
 		return balance;
 	}
 	
 	//field mutators
+	/** Sets the customer's number */
 	public void setcustomerNumber(int customerNumber){
 		this.customerNumber.set(customerNumber);
 	}
@@ -216,12 +248,17 @@ public class Customer {
 		this.fullName.set(this.firstName.get() + " " + this.lastName.get());
 	}
 	/**Sets the customer's order description*/
-	//public void setOrderDesc(String status) {
+	//public void setOrderDesc(String status) {//TODO ?
 		//this.orderDesc.set(status);
 	//}
 	/**Sets the customer's street address*/
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress.set(streetAddress);
+		resetFullAddress();
+	}
+	/**Sets the customer's street address line 2*/
+	public void setStreetAddressLine2(String streetAddressLine2) {
+		this.streetAddressLine2.set(streetAddressLine2);
 		resetFullAddress();
 	}
 	/**Sets the customer's city*/
@@ -240,7 +277,7 @@ public class Customer {
 		resetFullAddress();
 	}
 	/**Sets the customer's payment method*/
-	//public void setPaymentMethod(String paymentMethod) {
+	//public void setPaymentMethod(String paymentMethod) {//TODO ?
 		//this.paymentMethod.set(paymentMethod);
 	//}
 	/**Sets the customer's phone number*/
@@ -260,19 +297,25 @@ public class Customer {
 		this.smsEnabled.set(newSmsEnabled);
 	}
 	
+	/** Sets the customer's balance */
 	public void setBalance(double balance){
 		DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
 		String balanceString = "$" + twoDigitFormat.format(balance);
 		this.balance.set(balanceString);
 	}
 	
+	/** Clears and reinstates the full address */
 	public void resetFullAddress(){
-		this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		if(this.getStreetAddressLine2() != "" && this.getStreetAddressLine2() != null){
+			this.fullAddress.set(this.getStreetAddress() + "\n" + this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}else{
+			this.fullAddress.set(this.getStreetAddress() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
+		}
 	}
 	
-
+	/** checks if a customer is equal to another */
 	public boolean equals(Customer testCustomer){
-		return this.getFirstName().equals(testCustomer.getFirstName()) && this.getLastName().equals(testCustomer.getLastName())
+		return this.getFirstName().toLowerCase().equals(testCustomer.getFirstName().toLowerCase()) && this.getLastName().toLowerCase().equals(testCustomer.getLastName().toLowerCase())
 				&& this.getFullAddress().equals(testCustomer.getFullAddress());
 	}
 

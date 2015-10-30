@@ -45,8 +45,6 @@ public class EditCustomerController implements Initializable {
 	@FXML
 	private Button btnSaveEdit;
 	@FXML
-	private Button btnDeleteOrder;
-	@FXML
 	private MainController mainController;
 	@FXML
 	private TextField txtFirstName;
@@ -54,6 +52,8 @@ public class EditCustomerController implements Initializable {
 	private TextField txtLastName;
 	@FXML
 	private TextField txtStreetAddress;
+	@FXML
+	private TextField txtStreetAddressLine2;
 	@FXML
 	private TextField txtCity;
 	@FXML
@@ -70,13 +70,16 @@ public class EditCustomerController implements Initializable {
 	private CheckBox chkSMSEnabled;
 
 	
+	/**
+	 * Closes the edit window
+	 * @param e
+	 */
 	@FXML
 	public void cancelEditButtonPressed(ActionEvent e) {
 		Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
 		stage.close();
 	}
-	/**Creates a new edit order controller
-	 */
+	/**Creates a new edit order controller */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assert btnCancelEdit != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
@@ -162,15 +165,14 @@ public class EditCustomerController implements Initializable {
 		this.mainController = mainController;
 	}
 
-	/**Sets the 'edited' order to the current changes
-	 * 
-	 */
+	/** Sets the 'edited' order to the current changes */
 	public void setEditedCustomer(Customer editedCustomer) {
 		this.editedCustomer = editedCustomer;
 		
 		txtFirstName.setText(editedCustomer.getFirstName());
 		txtLastName.setText(editedCustomer.getLastName());
 		txtStreetAddress.setText(editedCustomer.getStreetAddress());
+		txtStreetAddressLine2.setText(editedCustomer.getStreetAddressLine2());
 		txtCity.setText(editedCustomer.getCity());
 		cmbState.setValue(editedCustomer.getState());
 		txtZip.setText(editedCustomer.getZip());
@@ -191,6 +193,7 @@ public class EditCustomerController implements Initializable {
 		String saveFirstName = "";
 		String saveLastName = "";
 		String saveStreetAddress = "";
+		String saveStreetAddressLine2 = "";
 		String saveCity = "";
 		String saveState = "";
 		String saveZip = "";
@@ -207,6 +210,9 @@ public class EditCustomerController implements Initializable {
 		}
 		if (txtStreetAddress.getText() != null && !txtStreetAddress.getText().trim().isEmpty()) {
 			saveStreetAddress = txtStreetAddress.getText();
+		}
+		if (txtStreetAddressLine2.getText() != null && !txtStreetAddressLine2.getText().trim().isEmpty()) {
+			saveStreetAddressLine2 = txtStreetAddressLine2.getText();
 		}
 		if (txtCity.getText() != null && !txtCity.getText().trim().isEmpty()) {
 			saveCity = txtCity.getText();
@@ -229,6 +235,7 @@ public class EditCustomerController implements Initializable {
 		editedCustomer.setFirstName(saveFirstName);
 		editedCustomer.setLastName(saveLastName);
 		editedCustomer.setStreetAddress(saveStreetAddress);
+		editedCustomer.setStreetAddressLine2(saveStreetAddressLine2);
 		editedCustomer.setCity(saveCity);
 		editedCustomer.setState(saveState);
 		editedCustomer.setZip(saveZip);
@@ -247,24 +254,24 @@ public class EditCustomerController implements Initializable {
 
 	}
 	
-	/**
-	 * Fills the comboboxes with the appropriate strings
-	 */
+	/** Fills the comboboxes with the appropriate strings */
 	private void populateDropDowns() {
 
 		// set payment method
 		ObservableList<String> contactOptions = FXCollections.observableArrayList("Email", "Phone", "Text");
 		cmbPrefContactMethod.setItems(contactOptions);
 		
-		ObservableList<String> statesList = FXCollections.observableArrayList("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-				"Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas",
-				"Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
-				"Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
-				"New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
-				"Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
-				"Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "District of Columbia",
-				 "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", 
-				 "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan");
+		ObservableList<String> statesList = FXCollections.observableArrayList("Alabama", "Alaska", "Arizona", 
+				"Arkansas", "California", "Colorado", "Connecticut","Delaware", "Florida", "Georgia", "Hawaii",
+				"Idaho", "Illinois", "Indiana", "Iowa", "Kansas","Kentucky", "Louisiana", "Maine", "Maryland",
+				"Massachusetts", "Michigan", "Minnesota",	"Mississippi", "Missouri", "Montana", "Nebraska",
+				"Nevada", "New Hampshire", "New Jersey","New Mexico", "New York", "North Carolina", 
+				"North Dakota", "Ohio", "Oklahoma", "Oregon","Pennsylvania", "Rhode Island", "South Carolina",
+				"South Dakota", "Tennessee", "Texas","Utah", "Vermont", "Virginia", "Washington", 
+				"West Virginia", "Wisconsin", "Wyoming", "District of Columbia", "Alberta", "British Columbia",
+				"Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Northwest Territories",
+				"Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon");
 		cmbState.setItems(statesList);
 	}
 }
+
