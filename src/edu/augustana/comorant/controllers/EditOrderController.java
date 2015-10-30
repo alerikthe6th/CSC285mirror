@@ -148,25 +148,26 @@ public class EditOrderController implements Initializable {
 				});
 				
 				txtPrice.textProperty().addListener((observable, oldValue, newValue) -> {
-						try {
-							String priceExp = newValue;
-							Expression expr = new ExpressionBuilder(priceExp).build();
-							double resultPrice = expr.evaluate();
-							double tax = resultPrice * mainController.getCurrentPreference().getTax();
-							resultPrice = resultPrice + tax;
-
-							if (resultPrice < 0){
-								throw new IllegalArgumentException();
-							}
-							DecimalFormat twoDigitFormat = new DecimalFormat("0.00");
-							String priceString = twoDigitFormat.format(resultPrice);
-							String taxString = twoDigitFormat.format(tax);
-							lblResult.setText(priceString);
-							lblTax.setText(taxString);
-						} catch (IllegalArgumentException iae) {
-							lblResult.setText("...");
-							lblTax.setText("...");
+					try {
+						String priceExp = newValue;
+						double taxRate = MainController.getCurrentPreference().getTax();
+						Double resultPrice = CostUtilities.getCost(priceExp);
+						double costIncludingTax = CostUtilities.getCostIncludingTax(resultPrice, taxRate);
+						double tax = CostUtilities.getTaxCost(resultPrice, taxRate);
+						if (resultPrice < 0) {
+							throw new IllegalArgumentException();
 						}
+						DecimalFormat twoDigitFormat = new DecimalFormat(
+								"0.00");
+						String priceString = twoDigitFormat
+								.format(costIncludingTax);
+						String taxString = twoDigitFormat.format(tax);
+						lblResult.setText(priceString);
+						lblTax.setText(taxString);
+					} catch (IllegalArgumentException iae) {
+						lblResult.setText("...");
+						lblTax.setText("...");
+					}
 				});
 				
 		//checks if the email contains only 1 '@' symbol
