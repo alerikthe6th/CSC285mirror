@@ -142,6 +142,9 @@ public class MainController implements Initializable {
 	@FXML
 	private TableColumn<Customer, String> clmCustPrefContactMethod;
 	
+	@FXML
+	private ComboBox<String> cmbPaymentStatus;
+	
 	
 	
 	
@@ -395,6 +398,9 @@ public class MainController implements Initializable {
 		ObservableList<String> options = FXCollections.observableArrayList("Order Received", "Pot Thrown",
 				"Pot Trimmed/Assembled", "Pot Fired", "Pot Glazed", "Ready to Ship", "Completed");
 		cmbOrderStatus.setItems(options);
+		
+		ObservableList<String> options2 = FXCollections.observableArrayList("Paid", "Unpaid");
+		cmbPaymentStatus.setItems(options2);
 
 		ObservableList<String> filters = FXCollections.observableArrayList("Status", "Name", "Shipping Address",
 				"Order Description", "Payment Method", "Payment Status", "Price", "Email", "Phone Number",
@@ -414,6 +420,7 @@ public class MainController implements Initializable {
 		populateDropdowns();
 		
 		cmbOrderStatus.setDisable(true);
+		cmbPaymentStatus.setDisable(true);
 
 		customerList = DataAccess.loadCustomers();
 		orderList = DataAccess.loadOrders(customerList);
@@ -428,15 +435,18 @@ public class MainController implements Initializable {
 			if (newSelection != null) {
 				selectedOrder = newSelection;
 				cmbOrderStatus.setValue(selectedOrder.getStatus());
+				cmbPaymentStatus.setValue(selectedOrder.getPaymentStatus());
 				btnEditOrder.setDisable(false);
 				btnDeleteOrder.setDisable(false);
 				btnViewOrder.setDisable(false);
 				cmbOrderStatus.setDisable(false);
+				cmbPaymentStatus.setDisable(false);
 			} else {
 				btnEditOrder.setDisable(true);
 				btnDeleteOrder.setDisable(true);
 				btnViewOrder.setDisable(true);
 				cmbOrderStatus.setDisable(true);
+				cmbPaymentStatus.setDisable(true);
 			}
 		});
 		
@@ -653,6 +663,25 @@ public class MainController implements Initializable {
 
 		selectedOrder.setStatus(newOrderStatus);
 		if (!oldSelectedOrderStatus.equals(newOrderStatus)) {
+			//refresh filter
+			chkCompletedOrders.setSelected(!chkCompletedOrders.isSelected());
+			chkCompletedOrders.setSelected(!chkCompletedOrders.isSelected());
+			DataAccess.saveOrders(orderList);
+		}
+
+	}
+	
+	/**
+	 * Sets the selected Order's payment status to what is selected in the combobox.
+	 * Saves the data to DB if the status value has changed
+	 * 
+	 */
+	public void onPaymentDropdownChanged(Event e) {
+		String oldSelectedPaymentStatus = selectedOrder.getPaymentStatus();
+		String newPaymentStatus = cmbPaymentStatus.getValue();
+
+		selectedOrder.setPaymentStatus(newPaymentStatus);
+		if (!oldSelectedPaymentStatus.equals(newPaymentStatus)) {
 			//refresh filter
 			chkCompletedOrders.setSelected(!chkCompletedOrders.isSelected());
 			chkCompletedOrders.setSelected(!chkCompletedOrders.isSelected());
