@@ -223,11 +223,11 @@ public class NewOrderController implements Initializable {
 			if (newValue.equals("In-Store Pickup")){
 				hboxShippingLabel.setVisible(false);
 				vboxShippingCost.setVisible(false);
-				txtShippingCost.setText("0");
+				txtShippingCost.setText("0.00");
 			} else {
 				hboxShippingLabel.setVisible(true);
 				vboxShippingCost.setVisible(true);
-				txtShippingCost.setText("0");
+				txtShippingCost.setText("0.00");
 			}
 		});
 		
