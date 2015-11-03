@@ -545,9 +545,7 @@ public class DataAccess {
 		dropOldData.executeUpdate();
 	}
 
-	/**
-	 * Hides "saving..." on window after 3 seconds
-	 */
+	/** Hides "saving..." on window after 3 seconds */
 	private static void hideSavingLabel() {
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
