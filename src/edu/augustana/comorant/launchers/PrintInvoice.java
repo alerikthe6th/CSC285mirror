@@ -127,6 +127,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 			}
 			writer.println("\n\n\n");
 		}else{
+			writer.print("                      ");
 			writer.println(orderDesc +"\n\n\n");
 		}
 		
