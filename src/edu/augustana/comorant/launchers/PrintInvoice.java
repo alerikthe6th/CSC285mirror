@@ -142,7 +142,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 	
 	//used code from: http://www.coderanch.com/t/410208/java/java/java-printing-printing-pdf
 	
-	/**Prints the file "PrintInvoice.doc" saved in the working directory and then deletes it*/
+	/** Prints the file "PrintInvoice.doc" saved in the working directory and then deletes it */
 	public static void printPage(){
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();//gets default printer so it knows where to send it to
 	    DocPrintJob printerJob = defaultPrintService.createPrintJob();
@@ -172,6 +172,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 		}
 	}
 	
+	/** Takes in a whole state/territory name string and returns the shipping abbreviation in a string */
 	public static String stateFormatter(String state){
 		//super special cases
 		//(these have spaces but don't format like the others)
