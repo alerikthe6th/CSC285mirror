@@ -144,9 +144,11 @@ public class DataAccess {
 						.getString("paymentMethod");
 				double rsPrice = ordersResultSet.getDouble("price");
 				String rsPriceExp = ordersResultSet.getString("priceExp");
+				String rsDeliveryMethod = ordersResultSet.getString("deliveryMethod");
+				double rsShippingCost = ordersResultSet.getDouble("shippingCost");
 				ordersList.add(new Order(rsCustomer, rsOrderNumber,
 						rsOrderDate, rsDueDate, rsStatus, rsOrderDesc,
-						rsPaymentStatus, rsPaymentMethod, rsPrice, rsPriceExp));
+						rsPaymentStatus, rsPaymentMethod, rsPrice, rsPriceExp, rsDeliveryMethod, rsShippingCost));
 			}
 
 		} catch (SQLException e) {
@@ -248,7 +250,7 @@ public class DataAccess {
 				+ " dueDate TEXT, " + " status TEXT, " + " orderDesc TEXT, "
 				+ " paymentStatus TEXT, " + " paymentMethod TEXT, "
 				+ " price REAL, " + " priceExp TEXT, "
-				+ " customerID INTEGER);";
+				+ " customerID INTEGER, " + "deliveryMethod TEXT, " + "shippingCost REAL);";
 
 		createOrdersTable = connection.prepareStatement(createOrdersTableQuery);
 		createOrdersTable.executeUpdate();
@@ -342,11 +344,13 @@ public class DataAccess {
 				double price = order.getPrice();
 				int customerNumber = order.getCustomerNumber();
 				String priceExp = order.getPriceExp();
+				String deliveryMethod = order.getDeliveryMethod();
+				double shippingCost = order.getShippingCost();
 
 				String insertOrderQuery = "INSERT INTO Orders("
 						+ "orderNumber, orderDate, dueDate, status, orderDesc, "
-						+ "paymentStatus, paymentMethod, price, priceExp, customerID)"
-						+ " VALUES(?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?);";
+						+ "paymentStatus, paymentMethod, price, priceExp, customerID, deliveryMethod, shippingCost)"
+						+ " VALUES(?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, ?, ?);";
 				PreparedStatement insertOrder = connection
 						.prepareStatement(insertOrderQuery);
 				insertOrder.setString(1, orderNumber + "");
@@ -359,6 +363,8 @@ public class DataAccess {
 				insertOrder.setString(8, price + "");
 				insertOrder.setString(9, priceExp);
 				insertOrder.setString(10, customerNumber + "");
+				insertOrder.setString(11, deliveryMethod);
+				insertOrder.setString(12, shippingCost + "");
 				insertOrder.executeUpdate();
 			}
 

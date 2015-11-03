@@ -23,6 +23,8 @@ public class Order {
 	protected DoubleProperty price;
 	protected StringProperty priceString;
 	protected StringProperty priceExpression;
+	protected StringProperty deliveryMethod;
+	protected DoubleProperty shippingCost;
 
 	/**
 	 * Constructor with some initial data.	
@@ -42,7 +44,7 @@ public class Order {
 	 */
 
 	public Order(Customer customer, int orderNumber, LocalDate orderDate, LocalDate dueDate, String status,
-			 String orderDesc,String paymentStatus, String paymentMethod, double price, String priceExp) {
+			 String orderDesc,String paymentStatus, String paymentMethod, double price, String priceExp, String deliveryMethod, double shippingCost) {
 		this.theCustomer = customer;
 
 		this.orderNumber = new SimpleIntegerProperty(orderNumber);
@@ -58,6 +60,8 @@ public class Order {
 		String priceStringString = "$" + twoDigitFormat.format(this.price.getValue());
 		this.priceString = new SimpleStringProperty(priceStringString);
 		this.priceExpression = new SimpleStringProperty(priceExp);
+		this.deliveryMethod = new SimpleStringProperty(deliveryMethod);
+		this.shippingCost = new SimpleDoubleProperty(shippingCost);
 	}
 	
 	//field accessors
@@ -176,6 +180,16 @@ public class Order {
 	public String getPriceExp(){
 		return priceExpression.get();
 	}
+	/**Returns the order's delivery method
+	 * @return String */
+	public String getDeliveryMethod(){
+		return deliveryMethod.get();
+	}
+	/**Returns the order's shipping cost
+	 * @return String */
+	public double getShippingCost(){
+		return shippingCost.get();
+	}
 	
 	
 	//property accessors
@@ -276,6 +290,14 @@ public class Order {
 	public StringProperty priceExpProperty() {
 		return priceExpression;
 	}
+	/**@return StringProperty*/
+	public StringProperty deliveryMethodProperty() {
+		return deliveryMethod;
+	}
+	/**@return DoubleProperty*/
+	public DoubleProperty shippingCostProperty() {
+		return shippingCost;
+	}
 	
 
 	//field mutators
@@ -374,6 +396,14 @@ public class Order {
 	/**Sets the price expression*/
 	public void setPriceExp(String priceExp){
 		this.priceExpression.set(priceExp);
+	}
+	/**Sets the delivery method*/
+	public void setDeliveryMethod(String deliveryMethod){
+		this.deliveryMethod.set(deliveryMethod);
+	}
+	/**Sets the shipping cost*/
+	public void setShippingCost(double shippingCost){
+		this.shippingCost.set(shippingCost);
 	}
 	
 

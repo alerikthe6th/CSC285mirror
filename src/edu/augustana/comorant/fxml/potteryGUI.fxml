@@ -62,7 +62,8 @@
                                                 <TableColumn fx:id="clmOrderDate" prefWidth="90.0" text="Date Ordered" />
                                                 <TableColumn fx:id="clmDueDate" prefWidth="75.0" text="Due Date" />
                                                 <TableColumn fx:id="clmStatus" prefWidth="90.0" text="Status" />
-                                              	<TableColumn fx:id="clmFirstName" prefWidth="100.0" text="First Name" />
+                                                <TableColumn fx:id="clmDelivery" prefWidth="111.0" text="Delivery Method" />
+                                              	<TableColumn fx:id="clmFirstName" prefWidth="79.0" text="First Name" />
                                                 <TableColumn fx:id="clmLastName" prefWidth="100.0" text="Last Name" />
                                                 <TableColumn fx:id="clmOrderDesc" prefWidth="110.0" text="Order Description" />
                                                 <TableColumn fx:id="clmShippingAddress" prefWidth="140.0" text="Shipping Address" />

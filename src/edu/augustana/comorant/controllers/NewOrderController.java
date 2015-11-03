@@ -34,6 +34,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -90,6 +92,17 @@ public class NewOrderController implements Initializable {
 	private Label lblResult;
 	@FXML 
 	private Label lblTax;
+	
+	@FXML
+	private ComboBox<String> cmbDelivery;
+	@FXML
+	private Label lblShippingCost;
+	@FXML
+	private HBox hboxShippingLabel;
+	@FXML
+	private TextField txtShippingCost;
+	@FXML
+	private VBox vboxShippingCost;
 	
 	Customer existingCustomer;
 
@@ -163,31 +176,62 @@ public class NewOrderController implements Initializable {
 				}
 			}
 		});
+		
+		txtShippingCost.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if (oldValue && !newValue && !txtShippingCost.getText().equals("")) {
+				try {
+					String priceExp = txtShippingCost.getText();
+					Expression expr = new ExpressionBuilder(priceExp).build();
+					double resultPrice = expr.evaluate();
+					if (resultPrice < 0) {
+						throw new IllegalArgumentException();
+					}
+				} catch (IllegalArgumentException iae) {
+					throwAlert("Shipping Cost", txtShippingCost);
+				}
+			}
+		});
 		//checks to see if the price inserted is valid and if not sets it blank
 		txtPrice.textProperty()
 		.addListener(
 				(observable, oldValue, newValue) -> {
+					calculateResultString(newValue);
+				});
+		
+		txtShippingCost.textProperty()
+		.addListener(
+				(observable, oldValue, newValue) -> {
 					try {
 						String priceExp = newValue;
-						double taxRate = MainController.getCurrentPreference().getTax();
 						Double resultPrice = CostUtilities.getCost(priceExp);
-						double costIncludingTax = CostUtilities.getCostIncludingTax(resultPrice, taxRate);
-						double tax = CostUtilities.getTaxCost(resultPrice, taxRate);
 						if (resultPrice < 0) {
 							throw new IllegalArgumentException();
 						}
 						DecimalFormat twoDigitFormat = new DecimalFormat(
 								"0.00");
 						String priceString = twoDigitFormat
-								.format(costIncludingTax);
-						String taxString = twoDigitFormat.format(tax);
-						lblResult.setText(priceString);
-						lblTax.setText(taxString);
+								.format(resultPrice);
+						lblShippingCost.setText(priceString);
+						calculateResultString(txtPrice.getText());
 					} catch (IllegalArgumentException iae) {
-						lblResult.setText("...");
-						lblTax.setText("...");
+						lblShippingCost.setText("...");
+						calculateResultString(txtPrice.getText());
 					}
 				});
+		
+		cmbDelivery.valueProperty().addListener((observable, oldValue, newValue) ->{
+			if (newValue.equals("In-Store Pickup")){
+				hboxShippingLabel.setVisible(false);
+				vboxShippingCost.setVisible(false);
+				txtShippingCost.setText("0");
+			} else {
+				hboxShippingLabel.setVisible(true);
+				vboxShippingCost.setVisible(true);
+				txtShippingCost.setText("0");
+			}
+		});
+		
+		cmbDelivery.setValue("Shipping");
 
 		// checks if the email contains only 1 '@' symbol
 		// clears field if empty
@@ -212,6 +256,32 @@ public class NewOrderController implements Initializable {
 		txtLastName.textProperty().addListener((observable, oldValue, newValue) -> {
 			matchNameToCustomer();
 		});
+	}
+	private void calculateResultString(String newValue) {
+		try {
+			String priceExp = newValue;
+			double taxRate = MainController.getCurrentPreference().getTax();
+			Double resultPrice = CostUtilities.getCost(priceExp);
+			double costIncludingTax = CostUtilities.getCostIncludingTax(resultPrice, taxRate);
+			double tax = CostUtilities.getTaxCost(resultPrice, taxRate);
+			if (resultPrice < 0) {
+				throw new IllegalArgumentException();
+			}
+			DecimalFormat twoDigitFormat = new DecimalFormat(
+					"0.00");
+			if(lblShippingCost.isVisible() && !lblShippingCost.getText().equals("...")){
+				double shippingCost = Double.parseDouble(lblShippingCost.getText());
+				costIncludingTax += shippingCost;
+			}
+			String priceString = twoDigitFormat
+					.format(costIncludingTax);
+			String taxString = twoDigitFormat.format(tax);
+			lblResult.setText(priceString);
+			lblTax.setText(taxString);
+		} catch (IllegalArgumentException iae) {
+			lblResult.setText("...");
+			lblTax.setText("...");
+		}
 	}
 
 	/**
@@ -310,6 +380,8 @@ public class NewOrderController implements Initializable {
 		boolean saveSmsEnabled = chkSMSEnabled.isSelected();
 		String savePrefContactMethod = "";
 		String savePriceExp = "";
+		String saveDeliveryMethod = "";
+		double saveShippingCost = 0;
 
 		if (dtpkOrderDate.getValue() != null) {
 			saveOrderDate = dtpkOrderDate.getValue();
@@ -365,6 +437,12 @@ public class NewOrderController implements Initializable {
 		if (cmbPrefContactMethod.getValue() != null) {
 			savePrefContactMethod = cmbPrefContactMethod.getValue().toString();
 		}
+		if (cmbDelivery.getValue() != null) {
+			saveDeliveryMethod = cmbDelivery.getValue().toString();
+		}
+		if (!lblShippingCost.getText().equals("...")) {
+			saveShippingCost = Double.parseDouble(lblShippingCost.getText());
+		}
 
 		Customer newCustomer = new Customer((mainController.getLargestCustomerNumber() + 1), saveFirstName,
 				saveLastName, saveStreetAddress, saveStreetAddressLine2, saveCity, saveState, saveZip, savePhone, saveEmail,
@@ -388,7 +466,7 @@ public class NewOrderController implements Initializable {
 		}
 
 		Order newOrder = new Order(newCustomer, saveOrderNumber, saveOrderDate, saveDueDate, saveStatus, saveOrderDesc,
-				savePaymentStatus, savePaymentMethod, savePrice, savePriceExp);
+				savePaymentStatus, savePaymentMethod, savePrice, savePriceExp, saveDeliveryMethod, saveShippingCost);
 
 		mainController.orderList.add(newOrder);
 
@@ -433,6 +511,9 @@ public class NewOrderController implements Initializable {
 				"Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon");
 		
 		cmbState.setItems(statesList);
+		
+		ObservableList<String> deliveryOptions = FXCollections.observableArrayList("In-Store Pickup", "Shipping");
+		cmbDelivery.setItems(deliveryOptions);
 
 	}
 	/** Checks if the inputed name matches any previous customers */

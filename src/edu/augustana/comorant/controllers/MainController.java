@@ -115,6 +115,8 @@ public class MainController implements Initializable {
 	private TableColumn<Order, Boolean> clmSMSEnabled;
 	@FXML
 	private TableColumn<Order, String> clmPrefContactMethod;
+	@FXML
+	private TableColumn<Order, String> clmDelivery;
 	
 	
 	@FXML
@@ -139,6 +141,8 @@ public class MainController implements Initializable {
 	private TableColumn<Customer, Boolean> clmCustSmsEnabled;
 	@FXML
 	private TableColumn<Customer, String> clmCustPrefContactMethod;
+	
+	
 	
 	
 	@FXML
@@ -608,6 +612,7 @@ public class MainController implements Initializable {
 		clmPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
 		clmSMSEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledProperty());
 		clmPrefContactMethod.setCellValueFactory(cellData -> cellData.getValue().prefContactMethodProperty());
+		clmDelivery.setCellValueFactory(cellData -> cellData.getValue().deliveryMethodProperty());
 
 		tblOrders.setItems(sortedOrders);
 		
