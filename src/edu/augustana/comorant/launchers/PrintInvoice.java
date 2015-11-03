@@ -142,7 +142,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 	
 	//used code from: http://www.coderanch.com/t/410208/java/java/java-printing-printing-pdf
 	
-	/**Prints the file "PrintInvoice.doc" saved in the working directory */
+	/**Prints the file "PrintInvoice.doc" saved in the working directory and then deletes it*/
 	public static void printPage(){
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();//gets default printer so it knows where to send it to
 	    DocPrintJob printerJob = defaultPrintService.createPrintJob();
@@ -159,6 +159,7 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 	        ex.printStackTrace();
 	    }
 	    
+	    //deletes the file
 	    Path path = Paths.get(""+System.getProperty("user.dir")+"/PrintOut.doc");
 		try {
 			Files.delete(path);
@@ -219,51 +220,4 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 			return state.substring(0,2).toUpperCase();
 		}
 	}
-	/*
-	public static void main(String[] args){
-	
-		//first line is actual method calls
-		//second line is expected result - confirm matches
-	
-		System.out.println("\n" + stateFormatter("Alabama") + " - " + stateFormatter("Alaska") +" - "+ stateFormatter("Arizona") +" - "+ stateFormatter("Arkansas"));
-		System.out.println("AL - AK - AZ - AR");
-		System.out.println("\n" + stateFormatter("California") + " - " + stateFormatter("Colorado") +" - "+ stateFormatter("Connecticut") +" - "+ stateFormatter("Delaware"));
-		System.out.println("CA - CO - CT - DE");
-		System.out.println("\n" + stateFormatter("Florida") + " - " + stateFormatter("Georgia") +" - "+ stateFormatter("Hawaii") +" - "+ stateFormatter("Idaho"));
-		System.out.println("FL - GA - HI - ID");
-		System.out.println("\n" + stateFormatter("Illinois") + " - " + stateFormatter("Indiana") +" - "+ stateFormatter("Iowa") +" - "+ stateFormatter("Kansas"));
-		System.out.println("IL - IN - IA - KS");
-		
-		
-		System.out.println("\n" + stateFormatter("Kentucky") + " - " + stateFormatter("Louisiana") +" - "+ stateFormatter("Maine") +" - "+ stateFormatter("Maryland"));
-		System.out.println("KY - LA - ME - MD");
-		System.out.println("\n" + stateFormatter("Massachusetts") + " - " + stateFormatter("Michigan") +" - "+ stateFormatter("Minnesota") +" - "+ stateFormatter("Mississippi"));
-		System.out.println("MA - MI - MN - MS");
-		System.out.println("\n" + stateFormatter("Missouri") + " - " + stateFormatter("Montana") +" - "+ stateFormatter("Nebraska") +" - "+ stateFormatter("Nevada"));
-		System.out.println("MO - MT - NE - NV");
-		System.out.println("\n" + stateFormatter("New Hampshire") + " - " + stateFormatter("New Jersey") +" - "+ stateFormatter("New Mexico") +" - "+ stateFormatter("New York"));
-		System.out.println("NH - NJ - NM - NY");
-		
-		
-		System.out.println("\n" + stateFormatter("North Carolina") + " - " + stateFormatter("North Dakota") +" - "+ stateFormatter("Ohio") +" - "+ stateFormatter("Oklahoma"));
-		System.out.println("NC - ND - OH - OK");
-		System.out.println("\n" + stateFormatter("Oregon") + " - " + stateFormatter("Pennsylvania") +" - "+ stateFormatter("Rhode Island") +" - "+ stateFormatter("South Carolina"));
-		System.out.println("OR - PA - RI - SC");
-		System.out.println("\n" + stateFormatter("South Dakota") + " - " + stateFormatter("Tennessee") +" - "+ stateFormatter("Texas") +" - "+ stateFormatter("Utah"));
-		System.out.println("SD - TN - TX - UT");
-		System.out.println("\n" + stateFormatter("Vermont") + " - " + stateFormatter("Virginia") +" - "+ stateFormatter("Washington") +" - "+ stateFormatter("West Virginia"));
-		System.out.println("VT - VA - WA - WV");
-		
-		
-		System.out.println("\n" + stateFormatter("Wisconsin") + " - " + stateFormatter("Wyoming") +" - "+ stateFormatter("District of Columbia") +" - "+ stateFormatter("Alberta"));
-		System.out.println("WI - WY - DC - AB");
-		System.out.println("\n" + stateFormatter("British Columbia") + " - " + stateFormatter("Manitoba") +" - "+ stateFormatter("New Brunswick") +" - "+ stateFormatter("Newfoundland and Labrador"));
-		System.out.println("BC - MB - NB - NL");
-		System.out.println("\n" + stateFormatter("Nova Scotia") + " - " + stateFormatter("Northwest Territories") +" - "+ stateFormatter("Nunavut") +" - "+ stateFormatter("Ontario"));
-		System.out.println("NS - NT - NU - ON");
-		System.out.println("\n" + stateFormatter("Prince Edward Island") + " - " + stateFormatter("Quebec") +" - "+ stateFormatter("Saskatchewan") +" - "+ stateFormatter("Yukon"));
-		System.out.println("PE - QC - SK - YT");
-
-	}
-	 */
 }

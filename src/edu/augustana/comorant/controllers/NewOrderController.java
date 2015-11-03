@@ -117,7 +117,7 @@ public class NewOrderController implements Initializable {
 				String testPhone = txtPhone.getText();
 				// 7,10,11 nums 1234567,1234567890,112345678900
 				if (!(testPhone.length() == 7 || testPhone.length() == 10 || testPhone.length() == 11 || 
-						// 7,10,11 nums 1234567,1234567890,112345678900
+				// 7,10,11 nums 1234567,1234567890,112345678900
 				(testPhone.length() == 8 && testPhone.charAt(3) == '-') || 
 				// 10nums and 2 hyphens 123-456-7890
 				(testPhone.length() == 12 && testPhone.charAt(3) == '-' && testPhone.charAt(7) == '-') || 
