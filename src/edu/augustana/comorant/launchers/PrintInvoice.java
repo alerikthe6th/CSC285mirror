@@ -47,7 +47,7 @@ public class PrintInvoice {
 	 * @param paymentMethod - String; ex: "Credit Card"
 	 */
 	public static void createInvoice(String fromName, String fromAdrsLine1, String fromAdrsLine2, String fromCSZ, String custName, 
-		String custAdrsLine1, String custAdrsLine2, String custCSZ, String dateOrdered, String orderDesc, String price, String paymentMethod){
+		String custAdrsLine1, String custAdrsLine2, String custCSZ, String dateOrdered, String orderDesc, String shippingCost, String price, String paymentMethod){
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//2015-10-25
 		Date date = new Date();
@@ -125,6 +125,8 @@ public class PrintInvoice {
 		
 		writer.println("\tPaid With:\n    " +paymentMethod+"\n");
 		
+		writer.printf("%70s", "Shipping Cost: $"+shippingCost);
+		writer.println();
 		writer.printf("%70s", "Total Cost: $"+price);
 		
 		writer.close();

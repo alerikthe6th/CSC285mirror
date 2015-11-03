@@ -31,7 +31,11 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblOrderDate" text="Label" />
+            <Label fx:id="lblOrderDate" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
          </children>
       </VBox>
       <VBox GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -40,7 +44,11 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblDueDate" text="Label" />
+            <Label fx:id="lblDueDate" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
          </children>
       </VBox>
       <VBox spacing="4.0" GridPane.rowIndex="2">
@@ -52,7 +60,11 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblFirstName" text="Label" translateX="35.0" />
+                  <Label fx:id="lblFirstName" text="Label" translateX="35.0" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
                </children>
             </HBox>
             <HBox>
@@ -62,7 +74,11 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblLastName" text="Label" translateX="36.0" />
+                  <Label fx:id="lblLastName" text="Label" translateX="36.0" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
                </children>
             </HBox>
          </children>
@@ -82,10 +98,18 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblStreetAddress" text="Label" />
+            <Label fx:id="lblStreetAddress" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
             </HBox>
-            <Label fx:id="lblStreetAddressLine2" text="Label" />
+            <Label fx:id="lblStreetAddressLine2" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <VBox>
@@ -94,7 +118,11 @@
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></Label>
-                        <Label fx:id="lblCity" prefHeight="31.0" prefWidth="182.0" text="Label" />
+                        <Label fx:id="lblCity" prefHeight="31.0" prefWidth="182.0" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
                      </children>
                   </VBox>
                   <VBox>
@@ -103,7 +131,11 @@
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></Label>
-                        <Label fx:id="lblState" text="Label" />
+                        <Label fx:id="lblState" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
                      </children>
                   </VBox>
                   <VBox>
@@ -112,7 +144,11 @@
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></Label>
-                        <Label fx:id="lblZip" text="Label" />
+                        <Label fx:id="lblZip" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
                      </children>
                   </VBox>
                </children>
@@ -125,12 +161,20 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblPhone" text="Label" />
+            <Label fx:id="lblPhone" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
             <Label text="Email Address:">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblEmail" text="Label" />
+            <Label fx:id="lblEmail" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
          </children>
       </VBox>
       <VBox GridPane.rowIndex="5">
@@ -142,7 +186,29 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblPrice" text="Label" translateX="10.0" />
+                  <Label fx:id="lblPrice" text="Label" translateX="10.0" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox GridPane.rowIndex="6">
+         <children>
+            <HBox>
+               <children>
+                  <Label text="Shipping Cost:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblShippingCost" text="Label" translateX="10.0" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
                </children>
             </HBox>
          </children>
@@ -153,7 +219,11 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblPaymentMethod" text="Label" />
+            <Label fx:id="lblPaymentMethod" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+            </Label>
          </children>
       </VBox>
       <VBox GridPane.columnIndex="2" GridPane.rowIndex="5">
@@ -162,7 +232,11 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblPaymentStatus" text="Label" />
+            <Label fx:id="lblPaymentStatus" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+            </Label>
          </children>
       </VBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -172,7 +246,11 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="lblSMSEnabled" text="Label" translateX="10.0" />
+            <Label fx:id="lblSMSEnabled" text="Label" translateX="10.0" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
          </children>
       </HBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -181,7 +259,11 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblPrefContactMethod" text="Label" />
+            <Label fx:id="lblPrefContactMethod" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
@@ -190,7 +272,11 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="lblOrderStatus" text="Label" />
+            <Label fx:id="lblOrderStatus" text="Label" >
+                  	<font>
+                        <Font name="Helvetica" size="15.0" />
+                    </font>
+                  </Label>
          </children>
       </VBox>
       <HBox alignment="CENTER" GridPane.columnIndex="1">
@@ -218,6 +304,10 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <font>
+                    <Font name="Helvetica" size="15.0" />
+               </font>
+            
             </Label>
          </children>
       </HBox>

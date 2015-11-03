@@ -69,6 +69,8 @@ public class ViewOrderController implements Initializable {
 	@FXML
 	private Label lblPrice;
 	@FXML
+	private Label lblShippingCost;
+	@FXML
 	private Label lblPaymentMethod;
 	@FXML
 	private Label lblPaymentStatus;
@@ -112,6 +114,7 @@ public class ViewOrderController implements Initializable {
 		lblPaymentStatus.setText(viewOrder.getPaymentStatus().toString());
 		lblPaymentMethod.setText(viewOrder.getPaymentMethod().toString());
 		lblPrice.setText(viewOrder.getPrice()+"");
+		lblShippingCost.setText(viewOrder.getShippingCost()+"");
 		lblEmail.setText(viewOrder.getEmail());
 		lblPhone.setText(viewOrder.getPhoneNumber());
 		lblPrefContactMethod.setText(viewOrder.getPrefContactMethod().toString());
@@ -150,6 +153,7 @@ public class ViewOrderController implements Initializable {
 			""+lblCity.getText()+", "+//to city
 					edu.augustana.comorant.launchers.PrintInvoice.stateFormatter(lblState.getText())//to state(formatted)
 			+" "+lblZip.getText(), ""+lblOrderDate.getText(), ""+txtOrderDesc.getText(), //to to zip, order date, description
+			""+lblShippingCost.getText(),
 			""+lblPrice.getText(), ""+lblPaymentMethod.getText()//price and payment method
 		);
 
