@@ -31,15 +31,7 @@ import javax.print.SimpleDoc;
 //printer class will take as parameters the following: from address(from preferences), to address(from customer), 
 //date ordered, date shipped, order desc, price, payment method (from order)
 
-public class PrintInvoice {//TODO make huge orderDesc's wrap
-	/*
-	public static void main(String[] args){
-		createInvoice("Firsty Lastname", "123 Main Street", null, "New York, NY 12345",
-				"John Cena", "123 JCena St.", null, "Cena WY, 54321", "Oct 13 2015", "12 Pots, 6 Plates, and one giant hug", 
-				"12.56", "Credit Card");
-		//printPage();
-	}
-	*/
+public class PrintInvoice {
 	/**
 	 * @param fromName - String; ex: "Firsty Lastname Incorporated"
 	 * @param fromAdrsLine1 - String; ex: "P.O. Box 772"
@@ -79,7 +71,6 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 		writer.println();
 		writer.printf(fromAdrsLine1+"%"+(70-fromAdrsLine1.length())+"s", "+-stamp+");//or here
 		writer.println();
-//		if((!(fromAdrsLine2.equals(""))) &&  (null != fromAdrsLine2)){//is there a second address line?
 		if(!(fromAdrsLine2.equals(""))){//is there a second address line?
 			writer.printf(fromAdrsLine2+"%"+(70-fromAdrsLine2.length())+"s", "+------+");//or here
 			writer.println();
@@ -92,7 +83,6 @@ public class PrintInvoice {//TODO make huge orderDesc's wrap
 		
 		writer.println("\t\t\t\t"+custName);
 		writer.println("\t\t\t\t"+custAdrsLine1);
-		//if((!(custAdrsLine2.equals(""))) && (null != custAdrsLine2)){//is there a second address line?
 		if(!(custAdrsLine2.equals(""))){//is there a second address line?
 			writer.println("\t\t\t\t"+custAdrsLine2);
 		}

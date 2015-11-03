@@ -466,11 +466,10 @@ public class MainController implements Initializable {
 		    });
 		    return row ;
 		});
-
-		if(orderList.toString().equals("[]")){ //TODO here
+		//opens the preferences window if there are no orders
+		if(orderList.toString().equals("[]")){
 			Parent root;
 			try {
-	
 				FXMLLoader loader = new FXMLLoader(
 						getClass().getResource("/edu/augustana/comorant/fxml/preferencesGUI.fxml"));
 				root = loader.load();
@@ -486,8 +485,7 @@ public class MainController implements Initializable {
 				stage.setAlwaysOnTop(true);
 				stage.requestFocus();
 				stage.show();
-				
-				
+								
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
@@ -612,18 +610,6 @@ public class MainController implements Initializable {
 
 	/** Fills the Orders table with info from the orderList List */
 	public void populateTable() {
-		// orderList.add(new Order(13625, LocalDate.now(), LocalDate.of(2015,
-		// 10, 31), "Incomplete", "James", "Smith",
-		// "Two mugs please", "136 Required Dr.", "Rock Island", "Illinois",
-		// "61201", "Unpaid", "Cash", 136.52,
-		// "michaelcurrie12@augustana.edu", "555-555-5555", true, "Email"));
-		// orderList.add(new Order(13626, LocalDate.now(), LocalDate.of(2015,
-		// 11, 02), "Incomplete", "John", "Doe",
-		// "Lots and lots of plates", "123 Living Way", "Aurora", "Illinois",
-		// "60506", "Unpaid", "Credit Card",
-		// 678.90, "michaelcurrie12@augustana.edu", "555-555-5555", false,
-		// "Email"));
-
 		clmFirstName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
 		clmLastName.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
 		clmOrderNumber.setCellValueFactory(cellData -> cellData.getValue().orderNumberProperty());
@@ -644,14 +630,12 @@ public class MainController implements Initializable {
 		tblOrders.setItems(sortedOrders);
 		
 		clmCustName.setCellValueFactory(cellData -> cellData.getValue().fullNameProperty());
-		//clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().streetAddressProperty());//TODO line 2 here?
 		clmCustStreetAddress.setCellValueFactory(cellData -> cellData.getValue().bothStreetAddressProperty());
 		clmCustCity.setCellValueFactory(cellData -> cellData.getValue().cityProperty());
 		clmCustState.setCellValueFactory(cellData -> cellData.getValue().stateProperty());
 		clmCustZip.setCellValueFactory(cellData -> cellData.getValue().zipProperty());
 		clmCustPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
 		clmCustEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
-		//clmCustBalance.setCellValueFactory(cellData -> cellData.getValue().balanceProperty());
 		clmCustSmsEnabled.setCellValueFactory(cellData -> cellData.getValue().smsEnabledProperty());
 		clmCustPrefContactMethod.setCellValueFactory(cellData -> cellData.getValue().prefContactMethodProperty());
 		

@@ -200,12 +200,12 @@ public class DataAccess {
 			ResultSet prefResultSet = getPref.executeQuery();
 			// DateTimeFormatter sqlFormatter =
 			// DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MM:SS.SSS");
-			String businessName = "Sondahl Pottery";
-			String streetAddress = "6326 Maine St";
-			String streetAddressLine2 = "2nd line";//TODO change
-			String city = "Spirit Lake";
-			String state = "Idaho";
-			String zip = "83869";
+			String businessName = "";
+			String streetAddress = "";
+			String streetAddressLine2 = "";
+			String city = "";
+			String state = "";
+			String zip = "";
 			double tax = 0.06;
 			
 			if (prefResultSet.next()) {
@@ -524,7 +524,7 @@ public class DataAccess {
 		}
 	}
 
-	// TODO javadoc
+	/** gets rid of old data to save new data */
 	private static void dropOldCustomers(Connection connection)
 			throws SQLException {
 		String dropOldDataQuery = "DELETE FROM customers;";
@@ -533,7 +533,7 @@ public class DataAccess {
 		dropOldData.executeUpdate();
 	}
 
-	// TODO javadoc
+	/** gets rid of old data to save new data */
 	private static void dropOldOrders(Connection connection)
 			throws SQLException {
 		String dropOldDataQuery = "DELETE FROM Orders;";
@@ -542,7 +542,7 @@ public class DataAccess {
 		dropOldData.executeUpdate();
 	}
 
-	// TODO javadoc
+	/** gets rid of old data to save new data */
 	private static void dropOldPreferences(Connection connection)
 			throws SQLException {
 		String dropOldDataQuery = "DELETE FROM Preferences;";

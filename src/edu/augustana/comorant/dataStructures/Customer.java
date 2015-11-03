@@ -15,14 +15,12 @@ public class Customer {
 	protected IntegerProperty customerNumber;
 	protected StringProperty firstName;
 	protected StringProperty lastName;
-	//protected StringProperty orderDesc;
 	protected StringProperty fullAddress;
 	protected StringProperty streetAddress;
 	protected StringProperty streetAddressLine2;
 	protected StringProperty city;
 	protected StringProperty state;
 	protected StringProperty zip;
-	//protected StringProperty paymentMethod;
 	protected StringProperty phoneNumber;
 	protected StringProperty email;
 	protected StringProperty prefContactMethod;
@@ -62,14 +60,13 @@ public class Customer {
 		this.city = new SimpleStringProperty(city);
 		this.state = new SimpleStringProperty(state);
 		this.zip = new SimpleStringProperty(zip);
-		if(!(getStreetAddressLine2().equals(""))){//TODO always put in line 2 but when "" no \n
+		if(!(getStreetAddressLine2().equals(""))){
 			this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" + 
 					this.getStreetAddressLine2() + "\n" + this.getCity() + ", " + this.getState() + " " + this.getZip());
 		}else{
 			this.fullAddress = new SimpleStringProperty(this.getStreetAddress() + "\n" +
 					this.getCity() + ", " + this.getState() + " " + this.getZip());
 		}
-		//this.paymentMethod = new SimpleStringProperty(paymentMethod);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.email = new SimpleStringProperty(email);
 		this.prefContactMethod = new SimpleStringProperty(prefContactMethod);
@@ -91,11 +88,6 @@ public class Customer {
 	public String getLastName() {
 		return lastName.get();
 	}
-	/**Returns the customer's order description 
-	 * @return String */
-	//public String getOrderDesc() {
-		//return orderDesc.get();
-	//}
 	/**Returns the customer's street address 
 	 * @return String */
 	public String getStreetAddress() {
@@ -121,11 +113,6 @@ public class Customer {
 	public String getZip() {
 		return zip.get();
 	}
-	/**Returns the customer's payment method 
-	 * @return String */
-	//public String getPaymentMethod() {
-		//return paymentMethod.get();
-	//}
 	/**Returns the customer's phone number 
 	 * @return String */
 	public String getPhoneNumber() {
@@ -166,10 +153,6 @@ public class Customer {
 		return lastName;
 	}
 	/**@return StringProperty*/
-	//public StringProperty orderDescProperty() {
-		//return orderDesc;
-	//}
-	/**@return StringProperty*/
 	public StringProperty streetAddressProperty() {
 		return streetAddress;
 	}
@@ -203,10 +186,6 @@ public class Customer {
 	public StringProperty fullAddressProperty() {
 		return fullAddress;
 	}
-	/**@return StringProperty*/
-	//public StringProperty paymentMethodProperty() {
-		//return paymentMethod;
-	//}
 	/**@return StringProperty*/
 	public StringProperty phoneNumberProperty() {
 		return phoneNumber;
@@ -247,10 +226,6 @@ public class Customer {
 		this.lastName.set(lastName);
 		this.fullName.set(this.firstName.get() + " " + this.lastName.get());
 	}
-	/**Sets the customer's order description*/
-	//public void setOrderDesc(String status) {//TODO ?
-		//this.orderDesc.set(status);
-	//}
 	/**Sets the customer's street address*/
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress.set(streetAddress);
@@ -276,10 +251,6 @@ public class Customer {
 		this.zip.set(zip);
 		resetFullAddress();
 	}
-	/**Sets the customer's payment method*/
-	//public void setPaymentMethod(String paymentMethod) {//TODO ?
-		//this.paymentMethod.set(paymentMethod);
-	//}
 	/**Sets the customer's phone number*/
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber.set(phoneNumber);
