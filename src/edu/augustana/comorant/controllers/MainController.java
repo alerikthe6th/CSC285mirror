@@ -403,6 +403,8 @@ public class MainController implements Initializable {
 	/** Initializes a new window */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
 		assert newOrderButton != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		assert cmbOrderStatus != null : "fx:id=\"newOrderButton\" was not injected: check your FXML file 'potteryGUI.fxml'.";
 		populateDropdowns();
@@ -461,6 +463,31 @@ public class MainController implements Initializable {
 		    return row ;
 		});
 
+		if(orderList.toString().equals("[]")){ //TODO here
+			Parent root;
+			try {
+	
+				FXMLLoader loader = new FXMLLoader(
+						getClass().getResource("/edu/augustana/comorant/fxml/preferencesGUI.fxml"));
+				root = loader.load();
+				PrefController prefController = (PrefController) loader.getController();
+				prefController.setPref(currentPreference);
+	
+				Stage stage = new Stage();
+				stage.centerOnScreen();
+				stage.setTitle("Preferences");
+				stage.getIcons().add(new Image("comorantIconBorder2.png"));
+				stage.setScene(new Scene(root));
+				
+				stage.setAlwaysOnTop(true);
+				stage.requestFocus();
+				stage.show();
+				
+				
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	/** Shows all the data in a wrapped, filtered list */
